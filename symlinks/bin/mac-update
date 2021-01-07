@@ -1,0 +1,8 @@
+#!/bin/sh
+
+brew update
+brew upgrade
+brew upgrade --cask
+if [ $? -eq 0 ]; then
+  echo $( date +%s ) > $MY_CONFIG_CACHE_DIR/brew-upgrade-date
+fi

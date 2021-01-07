@@ -1,0 +1,36 @@
+markup=1
+actions=1
+
+font=SauceCodePro Nerd Font 12
+border-color=#98971a
+border-size=2
+background-color=#282828
+text-color=#8ec07c
+format=<b>%s</b> <span color="#555555">(%a)</span>\n%b
+
+# Hidden format
+[hidden]
+format=Hidden: %h [%t]
+
+[urgency=low]
+text-color=#93a1a1
+
+[urgency=low actionable]
+border-color=#93a1a1
+
+[urgency=normal actionable]
+border-color=#268bd2
+
+[urgency=high]
+border-color=#9c2220
+
+[urgency=high actionable]
+border-color=#6c71c4
+
+[app-name=playerctl]
+max-icon-size=96
+
+[app-name=i3-hint]
+max-icon-size=48
+format=%s\n%b
+width=150

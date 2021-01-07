@@ -1,0 +1,8 @@
+#!/bin/sh
+
+PACKAGE_MANAGER=$(get-package-manager-name)
+if [ "$PACKAGE_MANAGER" = "pacman" ]; then
+	echo "sudo pacman -S"
+elif [ "$PACKAGE_MANAGER" = "apt" ]; then
+	echo "sudo apt install"
+fi

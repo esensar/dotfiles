@@ -1,0 +1,13 @@
+#!/bin/sh
+
+PACKAGE_MANAGER="Unknown"
+if type apt > /dev/null 2>&1
+then
+	PACKAGE_MANAGER="apt"
+fi
+if type pacman > /dev/null 2>&1
+then
+	PACKAGE_MANAGER="pacman"
+fi
+
+echo $PACKAGE_MANAGER

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+dunstdirectory="$HOME/.config/dunst"
+outputfilename="dunstrc"
+
+touch $dunstdirectory/$outputfilename
+cat $dunstdirectory/dunstbase > $dunstdirectory/$outputfilename
+cat $dunstdirectory/dunstcolors >> $dunstdirectory/$outputfilename

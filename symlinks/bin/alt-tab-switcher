@@ -1,0 +1,4 @@
+#!/bin/bash
+
+id=`$HOME/bin/i3-id-list`
+sway-msg [id="$id"] focus > /dev/null

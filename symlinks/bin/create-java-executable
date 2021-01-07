@@ -1,0 +1,23 @@
+#!/bin/sh
+
+FILE=$1
+OUTPUT=$2
+filename=$(basename -- "$FILE")
+extension="${filename##*.}"
+filename="${filename%.*}"
+
+if [ ! -f "$FILE" ]; then
+  echo "$FILE is not a file"
+  exit 1
+fi
+
+if [ "$extension" != "jar" ]; then
+  echo "$FILE is not a jar"
+  exit 1
+fi
+
+if [ -z "$OUTPUT" ]; then
+  OUTPUT=$filename
+fi
+
+cat ~/bin/java-helpers/java-stub.sh $FILE > $OUTPUT && chmod +x $OUTPUT

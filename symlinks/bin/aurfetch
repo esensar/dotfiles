@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Quick install flag
+quick=
+
+while getopts q name
+do
+	case $name in
+		q)	quick=1;;
+		?)	echo "Usage: aurfetch [-q] packagename\n"
+				exit 2;;
+	esac
+done
+
+# Move away from options
+shift $(($OPTIND - 1))
+
+if [ -z "$1" ]; then
+	echo "Missing package name!"
+else
+	LOC=$PWD
+	PKG_NAME=$1
+	git clone https://aur.archlinux.org/$PKG_NAME.git $AUR_INSTALL_HOME/$PKG_NAME
+	cd $AUR_INSTALL_HOME/$PKG_NAME
+	if [ -z "$quick" ]; then
+		vim PKGBUILD
+	fi
+	makepkg -si
+	cd $LOC
+fi
+
+

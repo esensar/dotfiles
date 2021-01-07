@@ -1,0 +1,3 @@
+#!/bin/sh
+
+termite --name "download" -e "update-all-packages"

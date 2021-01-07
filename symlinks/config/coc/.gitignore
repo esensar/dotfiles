@@ -1,0 +1,7 @@
+extensions/coc-clangd-data/install/**
+
+mru
+snippets-mru
+commands
+*-history.json
+lists

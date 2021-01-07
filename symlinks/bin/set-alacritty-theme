@@ -1,0 +1,18 @@
+#!/bin/sh
+
+THEME=$1
+
+CURRENT_THEME=`grep "colors:" $HOME/.config/alacritty/alacritty.yml | cut -d '*' -f2`
+echo "Current theme: $CURRENT_THEME"
+
+if [ -z $THEME ]; then
+	echo "Missing theme argument! Toggling between default dark and light (gruvbox_dark, gruvbox_light)"
+	if [ "$CURRENT_THEME" = gruvbox_dark ]; then
+		THEME=gruvbox_light
+	else
+		THEME=gruvbox_dark
+	fi
+fi
+
+sed -i "s/colors: \*\(.*\)/colors: *$THEME/" $HOME/.config/alacritty/alacritty.yml
+echo "Theme switched to: $THEME"

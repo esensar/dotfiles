@@ -1,0 +1,18 @@
+#!/bin/bash
+
+SETTINGS_DIRECTORY=$HOME/bin/settings
+
+function get_settings()
+{
+	ls -l --time-style="long-iso" $SETTINGS_DIRECTORY | grep -v "~" | awk 'NR>1 {print $8}'
+}
+
+SETTING=$( (echo empty; get_settings)  | wofi -dmenu -only-match -p "Select settings script:")
+
+if [ x"empty" = x"${SETTING}" ]
+then
+	echo "No operation."
+elif [ -n "${SETTING}" ]
+then
+	${SETTINGS_DIRECTORY}/${SETTING}
+fi

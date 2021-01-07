@@ -1,0 +1,23 @@
+#define c08        #002b36
+#define c00        #073642
+#define c10        #586e75
+#define c11        #657b83
+#define c12         #839496
+#define c14         #93a1a1
+#define c07         #eee8d5
+#define c15         #fdf6e3
+#define c03        #b58900
+#define c09        #cb4b16
+#define c01           #dc322f
+#define c05       #d33682
+#define c13        #6c71c4
+#define c04          #268bd2
+#define c06          #2aa198
+#define c02         #859900
+#define cbg            c15
+#define cfg            c11
+#define cfc             c15
+#define ccc           c10
+#define cpcbg c14
+#define cpcfg c10
+

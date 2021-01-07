@@ -1,0 +1,29 @@
+# Folder for emails
+set folder = "~/.mail"
+# Mailbox type
+set mbox_type = Maildir
+# Directory to pool for new mail
+set spoolfile = +Inbox
+# Directory to save sent messages into
+set record = +Sent
+# Directory to save drafts into
+set postponed = +Drafts
+# Headers cache?
+set header_cache = ~/.cache/mutt
+# Sort by threads
+set sort = threads
+# Sort threads by last date received - newest first
+set sort_aux = reverse-last-date-received
+# Show date in year/month/day hour:minute format
+set date_format="%y/%m/%d %I:%M%p"
+# Mailcap file is used to tell mutt how to open different types of file
+set mailcap_path = "~/.config/mutt/mailcap"
+# Tells Mutt to automatically view files with these mime types
+auto_view text/html
+# Order to try and show multipart emails
+alternative_order text/plain text/enriched text/html
+# Tells Mutt to automatically view files with these mime types
+auto_view text/html
+# Order to try and show multipart emails
+alternative_order text/plain text/enriched text/html
+set editor = "vim"

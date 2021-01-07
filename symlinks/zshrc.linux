@@ -1,0 +1,25 @@
+source ~/.dotfiles/symlinks/zshrc.common
+
+export MACHINE_TYPE='linux'
+
+export AUR_INSTALL_HOME=~/AUR
+
+export PATH=~/.gem/ruby/2.4.0/bin:$PATH
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+eval $(keychain --eval --quiet id_rsa)
+print-last-system-upgrade
+
+# NVIM FTW!
+alias vim="nvim"
+alias vi="nvim"
+
+# FZF Aliases
+alias gitfzflog="git log --oneline | fzf --multi --preview 'git show {+1}'"
+
+# Local aliases and variables
+if [ -f "$HOME/.zshrc.local" ]; then
+    source $HOME/.zshrc.local
+fi

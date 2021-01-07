@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pacman -Si $(cat $1) | awk -F'[:<=>]' '/^Depends/ {print $2}' | xargs -n1 | sort -u

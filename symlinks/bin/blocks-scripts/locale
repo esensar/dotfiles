@@ -1,0 +1,7 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+	1) ~/.config/other-scripts/switch-input.sh
+esac
+
+setxkbmap -query | grep -i "layout" | awk '{print $2}'

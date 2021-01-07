@@ -1,0 +1,56 @@
+#!/bin/bash
+
+SELECTED_INSTALL_DIR=$1
+
+if type pacman > /dev/null 2>&1
+then
+	# Install arch packages
+	echo "Installing Arch packages..."
+	sudo xargs -a $SELECTED_INSTALL_DIR/Arch pacman -S --noconfirm --needed
+
+	echo "Installing packages from AUR using aurfetch..."
+	while read p; do
+		aurfetch -q $p
+	done <$SELECTED_INSTALL_DIR/AUR
+fi
+
+if type apt > /dev/null 2>&1
+then
+	echo "Installing apt packages..."
+	sudo xargs -a $SELECTED_INSTALL_DIR/apt apt install
+fi
+
+if type brew > /dev/null 2>&1
+then
+	echo "Installing brew packages..."
+	brew bundle --file $SELECTED_INSTALL_DIR/Brewfile
+fi
+
+if type flatpak > /dev/null 2>&1
+then
+	echo "Installing flatpak packages..."
+	xargs -a $SELECTED_INSTALL_DIR/flatpak flatpak install
+fi
+
+if type gem > /dev/null 2>&1
+then
+	echo "Installing gems..."
+	while read gem; do
+		gem install $gem
+	done <$( cat $SELECTED_INSTALL_DIR/gem | awk '{print $1}')
+fi
+
+if type pip2 > /dev/null 2>&1
+then
+	echo "Installing python2 packages..."
+	pip2 install -r $SELECTED_INSTALL_DIR/pip2
+fi
+
+if type pip3 > /dev/null 2>&1
+then
+	echo "Installing python3 packages..."
+	pip3 install -r $SELECTED_INSTALL_DIR/pip3
+fi
+
+echo "Please install npm packages manually... List of these is located in $SELECTED_INSTALL_DIR/npm"
+echo "DONE!"

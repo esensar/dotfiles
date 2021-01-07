@@ -1,0 +1,51 @@
+#!/bin/bash
+
+SUCCESS="Successful connection"
+FAILURE="Failed connection"
+
+function check_result() {
+	ADDRARG=$1
+	shift
+	RESULTARG=$*
+		echo "Checking result ($RESULTARG) of connection (to $ADDRARG)" >> $MY_CONFIG_CACHE_DIR/adb_wifi_setup_logs
+		if [ "$RESULTARG" == "connected to $ADDRARG" ] || [ "$RESULTARG" == "already connected to $ADDRARG" ]; then
+		echo "Success, printing: $SUCCESS" >> $MY_CONFIG_CACHE_DIR/adb_wifi_setup_logs
+		echo $SUCCESS
+	else
+	echo "failure, printing: $FAILURE" >> $MY_CONFIG_CACHE_DIR/adb_wifi_setup_logs
+		echo $FAILURE
+	fi
+}
+
+echo "\nStarting session on $(date)" >> $MY_CONFIG_CACHE_DIR/adb_wifi_setup_logs
+
+LAST_ADB_IP_FILE=$MY_CONFIG_CACHE_DIR/last_adb_ip_connected
+PORT=5555
+
+if [ -f $LAST_ADB_IP_FILE ]; then 
+	LAST_IP=$(cat $LAST_ADB_IP_FILE)
+	echo "Last ip connected was: $LAST_IP" >> $MY_CONFIG_CACHE_DIR/adb_wifi_setup_logs
+	RESULT=$(adb connect $LAST_IP)
+	echo "Result was $RESULT" >> $MY_CONFIG_CACHE_DIR/adb_wifi_setup_logs
+	if [ "$(check_result $LAST_IP $RESULT)" == "$SUCCESS" ]; then
+		echo $RESULT
+		exit 0
+	else
+		echo "Failed to connect to cached ip ($LAST_IP). Tryting to connect to usb connected device..."
+	fi
+else
+	echo "No cached ip found, trying to connect to usb connected device..."
+fi
+
+adb usb
+sleep 1
+ADDRLINE=$(adb shell ifconfig wlan0 | grep "inet addr" | awk '{print $2}' | cut -d/ -f1)
+adb tcpip $PORT
+sleep 1
+ADDR=${ADDRLINE//addr:/}
+RESULT=$(adb connect $ADDR:$PORT)
+if [ "$(check_result $ADDR:$PORT $RESULT)" == "$SUCCESS" ]; then
+	echo $ADDR:$PORT > $LAST_ADB_IP_FILE
+fi
+echo $RESULT
+

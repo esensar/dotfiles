@@ -1,0 +1,10 @@
+#!/bin/sh
+$MY_THEMES_DIR/select-theme "$(<$MY_THEMES_DIR/current-theme)"
+
+# Assemble configurations
+$MY_CONFIG_DIR/termite/assemble-termite-config
+$MY_CONFIG_DIR/dunst/assemble-dunst-config
+
+# Application specific reloadings
+killall -USR1 termite
+xrdb ~/.config/X11/Xresources

@@ -1,0 +1,59 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then
+	INSTALLATION_NAME=$HOSTNAME
+else
+	INSTALLATION_NAME=$1
+fi
+
+
+PACKAGES_DIRECTORY=$HOME/.dotfiles/installed_packages/$INSTALLATION_NAME
+
+if [ ! -d "$PACKAGES_DIRECTORY" ]; then
+	mkdir $PACKAGES_DIRECTORY
+fi
+
+CURDIR=$PWD
+
+if type pacman > /dev/null 2>&1
+then
+	pacman -Qqe | grep -vx "$(pacman -Qqm)" > $PACKAGES_DIRECTORY/Arch
+	pacman -Qqm > $PACKAGES_DIRECTORY/AUR
+fi
+
+if type apt > /dev/null 2>&1
+then
+	sudo dpkg-query -f '${binary:Package}\n' -W > $PACKAGES_DIRECTORY/apt
+fi
+
+if type flatpak > /dev/null 2>&1
+then
+	flatpak list | cut -f2 > $PACKAGES_DIRECTORY/flatpak
+fi
+
+if type pip2 > /dev/null 2>&1
+then
+	pip2 list > $PACKAGES_DIRECTORY/pip2
+fi
+if type pip3 > /dev/null 2>&1
+then
+	pip3 list > $PACKAGES_DIRECTORY/pip3
+fi
+
+if type gem > /dev/null 2>&1
+then
+	gem list > $PACKAGES_DIRECTORY/gem
+fi
+
+if type npm > /dev/null 2>&1
+then
+	npm ls -g --depth=0 "$@" 1>$PACKAGES_DIRECTORY/npm 2>/dev/null
+fi
+
+if type brew > /dev/null 2>&1
+then
+	cd $PACKAGES_DIRECTORY
+	brew bundle dump
+	cd $CURDIR
+fi

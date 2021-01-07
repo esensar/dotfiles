@@ -1,0 +1,42 @@
+#!/bin/bash
+
+INSTALLATIONS_DIRECTORY=~/.dotfiles/installed_packages
+
+function get_installations()
+{
+	ls -l --time-style="long-iso" $INSTALLATIONS_DIRECTORY | grep -v ${HOSTNAME} | awk 'NR>1 {print $8}'
+}
+
+# Get selected installation to clone
+if [ -z "$1" ]
+then
+	if type wofi > /dev/null 2>&1
+	then
+		INSTALLATION=$( (echo empty; get_installations)  | wofi -dmenu -only-match -p "Select host to clone installation from:")
+	else
+		PS3='Please select installation to clone: '
+		select opt in $(get_installations)
+		do
+			INSTALLATION=$opt
+			break
+		done
+	fi
+else
+	INSTALLATION=$1
+fi
+
+SELECTED_INSTALL_DIR=$INSTALLATIONS_DIRECTORY/$INSTALLATION
+
+if [ x"empty" = x"${INSTALLATION}" ]
+then
+	echo "No operation."
+elif [ -n "${INSTALLATION}" ]
+then
+	# Go with the cloning process
+	if type alacritty > /dev/null 2>&1
+	then
+		alacritty --title "download" -e "clone-installation-from-directory $SELECTED_INSTALL_DIR"
+	else
+		clone-installation-from-directory $SELECTED_INSTALL_DIR
+	fi
+fi

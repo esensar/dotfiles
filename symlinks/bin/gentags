@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -f ctags.ignore.gitignored ]; then
+	echo "Ignoring directories listed in ctags.ignore.gitignored file"
+	ctags -f tags.gitignored --exclude=@ctags.ignore.gitignored -R .
+else
+	echo "ctags.ignore.gitignored file not found. If you wish to ignore some directories, list them in that file."
+	ctags -f tags.gitignored -R . 
+fi
+

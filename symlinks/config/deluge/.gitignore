@@ -1,0 +1,16 @@
+# Ignore current state since it changes often
+
+state/*
+state/**
+*.state
+
+# Ignore icons since it is needless
+
+icons/*
+icons/**
+
+# Ignore locks
+
+ipc/*.lock
+
+auth

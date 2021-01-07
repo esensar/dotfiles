@@ -1,0 +1,7 @@
+source ~/.profile
+
+if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+  exec startx
+fi
+
+export LANG=en_US.UTF-8

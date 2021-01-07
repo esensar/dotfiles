@@ -1,0 +1,18 @@
+# Solarized color theme
+[urgency_low]
+    msg_urgency = low
+    background = "#eee8d5"
+    foreground = "#839496"
+	timeout = 10
+
+[urgency_normal]
+    msg_urgency = normal
+    background = "#93a1a1"
+    foreground = "#586e75"
+	timeout = 5
+
+[urgency_critical]
+    msg_urgency = critical
+    background = "#dc322f"
+    foreground = "#073642"
+	timeout = 0

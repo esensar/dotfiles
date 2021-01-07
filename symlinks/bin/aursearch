@@ -1,0 +1,27 @@
+#!/bin/python3
+
+import sys, json, urllib.parse, http.client, getopt
+
+args = sys.argv[1:]
+try:
+    optlist, args = getopt.getopt(args, 'd')
+except getopt.GetoptError as err:
+    print(err)
+    sys.exit(2)
+
+searchby = "name";
+for o in optlist:
+    if o == "-d":
+        descsearch = "name-desc";
+
+argstring = ' '.join(args)
+search_string = urllib.parse.quote_plus(argstring)
+
+conn = http.client.HTTPSConnection("aur.archlinux.org")
+conn.request("GET", "/rpc/?v=5&type=search&by=" + searchby + "&arg=" + search_string)
+
+response = conn.getresponse().read().decode("utf-8")
+results = json.loads(response)['results']
+
+for result in results:
+    print(result['Name'])

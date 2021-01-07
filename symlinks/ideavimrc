@@ -1,0 +1,19 @@
+source ~/.vim/vimrc
+source ~/.vim/plugins.vim
+
+" IdeaVIM plugins
+set surround
+set commentary
+
+" IdeaVIM settings
+set ideajoin
+set idearefactormode=keep
+
+" IdeaVIM mappings
+noremap <C-P> :action SearchEverywhere<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gr :action FindUsages<CR>
+nnoremap <leader>rn :action RenameElement<CR>
+
+nnoremap <leader>ac :action ShowIntentionActions<CR>

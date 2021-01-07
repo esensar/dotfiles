@@ -1,0 +1,5 @@
+package foreign-env
+package https://github.com/jhillyerd/plugin-git
+package pj
+theme agnoster
+theme default

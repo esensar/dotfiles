@@ -1,0 +1,5 @@
+theme.vim
+.netrwhist
+autoload/
+plugged/
+vimrc.local

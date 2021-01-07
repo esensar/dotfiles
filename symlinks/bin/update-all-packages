@@ -1,0 +1,67 @@
+#!/bin/bash
+
+if type pacman > /dev/null 2>&1
+then
+	# Clear out orphans
+	sudo pacman -Rns $(pacman -Qtdq)
+
+	# Update arch packages
+	sudo pacman -Syu
+
+	# Update AUR packages
+	LOC=$PWD
+
+	cd $AUR_INSTALL_HOME
+	for folder in *; do
+		cd $folder;
+		echo "Working in $PWD.";
+		if [ -z "$(ls -a | grep -w .git)" ]; then
+			echo "$folder is not a git directory!";
+		else
+			if [ "$(git pull)" == "Already up to date." ]; then
+				echo "Package $folder is up to date.";
+			else
+				makepkg -si
+			fi
+		fi
+		cd ..;
+	done
+	cd $LOC
+fi
+
+if type apt > /dev/null 2>&1
+then
+	# Clear out orphans
+	sudo apt autoremove
+
+	# Update apt packages
+	sudo apt update
+	sudo apt full-upgrade
+
+	# Clear out orphans
+	sudo apt autoremove
+fi
+
+if type flatpak > /dev/null 2>&1
+then
+	# Clear out unused flatpak apps
+	flatpak uninstall --unused
+
+	# Update flatpak packages
+	flatpak update
+
+	# Clear out unused flatpak apps once again
+	flatpak uninstall --unused
+fi
+
+# Update rubygems
+gem update --system
+gem update
+
+vim +PlugUpdate +qall
+
+if type pacman > /dev/null 2>&1
+then
+	# Clear out orphans once again
+	sudo pacman -Rns $(pacman -Qtdq)
+fi

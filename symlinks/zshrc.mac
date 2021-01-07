@@ -1,0 +1,54 @@
+source ~/.dotfiles/symlinks/zshrc.common
+
+export MACHINE_TYPE='mac'
+
+# PATHS
+
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools/"
+export PATH="$PATH:$HOME/Library/Android/sdk/tools/bin"
+
+# HomeBrew
+export PATH=~/homebrew/bin:$PATH
+
+# Android
+export PATH=$PATH:~/android-sdks/platform-tools/
+export PATH=$PATH:~/Library/Android/sdk/platform-tools/
+
+# dotnet
+export PATH=$PATH:/usr/local/share/dotnet
+
+# latexindent
+export PATH="~/LaTeX/latexindent:$PATH"
+export PATH="~/Latex/lindent:$PATH"
+
+PATH="~/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="~/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="~/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"~/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=~/perl5"; export PERL_MM_OPT;
+
+# Flutter
+export PATH="~/Applications/flutter/bin:$PATH"
+
+# Local aliases and variables
+if [ -f "$HOME/.zshrc.local" ]; then
+    source $HOME/.zshrc.local
+fi
+
+source /usr/local/opt/asdf/asdf.sh
+
+# Print update date
+print-last-brew-update
+
+# added by travis gem
+[ -f /Users/ensar.sarajcic/.travis/travis.sh ] && source /Users/ensar.sarajcic/.travis/travis.sh
+
+# PS1 support for virtual env of direnv
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+PS1='$(show_virtual_env)'$PS1
+
+export PATH="/usr/local/opt/llvm/bin:$PATH"

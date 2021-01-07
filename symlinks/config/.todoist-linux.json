@@ -1,0 +1,10 @@
+{
+    "quick-add": "Super+Alt+a",
+    "show-hide": "Super+Alt+T",
+    "refresh": "Super+Alt+r",
+    "beta": false,
+    "quit": "Alt+F4",
+    "tray-icon": "icon.png",
+    "minimize-to-tray": true,
+    "close-to-tray": true
+}

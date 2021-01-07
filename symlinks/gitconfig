@@ -1,0 +1,35 @@
+[user]
+	name = Ensar Sarajčić
+	email = es.ensar@gmail.com
+[core]
+	editor = nvim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = ~/.gitignore
+	pager = less -+FX
+[web]
+	browser = xdg-open
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
+[mergetool]
+	keepBackup = false
+[guitool "Add to .gitignore"]
+	cmd = echo \"\n$FILENAME\" >> .gitignore & git add .gitignore
+	needsfile = yes
+	confirm = yes
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[include]
+	path = ~/.gitconfig.local
+[includeIf "gitdir/i:~/Projects/Optimum/"]
+	path = ~/.gitconfig.optimum
+[includeIf "gitdir/i:~/Projects/University/"]
+	path = ~/.gitconfig.university
+[pull]
+	rebase = false

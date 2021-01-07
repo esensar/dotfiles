@@ -1,0 +1,26 @@
+#!/bin/sh
+
+function query_packages()
+{
+	QUERY_STRING=$1
+	pacman -Ssq $QUERY_STRING
+}
+
+function ask_for_package()
+{
+	PKG_LIST=query_packages
+	PKG=$( $PKG_LIST | wofi -dmenu -p "Select package or search:" )
+	echo $PKG
+	FND_PKG=$( $PKG_LIST | tr -s " " "\n" | grep ${PKG} )
+	echo $FND_PKG
+	if [ -z "$PKG" ]; then
+		echo "Done"
+	elif [[ "$PKG" == "$FND_PKG" ]]; then
+		# List contains the selected pkg
+		alacritty --title "download" -e "sudo pacman -S $PKG"
+	else
+		ask_for_package
+	fi
+}
+
+ask_for_package

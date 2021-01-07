@@ -1,0 +1,28 @@
+#!/bin/sh
+
+UPG_DATE=$1
+CURR_DATE=$( date +%s )
+
+DIFF=$(( CURR_DATE - UPG_DATE ))
+COLOR=""
+SUFFIX=""
+
+if [ $DIFF -lt $(( 60*60*24 )) ]; then
+	COLOR=4
+elif [ $DIFF -lt $(( 60*60*24*4 )) ]; then
+	COLOR=2
+elif [ $DIFF -lt $(( 60*60*24*7 )) ]; then
+	COLOR=3
+	SUFFIX="\nConsider running a full system upgrade ($2)"
+else
+	COLOR=1
+	SUFFIX="\nPlease run a full system upgrade ($2)"
+fi
+
+if [ "$MACHINE_TYPE" = "mac" ]; then
+	LAST_SYSTEM_UPGRADE=$( date -r "$UPG_DATE" +"%Y-%m-%d %H:%M:%S" )
+else
+	LAST_SYSTEM_UPGRADE=$( date -d "@$UPG_DATE" +"%Y-%m-%d %H:%M:%S" )
+fi
+
+tput setaf $COLOR; echo "Last system upgrade run on: "$LAST_SYSTEM_UPGRADE$SUFFIX

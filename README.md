@@ -51,7 +51,7 @@ This repository also provides a simple way to generate main personal ssh key to 
 make create_personal_ssh_github_key
 ```
 
-It is recommended to also clone `vimwiki` and use it:
+It is recommended to also clone `vimwiki` and use it (this is a private repository and applies only to owner):
 ```
 make clone_personal_viwiki
 ```

@@ -18,6 +18,10 @@ cp $themedir/dunstcolors $configdir/dunst/dunstcolors
 cp $themedir/theme.vim $MY_VIM_HOME/theme.vim
 cp $themedir/fehbg $configdir/other-scripts/fehbg
 
+rm $configdir/alacritty/colors.yml.bak
+mv $configdir/alacritty/colors.yml $configdir/alacritty/colors.yml.bak
+ln -sT $themedir/alacritty_colors.yml $configdir/alacritty/colors.yml
+
 FG=black
 if [[ $theme == *"light"* ]]; then
 	FG=white
@@ -25,4 +29,4 @@ fi
 
 echo "PRIMARY_FG=$FG" > ~/.dotfiles/symlinks/zshrc.theme
 echo "$theme detected as a $FG theme"
-notify-send "$theme detected as $FG theme" --icon=dialog-information 
+notify-send "$theme detected as $FG theme" --icon=dialog-information

@@ -228,6 +228,16 @@ create_personal_ssh_github_key: check_os prepare_ssh_dir
 	@echo "and paste copied public key"
 	$(call write_git_ssh_config_entry,github.com,,$(PERSONAL_SSH_KEYS_HOME)/id_rsa_github)
 
+.PHONY: prepare_fish_shell
+prepare_fish_shell: check_os
+	@echo "Preparing fish shell..."
+	@echo "Installing omf framework"
+	@curl -L -k https://get.oh-my.fish | fish
+	@echo "Install foreign-env to enable .profile in fish by running:"
+	@echo ""
+	@echo "omf install foreign-env"
+	@echo ""
+
 .PHONY: prepare_screenshots_dir
 prepare_screenshots_dir: check_os
 	@echo "Creating screenshots directories"

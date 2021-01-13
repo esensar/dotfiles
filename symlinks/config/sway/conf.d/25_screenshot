@@ -1,0 +1,21 @@
+# Screenshot tools
+set $screenshot_name $(date +"%m-%d-%Y_%T").png
+set $screenshot_dir ~/Pictures/Screenshots
+set $screenshot grim
+set $screenclip slurp | grim -g -
+set $windowshot grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') -g -
+set $screenshot_to_file $screenshot $screenshot_dir/$screenshot_name
+set $screenclip_to_file $screenclip $screenshot_dir/$screenshot_name
+set $windowshot_to_file $windowshot $screenshot_dir/$screenshot_name
+set $screenshot_clipboard $screenshot - | wl-copy
+set $screenclip_clipboard $screenclip - | wl-copy
+set $windowshot_clipboard $windowshot - | wl-copy
+
+bindsym $mod+Control+3 exec $screeshot_to_file
+bindsym $mod+Control+4 exec $screenclip_to_file
+bindsym $mod+Control+5 exec $windowshot_to_file
+
+# Selection screenshots
+bindsym $mod+Control+Shift+3 exec $screenshot_clipboard
+bindsym $mod+Control+Shift+4 exec $screenclip_clipboard
+bindsym $mod+Control+Shift+5 exec $windowshot_clipboard

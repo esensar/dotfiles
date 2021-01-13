@@ -1,0 +1,5 @@
+# Start up notification manager
+exec --no-startup-id mako
+exec kdeconnect-indicator
+exec spotify
+exec slack

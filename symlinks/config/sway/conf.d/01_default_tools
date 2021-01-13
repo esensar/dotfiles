@@ -1,0 +1,24 @@
+# Main tools mapping
+set $term alacritty
+set $menu "wofi -G -modi drun,run --show drun"
+set $filemanager $term -e ranger
+set $processviewer $term -e htop
+
+
+# start a terminal
+bindsym $mod+t exec $term
+
+# start todoist
+bindsym $mod+$alt+t exec todoist
+
+# start menu (program launcher)
+bindsym $mod+space exec $menu
+
+# start file explorer
+bindsym $mod+Shift+period exec $filemanager
+
+# start process viewer
+bindsym $mod+p exec $processviewer
+
+# Open configration menu
+bindsym $mod+Shift+comma exec ~/bin/settings-selector

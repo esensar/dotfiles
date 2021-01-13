@@ -1,0 +1,9 @@
+# Define locker script
+set $locker ~/bin/lockscreen
+bindsym $mod+L exec $locker
+
+# IDLE CONFIG
+exec swayidle -w \
+         timeout 300 $locker \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep $locker

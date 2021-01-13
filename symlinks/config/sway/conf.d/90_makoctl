@@ -1,0 +1,4 @@
+# Mako control key bindings
+bindsym --release control+space exec makoctl dismiss
+bindsym --release control+space+period exec makoctl dismiss --all
+bindsym --release control+space+o exec makoctl menu wofi -d

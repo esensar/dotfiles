@@ -1,0 +1,13 @@
+# Assign windows to workspaces
+assign [class="firefox"] $browser_workspace
+assign [class="Spotify"] $music_workspace
+assign [class="Hexchat"] $chat_workspace
+assign [class="Slack"] $chat_workspace
+assign [class="Gvim"] $editor_workspace
+assign [class="jetbrains-idea-ce"] $ide_workspace
+assign [class="libreoffice"] $note_workspace
+assign [class="jetbrains-studio"] $ide_workspace
+assign [class="jetbrains-rider"] $ide_workspace
+assign [class="octave-gui"] $ide_workspace
+assign [instance="vim"] $editor_workspace
+assign [instance="download"] $ongoing_operations

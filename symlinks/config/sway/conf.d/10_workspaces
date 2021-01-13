@@ -1,0 +1,39 @@
+# Default workspaces definitions
+set $terminal_workspace "1:"
+set $editor_workspace "2:"
+set $browser_workspace "3:"
+set $chat_workspace "6:"
+set $ongoing_operations "9:"
+set $ide_workspace "4:"
+set $workspace7 "7:Custom"
+set $note_workspace "8:"
+set $git_workspace "5:"
+set $music_workspace "10:"
+
+# switch to workspace
+bindsym $mod+1 workspace $terminal_workspace
+bindsym $mod+2 workspace $editor_workspace
+bindsym $mod+3 workspace $browser_workspace
+bindsym $mod+6 workspace $chat_workspace
+bindsym $mod+9 workspace $ongoing_operations
+bindsym $mod+4 workspace $ide_workspace
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $note_workspace
+bindsym $mod+5 workspace $git_workspace
+bindsym $mod+0 workspace $music_workspace
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $terminal_workspace
+bindsym $mod+Shift+2 move container to workspace $editor_workspace
+bindsym $mod+Shift+3 move container to workspace $browser_workspace
+bindsym $mod+Shift+6 move container to workspace $chat_workspace
+bindsym $mod+Shift+9 move container to workspace $ongoing_operations
+bindsym $mod+Shift+4 move container to workspace $ide_workspace
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $note_workspace
+bindsym $mod+Shift+5 move container to workspace $git_workspace
+bindsym $mod+Shift+0 move container to workspace $music_workspace
+
+# Alt+Tab like switching of workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev

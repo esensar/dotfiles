@@ -1,5 +1,6 @@
 {
 	"diagnostic.displayByAle": true,
+	"diagnostic.virtualText": true,
 	"languageserver": {
 		"kotlin": {
 			"command": "~/lsp/kotlin/server/bin/kotlin-language-server",

@@ -28,5 +28,3 @@ else
 	makepkg -si
 	cd $LOC
 fi
-
-

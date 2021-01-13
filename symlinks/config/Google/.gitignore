@@ -15,5 +15,8 @@
 **/options/vim_settings.xml
 **/options/window.state.xml
 **/options/vim_settings_local.xml
+**/options/runner.layout.xml
+**/options/designSurface.xml
+**/options/lightEdit.xml
 **/user.token
 **/port

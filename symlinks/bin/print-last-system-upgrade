@@ -5,7 +5,7 @@ if [ $MACHINE_TYPE == "mac" ]; then
 else
 	if type pacman &> /dev/null
 	then
-		LAST_SYSTEM_UPGRADE=$( cat /var/log/pacman.log | grep "starting full system upgrade" | awk 'END{ print substr($1, 2) " " substr($2, 1, length($2)-1) }' )
+		LAST_SYSTEM_UPGRADE=$( cat /var/log/pacman.log | grep "starting full system upgrade" | awk 'END{ print substr($1, 2, length($1)-2) }' )
 		LAST_SYSTEM_UPGRADE_DATE=$( date -d "$LAST_SYSTEM_UPGRADE" +%s )
 	fi
 

@@ -21,6 +21,7 @@ cp $themedir/fehbg $configdir/other-scripts/fehbg
 rm $configdir/alacritty/colors.yml.bak
 mv $configdir/alacritty/colors.yml $configdir/alacritty/colors.yml.bak
 ln -sT $themedir/alacritty_colors.yml $configdir/alacritty/colors.yml
+ln -sT $themedir/sway_colors $configdir/sway/conf.d/99_colors_override
 
 FG=black
 if [[ $theme == *"light"* ]]; then

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+WALLPAPER=~/.config/lock-wallpapers/oscar-wallpaper.jpg
+
+swaylock -f -i $WALLPAPER -s fill

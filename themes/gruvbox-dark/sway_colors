@@ -1,0 +1,5 @@
+# Set up colors of windows
+client.focused #98971a #98971a #ebdbb2 #98971a
+client.focused_inactive #282828 #282828 #a89984 #d3869b
+client.unfocused #282828 #282828 #8ec07c #586e75
+client.urgent #d33682 #d33682 #ebdbb2 #dc322f

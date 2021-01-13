@@ -8,6 +8,8 @@ background-color=#282828
 text-color=#8ec07c
 format=<b>%s</b> <span color="#555555">(%a)</span>\n%b
 
+default-timeout=5000
+
 # Hidden format
 [hidden]
 format=Hidden: %h [%t]
@@ -23,6 +25,7 @@ border-color=#268bd2
 
 [urgency=high]
 border-color=#9c2220
+ignore-timeout=1
 
 [urgency=high actionable]
 border-color=#6c71c4

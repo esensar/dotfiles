@@ -44,8 +44,25 @@ function! s:OpenNewPr()
 	call netrw#BrowseX(s:GetPrUrl(), 0)
 endfunction
 
+" Creates new branch and checks out to it
+" Similar to `gcb` in fish config
+function! s:CreateBranch(branch)
+	execute 'Git checkout -b ' . a:branch
+endfunction
+
+" Switches to branch
+function! s:CheckoutBranch(branch)
+	execute 'Git checkout ' . a:branch
+endfunction
+
 command! -nargs=0 Ggpush :call s:PushOrigin()
-command! -nargs=0 Gpr :call s:OpenNewPr()
 command! -nargs=0 Gpropen :call s:OpenNewPr()
+command! -nargs=0 Gpr Gpropen
 command! -nargs=0 Gprprint :call s:PrintPrUrl()
 command! -nargs=0 Gprcopy :call s:CopyPrUrl()
+command! -nargs=1 Gcbranch :call s:CreateBranch(<f-args>)
+command! -nargs=0 Gcmaster :call s:CheckoutBranch('main')
+command! -nargs=0 Gcm Gcmaster
+command! -nargs=0 Gcdev :call s:CheckoutBranch('develop')
+command! -nargs=1 Gcheckout :call s:CheckoutBranch(<f-args>)
+command! -nargs=1 Gc Gcheckout <args>

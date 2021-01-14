@@ -56,6 +56,7 @@ function! s:CheckoutBranch(branch)
 endfunction
 
 command! -nargs=0 Ggpush :call s:PushOrigin()
+command! -nargs=0 Ggpull :call s:PullOrigin()
 command! -nargs=0 Gpropen :call s:OpenNewPr()
 command! -nargs=0 Gpr Gpropen
 command! -nargs=0 Gprprint :call s:PrintPrUrl()

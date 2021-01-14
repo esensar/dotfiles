@@ -5,7 +5,13 @@
 " Shorcut to push directly to current branch on origin
 " Similar to `ggpush` in fish config
 function! s:PushOrigin()
-	execute 'Gpush origin ' . FugitiveHead()
+	execute 'Git push origin ' . FugitiveHead()
+endfunction
+
+" Shorcut to pull directly from current branch on origin
+" Similar to `ggpull` in fish config
+function! s:PullOrigin()
+	execute 'Git pull origin ' . FugitiveHead()
 endfunction
 
 " Generates url for creating PR for current branch

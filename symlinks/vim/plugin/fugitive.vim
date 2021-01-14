@@ -14,6 +14,7 @@ endfunction
 " Hardcoded to use 'origin' remote
 function! s:GetPrUrl()
 	let origin_url = fugitive#RemoteUrl('origin')
+	let origin_url = substitute(l:origin_url, '\.git$', '', '')
 	let origin_url = substitute(l:origin_url, ':', '/', '')
 	let origin_url = substitute(l:origin_url, 'git@', 'https://', '')
 	let pr_url = l:origin_url . '/compare/' . FugitiveHead() . '?expand=1'

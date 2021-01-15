@@ -15,6 +15,29 @@ function! s:GetReviewsDir(...)
 	return l:vimwiki.path . 'reviews/'
 endfunction
 
+" Finds review template path for provided review type
+function! s:GetReviewTemplatePath(vimwiki_reviews_path, review_type)
+	return a:vimwiki_reviews_path . 'template-' . a:review_type . '.md'
+endfunction
+
+" Edits weekly review template
+function! s:OpenReviewWeeklyTemplate(...)
+	let reviews_dir = call('s:GetReviewsDir', a:000)
+	execute 'edit ' . s:GetReviewTemplatePath(l:reviews_dir, 'week')
+endfunction
+
+" Edits monthly review template
+function! s:OpenReviewMonthlyTemplate(...)
+	let reviews_dir = call('s:GetReviewsDir', a:000)
+	execute 'edit ' . s:GetReviewTemplatePath(l:reviews_dir, 'month')
+endfunction
+
+" Edits yearly review template
+function! s:OpenReviewYearlyTemplate(...)
+	let reviews_dir = call('s:GetReviewsDir', a:000)
+	execute 'edit ' . s:GetReviewTemplatePath(l:reviews_dir, 'year')
+endfunction
+
 " Reads template for provided review type into current buffer
 " Uses overrides in form of files in reviews directory
 " Looks for file named template-{review_type}.md:
@@ -25,8 +48,9 @@ endfunction
 " Currently supported variables are:
 "  - %date% (Puts different date based on review type)
 function! s:ReadReviewTemplateIntoBuffer(vimwiki_reviews_path, review_type)
-	if filereadable(a:vimwiki_reviews_path + 'template-' + a:review_type . '.md')
-		execute 'read ' . a:vimwiki_reviews_path . 'template-' + a:review_type . '.md'
+	let template_path = s:GetReviewTemplatePath(a:vimwiki_reviews_path, a:review_type)
+	if filereadable(l:template_path)
+		execute 'read ' . l:template_path
 	else
 		if a:review_type == 'week'
 			call setline(1, '#%date% Weekly Review')
@@ -93,11 +117,17 @@ function! s:VimwikiReviewIndex(...)
 endfunction
 
 command! -nargs=? VimwikiWeeklyReview :call s:VimwikiWeeklyReview(<f-args>)
+command! -nargs=? VimwikiWeeklyTemplate :call s:OpenReviewWeeklyTemplate(<f-args>)
 command! -nargs=? VimwikiMonthlyReview :call s:VimwikiMonthlyReview(<f-args>)
+command! -nargs=? VimwikiMonthlyTemplate :call s:OpenReviewMonthlyTemplate(<f-args>)
 command! -nargs=? VimwikiYearlyReview :call s:VimwikiYearlyReview(<f-args>)
+command! -nargs=? VimwikiYearlyTemplate :call s:OpenReviewYearlyTemplate(<f-args>)
 command! -nargs=? VimwikiReviewIndex :call s:VimwikiReviewIndex(<f-args>)
 
 nnoremap <Leader>wrw :VimwikiWeeklyReview<CR>
+nnoremap <Leader>wrwt :VimwikiWeeklyTemplate<CR>
 nnoremap <Leader>wrm :VimwikiMonthlyReview<CR>
+nnoremap <Leader>wrmt :VimwikiMonthlyTemplate<CR>
 nnoremap <Leader>wry :VimwikiYearlyReview<CR>
+nnoremap <Leader>wryt :VimwikiYearlyTemplate<CR>
 nnoremap <Leader>wri :VimwikiReviewIndex<CR>

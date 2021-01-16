@@ -2,51 +2,87 @@
 "     - Statusline setup -
 " -----------------------------------------------------------------------------
 
-" Configure user colors for proper focus management
-hi! link User1 StatusLineGreenFg
-hi! link User2 StatusLineRedFg
-hi! link User3 StatusLineYellowFg
-hi! link User4 StatusLineBlueFg
-hi! link User5 StatusLinePurpleFg
+function s:UpdateColors()
+    let ctermbg = synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'cterm')
+    let guibg = synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui')
+    let idguifg1 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'gui')
+    let idctermfg1 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'cterm')
+    " Green in gruvbox
+    exec 'hi User1 guifg=' . l:idguifg1 .
+                \' ctermfg=' . l:idctermfg1 .
+                \' cterm=bold,reverse gui=bold,reverse'
+    let idguifg2 = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
+    let idctermfg2 = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'cterm')
+    " Red in gruvbox
+    exec 'hi User2 guifg=' . l:idguifg2 .
+                \' ctermfg=' . l:idctermfg2 .
+                \' cterm=bold,reverse gui=bold,reverse'
+    let idguifg3 = synIDattr(synIDtrans(hlID('MoreMsg')), 'fg', 'gui')
+    let idctermfg3 = synIDattr(synIDtrans(hlID('MoreMsg')), 'fg', 'cterm')
+    " Yellow in gruvbox
+    exec 'hi User3 guifg=' . l:idguifg3 .
+                \' ctermfg=' . l:idctermfg3 .
+                \' cterm=bold,reverse gui=bold,reverse'
+    let idguifg4 = synIDattr(synIDtrans(hlID('Identifier')), 'fg', 'gui')
+    let idctermfg4 = synIDattr(synIDtrans(hlID('Identifier')), 'fg', 'cterm')
+    " Blue in gruvbox
+    exec 'hi User4 guifg=' . l:idguifg4 .
+                \' ctermfg=' . l:idctermfg4 .
+                \' cterm=bold,reverse gui=bold,reverse'
+    let idguifg5 = synIDattr(synIDtrans(hlID('Number')), 'fg', 'gui')
+    let idctermfg5 = synIDattr(synIDtrans(hlID('Number')), 'fg', 'cterm')
+    " Blue in gruvbox
+    exec 'hi User5 guifg=' . l:idguifg5 .
+                \' ctermfg=' . l:idctermfg5 .
+                \' cterm=bold,reverse gui=bold,reverse'
+endfunction
+
+augroup statuslineconf
+    autocmd!
+    autocmd ColorScheme * call s:UpdateColors()
+augroup END
+
+call s:UpdateColors()
+
 
 " Checks file type to add a pretty glyph if available
 function s:GetFileType()
     if &filetype ==# "rust"
-        return "%2*%*"
+        return "%2*  %*"
     elseif &filetype ==# "c"
-        return "%4*%*"
+        return "%4*  %*"
     elseif &filetype ==# "python"
-        return "%3*%*"
+        return "%3*  %*"
     elseif &filetype ==# "javascript"
-        return ""
+        return "  "
     elseif &filetype ==# "typescript"
-        return "%4*%*"
+        return "%4*  %*"
     elseif &filetype ==# "vim"
-        return "%1*%*"
+        return "%1*  %*"
     elseif &filetype ==# "clojure"
-        return ""
+        return "  "
     elseif &filetype ==# "html"
-        return ""
+        return "  "
     elseif &filetype ==# "haskell"
-        return ""
+        return "  "
     elseif &filetype ==# "markdown"
-        return ""
+        return "  "
     elseif &filetype ==# "org"
-        return ""
+        return "  "
     elseif &filetype ==# "scss"
-        return ""
+        return "  "
     elseif &filetype ==# "scala"
-        return ""
+        return "  "
     elseif &filetype ==# "elixir"
-        return "%5*%*"
+        return "%5*  %*"
     elseif &filetype ==# "kotlin"
-        return "%2*洞%*"
+        return "%2* 洞 %*"
     elseif &filetype ==# "yml"
-        return ""
+        return "  "
     elseif &filetype ==# "toml"
-        return ""
+        return "  "
     elseif &filetype ==# "json"
-        return ""
+        return "  "
     else
         return "%y"
 endfunction
@@ -85,8 +121,8 @@ function! s:LinterStatus() abort
     let l:all_errors = l:counts.error + l:counts.style_error
     let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:counts.total == 0 ? '%1*OK%*' : printf(
-    \   '%%3*%dW%%* %%2*%dE%%*',
+    return l:counts.total == 0 ? '%1* OK %*' : printf(
+    \   '%%3* %dW %%* %%2* %dE %%*',
     \   all_non_errors,
     \   all_errors
     \)
@@ -95,14 +131,20 @@ endfunction
 function GetStatusLine()
     let l:status_line_left = s:GetMode()
     if exists('g:loaded_fugitive')
-        let l:status_line_left .= "%4* " . FugitiveHead() . "%*"
+        let l:fugitive_head = FugitiveHead()
+        if strlen(l:fugitive_head)
+            let l:status_line_left .= "%4*  " . l:fugitive_head . " %*"
+        endif
     endif
     let l:status_line_left .= " %f" " Filename
     let l:status_line_left .= " %1*%M%*" " Modified
     let l:status_line_left .= " %2*%r%*" " Read only
     let l:status_line_left .= s:PasteForStatusline()
     if exists('g:did_coc_loaded')
-        let l:status_line_left .= "%2*" . coc#status() . "%*"
+        let l:coc_status = coc#status()
+        if strlen(l:coc_status)
+            let l:status_line_left .= "%2* " . l:coc_status . " %*"
+        endif
     endif
     let l:status_line_right = "%=   " " Align right statusline
     if exists('g:loaded_ale')

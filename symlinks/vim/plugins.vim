@@ -45,6 +45,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'direnv/direnv.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'tpope/vim-speeddating'
 
 " -----------------------------------------------------------------------------
 "     - Autocompletion -
@@ -84,11 +86,6 @@ Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-rails'
 Plug 'mattn/emmet-vim'
 Plug 'vimwiki/vimwiki'
-
-" -----------------------------------------------------------------------------
-"     - Other Improvements -
-" -----------------------------------------------------------------------------
-Plug 'tpope/vim-speeddating'
 
 call plug#end()
 

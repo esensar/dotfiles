@@ -125,9 +125,9 @@ command! -nargs=? VimwikiYearlyTemplate :call s:OpenReviewYearlyTemplate(<f-args
 command! -nargs=? VimwikiReviewIndex :call s:VimwikiReviewIndex(<f-args>)
 
 nnoremap <Leader>wrw :VimwikiWeeklyReview<CR>
-nnoremap <Leader>wrwt :VimwikiWeeklyTemplate<CR>
+nnoremap <Leader>wrtw :VimwikiWeeklyTemplate<CR>
 nnoremap <Leader>wrm :VimwikiMonthlyReview<CR>
-nnoremap <Leader>wrmt :VimwikiMonthlyTemplate<CR>
+nnoremap <Leader>wrtm :VimwikiMonthlyTemplate<CR>
 nnoremap <Leader>wry :VimwikiYearlyReview<CR>
-nnoremap <Leader>wryt :VimwikiYearlyTemplate<CR>
+nnoremap <Leader>wrty :VimwikiYearlyTemplate<CR>
 nnoremap <Leader>wri :VimwikiReviewIndex<CR>

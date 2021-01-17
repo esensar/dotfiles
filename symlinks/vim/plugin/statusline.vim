@@ -150,7 +150,7 @@ function GetStatusLine()
     if exists('g:loaded_ale')
         let l:status_line_right .= s:LinterStatus() " ALE status
     endif
-    let l:status_line_right .= " %c:%l/%L (%p%%) " " col, line, tot. lines
+    let l:status_line_right .= " %2c:%3l/%3L (%3p%%) " " col, line, tot. lines
     let l:status_line_right .= s:GetFileType() . " " " File type
     return l:status_line_left . l:status_line_right
 endfunction

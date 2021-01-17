@@ -20,8 +20,11 @@ cp $themedir/fehbg $configdir/other-scripts/fehbg
 
 rm $configdir/alacritty/colors.yml.bak
 mv $configdir/alacritty/colors.yml $configdir/alacritty/colors.yml.bak
+rm $configdir/newsboat/colors.bak
+mv $configdir/newsboat/colors $configdir/newsboat/colors.bak
 ln -sT $themedir/alacritty_colors.yml $configdir/alacritty/colors.yml
 ln -sT $themedir/sway_colors $configdir/sway/conf.d/99_colors_override
+ln -sT $themedir/newsboatcolors $configdir/newsboat/colors
 
 FG=black
 if [[ $theme == *"light"* ]]; then

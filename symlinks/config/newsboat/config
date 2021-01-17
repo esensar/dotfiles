@@ -9,7 +9,7 @@ bind-key                ^R  reload-all
 # Display
 show-read-feeds no
 text-width      80
-include         /usr/share/doc/newsboat/contrib/colorschemes/nord
+include         ~/.config/newsboat/colors
 
 # Navigation
 browser 				xdg-open

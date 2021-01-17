@@ -49,15 +49,15 @@ endfunction
 "  - %date% (Puts different date based on review type)
 function! s:ReadReviewTemplateIntoBuffer(vimwiki_reviews_path, review_type)
 	let template_path = s:GetReviewTemplatePath(a:vimwiki_reviews_path, a:review_type)
-	if filereadable(l:template_path)
+	if filereadable(glob(l:template_path))
 		execute 'read ' . l:template_path
 	else
 		if a:review_type == 'week'
-			call setline(1, '#%date% Weekly Review')
+			call setline(1, '# %date% Weekly Review')
 		elseif a:review_type == 'month'
-			call setline(1, '#%date% Monthly Review')
+			call setline(1, '# %date% Monthly Review')
 		elseif a:review_type == 'year'
-			call setline(1, '#%date% Yearly Review')
+			call setline(1, '# %date% Yearly Review')
 		endif
 	endif
 endfunction
@@ -70,7 +70,7 @@ function! s:VimwikiWeeklyReview(...)
 	let days_to_sunday = 7 - str2nr(strftime('%u'))
 	let week_date = strftime('%Y-%m-%d', localtime() + l:days_to_sunday * 24 * 60 * 60)
 	let file_name = l:reviews_dir . l:week_date . '-week.md'
-	let exists = filereadable(l:file_name)
+	let exists = filereadable(glob(l:file_name))
 	execute 'edit ' . l:file_name
 	if exists == v:false
 		call s:ReadReviewTemplateIntoBuffer(l:reviews_dir, 'week')
@@ -88,7 +88,7 @@ function! s:VimwikiMonthlyReview(...)
 	let month_time = localtime() - 28 * 24 * 60 * 60
 	let month_date = strftime('%Y-%m', l:month_time)
 	let file_name = l:reviews_dir . l:month_date .'-month.md'
-	let exists = filereadable(l:file_name)
+	let exists = filereadable(glob(l:file_name))
 	execute 'edit ' . l:file_name
 	if exists == v:false
 		call s:ReadReviewTemplateIntoBuffer(l:reviews_dir, 'month')
@@ -102,7 +102,7 @@ function! s:VimwikiYearlyReview(...)
 	let reviews_dir = call('s:GetReviewsDir', a:000)
 	let year_date = (str2nr(strftime('%Y')) - 1)
 	let file_name = l:reviews_dir . l:year_date .'-year.md'
-	let exists = filereadable(l:file_name)
+	let exists = filereadable(glob(l:file_name))
 	execute 'edit ' . l:file_name
 	if exists == v:false
 		call s:ReadReviewTemplateIntoBuffer(l:reviews_dir, 'year')

@@ -84,7 +84,6 @@ Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-rails'
-Plug 'mattn/emmet-vim'
 Plug 'vimwiki/vimwiki'
 
 call plug#end()

@@ -41,6 +41,7 @@ set relativenumber
 " set lines=50 columns=100
 colorscheme gruvbox
 set background=dark
+set guifont=SauceCodePro\ Nerd\ Font:h12
 
 " -----------------------------------------------------------------------------
 "     - Miscellaneous -

@@ -14,7 +14,7 @@ let $LOCAL_VIMRC = $HOME."/.vimrc.local"
 "     - Load up plugins -
 " -----------------------------------------------------------------------------
 " Use local vimrc for overrides if available and desired
-if exists($LOCAL_VIMRC)
+if filereadable($LOCAL_VIMRC)
   source $LOCAL_VIMRC
 endif
 source $VIMPLUGINS

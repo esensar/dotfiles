@@ -51,7 +51,9 @@ Plug 'tpope/vim-speeddating'
 " -----------------------------------------------------------------------------
 "     - Autocompletion -
 " -----------------------------------------------------------------------------
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if !exists('g:loaded_node_provider') || g:loaded_node_provider != 0
+   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 Plug 'ervandew/supertab'
 
 " -----------------------------------------------------------------------------
@@ -75,8 +77,10 @@ Plug 'tpope/vim-sleuth'
 " -----------------------------------------------------------------------------
 "     - Snippets -
 " -----------------------------------------------------------------------------
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+if !exists('g:loaded_python3_provider') || g:loaded_python3_provider != 0
+   Plug 'SirVer/ultisnips'
+   Plug 'honza/vim-snippets'
+endif
 
 " -----------------------------------------------------------------------------
 "     - Language support -

@@ -13,6 +13,10 @@ let $LOCAL_VIMRC = $HOME."/.vimrc.local"
 " -----------------------------------------------------------------------------
 "     - Load up plugins -
 " -----------------------------------------------------------------------------
+" Use local vimrc for overrides if available and desired
+if filereadable($LOCAL_VIMRC)
+  source $LOCAL_VIMRC
+endif
 source $VIMPLUGINS
 
 " -----------------------------------------------------------------------------
@@ -124,6 +128,3 @@ if &term =~ '256color'
   " render properly when inside 256-color tmux and GNU screen.
   set t_ut=
 endif
-
-" Use local vimrc for overrides if available and desired
-runtime $LOCAL_VIMRC

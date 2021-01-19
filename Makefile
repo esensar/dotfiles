@@ -175,6 +175,11 @@ link_bin: check_os
 	@echo "Linking bin script files..."
 	$(call link,bin,bin)
 
+.PHONY: link_termux
+link_termux: check_os link_apps_config
+	@echo "Linking termux config files..."
+	$(call link,config/termux,.termux)
+
 .PHONY: link_xconfig
 link_xconfig: check_os
 	@echo "Linking X config files..."

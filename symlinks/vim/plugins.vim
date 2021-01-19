@@ -77,8 +77,10 @@ Plug 'tpope/vim-sleuth'
 " -----------------------------------------------------------------------------
 "     - Snippets -
 " -----------------------------------------------------------------------------
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+if !exists('g:loaded_python3_provider') || g:loaded_python3_provider != 0
+   Plug 'SirVer/ultisnips'
+   Plug 'honza/vim-snippets'
+endif
 
 " -----------------------------------------------------------------------------
 "     - Language support -

@@ -85,6 +85,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-rails'
 Plug 'vimwiki/vimwiki'
+Plug 'ledger/vim-ledger'
 
 call plug#end()
 

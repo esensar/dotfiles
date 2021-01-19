@@ -33,3 +33,5 @@
 	path = ~/.gitconfig.university
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main

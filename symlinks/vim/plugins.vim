@@ -51,7 +51,9 @@ Plug 'tpope/vim-speeddating'
 " -----------------------------------------------------------------------------
 "     - Autocompletion -
 " -----------------------------------------------------------------------------
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if !exists('g:loaded_node_provider') || g:loaded_node_provider != 0
+   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 Plug 'ervandew/supertab'
 
 " -----------------------------------------------------------------------------

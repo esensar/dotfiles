@@ -10,12 +10,14 @@ set $windowshot_to_file $windowshot $screenshot_dir/$screenshot_name
 set $screenshot_clipboard $screenshot - | wl-copy
 set $screenclip_clipboard $screenclip - | wl-copy
 set $windowshot_clipboard $windowshot - | wl-copy
+set $screenclip_text_clipboard $screenclip - | tesseract stdin stdout -l eng | wl-copy
 
 bindsym $mod+Control+3 exec $screeshot_to_file
 bindsym $mod+Control+4 exec $screenclip_to_file
 bindsym $mod+Control+5 exec $windowshot_to_file
 
 # Selection screenshots
+bindsym $mod+Control+Shift+2 exec $screenclip_text_clipboard
 bindsym $mod+Control+Shift+3 exec $screenshot_clipboard
 bindsym $mod+Control+Shift+4 exec $screenclip_clipboard
 bindsym $mod+Control+Shift+5 exec $windowshot_clipboard

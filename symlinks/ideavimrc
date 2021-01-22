@@ -17,3 +17,6 @@ nnoremap gr :action FindUsages<CR>
 nnoremap <leader>rn :action RenameElement<CR>
 
 nnoremap <leader>ac :action ShowIntentionActions<CR>
+
+command! Start action Run
+command! A action GotoTest

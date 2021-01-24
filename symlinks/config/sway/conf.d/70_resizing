@@ -6,6 +6,12 @@ mode "resize" {
     bindsym Up resize shrink height 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
 
+    # resize with vim keys
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
+
     # press p to enter precise resize mode
     bindsym p mode "resize_precise"
 
@@ -20,6 +26,12 @@ mode "resize_precise" {
     bindsym Down resize grow height 1 px or 1 ppt
     bindsym Up resize shrink height 1 px or 1 ppt
     bindsym Right resize grow width 1 px or 1 ppt
+
+    # resize with vim keys
+    bindsym $left resize shrink width 1 px or 1 ppt
+    bindsym $down resize grow height 1 px or 1 ppt
+    bindsym $up resize shrink height 1 px or 1 ppt
+    bindsym $right resize grow width 1 px or 1 ppt
 
     # go back to normal resize mode with p
     bindsym p mode "resize"

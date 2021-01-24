@@ -6,7 +6,7 @@ set $processviewer $term -e htop
 
 
 # start a terminal
-bindsym $mod+t exec $term
+bindsym $mod+Return exec $term
 
 # start todoist
 bindsym $mod+$alt+t exec todoist

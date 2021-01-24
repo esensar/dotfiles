@@ -1,3 +1,5 @@
 input type:pointer {
 	accel_profile flat
 }
+
+focus_follows_mouse no

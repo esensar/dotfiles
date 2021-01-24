@@ -1,6 +1,6 @@
 # Assign windows to workspaces
 assign [class="firefox"] $browser_workspace
-assign [class="Spotify"] $music_workspace
+assign [instance="spotify"] $music_workspace
 assign [class="Hexchat"] $chat_workspace
 assign [class="Slack"] $chat_workspace
 assign [class="Gvim"] $editor_workspace

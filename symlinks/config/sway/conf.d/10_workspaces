@@ -37,3 +37,15 @@ bindsym $mod+Shift+0 move container to workspace $music_workspace
 # Alt+Tab like switching of workspaces
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
+
+# Arrow workspace switch
+bindsym $mod+Control+Right workspace next
+bindsym $mod+Control+Down workspace next
+bindsym $mod+Control+Left workspace prev
+bindsym $mod+Control+Up workspace prev
+
+# Vim keys workspace switch
+bindsym $mod+Control+$right workspace next
+bindsym $mod+Control+$down workspace next
+bindsym $mod+Control+$left workspace prev
+bindsym $mod+Control+$up workspace prev

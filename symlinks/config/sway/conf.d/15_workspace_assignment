@@ -1,6 +1,5 @@
 # Assign windows to workspaces
 assign [class="firefox"] $browser_workspace
-assign [instance="spotify"] $music_workspace
 assign [class="Hexchat"] $chat_workspace
 assign [class="Slack"] $chat_workspace
 assign [class="Gvim"] $editor_workspace
@@ -11,3 +10,6 @@ assign [class="jetbrains-rider"] $ide_workspace
 assign [class="octave-gui"] $ide_workspace
 assign [instance="vim"] $editor_workspace
 assign [instance="download"] $ongoing_operations
+
+# Buggy apps
+for_window [class="Spotify"] move to workspace $music_workspace

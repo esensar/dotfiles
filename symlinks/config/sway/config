@@ -1,7 +1,7 @@
 # Read `man 5 sway` for a complete reference.
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/.config/wallpapers/gruvbox-dark/gruvbox-gadgets.png fill
+exec ~/.azotebg
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.

@@ -177,7 +177,7 @@
     "custom/power-menu": {
         "tooltip": false,
         "format": "",
-        "on-click": "echo -e 'Shutdown\nReboot\nSleep\nHibernate\nExit' | wofi -d -i -p 'System menu:' -L 10 | sed 's/Shutdown/systemctl poweroff/g;s/Reboot/systemctl reboot/g;s/Sleep/systemctl suspend/g;s/Hibernate/systemctl hibernate/g;s/Exit/swaymsg exit/g' | xargs -r0 sh -c"
+        "on-click": "nwgbar"
     }
 
 }

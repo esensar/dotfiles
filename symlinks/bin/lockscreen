@@ -1,5 +1,9 @@
 #!/bin/sh
 
-WALLPAPER=~/.config/lock-wallpapers/oscar-wallpaper.jpg
+if test -f ~/.config/lock-wallpapers/override; then
+	WALLPAPER=~/.config/lock-wallpapers/override
+else
+	WALLPAPER=~/.config/lock-wallpapers/oscar-wallpaper.jpg
+fi
 
 swaylock -f -i $WALLPAPER -s fill

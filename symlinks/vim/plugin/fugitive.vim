@@ -20,9 +20,20 @@ endfunction
 " Hardcoded to use 'origin' remote
 function! s:GetPrUrl(...)
 	let origin_url = fugitive#RemoteUrl('origin')
-	let origin_url = substitute(l:origin_url, '\.git$', '', '')
-	let origin_url = substitute(l:origin_url, ':', '/', '')
-	let origin_url = substitute(l:origin_url, 'git@', 'https://', '')
+	let l:origin_url = substitute(l:origin_url, '\.git$', '', '')
+	let l:origin_url = substitute(l:origin_url, ':', '/', '')
+	let l:origin_url = substitute(l:origin_url, 'git@', 'https://', '')
+
+	" Remove prefix if it is available, for some of common git services
+	let common_services = ['github.com', 'bitbucket.org', 'gitlab.com']
+	for service in l:common_services
+		if (l:origin_url =~ l:service)
+			" Common mechanism for managing multiple SSH keys
+			let l:origin_url = substitute(l:origin_url, '://.*' . l:service, '://' . l:service, '')
+		endif
+	endfor
+
+	" This part probably only works on github
 	if a:0 == 0
 		let pr_url = l:origin_url . '/compare/' . FugitiveHead() . '?expand=1'
 	else

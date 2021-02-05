@@ -128,3 +128,5 @@ if &term =~ '256color'
   " render properly when inside 256-color tmux and GNU screen.
   set t_ut=
 endif
+
+highlight Comment cterm=italic

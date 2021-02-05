@@ -97,7 +97,7 @@ bootstrap_mac: check_os link bootstrap_common oh_my_zsh homebrew install_brew_ba
 	@echo "Bootstrapped mac components!"
 
 .PHONY: bootstrap_common
-bootstrap_common: check_os link_all_common set_default_theme prepare_projects_dir prepare_screenshots_dir prepare_scripts_cache_dir install_vim install_asdf
+bootstrap_common: check_os link_all_common set_default_theme prepare_projects_dir prepare_screenshots_dir prepare_scripts_cache_dir install_vim install_asdf alacritty_terminfo
 	@echo "Bootstrapped common components!"
 
 .PHONY: link
@@ -308,6 +308,11 @@ oh_my_zsh: check_os
 homebrew: check_os
 	@echo "Installing homebrew..."
 	@/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+.PHONY: alacritty_terminfo
+alacritty_terminfo: check_os
+	@echo "Installing alacritty terminfo..."
+	@echo tic $(SYMLINKS_DIR)/alacritty/alacritty.terminfo
 
 .PHONY: prepare_backup_dir
 prepare_backup_dir: check_os

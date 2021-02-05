@@ -3,6 +3,7 @@
 	"diagnostic.virtualText": true,
 	"flutter.sdk.flutter-lookup": "asdf which flutter",
 	"flutter.sdk.dart-lookup": "asdf which dart",
+	"python.linting.enabled": false,
 	"languageserver": {
 		"kotlin": {
 			"command": "~/lsp/kotlin/server/bin/kotlin-language-server",

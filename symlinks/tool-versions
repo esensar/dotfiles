@@ -5,3 +5,5 @@ nodejs 15.5.0
 rust 1.49.0
 flutter 1.22.6-stable
 dart 2.12.0-259.0.dev
+clojure 1.10.2.774
+leiningen 2.9.5

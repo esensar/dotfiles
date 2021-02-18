@@ -88,6 +88,8 @@ endif
 Plug 'sheerun/vim-polyglot'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-fireplace'
 Plug 'vimwiki/vimwiki'
 Plug 'ledger/vim-ledger'
 

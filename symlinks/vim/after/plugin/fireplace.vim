@@ -2,4 +2,4 @@
 "     - Fireplace.vim config -
 " -----------------------------------------------------------------------------
 
-nmap gd <Plug>FireplaceTag
+" nmap gd <Plug>FireplaceTag

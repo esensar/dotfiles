@@ -1,6 +1,4 @@
-## My vim configuration
-
-Currently configuration is shared between Vim and NeoVim, although I use NeoVim. Migration will happen when NeoVim 0.5.0 is released and `init.lua` is supported.
+## My NeoVim configuration
 
 Configuration is separated into directories:
  - `plugin` for logical collection of functionalities into a simple plugin

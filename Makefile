@@ -297,7 +297,7 @@ install_asdf: check_os
 .PHONY: install_vim
 install_vim: check_os link_vim
 	@echo "Installing vim packages..."
-	@echo "\n\n\n" | vim +PlugInstall +qall
+	@echo "y\n\n\n" | nvim +PackerCompile +PackerInstall +qall
 
 .PHONY: oh_my_zsh
 oh_my_zsh: check_os

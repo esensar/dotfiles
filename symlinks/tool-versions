@@ -9,3 +9,4 @@ python 3.9.1 2.7.18
 ruby 3.0.0
 rust 1.49.0
 neovim 0.4.4
+vim 8.2.2544

@@ -1,4 +1,4 @@
-if require('personal.first_load')() then
+if require('init.first_load')() then
   return
 end
 
@@ -13,17 +13,17 @@ vim.g.mapleader = ' '
 -- Globals taken from TJ config
 -- Helpful for configuration
 -- Might be removed in future version of NeoVim
-require('personal.globals')
+require('init.globals')
 
-require('personal.plugins')
+require('init.plugins')
 
-require('personal.options')
+require('init.options')
 
 require('lsp')
 
 -- Colorscheme
 vim.cmd('syntax on')
-require('personal.colors')
+require('init.colors')
 
 vim.api.nvim_set_keymap('n', 'Q', 'gq', {})
 vim.api.nvim_set_keymap('i', '<C-U>', '<C-G>u<C-U>', {noremap = true})

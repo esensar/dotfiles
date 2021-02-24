@@ -3,8 +3,8 @@
 " -----------------------------------------------------------------------------
 
 function s:UpdateColors()
-    let ctermbg = synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'cterm')
-    let guibg = synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui')
+    let ctermbg = synIDattr(synIDtrans(hlID('StatusLine')), 'fg', 'cterm')
+    let guibg = synIDattr(synIDtrans(hlID('StatusLine')), 'fg', 'gui')
     let idguifg1 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'gui')
     let idctermfg1 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'cterm')
     " Green in gruvbox
@@ -14,8 +14,8 @@ function s:UpdateColors()
     if l:idctermfg1
         exec 'hi User1 ctermfg=' . l:idctermfg1
     endif
-    let idguifg2 = synIDattr(synIDtrans(hlID('ErrorMsg')), 'fg', 'gui')
-    let idctermfg2 = synIDattr(synIDtrans(hlID('ErrorMsg')), 'fg', 'cterm')
+    let idguifg2 = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
+    let idctermfg2 = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'cterm')
     " Red in gruvbox
     exec 'hi User2 guifg=' . l:idguifg2 .
                 \' guibg=' . l:guibg .
@@ -23,8 +23,8 @@ function s:UpdateColors()
     if l:idctermfg2
         exec 'hi User2 ctermfg=' . l:idctermfg2
     endif
-    let idguifg3 = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
-    let idctermfg3 = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'cterm')
+    let idguifg3 = synIDattr(synIDtrans(hlID('MoreMsg')), 'fg', 'gui')
+    let idctermfg3 = synIDattr(synIDtrans(hlID('MoreMsg')), 'fg', 'cterm')
     " Yellow in gruvbox
     exec 'hi User3 guifg=' . l:idguifg3 .
                 \' guibg=' . l:guibg .

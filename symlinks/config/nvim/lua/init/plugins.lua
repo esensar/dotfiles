@@ -20,7 +20,7 @@ return require('packer').startup {
       use 'mhinz/vim-grepper'
       use 'direnv/direnv.vim'
       use 'tpope/vim-speeddating'
-      use 'sainnhe/gruvbox-material'
+      use 'flazz/vim-colorschemes'
 
       -- Tools
       use 'tpope/vim-dispatch'
@@ -55,6 +55,7 @@ return require('packer').startup {
 
       -- Treesitter
       use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+      -- use { 'npxbr/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
 
       -- LSP
       -- use 'tjdevries/nlua.nvim'

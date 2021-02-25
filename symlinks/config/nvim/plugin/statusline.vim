@@ -3,8 +3,8 @@
 " -----------------------------------------------------------------------------
 
 function s:UpdateColors()
-    let ctermbg = synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'cterm')
-    let guibg = synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui')
+    let ctermbg = synIDattr(synIDtrans(hlID('StatusLine')), 'fg', 'cterm')
+    let guibg = synIDattr(synIDtrans(hlID('StatusLine')), 'fg', 'gui')
     let idguifg1 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'gui')
     let idctermfg1 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'cterm')
     " Green in gruvbox

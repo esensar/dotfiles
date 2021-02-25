@@ -20,7 +20,7 @@ return require('packer').startup {
       use 'mhinz/vim-grepper'
       use 'direnv/direnv.vim'
       use 'tpope/vim-speeddating'
-      use 'flazz/vim-colorschemes'
+      use 'doums/darcula'
 
       -- Tools
       use 'tpope/vim-dispatch'

@@ -29,6 +29,7 @@ return require('packer').startup {
       use 'dense-analysis/ale'
       use 'tpope/vim-projectionist'
       use 'ervandew/supertab'
+      use 'mfussenegger/nvim-dap'
 
       -- Vim improvements
       use 'wellle/targets.vim'
@@ -55,7 +56,8 @@ return require('packer').startup {
 
       -- Treesitter
       use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-      -- use { 'npxbr/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
+      use 'nvim-treesitter/playground'
+      use 'theHamsta/nvim-dap-virtual-text'
 
       -- LSP
       -- use 'tjdevries/nlua.nvim'

@@ -5,45 +5,45 @@
 function s:UpdateColors()
     let ctermbg = synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'cterm')
     let guibg = synIDattr(synIDtrans(hlID('StatusLine')), 'bg', 'gui')
-    let idguifg1 = synIDattr(synIDtrans(hlID('String')), 'fg', 'gui')
-    let idctermfg1 = synIDattr(synIDtrans(hlID('String')), 'fg', 'cterm')
-    " Green in darcula
+    let idguifg1 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'gui')
+    let idctermfg1 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'cterm')
+    " Green in gruvbox
     exec 'hi User1 guifg=' . l:idguifg1 .
                 \' guibg=' . l:guibg .
                 \' cterm=bold gui=bold'
     if l:idctermfg1
         exec 'hi User1 ctermfg=' . l:idctermfg1
     endif
-    let idguifg2 = synIDattr(synIDtrans(hlID('ErrorMsg')), 'fg', 'gui')
-    let idctermfg2 = synIDattr(synIDtrans(hlID('ErrorMsg')), 'fg', 'cterm')
-    " Red in darcula
+    let idguifg2 = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
+    let idctermfg2 = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'cterm')
+    " Red in gruvbox
     exec 'hi User2 guifg=' . l:idguifg2 .
                 \' guibg=' . l:guibg .
                 \' cterm=bold gui=bold'
     if l:idctermfg2
         exec 'hi User2 ctermfg=' . l:idctermfg2
     endif
-    let idguifg3 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'gui')
-    let idctermfg3 = synIDattr(synIDtrans(hlID('Function')), 'fg', 'cterm')
-    " Yellow in darcula
+    let idguifg3 = synIDattr(synIDtrans(hlID('MoreMsg')), 'fg', 'gui')
+    let idctermfg3 = synIDattr(synIDtrans(hlID('MoreMsg')), 'fg', 'cterm')
+    " Yellow in gruvbox
     exec 'hi User3 guifg=' . l:idguifg3 .
                 \' guibg=' . l:guibg .
                 \' cterm=bold gui=bold'
     if l:idctermfg3
         exec 'hi User3 ctermfg=' . l:idctermfg3
     endif
-    let idguifg4 = synIDattr(synIDtrans(hlID('Number')), 'fg', 'gui')
-    let idctermfg4 = synIDattr(synIDtrans(hlID('Number')), 'fg', 'cterm')
-    " Blue in darcula
+    let idguifg4 = synIDattr(synIDtrans(hlID('Identifier')), 'fg', 'gui')
+    let idctermfg4 = synIDattr(synIDtrans(hlID('Identifier')), 'fg', 'cterm')
+    " Blue in gruvbox
     exec 'hi User4 guifg=' . l:idguifg4
                 \' guibg=' . l:guibg .
                 \' cterm=bold gui=bold'
     if l:idctermfg4
         exec 'hi User4 ctermfg=' . l:idctermfg4
     endif
-    let idguifg5 = synIDattr(synIDtrans(hlID('Constant')), 'fg', 'gui')
-    let idctermfg5 = synIDattr(synIDtrans(hlID('Constant')), 'fg', 'cterm')
-    " Purple in darcula
+    let idguifg5 = synIDattr(synIDtrans(hlID('Number')), 'fg', 'gui')
+    let idctermfg5 = synIDattr(synIDtrans(hlID('Number')), 'fg', 'cterm')
+    " Blue in gruvbox
     exec 'hi User5 guifg=' . l:idguifg5 .
                 \' guibg=' . l:guibg .
                 \' cterm=bold gui=bold'

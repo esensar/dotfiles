@@ -43,8 +43,7 @@ set number
 set relativenumber
 " This has been killing vim until it was resized
 " set lines=50 columns=100
-set termguicolors
-colorscheme darcula
+colorscheme gruvbox
 set background=dark
 set guifont=SauceCodePro\ Nerd\ Font:h12
 

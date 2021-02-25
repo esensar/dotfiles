@@ -45,7 +45,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'direnv/direnv.vim'
-Plug 'flazz/vim-colorschemes'
+Plug 'doums/darcula'
 Plug 'tpope/vim-speeddating'
 
 " -----------------------------------------------------------------------------

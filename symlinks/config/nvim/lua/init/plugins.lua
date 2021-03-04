@@ -32,6 +32,7 @@ return require('packer').startup {
       use 'wellle/targets.vim'                       -- Additional targets for inside and around motions
       use 'flazz/vim-colorschemes'                   -- All popular colorschemes
       use 'romainl/vim-qf'                           -- Quickfix list upgrades
+      use 'romainl/vim-devdocs'                      -- Quick DevDocs.io search using :DD
 
       -- Tools                                       --
       use 'direnv/direnv.vim'                        -- Integration with Direnv

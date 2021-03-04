@@ -1,6 +1,4 @@
-## My vim configuration
-
-Currently configuration is shared between Vim and NeoVim, although I use NeoVim. Migration will happen when NeoVim 0.5.0 is released and `init.lua` is supported.
+## My NeoVim configuration
 
 Configuration is separated into directories:
  - `plugin` for logical collection of functionalities into a simple plugin
@@ -10,7 +8,4 @@ Configuration is separated into directories:
  - `undodir` is just a placeholder for configured undo directory
  - `spell` for spelling dictionary
  - `after` with same directory structure for loading after plugins - allows easy overrides, most `ftplugins` are here
-
-Besides this, directory contains other files:
- - `plugins.vim` all used plugins
- - `vimrc` global basic configuration
+ - `lua` for all lua config files, with `ftplugin` and `plugin` too, enabled by [astronauta](https://github.com/tjdevries/astronauta.nvim)

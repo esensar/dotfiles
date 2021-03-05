@@ -16,6 +16,7 @@ let g:ale_fixers        = {}
 let g:ale_fixers['*']   = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers.python = ['autopep8', 'isort']
 let g:ale_fixers.dart = ['dartfmt']
+let g:ale_fixers.lua = ['luafmt']
 
 " Warnings navigation
 nmap <silent> [W <Plug>(ale_first)

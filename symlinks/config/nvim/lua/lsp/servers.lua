@@ -38,10 +38,10 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Lua bultin lsp
--- require('nlua.lsp.nvim').setup(lspconfig, {
---   on_attach = on_attach,
+require('nlua.lsp.nvim').setup(lspconfig, {
+  on_attach = on_attach,
 
---   -- Include globals you want to tell the LSP are real :)
---   globals = {
---   }
--- })
+  -- Include globals you want to tell the LSP are real :)
+  globals = {
+  }
+})

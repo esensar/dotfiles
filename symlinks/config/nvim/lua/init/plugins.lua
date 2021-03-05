@@ -66,7 +66,7 @@ return require('packer').startup {
       use 'nvim-treesitter/playground'               -- TSPlaygroundToggle - access treesitter data
 
       -- LSP                                         --
-      -- use 'tjdevries/nlua.nvim'                   -- Built-in Lua integration with LSP
+      use 'tjdevries/nlua.nvim'                      -- Built-in Lua integration with LSP
       use 'neovim/nvim-lspconfig'                    -- Easy LSP Config
       use 'alexaandru/nvim-lspupdate'                -- Easy install and update for many LSP servers
       use 'nvim-lua/completion-nvim'                 -- LSP completion integration

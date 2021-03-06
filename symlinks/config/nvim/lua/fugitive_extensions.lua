@@ -53,29 +53,29 @@ local M = {}
 
 -- Prints current branches PR url (not saved to :messages)
 -- Makes it easy to use terminal for opening url on click
-M.print_pr_url = function(...)
+function M.print_pr_url(...)
 	vim.cmd('echo "' .. get_pr_url(...) .. '"')
 end
 
 -- Copies current branches PR url to system clipboard
-M.copy_pr_url = function(...)
+function M.copy_pr_url(...)
 	vim.cmd('let @+ = "' .. get_pr_url(...) .. '"')
 end
 
 -- Opens current banches PR url in default browser
 -- Utilizes netrw browse, meaning it should behave same as netrw
-M.open_new_pr = function(...)
+function M.open_new_pr(...)
 	vim.fn['netrw#BrowseX'](get_pr_url(...), 0)
 end
 
 -- Creates new branch and checks out to it
 -- Similar to `gcb` in fish config
-M.create_branch = function(branch)
+function M.create_branch(branch)
 	vim.cmd('Git checkout -b ' .. branch)
 end
 
 -- Switches to branch
-M.checkout_branch = function(branch)
+function M.checkout_branch(branch)
 	vim.cmd('Git checkout ' .. branch)
 end
 

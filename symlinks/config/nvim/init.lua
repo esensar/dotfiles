@@ -36,9 +36,5 @@ vim.api.nvim_set_keymap('n', '<Leader>c', ':ccl <bar> lcl<CR>', {noremap = true}
 -- Allow recursive searches
 vim.cmd('set path+=**')
 
--- Save whenever switching windows or leaving vim. This is useful when running
--- the tests inside vim without having to save all files first.
-vim.cmd('autocmd FocusLost,WinLeave * :silent! wa')
-
 -- automatically rebalance windows on vim resize
 vim.cmd('autocmd VimResized * :wincmd =')

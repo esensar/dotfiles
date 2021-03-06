@@ -187,6 +187,12 @@
     padding-right: 10px;
 }
 
+#custom-apps-menu {
+    font-weight: bold;
+    font-size: 18px;
+    padding-right: 10px;
+}
+
 #workspaces button {
     border-top: 2px solid transparent;
     /* To compensate for the top border and still have vertical centering */

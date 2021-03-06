@@ -38,7 +38,8 @@
         "battery",
         "tray",
         "idle_inhibitor",
-        "custom/power-menu"
+        "custom/power-menu",
+        "custom/apps-menu"
     ],
 
 
@@ -122,6 +123,9 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
+        "persistent_workspaces": {
+            "": []
+        },
         "format": "{icon}{name}",
         "format-icons": {
             "urgent": "",
@@ -178,6 +182,11 @@
         "tooltip": false,
         "format": "",
         "on-click": "nwgbar"
-    }
+    },
 
+    "custom/apps-menu": {
+        "tooltip": false,
+        "format": "﩯",
+        "on-click": "nwggrid"
+    }
 }

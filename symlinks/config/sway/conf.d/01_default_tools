@@ -1,7 +1,7 @@
 # Main tools mapping
 set $term alacritty
 set $menu "wofi -G -modi drun,run --show drun"
-set $filemanager $term -e ranger
+set $filemanager thunar
 set $processviewer $term -e htop
 
 

@@ -2,18 +2,6 @@
 --     - Fugitive.vim extensions library -
 -------------------------------------------------------------------------------
 
--- Shorcut to push directly to current branch on origin
--- Similar to `ggpush` in fish config
-local function push_origin()
-	vim.cmd('Git push origin ' .. vim.fn.FugitiveHead())
-end
-
--- Shorcut to pull directly from current branch on origin
--- Similar to `ggpull` in fish config
-local function pull_origin()
-	vim.cmd('Git pull origin ' .. vim.fn.FugitiveHead())
-end
-
 -- Generates url for creating PR for current branch
 -- Tested only with github.com
 -- Works regardless of ssh or https for origin config
@@ -50,6 +38,19 @@ end
 -------------------------------------------------------------------------------
 
 local M = {}
+
+-- Shorcut to push directly to current branch on origin
+-- Similar to `ggpush` in fish config
+function M.push_origin()
+	vim.cmd('Git push origin ' .. vim.fn.FugitiveHead())
+end
+
+-- Shorcut to pull directly from current branch on origin
+-- Similar to `ggpull` in fish config
+function M.pull_origin()
+	vim.cmd('Git pull origin ' .. vim.fn.FugitiveHead())
+end
+
 
 -- Prints current branches PR url (not saved to :messages)
 -- Makes it easy to use terminal for opening url on click

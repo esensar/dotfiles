@@ -39,8 +39,7 @@
         "battery",
         "tray",
         "idle_inhibitor",
-        "custom/power-menu",
-        "custom/apps-menu"
+        "custom/power-menu"
     ],
 
 
@@ -190,12 +189,6 @@
     "custom/power-menu": {
         "tooltip": false,
         "format": "",
-        "on-click": "nwgbar"
+        "on-click": "wlogout"
     },
-
-    "custom/apps-menu": {
-        "tooltip": false,
-        "format": "﩯",
-        "on-click": "nwggrid"
-    }
 }

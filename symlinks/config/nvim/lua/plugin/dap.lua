@@ -28,7 +28,7 @@ vim.g.dap_virtual_text = true
 -- Keymaps
 local function set_keymap(...) vim.api.nvim_set_keymap(...) end
 
-default_opts = {noremap = true, silent = true}
+local default_opts = {noremap = true, silent = true}
 set_keymap('n', '<Leader>db', "<cmd>lua require'dap'.toggle_breakpoint()<CR>", default_opts)
 set_keymap('n', '<Leader>dc', "<cmd>lua require'dap'.continue()<CR>", default_opts)
 set_keymap('n', '<Leader>dso', "<cmd>lua require'dap'.step_over()<CR>", default_opts)

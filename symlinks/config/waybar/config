@@ -31,6 +31,7 @@
     "modules-right": [
         "network",
         "pulseaudio",
+        "backlight",
         "memory",
         "cpu",
         "temperature",
@@ -38,8 +39,7 @@
         "battery",
         "tray",
         "idle_inhibitor",
-        "custom/power-menu",
-        "custom/apps-menu"
+        "custom/power-menu"
     ],
 
 
@@ -134,6 +134,14 @@
         }
     },
 
+    "backlight": {
+        "device": "amdgpu_bl0",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", ""],
+        "on-scroll-up": "brightnessctl set +1%",
+        "on-scroll-down": "brightnessctl set 1%-"
+    },
+
     "pulseaudio": {
         //"scroll-step": 1,
         "format": "{icon}  {volume}%",
@@ -181,12 +189,6 @@
     "custom/power-menu": {
         "tooltip": false,
         "format": "",
-        "on-click": "nwgbar"
+        "on-click": "wlogout"
     },
-
-    "custom/apps-menu": {
-        "tooltip": false,
-        "format": "﩯",
-        "on-click": "nwggrid"
-    }
 }

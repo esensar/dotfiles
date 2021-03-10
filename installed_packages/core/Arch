@@ -18,9 +18,7 @@ flex
 gcc
 git
 gnome-themes-extra
-grub
 gtk-chtheme
-intel-ucode
 kdeconnect
 libtool
 linux
@@ -33,9 +31,7 @@ mesa
 ncmpcpp
 neovim
 newsboat
-ntfs-3g
 openssh
-os-prober
 patch
 pkgconf
 pulseaudio
@@ -43,7 +39,6 @@ pulseaudio-alsa
 python-pip
 python2
 python2-pip
-ranger
 sudo
 sway
 swayidle

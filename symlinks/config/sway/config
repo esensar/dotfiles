@@ -1,6 +1,5 @@
 # Read `man 5 sway` for a complete reference.
 
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 exec ~/.azotebg
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -21,6 +20,7 @@ for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [window_role="About"] floating enable
+for_window [app_id="ulauncher"] border none
 
 include ~/.config/sway/conf.d/*
 include /etc/sway/config.d/*

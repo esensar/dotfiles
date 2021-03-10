@@ -21,6 +21,7 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [window_role="About"] floating enable
 for_window [app_id="ulauncher"] border none
+for_window [app_id="wofi"] border none
 
 include ~/.config/sway/conf.d/*
 include /etc/sway/config.d/*

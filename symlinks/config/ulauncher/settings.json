@@ -6,6 +6,6 @@
     "render-on-screen": "mouse-pointer-monitor",
     "show-indicator-icon": true,
     "show-recent-apps": "0",
-    "terminal-command": "terminal-proxy",
+    "terminal-command": "alacritty -e /usr/bin/fish -c",
     "theme-name": "dark"
 }

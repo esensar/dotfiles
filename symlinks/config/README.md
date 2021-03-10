@@ -6,4 +6,4 @@ Contains configurations for many applications, most importantly:
  - `sway` - Wayland compositor
  - `newsboat` - my RSS reader
  - `alacritty` - my terminal emulator
- - `coc` - `coc.nvim` plugin settings for `neovim`
+ - `coc` - `coc.nvim` plugin settings for `vim`

@@ -6,13 +6,18 @@ local Path = require('plenary.path')
 local scandir = require('plenary.scandir')
 
 -- Gets path to reviews dir of provided vimwiki (by index)
-local function get_reviews_dir(...)
+local function get_reviews_dir(vimwiki_index)
 	local vimwiki = {}
-	if (select('#', ...) == 0)
+	if (vimwiki_index == 0)
 		then
-		vimwiki = vim.g.vimwiki_list[1]
+		local current_index = vim.fn['vimwiki#vars#get_bufferlocal']('wiki_nr')
+		if (current_index < 0)
+			then
+			current_index = 0
+		end
+		vimwiki = vim.g.vimwiki_list[current_index + 1]
 	else
-		vimwiki = vim.g.vimwiki_list[tonumber(select(1, ...))]
+		vimwiki = vim.g.vimwiki_list[vimwiki_index]
 	end
 
 	return vimwiki.path .. 'reviews/'
@@ -34,7 +39,7 @@ end
 --  - %date% (Puts different date based on review type)
 local function read_review_template_into_buffer(vimwiki_reviews_path, review_type)
 	local template_path = get_review_template_path(vimwiki_reviews_path, review_type)
-	if (vim.fn.filereadable(vim.fn.glob(template_path)))
+	if (vim.fn.filereadable(vim.fn.glob(template_path)) ~= 0)
 		then
 		vim.cmd('read ' .. template_path)
 		vim.cmd('0d')
@@ -69,28 +74,28 @@ end
 local M = {}
 
 -- Edits weekly review template
-function M.open_review_weekly_template(...)
-	local reviews_dir = get_reviews_dir(...)
+function M.open_review_weekly_template(vimwiki_index)
+	local reviews_dir = get_reviews_dir(vimwiki_index)
 	vim.cmd('edit ' .. get_review_template_path(reviews_dir, 'week'))
 end
 
 -- Edits monthly review template
-function M.open_review_monthly_template(...)
-	local reviews_dir = get_reviews_dir(...)
+function M.open_review_monthly_template(vimwiki_index)
+	local reviews_dir = get_reviews_dir(vimwiki_index)
 	vim.cmd('edit ' .. get_review_template_path(reviews_dir, 'month'))
 end
 
 -- Edits yearly review template
-function M.open_review_yearly_template(...)
-	local reviews_dir = get_reviews_dir(...)
+function M.open_review_yearly_template(vimwiki_index)
+	local reviews_dir = get_reviews_dir(vimwiki_index)
 	vim.cmd('edit ' .. get_review_template_path(reviews_dir, 'year'))
 end
 
 -- Open current week weekly review file
 -- Created buffer is dated to Sunday of current week
 -- Opens current week because Sunday is good time to do this review
-function M.vimwiki_weekly_review(...)
-	local reviews_dir = get_reviews_dir(...)
+function M.vimwiki_weekly_review(vimwiki_index)
+	local reviews_dir = get_reviews_dir(vimwiki_index)
 	local days_to_sunday = 7 - tonumber(os.date('%u'))
 	local week_date = os.date('%Y-%m-%d', os.time() + days_to_sunday * 24 * 60 * 60)
 	local file_name = reviews_dir .. week_date .. '-week.md'
@@ -108,8 +113,8 @@ end
 -- Created buffer is dated to previous month
 -- Previous month is calculated in an erroneous way
 -- 28 days are subtracted from current time to get previous month
-function M.vimwiki_monthly_review(...)
-	local reviews_dir = get_reviews_dir(...)
+function M.vimwiki_monthly_review(vimwiki_index)
+	local reviews_dir = get_reviews_dir(vimwiki_index)
 	local month_time = os.time() - 28 * 24 * 60 * 60
 	local month_date = os.date('%Y-%m', month_time)
 	local file_name = reviews_dir .. month_date .. '-month.md'
@@ -124,8 +129,8 @@ end
 
 -- Open past year yearly review file
 -- Created buffer is dated to previous year
-function M.vimwiki_yearly_review(...)
-	local reviews_dir = get_reviews_dir(...)
+function M.vimwiki_yearly_review(vimwiki_index)
+	local reviews_dir = get_reviews_dir(vimwiki_index)
 	local year_date = (tonumber(os.date('%Y')) - 1)
 	local file_name = reviews_dir .. year_date .. '-year.md'
 	local exists = file_exists_or_open(file_name)
@@ -140,8 +145,8 @@ end
 -- Generates review index table
 -- Takes arguments similar to all vimwiki calls 
 -- (no args, or 1 arg representing vimwiki index)
-function M.get_review_index(...)
-	local reviews_dir = get_reviews_dir(...)
+function M.get_review_index(vimwiki_index)
+	local reviews_dir = get_reviews_dir(vimwiki_index)
 	local reviews_path = Path:new(reviews_dir):expand()
 
 	local entries = scandir.scan_dir(
@@ -209,11 +214,11 @@ function M.get_review_index(...)
 end
 
 -- Open reviews index file
-function M.vimwiki_review_index(...)
-	local reviews_dir = get_reviews_dir(...)
+function M.vimwiki_review_index(vimwiki_index)
+	local reviews_dir = get_reviews_dir(vimwiki_index)
 	vim.cmd('edit ' .. reviews_dir .. 'reviews.md')
 
-	local index = M.get_review_index(...)
+	local index = M.get_review_index(vimwiki_index)
 
 	local lines = {
 		'# Reviews',

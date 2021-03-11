@@ -2,6 +2,8 @@
 assign [app_id="firefox"] $browser_workspace
 assign [class="Hexchat"] $chat_workspace
 assign [class="Slack"] $chat_workspace
+assign [class="Slack"] $chat_workspace
+assign [instance="element"] $chat_workspace
 assign [class="Gvim"] $editor_workspace
 assign [class="jetbrains-idea-ce"] $ide_workspace
 assign [class="libreoffice"] $note_workspace

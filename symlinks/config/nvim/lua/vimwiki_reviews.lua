@@ -277,12 +277,14 @@ function M.vimwiki_review_index(vimwiki_index)
 
 			-- Sort weeks
 			local weeks = index[year].months[month].weeks
-			table.sort(weeks, function(a, b) return a > b end)
+			local sorted = {}
+			for k in pairs(weeks) do table.insert(sorted, k) end
+			table.sort(sorted, function(a, b) return a > b end)
 
 			-- Add weeks
-			local count = tablelength(weeks)
-			for _, week in pairs(weeks) do
-				table.insert(lines, '- [Week #' .. count .. ' Review](' .. week .. ')')
+			local count = tablelength(sorted)
+			for _, week in pairs(sorted) do
+				table.insert(lines, '- [Week #' .. count .. ' Review](' .. weeks[week] .. ')')
 				count = count - 1
 			end
 

@@ -56,6 +56,7 @@ return require('packer').startup {
       use 'tpope/vim-salve'                          -- Clojure integration with projectionist
       use 'tpope/vim-fireplace'                      -- Clojure REPL and integration
       use 'vimwiki/vimwiki'                          -- Vimwiki - personal wiki in vim
+      use 'esensar/vimwiki-reviews-lua'              -- Vimwiki extension for periodic reviews
       use 'ledger/vim-ledger'                        -- Support for ledger-cli format
 
       -- Treesitter                                  --

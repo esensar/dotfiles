@@ -91,6 +91,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-fireplace'
 Plug 'vimwiki/vimwiki'
+Plug 'esensar/vimwiki-reviews'
 Plug 'ledger/vim-ledger'
 
 call plug#end()

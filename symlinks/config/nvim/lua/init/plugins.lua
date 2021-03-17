@@ -24,8 +24,8 @@ return require('packer').startup {
       -- use { 'Shougo/vimproc.vim', run = 'make' }  -- Not really used
       use 'vim-scripts/utl.vim'                      -- Universal text linking
       use {                                          --
-        'mbbill/undotree',                             --
-        cmd = 'UndotreeToggle'                         --
+        'mbbill/undotree',                           --
+        cmd = 'UndotreeToggle'                       --
       }                                              -- Undos in a tree for easy access
       use 'mhinz/vim-grepper'                        -- Grepper command - improved grepping throughout project
       use 'radenling/vim-dispatch-neovim'            -- vim-dispatch for neovim - uses terminal
@@ -61,18 +61,21 @@ return require('packer').startup {
 
       -- Treesitter                                  --
       use {                                          --
-        'nvim-treesitter/nvim-treesitter',             --
-        run = ':TSUpdate'                              --
+        'nvim-treesitter/nvim-treesitter',           --
+        run = ':TSUpdate'                            --
       }                                              -- Treesitter integration
       use 'nvim-treesitter/playground'               -- TSPlaygroundToggle - access treesitter data
 
       -- LSP                                         --
-      use 'tjdevries/nlua.nvim'                      -- Built-in Lua integration with LSP
       use 'neovim/nvim-lspconfig'                    -- Easy LSP Config
       use 'alexaandru/nvim-lspupdate'                -- Easy install and update for many LSP servers
       use 'nvim-lua/completion-nvim'                 -- LSP completion integration
       use 'nvim-treesitter/completion-treesitter'    -- Treesitter completion integration
       use 'nvim-lua/lsp_extensions.nvim'             -- LSP extensions (like closing labels for Dart)
+
+      -- LSP language specific
+      use 'tjdevries/nlua.nvim'                      -- Built-in Lua integration with LSP
+      use 'akinsho/flutter-tools.nvim'               -- Additional flutter integrations
 
       -- Lua support                                 --
       use 'tjdevries/astronauta.nvim'                -- Support for lua ftplugins and plugins

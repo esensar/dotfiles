@@ -12,7 +12,7 @@ local on_attach = function(client, bufnr)
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-	default_opts = {noremap = true, silent = true}
+	local default_opts = {noremap = true, silent = true}
 
 	-- Lsp keymaps
 	buf_set_keymap('n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', default_opts)
@@ -25,14 +25,14 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', '<Leader>ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', default_opts)
 	buf_set_keymap('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action_range()<CR>', default_opts)
 
-	completion_opts = {silent = true}
+	local completion_opts = {silent = true}
 
 	-- Completion keymaps
 	buf_set_keymap('i', '<C-n>', '<Plug>(completion_trigger)', completion_opts)
 end
 
 -- Lsp default language servers
-local servers = { "bashls", "clangd", "dartls", "jsonls", "pyright", "rust_analyzer", "kotlin_language_server", "vimls" }
+local servers = { "bashls", "clangd", "jsonls", "pyright", "rust_analyzer", "kotlin_language_server", "vimls" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup { on_attach = on_attach }
 end
@@ -42,6 +42,12 @@ require('nlua.lsp.nvim').setup(lspconfig, {
   on_attach = on_attach,
 
   -- Include globals you want to tell the LSP are real :)
-  globals = {
-  }
+  globals = {}
 })
+
+-- Flutter tools
+require('flutter-tools').setup {
+	lsp = {
+		on_attach = on_attach
+	}
+}

@@ -5,8 +5,6 @@
 local lspconfig = require("lspconfig")
 
 local on_attach = function(client, bufnr)
-	require'completion'.on_attach()
-
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -24,11 +22,6 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', '<A-CR>', '<cmd>lua vim.lsp.buf.code_action()<CR>', default_opts)
 	buf_set_keymap('n', '<Leader>ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', default_opts)
 	buf_set_keymap('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action_range()<CR>', default_opts)
-
-	local completion_opts = {silent = true}
-
-	-- Completion keymaps
-	buf_set_keymap('i', '<C-n>', '<Plug>(completion_trigger)', completion_opts)
 end
 
 -- Lsp default language servers

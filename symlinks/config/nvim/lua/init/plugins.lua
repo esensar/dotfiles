@@ -69,8 +69,7 @@ return require('packer').startup {
       -- LSP                                         --
       use 'neovim/nvim-lspconfig'                    -- Easy LSP Config
       use 'alexaandru/nvim-lspupdate'                -- Easy install and update for many LSP servers
-      use 'nvim-lua/completion-nvim'                 -- LSP completion integration
-      use 'nvim-treesitter/completion-treesitter'    -- Treesitter completion integration
+      use 'hrsh7th/nvim-compe'                       -- LSP completion integration
       use 'nvim-lua/lsp_extensions.nvim'             -- LSP extensions (like closing labels for Dart)
 
       -- LSP language specific

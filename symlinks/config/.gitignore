@@ -43,6 +43,8 @@ flutter/
 ibus
 pulse
 discord
+lutris
+cef_user_data
 
 QtProject.conf
 QtProject/

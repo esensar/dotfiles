@@ -1,9 +1,5 @@
 # Folder for emails
 set folder = "~/.mail"
-# Mailbox type
-set mbox_type = Maildir
-# Directory to pool for new mail
-set spoolfile = +Inbox
 # Directory to save sent messages into
 set record = +Sent
 # Directory to save drafts into
@@ -27,3 +23,14 @@ auto_view text/html
 # Order to try and show multipart emails
 alternative_order text/plain text/enriched text/html
 set editor = "vim"
+
+source accounts/personal
+
+# Mailbox type
+set mbox_type = Maildir
+# Directory to pool for new mail
+set spoolfile = +Inbox
+mailboxes = +Inbox
+set imap_check_subscribed
+
+source /usr/share/doc/neomutt/vim-keys/vim-keys.rc

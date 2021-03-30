@@ -2,6 +2,10 @@ if require('init.first_load')() then
   return
 end
 
+vim.cmd [[filetype plugin on]]
+vim.cmd [[filetype indent on]]
+vim.cmd [[syntax on]]
+
 vim.api.nvim_exec('let $OVIMHOME = $HOME."/.vim"', false)
 vim.api.nvim_exec('let $VIMHOME = $HOME."/.config/nvim"', false)
 vim.api.nvim_exec('let $NVIMHOME = $HOME."/.local/share/nvim"', false)

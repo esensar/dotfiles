@@ -58,6 +58,7 @@ return require('packer').startup {
       use 'vimwiki/vimwiki'                          -- Vimwiki - personal wiki in vim
       use 'esensar/vimwiki-reviews-lua'              -- Vimwiki extension for periodic reviews
       use 'ledger/vim-ledger'                        -- Support for ledger-cli format
+      use 'tandrewnichols/vim-docile'                -- Support for vim doc.txt format
 
       -- Treesitter                                  --
       use {                                          --

@@ -44,3 +44,11 @@ require('flutter-tools').setup {
 		on_attach = on_attach
 	}
 }
+
+-- Dotnet LS
+local pid = vim.fn.getpid()
+local omnisharp_bin = vim.fn.glob('$HOME') .. "/lsp/dotnet/omnisharp/run"
+lspconfig.omnisharp.setup {
+	cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
+	on_attach = on_attach;
+}

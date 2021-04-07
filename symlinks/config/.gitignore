@@ -67,3 +67,6 @@ kwalletrc
 Thunar
 xfce4
 Element
+NuGet
+Microsoft*
+.mono

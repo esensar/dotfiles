@@ -59,6 +59,10 @@ return require('packer').startup {
       use 'esensar/vimwiki-reviews-lua'              -- Vimwiki extension for periodic reviews
       use 'ledger/vim-ledger'                        -- Support for ledger-cli format
       use 'tandrewnichols/vim-docile'                -- Support for vim doc.txt format
+      use 'guns/vim-sexp'                            -- Precision editing for S-expressions
+      use(                                           -- Simpler keymaps for vim-sexp
+         'tpope/vim-sexp-mappings-for-regular-people'
+      )                                              
 
       -- Treesitter                                  --
       use {                                          --

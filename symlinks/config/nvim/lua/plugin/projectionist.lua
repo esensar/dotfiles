@@ -146,7 +146,29 @@ local python_config = {
   }
 }
 
-local dotnet_config = {}
+local dotnet_config = {
+  ["*"] = {
+    start = "dotnet run",
+    shell = "dotnet fsi"
+  },
+  ["src/Controllers/*.cs"] = {
+    type = "controller"
+  },
+  ["src/Models/*.cs"] = {
+    type = "model"
+  },
+  ["src/Views/*.cshtml"] = {
+    type = "view"
+  },
+  ["src/*.cs"] = {
+    type = "source",
+    alternate = "tests/{}Tests.cs"
+  },
+  ["tests/*Tests.cs"] = {
+    type = "test",
+    alternate = "src/{}.cs"
+  }
+}
 
 local vim_plugin_config = {
   ["doc/*.txt"] = {

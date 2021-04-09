@@ -10,13 +10,17 @@ let personal_wiki.auto_toc = 1
 
 let work_wiki = {}
 let work_wiki.path = '~/vimwiki_work/'
+let work_wiki.index = 'Home'
 let work_wiki.syntax = 'markdown'
 let work_wiki.ext = '.md'
 let work_wiki.auto_diary_index = 1
 let work_wiki.auto_generate_links = 1
 let work_wiki.auto_toc = 1
 
-let g:vimwiki_list = [personal_wiki, work_wiki]
+let test_wiki = {}
+let test_wiki.path = '/tmp'
+
+let g:vimwiki_list = [personal_wiki, work_wiki, test_wiki]
 
 " Disable vimwiki filetype on all markdown files
 let g:vimwiki_global_ext = 0

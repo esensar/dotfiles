@@ -74,6 +74,8 @@ function s:GetFileType()
         return "%2*%*"
     elseif &filetype ==# "c"
         return "%4*%*"
+    elseif &filetype ==# "cs"
+        return "%4*%*"
     elseif &filetype ==# "python"
         return "%3*%*"
     elseif &filetype ==# "javascript"

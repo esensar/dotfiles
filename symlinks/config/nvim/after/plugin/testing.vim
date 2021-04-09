@@ -4,6 +4,7 @@
 
 " make test commands execute using dispatch.vim
 let test#strategy = "dispatch"
+let test#csharp#runner = "dotnettest"
 
 " Map test running commands
 nmap <silent> <Leader>tn :TestNearest<CR>

@@ -9,3 +9,4 @@ python system
 ruby 3.0.0
 rust 1.49.0
 neovim nightly
+dotnet-core 5.0.202

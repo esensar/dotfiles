@@ -38,7 +38,7 @@ set_keymap('n', '<Leader>dro', "<cmd>lua require'dap'.open()<CR>", default_opts)
 -- Debugger Hover map
 local api = vim.api
 local keymap_restore = {}
-dap.custom_event_handlers['event_initialized']['me'] = function()
+dap.listeners.after['event_initialized']['me'] = function()
   for _, buf in pairs(api.nvim_list_bufs()) do
     local keymaps = api.nvim_buf_get_keymap(buf, 'n')
     for _, keymap in pairs(keymaps) do
@@ -52,7 +52,7 @@ dap.custom_event_handlers['event_initialized']['me'] = function()
     'n', 'K', '<Cmd>lua require("dap.ui.variables").hover()<CR>', { silent = true })
 end
 
-dap.custom_event_handlers['event_terminated']['me'] = function()
+dap.listeners.after['event_terminated']['me'] = function()
   for _, keymap in pairs(keymap_restore) do
     api.nvim_buf_set_keymap(
       keymap.buffer,

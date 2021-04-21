@@ -11,6 +11,7 @@ let g:ale_linters         = {}
 let g:ale_linters.python  = ['flake8']
 let g:ale_linters.kotlin  = ['ktlint']
 let g:ale_linters.clojure = []
+let g:ale_linters.cs = ['OmniSharp']
 
 " ALE Fixers configuration
 let g:ale_fixers        = {}

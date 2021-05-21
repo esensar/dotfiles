@@ -166,6 +166,10 @@ local dotnet_solution_config = {
     type = "service",
     alternate = "tests/{dirname}.Tests/Services/{basename}Tests.cs"
   },
+  ["src/**/Extensions/*.cs"] = {
+    type = "extension",
+    alternate = "tests/{dirname}.Tests/Extensions/{basename}Tests.cs"
+  },
   ["src/**/appsettings*json"] = {
     type = "appsettings"
   },
@@ -202,6 +206,10 @@ local dotnet_solution_config = {
   ["tests/**.Tests/Services/*Tests.cs"] = {
     type = "test",
     alternate = "src/{dirname}/Services/{basename}.cs"
+  },
+  ["tests/**.Tests/Extensions/*Tests.cs"] = {
+    type = "test",
+    alternate = "src/{dirname}/Extensions/{basename}.cs"
   },
   ["tests/**/*Tests.cs"] = {
     type = "test",

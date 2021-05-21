@@ -25,7 +25,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Lsp default language servers
-local servers = { "bashls", "clangd", "jsonls", "pyright", "rust_analyzer", "kotlin_language_server", "vimls", "clojure_lsp" }
+local servers = { "bashls", "clangd", "jsonls", "pyright", "rust_analyzer", "kotlin_language_server", "vimls", "clojure_lsp", "gopls" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup { on_attach = on_attach }
 end

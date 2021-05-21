@@ -11,7 +11,7 @@ let g:ale_linters         = {}
 let g:ale_linters.python  = ['flake8']
 let g:ale_linters.kotlin  = ['ktlint']
 let g:ale_linters.clojure = []
-let g:ale_linters.cs = ['OmniSharp']
+let g:ale_linters.cs      = ['OmniSharp']
 
 " ALE Fixers configuration
 let g:ale_fixers        = {}
@@ -19,6 +19,7 @@ let g:ale_fixers['*']   = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers.python = ['autopep8', 'isort']
 let g:ale_fixers.dart   = ['dartfmt']
 let g:ale_fixers.lua    = ['luafmt']
+let g:ale_fixers.go     = ['gofmt']
 
 " Warnings navigation
 nmap <silent> [W <Plug>(ale_first)

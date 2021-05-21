@@ -146,27 +146,76 @@ local python_config = {
   }
 }
 
-local dotnet_config = {
-  ["*"] = {
-    start = "dotnet run",
-    shell = "dotnet fsi"
+local dotnet_solution_config = {
+  ["src/**/Controllers/*.cs"] = {
+    type = "controller",
+    alternate = {
+      "tests/{dirname}.Tests/Controllers/{basename}Tests.cs",
+      "tests/{dirname}.IntegrationTests/Controllers/{basename}Tests.cs"
+    }
   },
-  ["src/Controllers/*.cs"] = {
-    type = "controller"
+  ["src/**/Models/*.cs"] = {
+    type = "model",
+    alternate = "tests/{dirname}.Tests/Models/{basename}Tests.cs"
   },
-  ["src/Models/*.cs"] = {
-    type = "model"
+  ["src/**/Views/*.cshtml"] = {
+    type = "view",
+    alternate = "tests/{dirname}.Tests/Views/{basename}Tests.cs"
   },
-  ["src/Views/*.cshtml"] = {
-    type = "view"
+  ["src/**/Services/*.cs"] = {
+    type = "service",
+    alternate = "tests/{dirname}.Tests/Services/{basename}Tests.cs"
   },
-  ["src/*.cs"] = {
+  ["src/**/appsettings*json"] = {
+    type = "appsettings"
+  },
+  ["src/**/*.cs"] = {
     type = "source",
-    alternate = "tests/{}Tests.cs"
+    alternate = "tests/{dirname}.Tests/{basename}Tests.cs",
+    template = {
+      "using System;",
+      "",
+      "namespace {dirname|dot}",
+      "{",
+      "    public class {basename}",
+      "    {",
+      "    }",
+      "}"
+    }
   },
-  ["tests/*Tests.cs"] = {
+  ["tests/**.IntegrationTests/Controllers/*Tests.cs"] = {
     type = "test",
-    alternate = "src/{}.cs"
+    alternate = "src/{dirname}/Controllers/{basename}.cs"
+  },
+  ["tests/**.Tests/Controllers/*Tests.cs"] = {
+    type = "test",
+    alternate = "src/{dirname}/Controllers/{basename}.cs"
+  },
+  ["tests/**.Tests/Views/*Tests.cs"] = {
+    type = "test",
+    alternate = "src/{dirname}/Views/{basename}.cs"
+  },
+  ["tests/**.Tests/Models/*Tests.cs"] = {
+    type = "test",
+    alternate = "src/{dirname}/Models/{basename}.cs"
+  },
+  ["tests/**.Tests/Services/*Tests.cs"] = {
+    type = "test",
+    alternate = "src/{dirname}/Services/{basename}.cs"
+  },
+  ["tests/**/*Tests.cs"] = {
+    type = "test",
+    alternate = "src/{dirname}/{basename}.cs",
+    template = {
+      "using System;",
+      "",
+      "namespace {dirname|dot}",
+      "{",
+      "    public class {basename}Tests",
+      "    {",
+      "    }",
+      "}"
+    }
   }
 }
 
@@ -222,10 +271,18 @@ local lua_vim_plugin_config = {
   }
 }
 
+local csharp_project_config = {
+  ["*"] = {
+    start = "dotnet run",
+    console = "dotnet fsi"
+  }
+}
+
 vim.g.projectionist_heuristics = {
   ["pubspec.yaml"] = flutter_config,
   ["requirements.txt|pyproject.toml"] = python_config,
-  ["*.csproj"] = dotnet_config,
+  ["*.sln"] = dotnet_solution_config,
+  ["*.csproj"] = csharp_project_config,
   ["plugin/|autoload/"] = vim_plugin_config,
   ["lua/"] = lua_vim_plugin_config
 }

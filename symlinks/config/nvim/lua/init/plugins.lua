@@ -10,6 +10,7 @@ return require('packer').startup {
       use 'tpope/vim-vinegar'                        -- Netrw improvements
       use 'tpope/vim-obsession'                      -- Session.vim management
       use 'tpope/vim-dadbod'                         -- Database access
+      use 'kristijanhusak/vim-dadbod-ui'             -- UI For Dadbod
       use 'tpope/vim-speeddating'                    -- <C-A> and <C-X> for dates
       use 'tpope/vim-dispatch'                       -- Dispatch command
       use 'tpope/vim-projectionist'                  -- Project config file!

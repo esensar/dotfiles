@@ -170,6 +170,9 @@ local dotnet_solution_config = {
     type = "extension",
     alternate = "tests/{dirname}.Tests/Extensions/{basename}Tests.cs"
   },
+  ["*.csproj"] = {
+    type = "project"
+  },
   ["src/**/appsettings*json"] = {
     type = "appsettings"
   },

@@ -73,3 +73,5 @@ erl_crash.dump
 
 # Python
 pyrightconfig.json
+
+**/.lsp/sqlite.db

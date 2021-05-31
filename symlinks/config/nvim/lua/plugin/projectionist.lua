@@ -1,3 +1,4 @@
+local log = require "vim.lsp.log"
 local vim_readme_template = {
   "# Name",
   "",
@@ -289,11 +290,47 @@ local csharp_project_config = {
   }
 }
 
+local function c_project_config(source_extension, header_extension)
+  return {
+    ["*"] = {
+      start = "make run"
+    },
+    ["src/*." .. source_extension] = {
+      type = "source",
+      alternate = {
+        "src/{}." .. header_extension,
+        "test/{}." .. source_extension,
+        "include/{project|basename}/{}." .. header_extension,
+      }
+    },
+    ["test/*." .. source_extension] = {
+      type = "test",
+      alternate = {
+        "src/{}." .. header_extension
+      }
+    },
+    ["src/*." .. header_extension] = {
+      type = "header",
+      alternate = {
+        "src/{}." .. source_extension
+      }
+    },
+    ["include/{project|basename}/*." .. header_extension] = {
+      type = "header",
+      alternate = {
+        "src/{}." .. header_extension
+      }
+    }
+  }
+end
+
 vim.g.projectionist_heuristics = {
   ["pubspec.yaml"] = flutter_config,
   ["requirements.txt|pyproject.toml"] = python_config,
   ["*.sln"] = dotnet_solution_config,
   ["*.csproj"] = csharp_project_config,
   ["plugin/|autoload/"] = vim_plugin_config,
+  ["src/*.cpp|test/*.cpp"] = c_project_config("cpp", "hpp"),
+  ["src/*.c|test/*.c"] = c_project_config("c", "h"),
   ["lua/"] = lua_vim_plugin_config
 }

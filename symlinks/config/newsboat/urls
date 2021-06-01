@@ -40,3 +40,5 @@ https://www.smashingmagazine.com/feed blog development web "~Smashing Magazine W
 https://devblogs.microsoft.com/dotnet/feed/ blog development dotnet "~DotNet Blog"
 https://dragan.rocks/feed.xml blog development clojure "~Dragan Djuric Blog"
 http://planet.clojure.in/atom.xml blog development clojure "~Planet Clojure"
+https://godotengine.org/rss.xml blog development gamedev godot "~Godot Engine Blog"
+https://www.unrealengine.com/en-US/rss blog development gamedev unreal "~Unreal Engine Blog"

@@ -177,7 +177,7 @@ local dotnet_solution_config = {
   ["src/**/appsettings*json"] = {
     type = "appsettings"
   },
-  ["src/**/*.cs"] = {
+  ["src/*.cs"] = {
     type = "source",
     alternate = "tests/{dirname}.Tests/{basename}Tests.cs",
     template = {
@@ -215,7 +215,7 @@ local dotnet_solution_config = {
     type = "test",
     alternate = "src/{dirname}/Extensions/{basename}.cs"
   },
-  ["tests/**/*Tests.cs"] = {
+  ["tests/*Tests.cs"] = {
     type = "test",
     alternate = "src/{dirname}/{basename}.cs",
     template = {

@@ -25,7 +25,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Lsp default language servers
-local servers = { "bashls", "clangd", "jsonls", "pyright", "rust_analyzer", "kotlin_language_server", "vimls", "clojure_lsp", "gopls", "gdscript" }
+local servers = { "bashls", "clangd", "jsonls", "pyright", "rust_analyzer", "kotlin_language_server", "vimls", "clojure_lsp", "gopls", "gdscript", "tsserver" }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup { on_attach = on_attach }
 end
@@ -54,7 +54,8 @@ lspconfig.omnisharp.setup {
 }
 
 -- JDTLS (Java)
-local jdstls_on_attach = function(client, bufnr)
+-- Can't be local currently, because autocommand has to be used
+jdtls_on_attach = function(client, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -67,8 +68,3 @@ local jdstls_on_attach = function(client, bufnr)
 	buf_set_keymap('n', '<A-CR>', "<cmd>lua require('jdtls').code_action()<CR>", default_opts)
 	buf_set_keymap('n', '<Leader>ac', "<cmd>lua require('jdtls').code_action()<CR>", default_opts)
 end
-
-require('jdtls').start_or_attach {
-  cmd = {'jdtls-startup.sh'};
-  on_attach = jdstls_on_attach;
-}

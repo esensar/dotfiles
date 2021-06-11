@@ -22,6 +22,24 @@ dap.configurations.python = {
   },
 }
 
+local netcoredbg_bin = vim.fn.glob('$HOME') .. "/dap/netcoredbg/netcoredbg"
+dap.adapters.netcoredbg = {
+  type = 'executable',
+  command = netcoredbg_bin,
+  args = {'--interpreter=vscode'}
+}
+
+dap.configurations.cs = {
+  {
+    type = "netcoredbg",
+    name = "launch - netcoredbg",
+    request = "launch",
+    program = function()
+        return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+    end,
+  },
+}
+
 -- Nvim DAP Treesitter integration
 vim.g.dap_virtual_text = true
 

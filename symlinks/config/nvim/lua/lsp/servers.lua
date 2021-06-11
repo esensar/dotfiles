@@ -16,6 +16,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', default_opts)
 	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', default_opts)
 	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', default_opts)
+	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', default_opts)
 	buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', default_opts)
 	buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', default_opts)
 	buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', default_opts)
@@ -68,3 +69,7 @@ jdtls_on_attach = function(client, bufnr)
 	buf_set_keymap('n', '<A-CR>', "<cmd>lua require('jdtls').code_action()<CR>", default_opts)
 	buf_set_keymap('n', '<Leader>ac', "<cmd>lua require('jdtls').code_action()<CR>", default_opts)
 end
+
+return {
+	jdtls_on_attach = jdtls_on_attach
+}

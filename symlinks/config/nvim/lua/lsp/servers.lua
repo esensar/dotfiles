@@ -52,3 +52,23 @@ lspconfig.omnisharp.setup {
 	cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
 	on_attach = on_attach;
 }
+
+-- JDTLS (Java)
+local jdstls_on_attach = function(client, bufnr)
+	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+	local default_opts = {noremap = true, silent = true}
+
+  on_attach(client, bufnr)
+
+	buf_set_keymap('n', '<A-CR>', "<cmd>lua require('jdtls').code_action()<CR>", default_opts)
+	buf_set_keymap('n', '<Leader>ac', "<cmd>lua require('jdtls').code_action()<CR>", default_opts)
+end
+
+require('jdtls').start_or_attach {
+  cmd = {'jdtls-startup.sh'};
+  on_attach = jdstls_on_attach;
+}

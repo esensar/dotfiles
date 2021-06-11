@@ -290,6 +290,35 @@ local csharp_project_config = {
   }
 }
 
+local java_project_config = {
+  ["src/main/java/*.java"] = {
+    type = "source",
+    template = {
+      "package {dirname|dot};",
+      "",
+      "public class {basename} {open}",
+      "{close}"
+    },
+    alternate = "src/test/java/{}Test.java"
+  },
+  ["src/test/java/*Test.java"] = {
+    type = "test",
+    template = {
+      "package {dirname|dot};",
+      "",
+      "public class {basename}Test {open}",
+      "{close}"
+    },
+    alternate = "src/main/java/{}.java"
+  },
+  ["src/main/java/module-info.java"] = {
+    type = "moduleinfo",
+  },
+  ["src/main/java/**/package-info.java"] = {
+    type = "packageinfo",
+  }
+}
+
 local function c_project_config(source_extension, header_extension)
   return {
     ["*"] = {
@@ -332,5 +361,6 @@ vim.g.projectionist_heuristics = {
   ["plugin/|autoload/"] = vim_plugin_config,
   ["src/*.cpp|test/*.cpp"] = c_project_config("cpp", "hpp"),
   ["src/*.c|test/*.c"] = c_project_config("c", "h"),
-  ["lua/"] = lua_vim_plugin_config
+  ["lua/"] = lua_vim_plugin_config,
+  ["build.gradle|pom.xml"] = java_project_config
 }

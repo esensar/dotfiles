@@ -82,6 +82,7 @@ return require('packer').startup {
       -- LSP language specific
       use 'tjdevries/nlua.nvim'                      -- Built-in Lua integration with LSP
       use 'akinsho/flutter-tools.nvim'               -- Additional flutter integrations
+      use 'mfussenegger/nvim-jdtls'                  -- Additional java integrations
 
       -- Lua support                                 --
       use 'tjdevries/astronauta.nvim'                -- Support for lua ftplugins and plugins

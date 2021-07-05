@@ -2,6 +2,7 @@
   <component name="FileTypeManager" version="18">
     <extensionMap>
       <mapping ext="gradle.kts" type="Kotlin" />
+      <mapping ext="klib" type="ARCHIVE" />
       <mapping ext="main.kts" type="Kotlin" />
       <removed_mapping ext="apk" approved="true" type="ARCHIVE" />
       <removed_mapping ext="psd" approved="true" type="Image" />

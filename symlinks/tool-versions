@@ -1,12 +1,12 @@
 clojure 1.10.2.774
 dart 2.12.0-259.0.dev
 direnv 2.27.0
-flutter 1.22.6-stable
+flutter 2.0.5-stable
 leiningen 2.9.5
 nodejs 15.5.0
 poetry 1.1.4
-python 3.9.1 2.7.18
+python system
 ruby 3.0.0
 rust 1.49.0
-neovim 0.4.4
-vim 8.2.2544
+neovim 0.5.0
+dotnet-core 5.0.202

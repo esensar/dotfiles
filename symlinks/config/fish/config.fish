@@ -16,7 +16,17 @@ abbr -a batdiff "git diff --name-only --diff-filter=d | xargs bat --diff"
 
 source ~/.config/fish/platform_config/$MACHINE_TYPE.fish
 
-source ~/.asdf/asdf.fish
+if [ -f /opt/asdf-vm/asdf.sh ]
+  set -gx ASDF_DIR /opt/asdf-vm
+  set -gx ASDF_CONFIG_FILE $XDG_CONFIG_HOME/asdf/asdfrc
+  set -gx ASDF_DATA_DIR $XDG_DATA_HOME/asdf
+  source $ASDF_DIR/asdf.sh
+else
+  source ~/.asdf/asdf.fish
+  if [ -f ~/.asdf/plugins/dotnet-core/set-dotnet-home.fish ]
+    . ~/.asdf/plugins/dotnet-core/set-dotnet-home.fish
+  end
+end
 
 eval (asdf exec direnv hook fish | source)
 

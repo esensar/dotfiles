@@ -1,0 +1,11 @@
+source ~/.vim/vimrc
+source ~/.vim/plugins.vim
+
+nnoremap <C-p> :vsc MonoDevelop.Ide.Commands.SearchCommands.GotoFile <CR>
+nnoremap gr :vsc MonoDevelop.Refactoring.RefactoryCommands.FindReferences <CR>
+nnoremap K :vsc MonoDevelop.Ide.Commands.TextEditorCommands.ShowQuickInfo <CR>
+nnoremap gD :vsc MonoDevelop.RefactoryCommands.NavigationCommands.FindBaseSymbols <CR>
+nnoremap <C-w>o :vsc MonoDevelop.Ide.Commands.FileTabCommands.CloseAllButThis <CR>
+
+nnoremap <C-o> :vsc MonoDevelop.Ide.Commands.NavigationCommands.NavigateBack <CR>
+nnoremap <C-i> :vsc MonoDevelop.Ide.Commands.NavigationCommands.NavigateForward <CR>

@@ -68,7 +68,6 @@ set showcmd		    " display incomplete commands
 set incsearch		  " do incremental searching
 set autoread      " Reload files changed outside vim
 set hidden        " Allow leaving unsaved buffers
-set inccommand=nosplit " Enable live preview of text replacement
 
 " Trigger autoread when changing buffers or coming back to vim in terminal.
 if !has('win32') && !has('win64')
@@ -128,5 +127,3 @@ if &term =~ '256color'
   " render properly when inside 256-color tmux and GNU screen.
   set t_ut=
 endif
-
-highlight Comment cterm=italic

@@ -10,13 +10,25 @@ set ideajoin
 set idearefactormode=keep
 
 " IdeaVIM mappings
-noremap <C-P> :action SearchEverywhere<CR>
+nnoremap [c :action VcsShowPrevChangeMarker<cr>
+nnoremap ]c :action VcsShowNextChangeMarker<cr>
+
+nnoremap <C-P> :action SearchEverywhere<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gr :action FindUsages<CR>
 nnoremap <leader>rn :action RenameElement<CR>
+nnoremap <C-A-F> :action FindInPath<CR>
+nnoremap <leader>tn :action RunAnything<CR>
+nnoremap <leader>tf :action RunClass<CR>
+inoremap <C-K> :action ParameterInfo<CR>
+nnoremap <C-K> :action ParameterInfo<CR>
+
+nnoremap <leader>db :action ToggleLineBreakpoint<CR>
+nnoremap <leader>dc :action ChooseDebugConfiguration<CR>
 
 nnoremap <leader>ac :action ShowIntentionActions<CR>
 
 command! Start action Run
 command! A action GotoTest
+command! Scratch action NewScratchBuffer

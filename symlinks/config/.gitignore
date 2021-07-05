@@ -43,6 +43,8 @@ flutter/
 ibus
 pulse
 discord
+lutris
+cef_user_data
 
 QtProject.conf
 QtProject/
@@ -62,3 +64,10 @@ stetic
 xbuild
 Bitwarden
 kwalletrc
+Thunar
+xfce4
+Element
+NuGet
+Microsoft*
+.mono
+tlpui

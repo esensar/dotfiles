@@ -1,0 +1,22 @@
+{
+    "feb919a9-ec3f-41dd-8cee-07be86cc0901": {
+        "id": "feb919a9-ec3f-41dd-8cee-07be86cc0901",
+        "name": "Stack Overflow",
+        "keyword": "so",
+        "cmd": "xdg-open \"http://stackoverflow.com/search?q=$@\"",
+        "icon": "/usr/share/ulauncher/media/stackoverflow-icon.svg",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1615309537.084131
+    },
+    "a61d5cbd-4e61-45ff-ae0e-a08e8f9242f5": {
+        "id": "a61d5cbd-4e61-45ff-ae0e-a08e8f9242f5",
+        "name": "Wikipedia",
+        "keyword": "wiki",
+        "cmd": "xdg-open \"https://en.wikipedia.org/wiki/$@\"",
+        "icon": "/usr/share/ulauncher/media/wikipedia-icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1615309537.0841668
+    }
+}

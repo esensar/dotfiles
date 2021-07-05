@@ -143,6 +143,7 @@ link_vim: check_os
 	@echo "Linking vim files..."
 	$(call link,vim,.vim)
 	$(call link,ideavimrc,.ideavimrc)
+	$(call link,vsvimrc,.vsvimrc)
 
 .PHONY: link_apps_config
 link_apps_config: check_os
@@ -296,8 +297,10 @@ install_asdf: check_os
 
 .PHONY: install_vim
 install_vim: check_os link_vim
-	@echo "Installing vim packages..."
-	@echo "\n\n\n" | vim +PlugInstall +qall
+	@echo "Vim package installation is no longer done automatically!"
+	@echo "Start Vim or NeoVim and run:"
+	@echo "For NeoVim: :PackerInstall"
+	@echo "For Vim: :PlugInstall"
 
 .PHONY: oh_my_zsh
 oh_my_zsh: check_os

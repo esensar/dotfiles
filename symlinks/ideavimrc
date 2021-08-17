@@ -4,6 +4,7 @@ source ~/.vim/plugins.vim
 " IdeaVIM plugins
 set surround
 set commentary
+set NERDTree
 
 " IdeaVIM settings
 set ideajoin

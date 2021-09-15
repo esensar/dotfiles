@@ -12,6 +12,7 @@ mklink %UserProfile%\_vimrc %~dp0..\symlinks\vimrc
 mklink /D %UserProfile%\vimfiles %~dp0..\symlinks\vim
 mklink %UserProfile%\.gitconfig %~dp0..\symlinks\gitconfig
 mklink %UserProfile%\.gitignore %~dp0..\symlinks\gitignore
+mklink /D %UserProfile%\AppData\Local\nvim %~dp0..\symlinks\config\nvim
 
 REM Then set up vim plug
 Powershell.exe -executionpolicy remotesigned -File  %~dp0install_vim_plug_windows.ps1

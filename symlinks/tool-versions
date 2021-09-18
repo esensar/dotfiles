@@ -1,5 +1,5 @@
 direnv 2.27.0
-nodejs 15.5.0
+nodejs 16.9.1
 python system
 ruby 3.0.0
 neovim 0.5.0

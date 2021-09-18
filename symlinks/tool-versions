@@ -4,3 +4,4 @@ python system
 ruby 3.0.0
 neovim 0.5.0
 dotnet-core 5.0.202
+bat 0.18.3

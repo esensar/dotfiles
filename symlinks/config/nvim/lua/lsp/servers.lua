@@ -54,6 +54,12 @@ lspconfig.omnisharp.setup {
 	on_attach = on_attach;
 }
 
+-- Leminx (XML Language server)
+lspconfig.lemminx.setup {
+	cmd = { "lemminx" };
+	on_attach = on_attach;
+}
+
 -- JDTLS (Java)
 -- Can't be local currently, because autocommand has to be used
 jdtls_on_attach = function(client, bufnr)

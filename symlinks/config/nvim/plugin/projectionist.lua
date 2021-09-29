@@ -319,6 +319,64 @@ local java_project_config = {
   }
 }
 
+local mint_config = {
+  ["*"] = {
+    start = "mint start"
+  },
+  ["source/*.mint"] = {
+    type = "source",
+    template = {
+      "component {basename} {open}",
+      "  style {basename|camelcase} {open}",
+      "  {close}",
+      "",
+      "  fun render : Html {open}",
+      "  {close}",
+      "{close}"
+    },
+    alternate = "tests/{}.mint"
+  },
+  ["tests/*.mint"] = {
+    type = "test",
+    template = {
+      "suite \"{basename}\" {open}",
+      "  test \"A test\" {open}",
+      "    with Test.Html {open}",
+      "    {close}",
+      "  {close}",
+      "{close}"
+    },
+    alternate = "source/{}.mint"
+  }
+}
+
+local crystal_config = {
+  ["*"] = {
+    start = "crystal run"
+  },
+  ["src/*.cr"] = {
+    type = "source",
+    template = {
+      "module {capitalize|colons}",
+      "end"
+    },
+    alternate = "spec/{}_spec.cr"
+  },
+  ["spec/*_spec.cr"] = {
+    type = "spec",
+    template = {
+      "describe {capitalize|colons} do",
+      "  # TODO Write tests",
+      "",
+      "  it \"works\" do",
+      "    false.should eq(true)",
+      "  end",
+      "end"
+    },
+    alternate = "src/{}.cr"
+  }
+}
+
 local function c_project_config(source_extension, header_extension)
   return {
     ["*"] = {
@@ -362,5 +420,7 @@ vim.g.projectionist_heuristics = {
   ["src/*.cpp|test/*.cpp"] = c_project_config("cpp", "hpp"),
   ["src/*.c|test/*.c"] = c_project_config("c", "h"),
   ["lua/"] = lua_vim_plugin_config,
-  ["build.gradle|pom.xml"] = java_project_config
+  ["build.gradle|pom.xml"] = java_project_config,
+  ["mint.json"] = mint_config,
+  ["shard.yml"] = crystal_config
 }

@@ -34,6 +34,7 @@ return require('packer').startup {
       use 'flazz/vim-colorschemes'                   -- All popular colorschemes
       use 'romainl/vim-qf'                           -- Quickfix list upgrades
       use 'romainl/vim-devdocs'                      -- Quick DevDocs.io search using :DD
+      use 'gpanders/editorconfig.nvim'               -- .editorconfig support
 
       -- Tools                                       --
       use 'direnv/direnv.vim'                        -- Integration with Direnv

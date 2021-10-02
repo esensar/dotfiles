@@ -228,7 +228,7 @@ create_personal_ssh_github_key: check_os prepare_ssh_dir
 	@echo "Personal GitHub key created!"
 	@echo "Copy public key by running:"
 	@echo ""
-	@echo "cat $(PERSONAL_SSH_KEYS_HOME)/id_rsa_github | $(COPY_TOOL)"
+	@echo "cat $(PERSONAL_SSH_KEYS_HOME)/id_rsa_github.pub | $(COPY_TOOL)"
 	@echo ""
 	@echo "Open: https://github.com/settings/ssh/new"
 	@echo "and paste copied public key"

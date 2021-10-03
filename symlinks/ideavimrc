@@ -40,3 +40,5 @@ command! Gdiffsplit action Git.CompareWithBranch
 command! G action Git.Menu
 command! Gpro action Github.Create.Pull.Request
 command! Gblame action Annotate
+command! TODO action ActivateTODOToolWindow
+command! te action ActivateTerminalToolWindow

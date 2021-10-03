@@ -43,6 +43,7 @@ return require('packer').startup {
       use 'nathunsmitty/nvim-ale-diagnostic'         -- Neovim LSP + ALE integration
       use 'mfussenegger/nvim-dap'                    -- Debug Adapter Protocol
       use 'theHamsta/nvim-dap-virtual-text'          -- Virtual text display for DAP
+      use 'diepm/vim-rest-console'                   -- REST console for vim
 
       -- Snippets                                    --
       if vim.g.loaded_python3_provider ~= 0          --

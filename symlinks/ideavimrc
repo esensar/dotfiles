@@ -34,3 +34,9 @@ command! Start action Run
 command! A action GotoTest
 command! Scratch action NewScratchBuffer
 command! Ex NERDTree
+command! Gw action Git.Add
+command! Ggpull action Git.Pull
+command! Gdiffsplit action Git.CompareWithBranch
+command! G action Git.Menu
+command! Gpro action Github.Create.Pull.Request
+command! Gblame action Annotate

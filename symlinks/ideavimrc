@@ -33,3 +33,4 @@ nnoremap <leader>ac :action ShowIntentionActions<CR>
 command! Start action Run
 command! A action GotoTest
 command! Scratch action NewScratchBuffer
+command! Ex NERDTree

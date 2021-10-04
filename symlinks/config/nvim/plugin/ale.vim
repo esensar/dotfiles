@@ -24,6 +24,9 @@ let g:ale_fixers.go     = ['gofmt']
 let g:ale_fixers.cpp    = ['clang-format']
 let g:ale_fixers.java   = ['google_java_format']
 
+" Additional Java options
+let g:ale_java_google_java_format_options = ['--aosp', '--formatJavadoc']
+
 " Warnings navigation
 nmap <silent> [W <Plug>(ale_first)
 nmap <silent> [w <Plug>(ale_previous)

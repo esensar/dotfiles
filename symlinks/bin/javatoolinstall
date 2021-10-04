@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+TOOL=$1
+VERSION=$2
+
+case $TOOL in
+	google-java-format)
+		if [ -z "$VERSION" ]; then
+			VERSION="v1.11.0"
+		fi
+		mkdir -p $HOME/lsp/java/google-java-format
+		wget -O - https://github.com/google/google-java-format/releases/download/v1.11.0/google-java-format-1.11.0-all-deps.jar > $HOME/lsp/java/google-java-format/google-java-format.jar
+		;;
+esac

@@ -6,8 +6,8 @@ local common_config = require("lsp.server_config")
 local M = {}
 
 function M.setup()
-	require'jdtls.setup'.add_commands()
   require'jdtls'.setup_dap()
+	require'jdtls.setup'.add_commands()
 	local on_attach = function(client, bufnr)
 
 		local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end

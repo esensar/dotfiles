@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+JAR="$HOME/lsp/java/google-java-format/google-java-format.jar"
+
+if [[ ! -f $JAR ]]; then
+  echo "Google Java format is not installed! Install by running:"
+  echo ""
+  echo "javatoolinstall google-java-format"
+  exit 1
+fi
+
+java \
+  --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
+  --add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
+  --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
+  --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
+  --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED \
+  -jar $JAR $@

@@ -9,8 +9,8 @@ local cmp = require'cmp'
 cmp.setup {
   snippet = {
     expand = function(args)
-        vim.fn["UltiSnips#Anon"](args.body)
-      end,
+      vim.fn["UltiSnips#Anon"](args.body)
+    end,
   },
   mapping = {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -21,6 +21,8 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
+    { name = 'path' },
     { name = 'ultisnips' },
     { name = 'buffer' },
   }

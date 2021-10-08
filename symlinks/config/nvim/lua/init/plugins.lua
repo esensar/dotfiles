@@ -80,6 +80,9 @@ return require('packer').startup {
       use 'alexaandru/nvim-lspupdate'                -- Easy install and update for many LSP servers
       use 'hrsh7th/cmp-nvim-lsp'                     -- LSP source for cmp
       use 'hrsh7th/cmp-buffer'                       -- Buffer source for nvim-cmp
+      use 'hrsh7th/cmp-path'                         -- Path source for nvim-cmp
+      use 'hrsh7th/cmp-nvim-lua'                     -- Nvim-Lua source for nvim-cmp
+      use 'quangnguyen30192/cmp-nvim-ultisnips'      -- Ultisnips source for nvim-cmp
       use 'hrsh7th/nvim-cmp'                         -- completion integration
       use 'nvim-lua/lsp_extensions.nvim'             -- LSP extensions (like closing labels for Dart)
 

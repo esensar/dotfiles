@@ -1,4 +1,3 @@
-local log = require "vim.lsp.log"
 local vim_readme_template = {
   "# Name",
   "",
@@ -316,7 +315,13 @@ local java_project_config = {
   },
   ["src/main/java/**/package-info.java"] = {
     type = "packageinfo",
-  }
+  },
+  ["src/main/resources/*"] = {
+    type = "resource"
+  },
+  ["src/test/resources/*"] = {
+    type = "testresource"
+  },
 }
 
 local mint_config = {

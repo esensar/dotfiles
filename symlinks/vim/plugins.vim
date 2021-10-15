@@ -33,36 +33,20 @@ endif
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-obsession'
-Plug 'airblade/vim-gitgutter'
-Plug 'godlygeek/tabular'
-Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
-Plug 'vim-scripts/utl.vim'
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
-Plug 'direnv/direnv.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-speeddating'
 
 " -----------------------------------------------------------------------------
 "     - Autocompletion -
 " -----------------------------------------------------------------------------
-if !exists('g:loaded_node_provider') || g:loaded_node_provider != 0
-   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-endif
 Plug 'ervandew/supertab'
 
 " -----------------------------------------------------------------------------
 "     - Tools -
 " -----------------------------------------------------------------------------
 Plug 'tpope/vim-dispatch'
-Plug 'radenling/vim-dispatch-neovim'
-Plug 'vim-test/vim-test'
-Plug 'dense-analysis/ale'
 Plug 'tpope/vim-projectionist'
 
 " -----------------------------------------------------------------------------
@@ -77,19 +61,13 @@ Plug 'tpope/vim-sleuth'
 " -----------------------------------------------------------------------------
 "     - Snippets -
 " -----------------------------------------------------------------------------
-if !exists('g:loaded_python3_provider') || g:loaded_python3_provider != 0
-   Plug 'SirVer/ultisnips'
-   Plug 'honza/vim-snippets'
-endif
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " -----------------------------------------------------------------------------
 "     - Language support -
 " -----------------------------------------------------------------------------
 Plug 'sheerun/vim-polyglot'
-Plug 'c-brenn/phoenix.vim'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-salve'
-Plug 'tpope/vim-fireplace'
 Plug 'vimwiki/vimwiki'
 Plug 'esensar/vimwiki-reviews'
 Plug 'ledger/vim-ledger'

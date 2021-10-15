@@ -4,5 +4,5 @@
 
 augroup ledgerconf
 	autocmd!
-	autocmd BufWritePre *.journal LedgerAlignBuffer
+	autocmd BufWritePre <buffer> LedgerAlignBuffer
 augroup END

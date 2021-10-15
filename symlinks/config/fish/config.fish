@@ -5,12 +5,21 @@ set -gx PROJECT_PATHS ~/Projects/*/* ~/Projects/Personal/Mixed\ Technology/Pract
 set -gx ASDF_PYTHON_DEFAULT_PACKAGES_FILE ~/.config/asdf/.python-default-packages
 set -gx FZF_DEFAULT_COMMAND 'rg --files'
 
-alias vi "nvim"
-alias vim "nvim"
-alias vimdiff "nvim -d"
+if which termux-info &> /dev/null
+	alias nvim "vim"
+	alias vi "vim"
+	alias vimdiff "vim -d"
+else
+	alias vi "nvim"
+	alias vim "nvim"
+	alias vimdiff "nvim -d"
+end
 
 alias cat "bat"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+if which termux-info &> /dev/null
+else
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+end
 
 abbr -a batdiff "git diff --name-only --diff-filter=d | xargs bat --diff"
 

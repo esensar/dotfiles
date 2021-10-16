@@ -8,7 +8,7 @@ local common_config = require("lsp.server_config")
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Lsp default language servers
-local servers = { "bashls", "clangd", "cucumber_language_server", "crystalline", "dockerls", "jsonls", "pyright", "rust_analyzer", "kotlin_language_server", "mint", "vimls", "clojure_lsp", "gopls", "gdscript", "terraformls", "tsserver" }
+local servers = { "bashls", "clangd", "cucumber_language_server", "crystalline", "dockerls", "hls", "jsonls", "pyright", "rust_analyzer", "kotlin_language_server", "mint", "vimls", "clojure_lsp", "gopls", "gdscript", "terraformls", "tsserver" }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup { 
 		on_attach = common_config.on_attach,
@@ -38,14 +38,6 @@ local pid = vim.fn.getpid()
 local omnisharp_bin = vim.fn.glob('$HOME') .. "/lsp/dotnet/omnisharp/run"
 lspconfig.omnisharp.setup {
 	cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
-	on_attach = common_config.on_attach;
-	capabilities = capabilities
-}
-
--- Haskell LS
-local hls_bin = vim.fn.glob('$HOME') .. "/lsp/haskell/hls/haskell-language-server-wrapper"
-lspconfig.hls.setup {
-	cmd = { hls_bin, "--lsp" };
 	on_attach = common_config.on_attach;
 	capabilities = capabilities
 }

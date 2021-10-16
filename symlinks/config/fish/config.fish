@@ -42,3 +42,4 @@ eval (asdf exec direnv hook fish | source)
 function direnv
 	asdf exec direnv "$argv"
 end
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/ensar/.ghcup/bin # ghcup-env

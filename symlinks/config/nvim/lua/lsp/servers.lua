@@ -42,6 +42,14 @@ lspconfig.omnisharp.setup {
 	capabilities = capabilities
 }
 
+-- Haskell LS
+local hls_bin = vim.fn.glob('$HOME') .. "/lsp/haskell/hls/haskell-language-server-wrapper"
+lspconfig.hls.setup {
+	cmd = { hls_bin, "--lsp" };
+	on_attach = common_config.on_attach;
+	capabilities = capabilities
+}
+
 -- Leminx (XML Language server)
 lspconfig.lemminx.setup {
 	cmd = { "lemminx" };

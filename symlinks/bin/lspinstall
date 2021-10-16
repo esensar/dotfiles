@@ -34,4 +34,20 @@ case $SERVER in
 		mkdir -p $HOME/lsp/dotnet/omnisharp
 		tar -xf /tmp/omnisharp.tar.gz -C $HOME/lsp/dotnet/omnisharp
 		;;
+	hls)
+		if [ -z "$VERSION" ]; then
+			VERSION="1.4.0"
+		fi
+		case $UNAME in
+			Linux)
+				FILE_NAME="haskell-language-server-Linux-${VERSION}.tar.gz"
+				;;
+			Darwin)
+				FILE_NAME="haskell-language-server-macOS-${VERSION}.tar.gz"
+				;;
+		esac
+		wget -O - https://github.com/haskell/haskell-language-server/releases/download/$VERSION/$FILE_NAME > /tmp/hls.tar.gz
+		mkdir -p $HOME/lsp/haskell/hls
+		tar -xf /tmp/hls.tar.gz -C $HOME/lsp/haskell/hls
+		;;
 esac

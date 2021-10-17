@@ -5,7 +5,8 @@ set record = +Sent
 # Directory to save drafts into
 set postponed = +Drafts
 # Headers cache?
-set header_cache = ~/.cache/mutt
+set header_cache = ~/.cache/mutt/headers
+set message_cachedir = ~/.cache/mutt/bodies
 # Sort by threads
 set sort = threads
 # Sort threads by last date received - newest first

@@ -1,0 +1,6 @@
+set imap_user = "username@mail.com"
+set imap_pass = "YOURAPPPASSWORD"
+set folder = "imapurl"
+set smtp_url = "smptul"
+set smtp_pass = "YOURAPPPASSWORD"
+set spoolfile = "+INBOX"

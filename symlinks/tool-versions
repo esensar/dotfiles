@@ -5,3 +5,5 @@ ruby 3.0.0
 neovim 0.5.1
 dotnet-core 5.0.202
 bat 0.18.3
+awscli 2.2.44
+haskell 9.0.1

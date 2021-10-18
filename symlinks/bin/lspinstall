@@ -49,5 +49,6 @@ case $SERVER in
 		wget -O - https://github.com/haskell/haskell-language-server/releases/download/$VERSION/$FILE_NAME > /tmp/hls.tar.gz
 		mkdir -p $HOME/lsp/haskell/hls
 		tar -xf /tmp/hls.tar.gz -C $HOME/lsp/haskell/hls
+		chmod +x $HOME/lsp/haskell/hls/*
 		;;
 esac

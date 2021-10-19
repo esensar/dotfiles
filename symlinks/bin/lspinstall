@@ -70,4 +70,25 @@ case $SERVER in
 		wget -O - https://github.com/hyperledger-labs/solang/releases/download/$VERSION/$FILE_NAME > $HOME/lsp/solidity/solang/solang
 		chmod +x $HOME/lsp/solidity/solang/solang
 		;;
+	lemminx)
+		if [ -z "$VERSION" ]; then
+			VERSION="0.18.0-400"
+		fi
+		case $UNAME in
+			Linux)
+				FILE_NAME="lemminx-linux.zip"
+				;;
+			Windows)
+				FILE_NAME="lemminx-win32.zip"
+				;;
+			Darwin)
+				FILE_NAME="lemminx-osx-x86_64.zip"
+				;;
+		esac
+		mkdir -p $HOME/lsp/xml/lemminx
+
+		wget -O - https://download.jboss.org/jbosstools/vscode/stable/lemminx-binary/$VERSION/$FILE_NAME > /tmp/lemminx-download.zip
+		unzip -p /tmp/lemminx-download.zip > $HOME/lsp/xml/lemminx/lemminx
+		chmod +x $HOME/lsp/xml/lemminx/lemminx
+		;;
 esac

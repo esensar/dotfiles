@@ -13,9 +13,11 @@ usage () {
 		install)
 			usage_install; exit 0 ;;
 		uninstall)
-			usage_uninstal; exit 0 ;;
+			usage_uninstall; exit 0 ;;
 		status)
 			usage_status; exit 0 ;;
+		link)
+			usage_link; exit 0 ;;
 	esac
 	if [ ! -z "$1" ]; then
 		echo -e "Unknown command: $1 \n"
@@ -46,12 +48,27 @@ usage_install () {
 	echov "                   - version is hardcoded and could be outdated"
 	echo ""
 	echo "Options:"
+	echo "  -l --link        - automatically links installed binaries to $HOME/.local/bin"
 	echo "  -h --help        - prints this help message"
 	echo "  -v --verbose     - enables verbose logging"
 	echov "Examples:"
 	echov "  > lsp install jdtls"
 	echov ""
 	echov "  > lsp install jdtls 1.4.0"
+}
+
+usage_link () {
+	echo "LSP Link"
+	echo "Links installed language server. This can be automatically done when installing by passing -l flag."
+	echo -e "\nUsage: lsp link [options] <server> \n"
+	echo "Arguments:"
+	echo "  server           - name of server to link ('status' can be used to get a list of installed servers)"
+	echo ""
+	echo "Options:"
+	echo "  -h --help        - prints this help message"
+	echo "  -v --verbose     - enables verbose logging"
+	echov "Examples:"
+	echov "  > lsp link jdtls"
 }
 
 usage_uninstall () {
@@ -77,6 +94,8 @@ usage_status () {
 	echov "                    - if it does not exist, this tool tries to look for it in every language listed"
 	echo ""
 	echo "Options:"
+	echo "  -k --known-only  - shows only known servers"
+	echo "  -a --all         - shows servers which are not installed too"
 	echo "  -h --help        - prints this help message"
 	echo "  -v --verbose     - enables verbose logging"
 	echov ""
@@ -105,6 +124,8 @@ POSITIONAL=()
 HELP=0
 VERBOSE=0
 ALL=0
+KNOWN_ONLY=0
+LINK=0
 while [[ $# -gt 0 ]]; do
   key="$1"
 
@@ -119,6 +140,14 @@ while [[ $# -gt 0 ]]; do
       ;;
     -a|--all)
       ALL=1
+      shift # past argument
+      ;;
+    -k|--known-only)
+      KNOWN_ONLY=1
+      shift # past argument
+      ;;
+    -l|--link)
+      LINK=1
       shift # past argument
       ;;
     *)    # unknown option
@@ -158,6 +187,63 @@ declare -A SUPPORTED_SERVERS=(
 	["xml"]="lemminx"
 	["kotlin"]="kotlin-language-server"
 )
+
+link_server () {
+	SERVER=$1
+	SOURCE=""
+	TARGET=""
+	SOURCE_TO_CHECK=""
+	case $SERVER in
+		jdtls)
+			echo "No need to link jdtls. Use 'jdtls-start.sh' instead!"
+			exit 0
+			;;
+		omnisharp)
+			SOURCE="$HOME/lsp/dotnet/omnisharp/run"
+			TARGET="$HOME/.local/bin/omnisharp"
+			;;
+		hls)
+			SOURCE_TO_CHECK="$HOME/lsp/haskell/hls/haskell-language-server-wrapper"
+			SOURCE="$HOME/lsp/haskell/hls/*"
+			TARGET="$HOME/.local/bin"
+			;;
+		solang)
+			SOURCE="$HOME/lsp/solidity/solang"
+			TARGET="$HOME/.local/bin/solang"
+			;;
+		lemminx)
+			SOURCE="$HOME/lsp/xml/lemminx"
+			TARGET="$HOME/.local/bin/lemminx"
+			;;
+		kotlin-language-server)
+			SOURCE="$HOME/lsp/kotlin/kotlin-language-server/bin/kotlin-language-server"
+			TARGET="$HOME/.local/bin/kotlin-language-server"
+			;;
+		*)
+			echo "Unknown server: $SERVER"
+			echo "Run 'lsp status' for a list of installed servers"
+			exit 1
+			;;
+	esac
+	if [ -z "$SOURCE_TO_CHECK" ]; then
+		SOURCE_TO_CHECK="$SOURCE"
+	fi
+	if [ ! -f "$SOURCE_TO_CHECK" ]; then
+		echo "File not found!"
+		echo "Make sure $SERVER is installed. Check status with 'lsp status'."
+		exit 1
+	fi
+	if [ -f "$TARGET" ]; then
+		echo "File already exists at $TARGET"
+		echo "Aborting..."
+		echo ""
+		echo "File info:"
+		ls -lahF "$TARGET"
+		exit 1
+	fi
+	ln -s "$SOURCE" "$TARGET"
+	echov "Successfully linked $SERVER from $SOURCE to $TARGET"
+}
 
 install () {
 	SERVER=$1
@@ -267,6 +353,9 @@ install () {
 	cat /tmp/newlspstatus | awk 'BEGIN { FS = " " } ; {print $2 " " $1}' > "$MY_CONFIG_CACHE_DIR/lspstatus"
 	rm /tmp/newlspstatus
 	echov "Successfully installed $SERVER, version $VERSION"
+	if [ $LINK -eq 1 ]; then
+		link_server $SERVER
+	fi
 }
 
 uninstall () {
@@ -339,6 +428,9 @@ status () {
 		fi
 		if [ -z "$EXPECTED_SERVERS" ]; then
 			HAD_UNKNOWN=1
+			if [ $KNOWN_ONLY -eq 1 ]; then
+				continue
+			fi
 			echo -e "Language $BOLDSTART${lang}$MODEND $ERRORSTART(UNKNOWN)$MODEND:"
 		else
 			echo -e "Language $BOLDSTART${lang}$MODEND:"
@@ -359,6 +451,9 @@ status () {
 				fi
 			done
 			if [ "$VERSION" == "UNKNOWN" ]; then
+				if [ $KNOWN_ONLY -eq 1 ]; then
+					continue
+				fi
 				echo -e "  Server $BOLDSTART${server}$MODEND $ERRORSTART(UNKNOWN)$MODEND:"
 				HAD_UNKNOWN=1
 			else
@@ -390,8 +485,10 @@ status () {
 		echo ""
 	done
 	if [ $HAD_UNKNOWN -eq 1 ]; then
-		echov "Found unknown servers."
-		echov "Make sure $HOME/lsp contains only LSP servers and similar tools."
+		if [ $KNOWN_ONLY -eq 0 ]; then
+			echov "Found unknown servers."
+			echov "Make sure $HOME/lsp contains only LSP servers and similar tools."
+		fi
 	fi
 }
 
@@ -409,6 +506,9 @@ case $COMMAND in
 		;;
 	uninstall)
 		uninstall $SERVER
+		;;
+	link)
+		link_server $SERVER
 		;;
 	*)
 		usage $COMMAND; exit 1 ;;

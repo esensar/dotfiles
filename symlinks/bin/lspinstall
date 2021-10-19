@@ -51,4 +51,23 @@ case $SERVER in
 		tar -xf /tmp/hls.tar.gz -C $HOME/lsp/haskell/hls
 		chmod +x $HOME/lsp/haskell/hls/*
 		;;
+	solang)
+		if [ -z "$VERSION" ]; then
+			VERSION="v0.1.8"
+		fi
+		case $UNAME in
+			Linux)
+				FILE_NAME="solang-linux"
+				;;
+			Windows)
+				FILE_NAME="solang.exe"
+				;;
+			Darwin)
+				FILE_NAME="solang-mac-intel"
+				;;
+		esac
+		mkdir -p $HOME/lsp/solidity/solang
+		wget -O - https://github.com/hyperledger-labs/solang/releases/download/$VERSION/$FILE_NAME > $HOME/lsp/solidity/solang/solang
+		chmod +x $HOME/lsp/solidity/solang/solang
+		;;
 esac

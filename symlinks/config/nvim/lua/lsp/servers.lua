@@ -8,7 +8,7 @@ local common_config = require("lsp.server_config")
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Lsp default language servers
-local servers = { "bashls", "clangd", "cucumber_language_server", "crystalline", "dockerls", "jsonls", "hls", "pyright", "rust_analyzer", "kotlin_language_server", "mint", "vimls", "clojure_lsp", "gopls", "gdscript", "terraformls", "tsserver" }
+local servers = { "bashls", "clangd", "cucumber_language_server", "crystalline", "dockerls", "jsonls", "hls", "pyright", "rust_analyzer", "kotlin_language_server", "mint", "vimls", "clojure_lsp", "gopls", "gdscript", "solang", "terraformls", "tsserver" }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup { 
 		on_attach = common_config.on_attach,

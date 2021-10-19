@@ -502,7 +502,7 @@ status () {
 				echo -e "  Server $BOLDSTART${server}$MODEND:"
 			fi
 			INSTALLED=0
-			for installed_server in "${INSTALLED_SERVERS[@]}"; do
+			for installed_server in ${INSTALLED_SERVERS}; do
 				if [ "$server" == "$installed_server" ]; then
 					INSTALLED=1
 					if [ -z "$VERSION" ]; then

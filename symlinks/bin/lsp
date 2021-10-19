@@ -27,6 +27,7 @@ usage () {
 	echo -e "\nUsage: lsp COMMAND [options] [arguments] \n"
 	echo "Commands:"
 	echo "  install          - installs a new language server (or a new version of already installed one)"
+	echo "  link             - links previously installed language server to $HOME/.local/bin"
 	echo "  status           - prints status of servers installed (if server name is passed, prints status of that server)"
 	echo "  uninstall        - uninstalls a language server"
 	echo ""
@@ -187,44 +188,85 @@ declare -A SUPPORTED_SERVERS=(
 	["xml"]="lemminx"
 	["kotlin"]="kotlin-language-server"
 )
+declare -A LINK_SOURCES=(
+	["omnisharp"]="$HOME/lsp/dotnet/omnisharp/run"
+	["solang"]="$HOME/lsp/solidity/solang/solang"
+	["lemminx"]="$HOME/lsp/xml/lemminx/lemminx"
+	["kotlin-language-server"]="$HOME/lsp/kotlin/kotlin-language-server/bin/kotlin-language-server"
+)
+declare -A LINK_TARGETS=(
+	["omnisharp"]="$HOME/.local/bin/omnisharp"
+	["solang"]="$HOME/.local/bin/solang"
+	["lemminx"]="$HOME/.local/bin/lemminx"
+	["kotlin-language-server"]="$HOME/.local/bin/kotlin-language-server"
+)
+
+is_linked () {
+	SERVER=$1
+	SOURCE_TO_CHECK="${LINK_SOURCES[$SERVER]}"
+	TARGET_TO_CHECK="${LINK_TARGETS[$SERVER]}"
+	if [ -z "$SOURCE_TO_CHECK" ]; then
+		case $SERVER in
+			jdtls)
+				echo 1
+				return 0
+				;;
+			hls)
+				echo 1
+				return 0
+				;;
+			*)
+				echo 0
+				return 0
+				;;
+		esac
+	else
+		if [ ! -f "$TARGET_TO_CHECK" ]; then
+			echo 0
+			return 0
+		fi
+		if [ ! -f "$SOURCE_TO_CHECK" ]; then
+			echo 0
+			return 0
+		fi
+		if [ "$SOURCE_TO_CHECK" != "$(readlink $TARGET_TO_CHECK)" ]; then
+			echo 0
+			return 0
+		fi
+	fi
+	echo 1
+}
 
 link_server () {
 	SERVER=$1
 	SOURCE=""
 	TARGET=""
-	SOURCE_TO_CHECK=""
-	case $SERVER in
-		jdtls)
-			echo "No need to link jdtls. Use 'jdtls-start.sh' instead!"
-			exit 0
-			;;
-		omnisharp)
-			SOURCE="$HOME/lsp/dotnet/omnisharp/run"
-			TARGET="$HOME/.local/bin/omnisharp"
-			;;
-		hls)
-			SOURCE_TO_CHECK="$HOME/lsp/haskell/hls/haskell-language-server-wrapper"
-			SOURCE="$HOME/lsp/haskell/hls/*"
-			TARGET="$HOME/.local/bin"
-			;;
-		solang)
-			SOURCE="$HOME/lsp/solidity/solang"
-			TARGET="$HOME/.local/bin/solang"
-			;;
-		lemminx)
-			SOURCE="$HOME/lsp/xml/lemminx"
-			TARGET="$HOME/.local/bin/lemminx"
-			;;
-		kotlin-language-server)
-			SOURCE="$HOME/lsp/kotlin/kotlin-language-server/bin/kotlin-language-server"
-			TARGET="$HOME/.local/bin/kotlin-language-server"
-			;;
-		*)
-			echo "Unknown server: $SERVER"
-			echo "Run 'lsp status' for a list of installed servers"
-			exit 1
-			;;
-	esac
+	SOURCE_TO_CHECK="${LINK_SOURCES[$SERVER]}"
+	SOURCE=$SOURCE_TO_CHECK
+	TARGET="${LINK_TARGETS[$SERVER]}"
+	if [ -z "$SOURCE" ]; then
+		case $SERVER in
+			jdtls)
+				echo "No need to link jdtls. Use 'jdtls-start.sh' instead!"
+				exit 0
+				;;
+			hls)
+				SOURCE_TO_CHECK="$HOME/lsp/haskell/hls/haskell-language-server-wrapper"
+				SOURCE="$HOME/lsp/haskell/hls/*"
+				TARGET="$HOME/.local/bin"
+				;;
+			*)
+				echo "Unknown server: $SERVER"
+				echo "Run 'lsp status' for a list of installed servers"
+				exit 1
+				;;
+		esac
+	fi
+	IS_LINKED=$(is_linked $SERVER)
+	if [ $IS_LINKED -eq 1 ]; then
+		echo "Server $SERVER is already linked. Nothing to do."
+		exit 0
+	fi
 	if [ -z "$SOURCE_TO_CHECK" ]; then
 		SOURCE_TO_CHECK="$SOURCE"
 	fi
@@ -469,8 +511,12 @@ status () {
 					echo -e "    Installed: ${INFOSTART}true${MODEND}"
 					echo "    Version: $VERSION"
 					echo "    Location: $HOME/lsp/$lang/$server"
+					LINKED=$(is_linked $server)
 					if [[ ":$PATH:" == *":$HOME/lsp/$lang/$server:"* ]]; then
 						echo -e "    On path: ${INFOSTART}true${MODEND}"
+					elif [ $LINKED -eq 1 ]; then
+						echo -e "    On path: ${INFOSTART}${BOLDSTART}linked${MODEND}${MODEND}"
+						echo "    Linked to: ${LINK_TARGETS[$server]}"
 					else
 						echo "    On path: false"
 					fi

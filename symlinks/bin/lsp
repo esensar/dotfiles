@@ -156,6 +156,7 @@ declare -A SUPPORTED_SERVERS=(
 	["haskell"]="hls"
 	["solidity"]="solang"
 	["xml"]="lemminx"
+	["kotlin"]="kotlin-language-server"
 )
 
 install () {
@@ -244,6 +245,16 @@ install () {
 			unzip -p /tmp/lemminx-download.zip > $HOME/lsp/xml/lemminx/lemminx
 			chmod +x $HOME/lsp/xml/lemminx/lemminx
 			;;
+		kotlin-language-server)
+			if [ -z "$VERSION" ]; then
+				VERSION="1.1.2"
+			fi
+			FILE_NAME="server.zip"
+			wget -O - https://github.com/fwcd/kotlin-language-server/releases/download/$VERSION/$FILE_NAME > /tmp/kotlin-language-server.zip
+			mkdir -p $HOME/lsp/kotlin
+			unzip /tmp/kotlin-language-server.zip -d /tmp/kotlin-language-server
+			mv /tmp/kotlin-language-server/server $HOME/lsp/kotlin/kotlin-language-server
+			;;
 		*)
 			echo "Unknown server: $SERVER"
 			echo "Run 'lsp status --all' for a list of available servers"
@@ -276,6 +287,9 @@ uninstall () {
 		lemminx)
 			rm -rf $HOME/lsp/xml/lemminx
 			;;
+		kotlin-language-server)
+			rm -rf $HOME/lsp/kotlin/kotlin-language-server
+			;;
 		*)
 			echo "Unknown server: $SERVER"
 			echo "Run 'lsp status' for a list of installed servers"
@@ -298,7 +312,7 @@ status () {
 	echov "Found languages: $LANGUAGES"
 	if [ $ALL -eq 1 ]; then
 		echov "Adding all supported languages"
-		LANGUAGES+=" java dotnet haskell solidity xml"
+		LANGUAGES+=" ${!SUPPORTED_SERVERS[@]}"
 		LANGUAGES=$(echo $LANGUAGES | tr ' ' '\n' | sort | uniq -)
 	fi
 	echov "Checking languages: $LANGUAGES"
@@ -339,7 +353,7 @@ status () {
 		for server in $SERVERS; do
 			VERSION="UNKNOWN"
 			for available_server in "${EXPECTED_SERVERS[@]}"; do
-				if [[ $server = "$available_server" ]]; then
+				if [ "$server" == "$available_server" ]; then
 					VERSION=$(get_version $server)
 					break
 				fi
@@ -352,7 +366,7 @@ status () {
 			fi
 			INSTALLED=0
 			for installed_server in "${INSTALLED_SERVERS[@]}"; do
-				if [[ $server = "$installed_server" ]]; then
+				if [ "$server" == "$installed_server" ]; then
 					INSTALLED=1
 					if [ -z "$VERSION" ]; then
 						VERSION="UNKNOWN"

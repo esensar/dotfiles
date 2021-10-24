@@ -41,6 +41,7 @@ function M.get_directory_index(vimwiki_index, directory)
     index[noext] = filename
   end
 
+  table.sort(index)
   return index
 end
 
@@ -72,7 +73,7 @@ function M.open_subdirectory_index_file(vimwiki_index, subdirectory)
 
   local buf = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})  -- Clear out
-  vim.api.nvim_buf_set_lines(buf, 0, 0, false, lines)  -- Put new contents
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)  -- Put new contents
 end
 
 return M

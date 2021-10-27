@@ -295,6 +295,16 @@ install_asdf: check_os
 	@echo "=================================="
 	@echo ""
 
+.PHONY: install_exercism
+install_exercism: check_os
+	@echo "Installing exercism..."
+	@wget -O /tmp/exercism.tar.gz https://github.com/exercism/cli/releases/download/v3.0.13/exercism-3.0.13-linux-x86_64.tar.gz
+	@tar -xf /tmp/exercism.tar.gz -C /tmp
+	@mv /tmp/exercism ~/.local/bin/
+	@read -p "Enter your exercism API KEY (https://exercism.org/settings/api_cli): " apikey;
+	@echo "Configuring exercism..."
+	exercism configure --token=$$apikey --workspace="~/Projects/Personal/Mixed Technology/Practice/exercism"
+
 .PHONY: install_vim
 install_vim: check_os link_vim
 	@echo "Vim package installation is no longer done automatically!"

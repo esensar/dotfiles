@@ -119,10 +119,20 @@ _G.packer_plugins = {
     path = "/home/ensar/.local/share/nvim/site/pack/packer/start/editorconfig.nvim",
     url = "https://github.com/gpanders/editorconfig.nvim"
   },
+  ["filetype.nvim"] = {
+    loaded = true,
+    path = "/home/ensar/.local/share/nvim/site/pack/packer/start/filetype.nvim",
+    url = "https://github.com/nathom/filetype.nvim"
+  },
   ["flutter-tools.nvim"] = {
     loaded = true,
     path = "/home/ensar/.local/share/nvim/site/pack/packer/start/flutter-tools.nvim",
     url = "https://github.com/akinsho/flutter-tools.nvim"
+  },
+  ["impatient.nvim"] = {
+    loaded = true,
+    path = "/home/ensar/.local/share/nvim/site/pack/packer/start/impatient.nvim",
+    url = "https://github.com/lewis6991/impatient.nvim"
   },
   ["lsp_extensions.nvim"] = {
     loaded = true,
@@ -332,11 +342,6 @@ _G.packer_plugins = {
     path = "/home/ensar/.local/share/nvim/site/pack/packer/start/vim-obsession",
     url = "https://github.com/tpope/vim-obsession"
   },
-  ["vim-polyglot"] = {
-    loaded = true,
-    path = "/home/ensar/.local/share/nvim/site/pack/packer/start/vim-polyglot",
-    url = "https://github.com/sheerun/vim-polyglot"
-  },
   ["vim-projectionist"] = {
     loaded = true,
     path = "/home/ensar/.local/share/nvim/site/pack/packer/start/vim-projectionist",
@@ -406,6 +411,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ensar/.local/share/nvim/site/pack/packer/start/vim-test",
     url = "https://github.com/vim-test/vim-test"
+  },
+  ["vim-tridactyl"] = {
+    loaded = true,
+    path = "/home/ensar/.local/share/nvim/site/pack/packer/start/vim-tridactyl",
+    url = "https://github.com/tridactyl/vim-tridactyl"
   },
   ["vim-unimpaired"] = {
     loaded = true,

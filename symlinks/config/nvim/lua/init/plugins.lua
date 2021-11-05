@@ -22,7 +22,6 @@ return require('packer').startup {
       -- General improvements                        --
       use 'airblade/vim-gitgutter'                   -- Git signs
       use 'godlygeek/tabular'                        -- Tabular command for alignment
-      -- use { 'Shougo/vimproc.vim', run = 'make' }  -- Not really used
       use 'vim-scripts/utl.vim'                      -- Universal text linking
       use {                                          --
         'mbbill/undotree',                           --
@@ -35,6 +34,8 @@ return require('packer').startup {
       use 'romainl/vim-qf'                           -- Quickfix list upgrades
       use 'romainl/vim-devdocs'                      -- Quick DevDocs.io search using :DD
       use 'gpanders/editorconfig.nvim'               -- .editorconfig support
+      use 'nathom/filetype.nvim'                     -- Quicker filetype.nvim file
+      use 'lewis6991/impatient.nvim'                 -- Caching lua modules for faster startup
 
       -- Tools                                       --
       use 'direnv/direnv.vim'                        -- Integration with Direnv
@@ -57,7 +58,6 @@ return require('packer').startup {
       end                                            --
 
       -- Language support                            --
-      use 'sheerun/vim-polyglot'                     -- All popular languages
       use 'tpope/vim-rails'                          -- Enables all rails command through vim and integrates with projectionist
       use 'c-brenn/phoenix.vim'                      -- Similar to vim-rails, but for phoenix
       use 'tpope/vim-salve'                          -- Clojure integration with projectionist
@@ -71,6 +71,7 @@ return require('packer').startup {
       use(                                           -- Simpler keymaps for vim-sexp
          'tpope/vim-sexp-mappings-for-regular-people'
       )                                              
+      use 'tridactyl/vim-tridactyl'                  -- Tridactyl config file support
 
       -- Treesitter                                  --
       use {                                          --

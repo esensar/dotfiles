@@ -2,7 +2,7 @@
 
 if [ -z "$1" ]
 then
-	INSTALLATION_NAME=$HOSTNAME
+	INSTALLATION_NAME=$(hostname)
 else
 	INSTALLATION_NAME=$1
 fi

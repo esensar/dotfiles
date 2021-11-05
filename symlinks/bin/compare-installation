@@ -33,6 +33,7 @@ then
 			break
 		done
 	fi
+else
 	INSTALLATION=$1
 fi
 

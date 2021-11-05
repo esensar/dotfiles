@@ -42,8 +42,12 @@ return require('packer').startup {
       use 'dense-analysis/ale'                       -- Asynchronous Lint Engine - used for linting, not for LSP
       use 'nathunsmitty/nvim-ale-diagnostic'         -- Neovim LSP + ALE integration
       use 'mfussenegger/nvim-dap'                    -- Debug Adapter Protocol
+      use 'rcarriga/nvim-dap-ui'                     -- UI components for DAP
       use 'theHamsta/nvim-dap-virtual-text'          -- Virtual text display for DAP
       use 'diepm/vim-rest-console'                   -- REST console for vim
+      use 'Pocco81/DAPInstall.nvim'                  -- Easy DAP configuration
+      use 'jamestthompson3/nvim-remote-containers'   -- devcontainer.json support
+      use 'jbyuki/one-small-step-for-vimkind'        -- Debugger for Nvim-Lua
 
       -- Snippets                                    --
       if vim.g.loaded_python3_provider ~= 0          --

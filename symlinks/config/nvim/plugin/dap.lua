@@ -3,45 +3,18 @@
 -------------------------------------------------------------------------------
 
 local dap = require('dap')
+local dap_install = require('dap-install')
 
-dap.adapters.python = {
-	type = 'executable';
-	command = 'python';
-	args = { '-m', 'debugpy.adapter' };
-}
+local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
 
-dap.configurations.python = {
-  {
-    -- The first three options are required by nvim-dap
-    type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`
-    request = 'launch';
-    name = "Launch file";
+for _, debugger in ipairs(dbg_list) do
+	dap_install.config(debugger)
+end
 
-
-    program = "${file}"; -- This configuration will launch the current file if used.
-  },
-}
-
-local netcoredbg_bin = vim.fn.glob('$HOME') .. "/dap/netcoredbg/netcoredbg"
-dap.adapters.netcoredbg = {
-  type = 'executable',
-  command = netcoredbg_bin,
-  args = {'--interpreter=vscode'}
-}
-
-dap.configurations.cs = {
-  {
-    type = "netcoredbg",
-    name = "launch - netcoredbg",
-    request = "launch",
-    program = function()
-        return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-    end,
-  },
-}
+vim.cmd [[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]]
 
 -- Nvim DAP Treesitter integration
-vim.g.dap_virtual_text = true
+require("nvim-dap-virtual-text").setup()
 
 -- Keymaps
 local function set_keymap(...) vim.api.nvim_set_keymap(...) end
@@ -52,6 +25,9 @@ set_keymap('n', '<Leader>dc', "<cmd>lua require'dap'.continue()<CR>", default_op
 set_keymap('n', '<Leader>dso', "<cmd>lua require'dap'.step_over()<CR>", default_opts)
 set_keymap('n', '<Leader>dsi', "<cmd>lua require'dap'.step_into()<CR>", default_opts)
 set_keymap('n', '<Leader>dro', "<cmd>lua require'dap'.open()<CR>", default_opts)
+
+-- Nvim DAP UI
+require("dapui").setup()
 
 -- Debugger Hover map
 local api = vim.api

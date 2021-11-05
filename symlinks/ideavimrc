@@ -42,3 +42,4 @@ command! Gpro action Github.Create.Pull.Request
 command! Gblame action Annotate
 command! TODO action ActivateTODOToolWindow
 command! te action ActivateTerminalToolWindow
+command! Sync action Android.SyncProject

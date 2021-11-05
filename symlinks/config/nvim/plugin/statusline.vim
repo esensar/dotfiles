@@ -171,6 +171,9 @@ function GetStatusLine()
             let l:status_line_left .= "%2*" . l:coc_status . "%*"
         endif
     endif
+    if exists('g:currentContainer')
+        let l:status_line_left .= "%5*" . g:currentContainer . "%*"
+    endif
     let l:status_line_right = "%=   " " Align right statusline
     if exists('g:loaded_ale')
         let l:status_line_right .= s:LinterStatus() " ALE status

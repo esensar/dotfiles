@@ -303,7 +303,7 @@ install_exercism: check_os
 	@mv /tmp/exercism ~/.local/bin/
 	@read -p "Enter your exercism API KEY (https://exercism.org/settings/api_cli): " apikey;
 	@echo "Configuring exercism..."
-	exercism configure --token=$$apikey --workspace="~/Projects/Personal/Mixed Technology/Practice/exercism"
+	exercism configure --token="$$apikey" --workspace="~/Projects/Personal/Mixed Technology/Practice/exercism"
 
 .PHONY: install_vim
 install_vim: check_os link_vim

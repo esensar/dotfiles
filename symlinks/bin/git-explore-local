@@ -2,7 +2,7 @@
 
 TEMPDIR=$(mktemp -d)
 
-git clone $1 $TEMPDIR
+git clone --depth=1 $1 $TEMPDIR
 
 cd $TEMPDIR
 

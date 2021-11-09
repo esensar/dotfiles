@@ -1,1 +1,5 @@
 " Trydactyl (Firefox VIM addon) config file
+
+set theme dark
+
+source ~/.config/tridactyl/tridactylrc.local

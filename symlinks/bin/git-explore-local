@@ -2,7 +2,13 @@
 
 TEMPDIR=$(mktemp -d)
 
-git clone --depth=1 $1 $TEMPDIR
+if [ -z "$2" ]; then
+  # No branch defined
+  git clone --depth=1 $1 $TEMPDIR
+else
+  # Branch defined
+  git clone --depth=1 -b $2 $1 $TEMPDIR
+fi
 
 cd $TEMPDIR
 

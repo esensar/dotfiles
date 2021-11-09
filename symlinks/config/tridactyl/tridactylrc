@@ -2,4 +2,11 @@
 
 set theme dark
 
+" Taken from https://github.com/tridactyl/tridactyl/blob/230600ff950e6948225ec03f9b6858e965e37d22/.tridactylrc#L47
+command githubpryank composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
+
+command githubprexplore js let url = document.getElementById("clone-help-git-url").value; let branch = document.getElementById("clone-help-step-1").children[1].textContent.replace("git checkout -b ", "").split(" ")[0]; tri.native.run("alacritty --command fish -c 'git-explore-local " + url + " " + branch + "'")
+
+command githubexplorelocal js let url = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("alacritty --command fish -c 'git-explore-local " + url + "'")
+
 source ~/.config/tridactyl/tridactylrc.local

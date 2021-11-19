@@ -3,120 +3,120 @@
 set -e
 
 echov () {
-	if [ $VERBOSE -eq 1 ]; then
-		echo "$@"
-	fi
+  if [ $VERBOSE -eq 1 ]; then
+    echo "$@"
+  fi
 }
 
 usage () {
-	case $1 in
-		install)
-			usage_install; exit 0 ;;
-		uninstall)
-			usage_uninstall; exit 0 ;;
-		status)
-			usage_status; exit 0 ;;
-		link)
-			usage_link; exit 0 ;;
-	esac
-	if [ ! -z "$1" ]; then
-		echo -e "Unknown command: $1 \n"
-	fi
-	echo "Basic LSP (Language Server Protocol) manager."
-	echo "Manages installations of language servers."
-	echo -e "\nUsage: lsp COMMAND [options] [arguments] \n"
-	echo "Commands:"
-	echo "  install          - installs a new language server (or a new version of already installed one)"
-	echo "  link             - links previously installed language server to $HOME/.local/bin"
-	echo "  status           - prints status of servers installed (if server name is passed, prints status of that server)"
-	echo "  uninstall        - uninstalls a language server"
-	echo ""
-	echo "Options:"
-	echo "  -h --help        - prints this help message (if one of commands is passed, prints help message for that command)"
-	echo "  -v --verbose     - enables verbose logging"
-	if [ ! -z "$1" ]; then
-		exit 1
-	fi
+  case $1 in
+    install)
+      usage_install; exit 0 ;;
+    uninstall)
+      usage_uninstall; exit 0 ;;
+    status)
+      usage_status; exit 0 ;;
+    link)
+      usage_link; exit 0 ;;
+  esac
+  if [ ! -z "$1" ]; then
+    echo -e "Unknown command: $1 \n"
+  fi
+  echo "Basic LSP (Language Server Protocol) manager."
+  echo "Manages installations of language servers."
+  echo -e "\nUsage: lsp COMMAND [options] [arguments] \n"
+  echo "Commands:"
+  echo "  install          - installs a new language server (or a new version of already installed one)"
+  echo "  link             - links previously installed language server to $HOME/.local/bin"
+  echo "  status           - prints status of servers installed (if server name is passed, prints status of that server)"
+  echo "  uninstall        - uninstalls a language server"
+  echo ""
+  echo "Options:"
+  echo "  -h --help        - prints this help message (if one of commands is passed, prints help message for that command)"
+  echo "  -v --verbose     - enables verbose logging"
+  if [ ! -z "$1" ]; then
+    exit 1
+  fi
 }
 
 usage_install () {
-	echo "LSP Install"
-	echo "Installs a new language server. If language server is already installed, this overwrites that installation."
-	echo -e "\nUsage: lsp install [options] <server> [<version>] \n"
-	echo "Arguments:"
-	echo "  server           - name of server to install ('status --all' can be used to get a list of all)"
-	echo "  version          - optional argument representing version of server (otherwise default is used)"
-	echov "                   - version is hardcoded and could be outdated"
-	echo ""
-	echo "Options:"
-	echo "  -l --link        - automatically links installed binaries to $HOME/.local/bin"
-	echo "  -h --help        - prints this help message"
-	echo "  -v --verbose     - enables verbose logging"
-	echov "Examples:"
-	echov "  > lsp install jdtls"
-	echov ""
-	echov "  > lsp install jdtls 1.4.0"
+  echo "LSP Install"
+  echo "Installs a new language server. If language server is already installed, this overwrites that installation."
+  echo -e "\nUsage: lsp install [options] <server> [<version>] \n"
+  echo "Arguments:"
+  echo "  server           - name of server to install ('status --all' can be used to get a list of all)"
+  echo "  version          - optional argument representing version of server (otherwise default is used)"
+  echov "                   - version is hardcoded and could be outdated"
+  echo ""
+  echo "Options:"
+  echo "  -l --link        - automatically links installed binaries to $HOME/.local/bin"
+  echo "  -h --help        - prints this help message"
+  echo "  -v --verbose     - enables verbose logging"
+  echov "Examples:"
+  echov "  > lsp install jdtls"
+  echov ""
+  echov "  > lsp install jdtls 1.4.0"
 }
 
 usage_link () {
-	echo "LSP Link"
-	echo "Links installed language server. This can be automatically done when installing by passing -l flag."
-	echo -e "\nUsage: lsp link [options] <server> \n"
-	echo "Arguments:"
-	echo "  server           - name of server to link ('status' can be used to get a list of installed servers)"
-	echo ""
-	echo "Options:"
-	echo "  -h --help        - prints this help message"
-	echo "  -v --verbose     - enables verbose logging"
-	echov "Examples:"
-	echov "  > lsp link jdtls"
+  echo "LSP Link"
+  echo "Links installed language server. This can be automatically done when installing by passing -l flag."
+  echo -e "\nUsage: lsp link [options] <server> \n"
+  echo "Arguments:"
+  echo "  server           - name of server to link ('status' can be used to get a list of installed servers)"
+  echo ""
+  echo "Options:"
+  echo "  -h --help        - prints this help message"
+  echo "  -v --verbose     - enables verbose logging"
+  echov "Examples:"
+  echov "  > lsp link jdtls"
 }
 
 usage_uninstall () {
-	echo "LSP Uninstall"
-	echo "Uninstalls a language server. Silently fails if server is not present."
-	echo -e "\nUsage: lsp uninstall [options] <server> \n"
-	echo "Arguments:"
-	echo "  server           - name of server to uninstall ('status' can be used to get a list of installed servers)"
-	echo ""
-	echo "Options:"
-	echo "  -h --help        - prints this help message"
-	echo "  -v --verbose     - enables verbose logging"
-	echov "Examples:"
-	echov "  > lsp uninstall jdtls"
+  echo "LSP Uninstall"
+  echo "Uninstalls a language server. Silently fails if server is not present."
+  echo -e "\nUsage: lsp uninstall [options] <server> \n"
+  echo "Arguments:"
+  echo "  server           - name of server to uninstall ('status' can be used to get a list of installed servers)"
+  echo ""
+  echo "Options:"
+  echo "  -h --help        - prints this help message"
+  echo "  -v --verbose     - enables verbose logging"
+  echov "Examples:"
+  echov "  > lsp uninstall jdtls"
 }
 
 usage_status () {
-	echo "LSP Status"
-	echo "Prints status of installed servers"
-	echo -e "\nUsage: lsp status [options] [<server>] \n"
-	echo "Arguments:"
-	echo "  server           - name of server or language to show status for"
-	echov "                    - if it does not exist, this tool tries to look for it in every language listed"
-	echo ""
-	echo "Options:"
-	echo "  -k --known-only  - shows only known servers"
-	echo "  -a --all         - shows servers which are not installed too"
-	echo "  -h --help        - prints this help message"
-	echo "  -v --verbose     - enables verbose logging"
-	echov ""
-	echov "Examples:"
-	echov "  > lsp status java"
-	echov "  Language java:"
-	echov "    Server google-java-format (UNKNOWN):"
+  echo "LSP Status"
+  echo "Prints status of installed servers"
+  echo -e "\nUsage: lsp status [options] [<server>] \n"
+  echo "Arguments:"
+  echo "  server           - name of server or language to show status for"
+  echov "                    - if it does not exist, this tool tries to look for it in every language listed"
+  echo ""
+  echo "Options:"
+  echo "  -k --known-only  - shows only known servers"
+  echo "  -a --all         - shows servers which are not installed too"
+  echo "  -h --help        - prints this help message"
+  echo "  -v --verbose     - enables verbose logging"
+  echov ""
+  echov "Examples:"
+  echov "  > lsp status java"
+  echov "  Language java:"
+  echov "    Server google-java-format (UNKNOWN):"
   echov "      Installed: true"
   echov "      Version: UNKNOWN"
   echov "      Location: /Users/ensar.sarajcic/lsp/java/google-java-format"
   echov "      On path: false"
-	echov ""
-	echov "  > lsp status java --all"
-	echov "  Language java:"
-	echov "    Server google-java-format (UNKNOWN):"
+  echov ""
+  echov "  > lsp status java --all"
+  echov "  Language java:"
+  echov "    Server google-java-format (UNKNOWN):"
   echov "      Installed: true"
   echov "      Version: UNKNOWN"
   echov "      Location: /Users/ensar.sarajcic/lsp/java/google-java-format"
   echov "      On path: false"
-	echov ""
+  echov ""
   echov "    Server jdtls:"
   echov "      Installed: false"
 }
@@ -163,13 +163,13 @@ COMMAND="${POSITIONAL[0]}"
 echov "Detected command: $COMMAND"
 
 if [ $HELP -eq 1 ]; then
-	usage $COMMAND
-	exit 0
+  usage $COMMAND
+  exit 0
 fi
 
 UNAME=$(sh -c 'uname 2>/dev/null || echo Unknown')
 if [[ "$UNAME" == "Windows_NT" ]]; then
-	UNAME="Windows"
+  UNAME="Windows"
 fi
 
 echov "Detected host: $UNAME"
@@ -181,381 +181,408 @@ echov "Detected server: $SERVER"
 echov "Detected version: $VERSION"
 
 declare -A SUPPORTED_SERVERS=(
-	["java"]="jdtls"
-	["dotnet"]="omnisharp"
-	["haskell"]="hls"
-	["solidity"]="solang"
-	["xml"]="lemminx"
-	["kotlin"]="kotlin-language-server"
+["java"]="jdtls"
+["dotnet"]="omnisharp"
+["haskell"]="hls"
+["solidity"]="solang"
+["xml"]="lemminx"
+["kotlin"]="kotlin-language-server",
+["rust"]="rust-analyzer"
 )
 declare -A LINK_SOURCES=(
-	["omnisharp"]="$HOME/lsp/dotnet/omnisharp/run"
-	["solang"]="$HOME/lsp/solidity/solang/solang"
-	["lemminx"]="$HOME/lsp/xml/lemminx/lemminx"
-	["kotlin-language-server"]="$HOME/lsp/kotlin/kotlin-language-server/bin/kotlin-language-server"
+["omnisharp"]="$HOME/lsp/dotnet/omnisharp/run"
+["solang"]="$HOME/lsp/solidity/solang/solang"
+["lemminx"]="$HOME/lsp/xml/lemminx/lemminx"
+["kotlin-language-server"]="$HOME/lsp/kotlin/kotlin-language-server/bin/kotlin-language-server"
+["rust-analyzer"]="$HOME/lsp/rust/rust-analyzer/rust-analyzer"
 )
 declare -A LINK_TARGETS=(
-	["omnisharp"]="$HOME/.local/bin/omnisharp"
-	["solang"]="$HOME/.local/bin/solang"
-	["lemminx"]="$HOME/.local/bin/lemminx"
-	["kotlin-language-server"]="$HOME/.local/bin/kotlin-language-server"
+["omnisharp"]="$HOME/.local/bin/omnisharp"
+["solang"]="$HOME/.local/bin/solang"
+["lemminx"]="$HOME/.local/bin/lemminx"
+["kotlin-language-server"]="$HOME/.local/bin/kotlin-language-server"
+["rust-analyzer"]="$HOME/.local/bin/rust-analyzer"
 )
 
 is_linked () {
-	SERVER=$1
-	SOURCE_TO_CHECK="${LINK_SOURCES[$SERVER]}"
-	TARGET_TO_CHECK="${LINK_TARGETS[$SERVER]}"
-	if [ -z "$SOURCE_TO_CHECK" ]; then
-		case $SERVER in
-			jdtls)
-				echo 1
-				return 0
-				;;
-			hls)
-				echo 1
-				return 0
-				;;
-			*)
-				echo 0
-				return 0
-				;;
-		esac
-	else
-		if [ ! -f "$TARGET_TO_CHECK" ]; then
-			echo 0
-			return 0
-		fi
-		if [ ! -f "$SOURCE_TO_CHECK" ]; then
-			echo 0
-			return 0
-		fi
-		if [ "$SOURCE_TO_CHECK" != "$(readlink $TARGET_TO_CHECK)" ]; then
-			echo 0
-			return 0
-		fi
-	fi
+  SERVER=$1
+  SOURCE_TO_CHECK="${LINK_SOURCES[$SERVER]}"
+  TARGET_TO_CHECK="${LINK_TARGETS[$SERVER]}"
+  if [ -z "$SOURCE_TO_CHECK" ]; then
+    case $SERVER in
+      jdtls)
 	echo 1
+	return 0
+	;;
+      hls)
+	echo 1
+	return 0
+	;;
+      *)
+	echo 0
+	return 0
+	;;
+    esac
+  else
+    if [ ! -f "$TARGET_TO_CHECK" ]; then
+      echo 0
+      return 0
+    fi
+    if [ ! -f "$SOURCE_TO_CHECK" ]; then
+      echo 0
+      return 0
+    fi
+    if [ "$SOURCE_TO_CHECK" != "$(readlink $TARGET_TO_CHECK)" ]; then
+      echo 0
+      return 0
+    fi
+  fi
+  echo 1
 }
 
 link_server () {
-	SERVER=$1
-	SOURCE=""
-	TARGET=""
-	SOURCE_TO_CHECK="${LINK_SOURCES[$SERVER]}"
-	SOURCE=$SOURCE_TO_CHECK
-	TARGET="${LINK_TARGETS[$SERVER]}"
-	if [ -z "$SOURCE" ]; then
-		case $SERVER in
-			jdtls)
-				echo "No need to link jdtls. Use 'jdtls-start.sh' instead!"
-				exit 0
-				;;
-			hls)
-				SOURCE_TO_CHECK="$HOME/lsp/haskell/hls/haskell-language-server-wrapper"
-				SOURCE="$HOME/lsp/haskell/hls/*"
-				TARGET="$HOME/.local/bin"
-				;;
-			*)
-				echo "Unknown server: $SERVER"
-				echo "Run 'lsp status' for a list of installed servers"
-				exit 1
-				;;
-		esac
-	fi
-	IS_LINKED=$(is_linked $SERVER)
-	if [ $IS_LINKED -eq 1 ]; then
-		echo "Server $SERVER is already linked. Nothing to do."
-		exit 0
-	fi
-	if [ -z "$SOURCE_TO_CHECK" ]; then
-		SOURCE_TO_CHECK="$SOURCE"
-	fi
-	if [ ! -f "$SOURCE_TO_CHECK" ]; then
-		echo "File not found!"
-		echo "Make sure $SERVER is installed. Check status with 'lsp status'."
-		exit 1
-	fi
-	if [ -f "$TARGET" ]; then
-		echo "File already exists at $TARGET"
-		echo "Aborting..."
-		echo ""
-		echo "File info:"
-		ls -lahF "$TARGET"
-		exit 1
-	fi
-	ln -s "$SOURCE" "$TARGET"
-	echov "Successfully linked $SERVER from $SOURCE to $TARGET"
+  SERVER=$1
+  SOURCE=""
+  TARGET=""
+  SOURCE_TO_CHECK="${LINK_SOURCES[$SERVER]}"
+  SOURCE=$SOURCE_TO_CHECK
+  TARGET="${LINK_TARGETS[$SERVER]}"
+  if [ -z "$SOURCE" ]; then
+    case $SERVER in
+      jdtls)
+	echo "No need to link jdtls. Use 'jdtls-start.sh' instead!"
+	exit 0
+	;;
+      hls)
+	SOURCE_TO_CHECK="$HOME/lsp/haskell/hls/haskell-language-server-wrapper"
+	SOURCE="$HOME/lsp/haskell/hls/*"
+	TARGET="$HOME/.local/bin"
+	;;
+      *)
+	echo "Unknown server: $SERVER"
+	echo "Run 'lsp status' for a list of installed servers"
+	exit 1
+	;;
+    esac
+  fi
+  IS_LINKED=$(is_linked $SERVER)
+  if [ $IS_LINKED -eq 1 ]; then
+    echo "Server $SERVER is already linked. Nothing to do."
+    exit 0
+  fi
+  if [ -z "$SOURCE_TO_CHECK" ]; then
+    SOURCE_TO_CHECK="$SOURCE"
+  fi
+  if [ ! -f "$SOURCE_TO_CHECK" ]; then
+    echo "File not found!"
+    echo "Make sure $SERVER is installed. Check status with 'lsp status'."
+    exit 1
+  fi
+  if [ -f "$TARGET" ]; then
+    echo "File already exists at $TARGET"
+    echo "Aborting..."
+    echo ""
+    echo "File info:"
+    ls -lahF "$TARGET"
+    exit 1
+  fi
+  ln -s "$SOURCE" "$TARGET"
+  echov "Successfully linked $SERVER from $SOURCE to $TARGET"
 }
 
 install () {
-	SERVER=$1
-	VERSION=$2
-	case $SERVER in
-		jdtls)
-			if [ -z "$VERSION" ]; then
-				VERSION="1.4.0"
-			fi
-			FILE_NAME=$(curl https://download.eclipse.org/jdtls/milestones/$VERSION/latest.txt)
-			wget -O - https://download.eclipse.org/jdtls/milestones/$VERSION/$FILE_NAME > /tmp/jdtls.tar.gz
-			mkdir -p $HOME/lsp/java/jdtls
-			tar -xf /tmp/jdtls.tar.gz -C $HOME/lsp/java/jdtls
-			;;
-		omnisharp)
-			if [ -z "$VERSION" ]; then
-				VERSION="v1.37.16"
-			fi
-			case $UNAME in
-				Linux)
-					FILE_NAME="omnisharp-linux-x64.tar.gz"
-					;;
-				Darwin)
-					FILE_NAME="omnisharp-osx.tar.gz"
-					;;
-			esac
-			wget -O - https://github.com/OmniSharp/omnisharp-roslyn/releases/download/$VERSION/$FILE_NAME > /tmp/omnisharp.tar.gz
-			mkdir -p $HOME/lsp/dotnet/omnisharp
-			tar -xf /tmp/omnisharp.tar.gz -C $HOME/lsp/dotnet/omnisharp
-			;;
-		hls)
-			if [ -z "$VERSION" ]; then
-				VERSION="1.4.0"
-			fi
-			case $UNAME in
-				Linux)
-					FILE_NAME="haskell-language-server-Linux-${VERSION}.tar.gz"
-					;;
-				Darwin)
-					FILE_NAME="haskell-language-server-macOS-${VERSION}.tar.gz"
-					;;
-			esac
-			wget -O - https://github.com/haskell/haskell-language-server/releases/download/$VERSION/$FILE_NAME > /tmp/hls.tar.gz
-			mkdir -p $HOME/lsp/haskell/hls
-			tar -xf /tmp/hls.tar.gz -C $HOME/lsp/haskell/hls
-			chmod +x $HOME/lsp/haskell/hls/*
-			;;
-		solang)
-			if [ -z "$VERSION" ]; then
-				VERSION="v0.1.8"
-			fi
-			case $UNAME in
-				Linux)
-					FILE_NAME="solang-linux"
-					;;
-				Windows)
-					FILE_NAME="solang.exe"
-					;;
-				Darwin)
-					FILE_NAME="solang-mac-intel"
-					;;
-			esac
-			mkdir -p $HOME/lsp/solidity/solang
-			wget -O - https://github.com/hyperledger-labs/solang/releases/download/$VERSION/$FILE_NAME > $HOME/lsp/solidity/solang/solang
-			chmod +x $HOME/lsp/solidity/solang/solang
-			;;
-		lemminx)
-			if [ -z "$VERSION" ]; then
-				VERSION="0.18.0-400"
-			fi
-			case $UNAME in
-				Linux)
-					FILE_NAME="lemminx-linux.zip"
-					;;
-				Windows)
-					FILE_NAME="lemminx-win32.zip"
-					;;
-				Darwin)
-					FILE_NAME="lemminx-osx-x86_64.zip"
-					;;
-			esac
-			mkdir -p $HOME/lsp/xml/lemminx
+  SERVER=$1
+  VERSION=$2
+  case $SERVER in
+    jdtls)
+      if [ -z "$VERSION" ]; then
+	VERSION="1.4.0"
+      fi
+      FILE_NAME=$(curl https://download.eclipse.org/jdtls/milestones/$VERSION/latest.txt)
+      wget -O - https://download.eclipse.org/jdtls/milestones/$VERSION/$FILE_NAME > /tmp/jdtls.tar.gz
+      mkdir -p $HOME/lsp/java/jdtls
+      tar -xf /tmp/jdtls.tar.gz -C $HOME/lsp/java/jdtls
+      ;;
+    omnisharp)
+      if [ -z "$VERSION" ]; then
+	VERSION="v1.37.16"
+      fi
+      case $UNAME in
+	Linux)
+	  FILE_NAME="omnisharp-linux-x64.tar.gz"
+	  ;;
+	Darwin)
+	  FILE_NAME="omnisharp-osx.tar.gz"
+	  ;;
+      esac
+      wget -O - https://github.com/OmniSharp/omnisharp-roslyn/releases/download/$VERSION/$FILE_NAME > /tmp/omnisharp.tar.gz
+      mkdir -p $HOME/lsp/dotnet/omnisharp
+      tar -xf /tmp/omnisharp.tar.gz -C $HOME/lsp/dotnet/omnisharp
+      ;;
+    hls)
+      if [ -z "$VERSION" ]; then
+	VERSION="1.4.0"
+      fi
+      case $UNAME in
+	Linux)
+	  FILE_NAME="haskell-language-server-Linux-${VERSION}.tar.gz"
+	  ;;
+	Darwin)
+	  FILE_NAME="haskell-language-server-macOS-${VERSION}.tar.gz"
+	  ;;
+      esac
+      wget -O - https://github.com/haskell/haskell-language-server/releases/download/$VERSION/$FILE_NAME > /tmp/hls.tar.gz
+      mkdir -p $HOME/lsp/haskell/hls
+      tar -xf /tmp/hls.tar.gz -C $HOME/lsp/haskell/hls
+      chmod +x $HOME/lsp/haskell/hls/*
+      ;;
+    solang)
+      if [ -z "$VERSION" ]; then
+	VERSION="v0.1.8"
+      fi
+      case $UNAME in
+	Linux)
+	  FILE_NAME="solang-linux"
+	  ;;
+	Windows)
+	  FILE_NAME="solang.exe"
+	  ;;
+	Darwin)
+	  FILE_NAME="solang-mac-intel"
+	  ;;
+      esac
+      mkdir -p $HOME/lsp/solidity/solang
+      wget -O - https://github.com/hyperledger-labs/solang/releases/download/$VERSION/$FILE_NAME > $HOME/lsp/solidity/solang/solang
+      chmod +x $HOME/lsp/solidity/solang/solang
+      ;;
+    lemminx)
+      if [ -z "$VERSION" ]; then
+	VERSION="0.18.0-400"
+      fi
+      case $UNAME in
+	Linux)
+	  FILE_NAME="lemminx-linux.zip"
+	  ;;
+	Windows)
+	  FILE_NAME="lemminx-win32.zip"
+	  ;;
+	Darwin)
+	  FILE_NAME="lemminx-osx-x86_64.zip"
+	  ;;
+      esac
+      mkdir -p $HOME/lsp/xml/lemminx
 
-			wget -O - https://download.jboss.org/jbosstools/vscode/stable/lemminx-binary/$VERSION/$FILE_NAME > /tmp/lemminx-download.zip
-			unzip -p /tmp/lemminx-download.zip > $HOME/lsp/xml/lemminx/lemminx
-			chmod +x $HOME/lsp/xml/lemminx/lemminx
-			;;
-		kotlin-language-server)
-			if [ -z "$VERSION" ]; then
-				VERSION="1.1.2"
-			fi
-			FILE_NAME="server.zip"
-			wget -O - https://github.com/fwcd/kotlin-language-server/releases/download/$VERSION/$FILE_NAME > /tmp/kotlin-language-server.zip
-			mkdir -p $HOME/lsp/kotlin
-			unzip /tmp/kotlin-language-server.zip -d /tmp/kotlin-language-server
-			mv /tmp/kotlin-language-server/server $HOME/lsp/kotlin/kotlin-language-server
-			;;
-		*)
-			echo "Unknown server: $SERVER"
-			echo "Run 'lsp status --all' for a list of available servers"
-			exit 1
-			;;
-	esac
-	echo "$SERVER $VERSION" >> "$MY_CONFIG_CACHE_DIR/lspstatus"
-	echo "" >> "$MY_CONFIG_CACHE_DIR/lspstatus"
-	tac "$MY_CONFIG_CACHE_DIR/lspstatus" | awk 'BEGIN { FS = " " } ; {print $2 " " $1}' | uniq -f 1 > /tmp/newlspstatus
-	cat /tmp/newlspstatus | awk 'BEGIN { FS = " " } ; {print $2 " " $1}' > "$MY_CONFIG_CACHE_DIR/lspstatus"
-	rm /tmp/newlspstatus
-	echov "Successfully installed $SERVER, version $VERSION"
-	if [ $LINK -eq 1 ]; then
-		link_server $SERVER
-	fi
+      wget -O - https://download.jboss.org/jbosstools/vscode/stable/lemminx-binary/$VERSION/$FILE_NAME > /tmp/lemminx-download.zip
+      unzip -p /tmp/lemminx-download.zip > $HOME/lsp/xml/lemminx/lemminx
+      chmod +x $HOME/lsp/xml/lemminx/lemminx
+      ;;
+    kotlin-language-server)
+      if [ -z "$VERSION" ]; then
+	VERSION="1.1.2"
+      fi
+      FILE_NAME="server.zip"
+      wget -O - https://github.com/fwcd/kotlin-language-server/releases/download/$VERSION/$FILE_NAME > /tmp/kotlin-language-server.zip
+      mkdir -p $HOME/lsp/kotlin
+      unzip /tmp/kotlin-language-server.zip -d /tmp/kotlin-language-server
+      mv /tmp/kotlin-language-server/server $HOME/lsp/kotlin/kotlin-language-server
+      ;;
+    rust-analyzer)
+      if [ -z "$VERSION" ]; then
+	VERSION="2021-11-15"
+      fi
+      BASE_FILE_NAME="rust-analyzer-x86_64"
+      case $UNAME in
+	Linux)
+	  FILE_NAME="${BASE_FILE_NAME}-unknown-linux-gnu.gz"
+	  ;;
+	Windows)
+	  FILE_NAME="${BASE_FILE_NAME}-pc-windows-msvc.gz"
+	  ;;
+	Darwin)
+	  FILE_NAME="${BASE_FILE_NAME}-apple-darwin.gz"
+	  ;;
+      esac
+      wget -O - https://github.com/rust-analyzer/rust-analyzer/releases/download/$VERSION/$FILE_NAME > /tmp/rust-analyzer.gz
+      mkdir -p $HOME/lsp/rust/rust-analyzer
+      gunzip /tmp/rust-analyzer.gz -c > $HOME/lsp/rust/rust-analyzer/rust-analyzer
+      chmod +x $HOME/lsp/rust/rust-analyzer/rust-analyzer
+      ;;
+    *)
+      echo "Unknown server: $SERVER"
+      echo "Run 'lsp status --all' for a list of available servers"
+      exit 1
+      ;;
+  esac
+  echo "$SERVER $VERSION" >> "$MY_CONFIG_CACHE_DIR/lspstatus"
+  echo "" >> "$MY_CONFIG_CACHE_DIR/lspstatus"
+  tac "$MY_CONFIG_CACHE_DIR/lspstatus" | awk 'BEGIN { FS = " " } ; {print $2 " " $1}' | uniq -f 1 > /tmp/newlspstatus
+  cat /tmp/newlspstatus | awk 'BEGIN { FS = " " } ; {print $2 " " $1}' > "$MY_CONFIG_CACHE_DIR/lspstatus"
+  rm /tmp/newlspstatus
+  echov "Successfully installed $SERVER, version $VERSION"
+  if [ $LINK -eq 1 ]; then
+    link_server $SERVER
+  fi
 }
 
 uninstall () {
-	SERVER=$1
-	case $SERVER in
-		jdtls)
-			rm -rf $HOME/lsp/java/jdtls
-			;;
-		omnisharp)
-			rm -rf $HOME/lsp/dotnet/omnisharp
-			;;
-		hls)
-			rm -rf $HOME/lsp/haskell/hls
-			;;
-		solang)
-			rm -rf $HOME/lsp/solidity/solang
-			;;
-		lemminx)
-			rm -rf $HOME/lsp/xml/lemminx
-			;;
-		kotlin-language-server)
-			rm -rf $HOME/lsp/kotlin/kotlin-language-server
-			;;
-		*)
-			echo "Unknown server: $SERVER"
-			echo "Run 'lsp status' for a list of installed servers"
-			exit 1
-			;;
-	esac
-	sed -i -e "/$SERVER/d" "$MY_CONFIG_CACHE_DIR/lspstatus"
-	echov "Successfully removed $SERVER"
+  SERVER=$1
+  case $SERVER in
+    jdtls)
+      rm -rf $HOME/lsp/java/jdtls
+      ;;
+    omnisharp)
+      rm -rf $HOME/lsp/dotnet/omnisharp
+      ;;
+    hls)
+      rm -rf $HOME/lsp/haskell/hls
+      ;;
+    solang)
+      rm -rf $HOME/lsp/solidity/solang
+      ;;
+    lemminx)
+      rm -rf $HOME/lsp/xml/lemminx
+      ;;
+    kotlin-language-server)
+      rm -rf $HOME/lsp/kotlin/kotlin-language-server
+      ;;
+    rust-analyzer)
+      rm -rf $HOME/lsp/rust/rust-analyzer
+      ;;
+    *)
+      echo "Unknown server: $SERVER"
+      echo "Run 'lsp status' for a list of installed servers"
+      exit 1
+      ;;
+  esac
+  sed -i -e "/$SERVER/d" "$MY_CONFIG_CACHE_DIR/lspstatus"
+  echov "Successfully removed $SERVER"
 }
 
 status () {
-	SERVER=$1
-	HAD_UNKNOWN=0
-	TREAT_SERVER_AS_LANGUAGE=0
-	BOLDSTART="\033[1m"
-	ERRORSTART="\033[91m"
-	INFOSTART="\033[34m"
-	MODEND="\033[0m"
-	LANGUAGES=$(ls $HOME/lsp)
-	echov "Found languages: $LANGUAGES"
-	if [ $ALL -eq 1 ]; then
-		echov "Adding all supported languages"
-		LANGUAGES+=" ${!SUPPORTED_SERVERS[@]}"
-		LANGUAGES=$(echo $LANGUAGES | tr ' ' '\n' | sort | uniq -)
+  SERVER=$1
+  HAD_UNKNOWN=0
+  TREAT_SERVER_AS_LANGUAGE=0
+  BOLDSTART="\033[1m"
+  ERRORSTART="\033[91m"
+  INFOSTART="\033[34m"
+  MODEND="\033[0m"
+  LANGUAGES=$(ls $HOME/lsp)
+  echov "Found languages: $LANGUAGES"
+  if [ $ALL -eq 1 ]; then
+    echov "Adding all supported languages"
+    LANGUAGES+=" ${!SUPPORTED_SERVERS[@]}"
+    LANGUAGES=$(echo $LANGUAGES | tr ' ' '\n' | sort | uniq -)
+  fi
+  echov "Checking languages: $LANGUAGES"
+  if [ ! -z "$SERVER" ]; then
+    EXPECTED_SERVERS="${SUPPORTED_SERVERS[$SERVER]}"
+    if [ ! -z "$EXPECTED_SERVERS" ]; then
+      echov "Passed server name: $SERVER was recognized as a language"
+      TREAT_SERVER_AS_LANGUAGE=1
+      LANGUAGES="$SERVER"
+    fi
+  fi
+  echov ""
+  for lang in $LANGUAGES; do
+    if [ -d "$HOME/lsp/$lang" ]; then
+      INSTALLED_SERVERS=$(ls $HOME/lsp/$lang)
+    else
+      INSTALLED_SERVERS=""
+    fi
+    SERVERS="$INSTALLED_SERVERS"
+    EXPECTED_SERVERS="${SUPPORTED_SERVERS[$lang]}"
+    if [ $ALL -eq 1 ]; then
+      SERVERS+=" $EXPECTED_SERVERS"
+      SERVERS=$(echo $SERVERS | tr ' ' '\n' | sort | uniq -)
+    fi
+    if [ -z "$EXPECTED_SERVERS" ]; then
+      HAD_UNKNOWN=1
+      if [ $KNOWN_ONLY -eq 1 ]; then
+	continue
+      fi
+      echo -e "Language $BOLDSTART${lang}$MODEND $ERRORSTART(UNKNOWN)$MODEND:"
+    else
+      echo -e "Language $BOLDSTART${lang}$MODEND:"
+    fi
+    if [ ! -z "$SERVER" ]; then
+      if [ $TREAT_SERVER_AS_LANGUAGE -eq 0 ]; then
+	if [ ! -z "$INSTALLED_SERVERS" ]; then
+	  SERVERS="$SERVER"
 	fi
-	echov "Checking languages: $LANGUAGES"
-	if [ ! -z "$SERVER" ]; then
-		EXPECTED_SERVERS="${SUPPORTED_SERVERS[$SERVER]}"
-		if [ ! -z "$EXPECTED_SERVERS" ]; then
-			echov "Passed server name: $SERVER was recognized as a language"
-			TREAT_SERVER_AS_LANGUAGE=1
-			LANGUAGES="$SERVER"
-		fi
+      fi
+    fi
+    for server in $SERVERS; do
+      VERSION="UNKNOWN"
+      for available_server in "${EXPECTED_SERVERS[@]}"; do
+	if [ "$server" == "$available_server" ]; then
+	  VERSION=$(get_version $server)
+	  break
 	fi
-	echov ""
-	for lang in $LANGUAGES; do
-		if [ -d "$HOME/lsp/$lang" ]; then
-			INSTALLED_SERVERS=$(ls $HOME/lsp/$lang)
-		else
-			INSTALLED_SERVERS=""
-		fi
-		SERVERS="$INSTALLED_SERVERS"
-		EXPECTED_SERVERS="${SUPPORTED_SERVERS[$lang]}"
-		if [ $ALL -eq 1 ]; then
-			SERVERS+=" $EXPECTED_SERVERS"
-			SERVERS=$(echo $SERVERS | tr ' ' '\n' | sort | uniq -)
-		fi
-		if [ -z "$EXPECTED_SERVERS" ]; then
-			HAD_UNKNOWN=1
-			if [ $KNOWN_ONLY -eq 1 ]; then
-				continue
-			fi
-			echo -e "Language $BOLDSTART${lang}$MODEND $ERRORSTART(UNKNOWN)$MODEND:"
-		else
-			echo -e "Language $BOLDSTART${lang}$MODEND:"
-		fi
-		if [ ! -z "$SERVER" ]; then
-			if [ $TREAT_SERVER_AS_LANGUAGE -eq 0 ]; then
-				if [ ! -z "$INSTALLED_SERVERS" ]; then
-					SERVERS="$SERVER"
-				fi
-			fi
-		fi
-		for server in $SERVERS; do
-			VERSION="UNKNOWN"
-			for available_server in "${EXPECTED_SERVERS[@]}"; do
-				if [ "$server" == "$available_server" ]; then
-					VERSION=$(get_version $server)
-					break
-				fi
-			done
-			if [ "$VERSION" == "UNKNOWN" ]; then
-				if [ $KNOWN_ONLY -eq 1 ]; then
-					continue
-				fi
-				echo -e "  Server $BOLDSTART${server}$MODEND $ERRORSTART(UNKNOWN)$MODEND:"
-				HAD_UNKNOWN=1
-			else
-				echo -e "  Server $BOLDSTART${server}$MODEND:"
-			fi
-			INSTALLED=0
-			for installed_server in ${INSTALLED_SERVERS}; do
-				if [ "$server" == "$installed_server" ]; then
-					INSTALLED=1
-					if [ -z "$VERSION" ]; then
-						VERSION="UNKNOWN"
-					fi
-					echo -e "    Installed: ${INFOSTART}true${MODEND}"
-					echo "    Version: $VERSION"
-					echo "    Location: $HOME/lsp/$lang/$server"
-					LINKED=$(is_linked $server)
-					if [[ ":$PATH:" == *":$HOME/lsp/$lang/$server:"* ]]; then
-						echo -e "    On path: ${INFOSTART}true${MODEND}"
-					elif [ $LINKED -eq 1 ]; then
-						echo -e "    On path: ${INFOSTART}${BOLDSTART}linked${MODEND}${MODEND}"
-						echo "    Linked to: ${LINK_TARGETS[$server]}"
-					else
-						echo "    On path: false"
-					fi
-					break
-				fi
-			done
-			if [ $INSTALLED -eq 0 ]; then
-				echo -e "    Installed: ${ERRORSTART}false${MODEND}"
-			fi
-			echo ""
-		done
-		echo ""
-	done
-	if [ $HAD_UNKNOWN -eq 1 ]; then
-		if [ $KNOWN_ONLY -eq 0 ]; then
-			echov "Found unknown servers."
-			echov "Make sure $HOME/lsp contains only LSP servers and similar tools."
-		fi
+      done
+      if [ "$VERSION" == "UNKNOWN" ]; then
+	if [ $KNOWN_ONLY -eq 1 ]; then
+	  continue
 	fi
+	echo -e "  Server $BOLDSTART${server}$MODEND $ERRORSTART(UNKNOWN)$MODEND:"
+	HAD_UNKNOWN=1
+      else
+	echo -e "  Server $BOLDSTART${server}$MODEND:"
+      fi
+      INSTALLED=0
+      for installed_server in ${INSTALLED_SERVERS}; do
+	if [ "$server" == "$installed_server" ]; then
+	  INSTALLED=1
+	  if [ -z "$VERSION" ]; then
+	    VERSION="UNKNOWN"
+	  fi
+	  echo -e "    Installed: ${INFOSTART}true${MODEND}"
+	  echo "    Version: $VERSION"
+	  echo "    Location: $HOME/lsp/$lang/$server"
+	  LINKED=$(is_linked $server)
+	  if [[ ":$PATH:" == *":$HOME/lsp/$lang/$server:"* ]]; then
+	    echo -e "    On path: ${INFOSTART}true${MODEND}"
+	  elif [ $LINKED -eq 1 ]; then
+	    echo -e "    On path: ${INFOSTART}${BOLDSTART}linked${MODEND}${MODEND}"
+	    echo "    Linked to: ${LINK_TARGETS[$server]}"
+	  else
+	    echo "    On path: false"
+	  fi
+	  break
+	fi
+      done
+      if [ $INSTALLED -eq 0 ]; then
+	echo -e "    Installed: ${ERRORSTART}false${MODEND}"
+      fi
+      echo ""
+    done
+    echo ""
+  done
+  if [ $HAD_UNKNOWN -eq 1 ]; then
+    if [ $KNOWN_ONLY -eq 0 ]; then
+      echov "Found unknown servers."
+      echov "Make sure $HOME/lsp contains only LSP servers and similar tools."
+    fi
+  fi
 }
 
 get_version () {
-	SERVER=$1
-	cat "$MY_CONFIG_CACHE_DIR/lspstatus" | grep "$SERVER" | cut -f 2 -d ' '
+  SERVER=$1
+  cat "$MY_CONFIG_CACHE_DIR/lspstatus" | grep "$SERVER" | cut -f 2 -d ' '
 }
 
 case $COMMAND in
-	install)
-		install $SERVER $VERSION
-		;;
-	status)
-		status $SERVER
-		;;
-	uninstall)
-		uninstall $SERVER
-		;;
-	link)
-		link_server $SERVER
-		;;
-	*)
-		usage $COMMAND; exit 1 ;;
+  install)
+    install $SERVER $VERSION
+    ;;
+  status)
+    status $SERVER
+    ;;
+  uninstall)
+    uninstall $SERVER
+    ;;
+  link)
+    link_server $SERVER
+    ;;
+  *)
+    usage $COMMAND; exit 1 ;;
 esac

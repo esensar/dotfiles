@@ -23,6 +23,7 @@ let g:ale_fixers.lua    = ['luafmt']
 let g:ale_fixers.go     = ['gofmt']
 let g:ale_fixers.cpp    = ['clang-format']
 let g:ale_fixers.java   = ['google_java_format']
+let g:ale_fixers.rust   = ['rustfmt']
 
 " Additional Java options
 let g:ale_java_google_java_format_options = '--aosp'

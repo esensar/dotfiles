@@ -2,6 +2,6 @@ direnv 2.27.0
 nodejs 16.9.1
 python system
 ruby 3.0.0
-neovim 0.5.1
+neovim 0.6.0
 bat 0.18.3
 awscli 2.2.44

@@ -22,7 +22,7 @@ nnoremap <leader>rn :action RenameElement<CR>
 nnoremap <C-A-F> :action FindInPath<CR>
 nnoremap <leader>tn :action RunAnything<CR>
 nnoremap <leader>tf :action RunClass<CR>
-inoremap <C-K> :action ParameterInfo<CR>
+inoremap <C-K> <esc>:action ParameterInfo<CR>a
 nnoremap <C-K> :action ParameterInfo<CR>
 
 nnoremap <leader>db :action ToggleLineBreakpoint<CR>

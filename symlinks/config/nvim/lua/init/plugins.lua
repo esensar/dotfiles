@@ -34,7 +34,6 @@ return require('packer').startup {
       use 'romainl/vim-qf'                           -- Quickfix list upgrades
       use 'romainl/vim-devdocs'                      -- Quick DevDocs.io search using :DD
       use 'gpanders/editorconfig.nvim'               -- .editorconfig support
-      use 'nathom/filetype.nvim'                     -- Quicker filetype.nvim file
       use 'lewis6991/impatient.nvim'                 -- Caching lua modules for faster startup
 
       -- Tools                                       --

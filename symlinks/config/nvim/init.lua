@@ -5,12 +5,7 @@ end
 -- Allow `require('impatient')` to fail, in case plugins are not yet installed
 _ = pcall(require, 'impatient')
 
--- Speed up startup - quicker filetype.vim - should probably remove in future neovim versions
-vim.g.did_load_filetypes = 1
-
-vim.cmd [[filetype plugin on]]
-vim.cmd [[filetype indent on]]
-vim.cmd [[syntax on]]
+vim.cmd [[filetype plugin indent on]]
 
 vim.api.nvim_exec('let $OVIMHOME = $HOME."/.vim"', false)
 vim.api.nvim_exec('let $VIMHOME = $HOME."/.config/nvim"', false)

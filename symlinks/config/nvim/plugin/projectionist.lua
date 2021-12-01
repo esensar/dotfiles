@@ -324,6 +324,55 @@ local java_project_config = {
   },
 }
 
+local kotlin_project_config = {
+  ["src/main/kotlin/*.kt"] = {
+    type = "source",
+    template = {
+      "package {dirname|dot}",
+      "",
+      "class {basename} {open}",
+      "{close}"
+    },
+    alternate = "src/test/kotlin/{}Test.kt"
+  },
+  ["src/main/java/*.kt"] = {
+    type = "source",
+    template = {
+      "package {dirname|dot}",
+      "",
+      "class {basename} {open}",
+      "{close}"
+    },
+    alternate = "src/test/java/{}Test.kt"
+  },
+  ["src/test/kotlin/*Test.kt"] = {
+    type = "test",
+    template = {
+      "package {dirname|dot}",
+      "",
+      "class {basename}Test {open}",
+      "{close}"
+    },
+    alternate = "src/main/kotlin/{}.kt"
+  },
+  ["src/test/java/*Test.kt"] = {
+    type = "test",
+    template = {
+      "package {dirname|dot}",
+      "",
+      "class {basename}Test {open}",
+      "{close}"
+    },
+    alternate = "src/main/java/{}.kt"
+  },
+  ["src/main/resources/*"] = {
+    type = "resource"
+  },
+  ["src/test/resources/*"] = {
+    type = "testresource"
+  }
+}
+
 local mint_config = {
   ["*"] = {
     start = "mint start"
@@ -426,6 +475,7 @@ vim.g.projectionist_heuristics = {
   ["src/*.c|test/*.c"] = c_project_config("c", "h"),
   ["lua/"] = lua_vim_plugin_config,
   ["build.gradle|pom.xml"] = java_project_config,
+  ["build.gradle|build.gradle.kts"] = kotlin_project_config,
   ["mint.json"] = mint_config,
   ["shard.yml"] = crystal_config
 }

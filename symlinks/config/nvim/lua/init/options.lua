@@ -1,7 +1,7 @@
 local opt = vim.opt
 
-opt.wildignore = '__pycache__'
-opt.wildignore = opt.wildignore + { '*.o' , '*~', '*.pyc', '*pycache*' }
+opt.wildignore = "__pycache__"
+opt.wildignore = opt.wildignore + {"*.o", "*~", "*.pyc", "*pycache*"}
 
 -- Indentation config
 opt.tabstop = 2
@@ -14,7 +14,7 @@ opt.number = true
 opt.relativenumber = true
 
 -- Misc
-opt.backspace = 'indent,eol,start' -- Allow backspacing over everything in insert mode
+opt.backspace = "indent,eol,start" -- Allow backspacing over everything in insert mode
 opt.ttimeoutlen = 50
 opt.backup = false -- do not keep a backup file, use versions instead
 opt.history = 50 -- Keep 50 lines of command line history
@@ -26,8 +26,8 @@ opt.showcmd = true -- Display incomplete commands
 opt.incsearch = true -- Do incremental searching
 opt.autoread = true -- Reload files changed outside
 opt.hidden = true -- Allow leaving unsaved buffers
-opt.inccommand = 'nosplit' -- Enable live preview of text replacement
+opt.inccommand = "nosplit" -- Enable live preview of text replacement
 opt.hlsearch = true
-opt.mouse = 'a'
+opt.mouse = "a"
 
 opt.encoding = "utf-8"

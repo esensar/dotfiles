@@ -1,4 +1,4 @@
-require('lsp.jdtls_setup').setup()
+require("lsp.jdtls_setup").setup()
 
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4

@@ -44,3 +44,5 @@ https://godotengine.org/rss.xml blog development gamedev godot "~Godot Engine Bl
 https://www.unrealengine.com/en-US/rss blog development gamedev unreal "~Unreal Engine Blog"
 https://jetc.dev/feed/issues.xml blog development android "~CommonsWare Jetpack Compose Resources"
 https://commonsware.com/blog/feed.atom blog development android "~CommonsWare Android Blog"
+https://www.gamasutra.com/blogs/rss/ blog development gamedev "~Gamasutra Blog"
+https://akrzemi1.wordpress.com/feed/ blog development cpp "~Adrzej's C++ Blog"

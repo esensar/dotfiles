@@ -31,7 +31,11 @@ nnoremap <leader>dc :action ChooseDebugConfiguration<CR>
 nnoremap <leader>ac :action ShowIntentionActions<CR>
 
 command! Start action Run
-command! A action GotoTest
+if &ide =~? 'rider'
+    command! A action SwitchHeaderSource
+else
+    command! A action GotoTest
+endif
 command! Scratch action NewScratchBuffer
 command! Ex NERDTree
 command! Gw action Git.Add
@@ -43,3 +47,4 @@ command! Gblame action Annotate
 command! TODO action ActivateTODOToolWindow
 command! te action ActivateTerminalToolWindow
 command! Sync action Android.SyncProject
+command! Reformat action ReformatCode

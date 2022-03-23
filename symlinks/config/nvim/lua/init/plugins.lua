@@ -45,7 +45,6 @@ return require("packer").startup {
         use "rcarriga/nvim-dap-ui" -- UI components for DAP
         use "theHamsta/nvim-dap-virtual-text" -- Virtual text display for DAP
         use "diepm/vim-rest-console" -- REST console for vim
-        use "Pocco81/DAPInstall.nvim" -- Easy DAP configuration
         use "jamestthompson3/nvim-remote-containers" -- devcontainer.json support
         use "jbyuki/one-small-step-for-vimkind" -- Debugger for Nvim-Lua
 

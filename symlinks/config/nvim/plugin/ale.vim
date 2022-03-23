@@ -12,7 +12,8 @@ let g:ale_linters.python  = ['flake8']
 let g:ale_linters.kotlin  = ['ktlint']
 let g:ale_linters.clojure = []
 let g:ale_linters.cs      = ['OmniSharp']
-let g:ale_linters.cpp     = ['clangd']
+let g:ale_linters.cpp     = ['clang']
+let g:ale_linters.c       = g:ale_linters.cpp
 
 " ALE Fixers configuration
 let g:ale_fixers        = {}
@@ -22,6 +23,7 @@ let g:ale_fixers.dart   = ['dartfmt']
 let g:ale_fixers.lua    = ['luafmt']
 let g:ale_fixers.go     = ['gofmt']
 let g:ale_fixers.cpp    = ['clang-format', 'clangtidy']
+let g:ale_fixers.c      = g:ale_fixers.cpp
 let g:ale_fixers.cmake  = ['cmakeformat']
 let g:ale_fixers.java   = ['google_java_format']
 let g:ale_fixers.rust   = ['rustfmt']

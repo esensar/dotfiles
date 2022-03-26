@@ -68,6 +68,7 @@ return require("packer").startup {
         use("tpope/vim-sexp-mappings-for-regular-people") -- Simpler keymaps for vim-sexp
         use "tridactyl/vim-tridactyl" -- Tridactyl config file support
         use "aklt/plantuml-syntax" -- PlantUML support
+        use "cdelledonne/vim-cmake" -- CMake integration
 
         -- Treesitter
         use {

@@ -11,21 +11,22 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 local servers = {
     "bashls",
     "clangd",
-    "cucumber_language_server",
+    "clojure_lsp",
+    "cmake",
     "crystalline",
+    "cucumber_language_server",
     "dockerls",
-    "jsonls",
+    "gopls",
     "hls",
-    "pyright",
-    "rust_analyzer",
+    "jsonls",
     "kotlin_language_server",
     "mint",
-    "vimls",
-    "clojure_lsp",
-    "gopls",
+    "pyright",
+    "rust_analyzer",
     "solang",
     "terraformls",
-    "tsserver"
+    "tsserver",
+    "vimls",
 }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {

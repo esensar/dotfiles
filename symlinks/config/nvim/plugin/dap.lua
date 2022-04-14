@@ -86,6 +86,37 @@ dap.configurations.cpp = {
         -- To avoid that uncomment the following option
         -- See https://github.com/mfussenegger/nvim-dap/issues/236#issuecomment-1066306073
         postRunCommands = {"process handle -p true -s false -n false SIGWINCH"}
+    },
+    {
+        name = "Launch with args",
+        type = "lldb",
+        request = "launch",
+        program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = function()
+            return vim.split(vim.fn.input("Args: "), " ")
+        end,
+        runInTerminal = false,
+        postRunCommands = {"process handle -p true -s false -n false SIGWINCH"}
+    },
+    {
+        name = "Attach to process",
+        type = "lldb",
+        request = "attach",
+        pid = require("dap.utils").pick_process,
+        args = {}
+    },
+    {
+        name = "Attach to PID",
+        type = "lldb",
+        request = "attach",
+        pid = function()
+            return tonumber(vim.fn.input("PID: "))
+        end,
+        args = {}
     }
 }
 

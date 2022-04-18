@@ -94,7 +94,6 @@ return require("packer").startup {
         use "mfussenegger/nvim-jdtls" -- Additional java integrations
 
         -- Lua support
-        use "tjdevries/astronauta.nvim" -- Support for lua ftplugins and plugins
         use "nvim-lua/popup.nvim" -- Popup API integration - needed for some plugins
         use "nvim-lua/plenary.nvim" -- Lua helpers
 

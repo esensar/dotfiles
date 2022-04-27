@@ -30,13 +30,13 @@ require("lsp")
 vim.cmd("syntax on")
 require("init.colors")
 
-vim.api.nvim_set_keymap("n", "Q", "gq", {})
-vim.api.nvim_set_keymap("i", "<C-U>", "<C-G>u<C-U>", {noremap = true})
+vim.keymap.set("n", "Q", "gq", {noremap = false})
+vim.keymap.set("i", "<C-U>", "<C-G>u<C-U>")
 
 vim.cmd("command! Wq :wq")
 vim.cmd("command! W :w")
 
-vim.api.nvim_set_keymap("n", "<Leader>c", ":ccl <bar> lcl<CR>", {noremap = true})
+vim.keymap.set("n", "<Leader>c", ":ccl <bar> lcl<CR>")
 
 -- Allow recursive searches
 vim.cmd("set path+=**")

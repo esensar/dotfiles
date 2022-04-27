@@ -5,28 +5,90 @@
 local M = {}
 
 M.on_attach = function(client, bufnr)
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    local default_opts = {noremap = true, silent = true}
+    vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
     -- Lsp keymaps
-    buf_set_keymap("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", default_opts)
-    buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", default_opts)
-    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", default_opts)
-    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", default_opts)
-    buf_set_keymap("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", default_opts)
-    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", default_opts)
-    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", default_opts)
-    buf_set_keymap("n", "<A-CR>", "<cmd>lua vim.lsp.buf.code_action()<CR>", default_opts)
-    buf_set_keymap("n", "<Leader>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", default_opts)
-    buf_set_keymap("n", "<Leader>a", "<cmd>lua vim.lsp.buf.code_action_range()<CR>", default_opts)
+    local opts = {buffer = bufnr}
+    vim.keymap.set(
+        "n",
+        "<C-]>",
+        function()
+            vim.lsp.buf.definition()
+        end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "gD",
+        function()
+            vim.lsp.buf.declaration()
+        end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "gr",
+        function()
+            vim.lsp.buf.references()
+        end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "gi",
+        function()
+            vim.lsp.buf.implementation()
+        end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "<Leader>rn",
+        function()
+            vim.lsp.buf.rename()
+        end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "<C-k>",
+        function()
+            vim.lsp.buf.signature_help()
+        end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "K",
+        function()
+            vim.lsp.buf.hover()
+        end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "<A-CR>",
+        function()
+            vim.lsp.buf.code_action()
+        end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "<Leader>ac",
+        function()
+            vim.lsp.buf.code_action()
+        end,
+        opts
+    )
+    vim.keymap.set(
+        "n",
+        "<Leader>a",
+        function()
+            vim.lsp.buf.code_action_range()
+        end,
+        opts
+    )
 end
 
 return M

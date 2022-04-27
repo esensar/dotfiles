@@ -9,21 +9,15 @@ function M.setup()
     require "jdtls".setup_dap()
     require "jdtls.setup".add_commands()
     local on_attach = function(client, bufnr)
-        local function buf_set_keymap(...)
-            vim.api.nvim_buf_set_keymap(bufnr, ...)
-        end
-        local function buf_set_option(...)
-            vim.api.nvim_buf_set_option(bufnr, ...)
-        end
-
-        buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-        local default_opts = {noremap = true, silent = true}
+        vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
         common_config.on_attach(client, bufnr)
 
-        buf_set_keymap("n", "<A-CR>", "<cmd>lua require('jdtls').code_action()<CR>", default_opts)
-        buf_set_keymap("n", "<Leader>ac", "<cmd>lua require('jdtls').code_action()<CR>", default_opts)
+        local code_action_fun = function()
+            require "jdtls".code_action()
+        end
+        vim.keymap.set("n", "<A-CR>", code_action_fun)
+        vim.keymap.set("n", "<Leader>ac", code_action_fun)
     end
 
     local root_markers = {"gradlew", "pom.xml"}

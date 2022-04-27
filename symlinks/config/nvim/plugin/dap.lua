@@ -4,7 +4,15 @@
 
 local dap = require("dap")
 
-vim.cmd [[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]]
+vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+        pattern = "dap-repl",
+        callback = function(args)
+            require("dap.ext.autocompl").attach()
+        end
+    }
+)
 
 -- Nvim DAP Treesitter integration
 require("nvim-dap-virtual-text").setup()
@@ -52,19 +60,12 @@ dap.listeners.after["event_initialized"]["me"] = function()
         for _, keymap in pairs(keymaps) do
             if keymap.lhs == "K" then
                 table.insert(keymap_restore, keymap)
-                api.nvim_buf_del_keymap(buf, "n", "K")
+                vim.keymap.del("n", "K", {buffer = buf})
             end
         end
     end
     vim.keymap.set(
-        "n",
-        "K",
-        function()
-            dapui.eval()
-        end
-    )
-    vim.keymap.set(
-        "v",
+        {"n", "v"},
         "K",
         function()
             dapui.eval()
@@ -74,7 +75,7 @@ end
 
 dap.listeners.after["event_terminated"]["me"] = function()
     for _, keymap in pairs(keymap_restore) do
-        api.nvim_buf_set_keymap(keymap.buffer, keymap.mode, keymap.lhs, keymap.rhs, {silent = keymap.silent == 1})
+        vim.keymap.set(keymap.mode, keymap.lhs, keymap.rhs, {silent = keymap.silent == 1, buffer = keymap.buffer})
     end
     keymap_restore = {}
 end

@@ -10,16 +10,34 @@ vim.cmd [[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]]
 require("nvim-dap-virtual-text").setup()
 
 -- Keymaps
-local function set_keymap(...)
-    vim.api.nvim_set_keymap(...)
-end
-
-local default_opts = {noremap = true, silent = true}
-set_keymap("n", "<Leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", default_opts)
-set_keymap("n", "<Leader>dc", "<cmd>lua require'dap'.continue()<CR>", default_opts)
-set_keymap("n", "<Leader>dso", "<cmd>lua require'dap'.step_over()<CR>", default_opts)
-set_keymap("n", "<Leader>dsi", "<cmd>lua require'dap'.step_into()<CR>", default_opts)
-set_keymap("n", "<Leader>dro", "<cmd>lua require'dap'.open()<CR>", default_opts)
+vim.keymap.set(
+    "n",
+    "<leader>db",
+    function()
+        dap.toggle_breakpoint()
+    end
+)
+vim.keymap.set(
+    "n",
+    "<leader>dc",
+    function()
+        dap.continue()
+    end
+)
+vim.keymap.set(
+    "n",
+    "<leader>dso",
+    function()
+        dap.step_over()
+    end
+)
+vim.keymap.set(
+    "n",
+    "<leader>dsi",
+    function()
+        dap.step_into()
+    end
+)
 
 -- Nvim DAP UI
 local dapui = require("dapui")
@@ -38,8 +56,20 @@ dap.listeners.after["event_initialized"]["me"] = function()
             end
         end
     end
-    api.nvim_set_keymap("n", "K", '<Cmd>lua require("dapui").eval()<CR>', {silent = true})
-    api.nvim_set_keymap("v", "K", '<Cmd>lua require("dapui").eval()<CR>', {silent = true})
+    vim.keymap.set(
+        "n",
+        "K",
+        function()
+            dapui.eval()
+        end
+    )
+    vim.keymap.set(
+        "v",
+        "K",
+        function()
+            dapui.eval()
+        end
+    )
 end
 
 dap.listeners.after["event_terminated"]["me"] = function()

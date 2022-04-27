@@ -39,8 +39,6 @@ return require("packer").startup {
         -- Tools
         use "direnv/direnv.vim" -- Integration with Direnv
         use "vim-test/vim-test" -- Running tests from vim
-        use "dense-analysis/ale" -- Asynchronous Lint Engine - used for linting, not for LSP
-        use "nathunsmitty/nvim-ale-diagnostic" -- Neovim LSP + ALE integration
         use "mfussenegger/nvim-dap" -- Debug Adapter Protocol
         use "rcarriga/nvim-dap-ui" -- UI components for DAP
         use "theHamsta/nvim-dap-virtual-text" -- Virtual text display for DAP
@@ -87,6 +85,7 @@ return require("packer").startup {
         use "quangnguyen30192/cmp-nvim-ultisnips" -- Ultisnips source for nvim-cmp
         use "hrsh7th/nvim-cmp" -- completion integration
         use "nvim-lua/lsp_extensions.nvim" -- LSP extensions (like closing labels for Dart)
+        use "jose-elias-alvarez/null-ls.nvim" -- Linting and formatting
 
         -- LSP language specific
         use "tjdevries/nlua.nvim" -- Built-in Lua integration with LSP

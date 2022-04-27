@@ -12,81 +12,55 @@ M.on_attach = function(client, bufnr)
     vim.keymap.set(
         "n",
         "<C-]>",
-        function()
-            vim.lsp.buf.definition()
-        end,
+        vim.lsp.buf.definition,
         opts
     )
     vim.keymap.set(
         "n",
         "gD",
-        function()
-            vim.lsp.buf.declaration()
-        end,
+        vim.lsp.buf.declaration,
         opts
     )
     vim.keymap.set(
         "n",
         "gr",
-        function()
-            vim.lsp.buf.references()
-        end,
+        vim.lsp.buf.references,
         opts
     )
     vim.keymap.set(
         "n",
         "gi",
-        function()
-            vim.lsp.buf.implementation()
-        end,
+        vim.lsp.buf.implementation,
         opts
     )
     vim.keymap.set(
         "n",
         "<Leader>rn",
-        function()
-            vim.lsp.buf.rename()
-        end,
+        vim.lsp.buf.rename,
         opts
     )
     vim.keymap.set(
         "n",
         "<C-k>",
-        function()
-            vim.lsp.buf.signature_help()
-        end,
+        vim.lsp.buf.signature_help,
         opts
     )
     vim.keymap.set(
         "n",
         "K",
-        function()
-            vim.lsp.buf.hover()
-        end,
+        vim.lsp.buf.hover,
         opts
     )
     vim.keymap.set(
         "n",
         "<A-CR>",
-        function()
-            vim.lsp.buf.code_action()
-        end,
+        vim.lsp.buf.code_action,
         opts
     )
     vim.keymap.set(
         "n",
         "<Leader>ac",
-        function()
-            vim.lsp.buf.code_action()
-        end,
-        opts
-    )
-    vim.keymap.set(
-        "n",
-        "<Leader>a",
-        function()
-            vim.lsp.buf.code_action_range()
-        end,
+        vim.lsp.buf.code_action,
         opts
     )
 end

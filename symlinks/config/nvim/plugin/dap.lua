@@ -21,30 +21,22 @@ require("nvim-dap-virtual-text").setup()
 vim.keymap.set(
     "n",
     "<leader>db",
-    function()
-        dap.toggle_breakpoint()
-    end
+    dap.toggle_breakpoint
 )
 vim.keymap.set(
     "n",
     "<leader>dc",
-    function()
-        dap.continue()
-    end
+    dap.continue
 )
 vim.keymap.set(
     "n",
     "<leader>dso",
-    function()
-        dap.step_over()
-    end
+    dap.step_over
 )
 vim.keymap.set(
     "n",
     "<leader>dsi",
-    function()
-        dap.step_into()
-    end
+    dap.step_into
 )
 
 -- Nvim DAP UI

@@ -1,16 +1,15 @@
 -------------------------------------------------------------------------------
 --    - LSP completion config -
 -------------------------------------------------------------------------------
-
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menu,menuone,noselect"
 
 local cmp = require "cmp"
+local luasnip = require("luasnip")
+
 cmp.setup {
     snippet = {
-        expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
-        end
+        expand = function(args) require'luasnip'.lsp_expand(args.body) end
     },
     mapping = {
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -31,13 +30,24 @@ cmp.setup {
             else
                 fallback()
             end
-        end
+        end,
+        ["<C-j>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(1) then
+                luasnip.jump(1)
+            else
+                fallback()
+            end
+        end, {"i", "s"}),
+        ["<C-k>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, {"i", "s"})
     },
     sources = {
-        {name = "nvim_lsp"},
-        {name = "nvim_lua"},
-        {name = "path"},
-        {name = "ultisnips"},
-        {name = "buffer"}
+        {name = "nvim_lsp"}, {name = "nvim_lua"}, {name = "path"},
+        {name = "luasnip"}, {name = "buffer"}
     }
 }

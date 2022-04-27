@@ -23,10 +23,7 @@ return require("packer").startup {
         use "airblade/vim-gitgutter" -- Git signs
         use "godlygeek/tabular" -- Tabular command for alignment
         use "vim-scripts/utl.vim" -- Universal text linking
-        use {
-            "mbbill/undotree",
-            cmd = "UndotreeToggle"
-        } -- Undos in a tree for easy access
+        use {"mbbill/undotree", cmd = "UndotreeToggle"} -- Undos in a tree for easy access
         use "mhinz/vim-grepper" -- Grepper command - improved grepping throughout project
         use "radenling/vim-dispatch-neovim" -- vim-dispatch for neovim - uses terminal
         use "wellle/targets.vim" -- Additional targets for inside and around motions
@@ -47,10 +44,9 @@ return require("packer").startup {
         use "jbyuki/one-small-step-for-vimkind" -- Debugger for Nvim-Lua
 
         -- Snippets
-        if vim.g.loaded_python3_provider ~= 0 then
-            use "SirVer/ultisnips" -- Snippets in python format
-            use "honza/vim-snippets" -- Collection of snippets for UltiSnips
-        end
+        use "L3MON4D3/LuaSnip" -- snippets support
+        use "rafamadriz/friendly-snippets" -- Collection of snippets
+        use "saadparwaiz1/cmp_luasnip" -- cmp snippets support
 
         -- Language support
         use "tpope/vim-rails" -- Enables all rails command through vim and integrates with projectionist
@@ -69,10 +65,7 @@ return require("packer").startup {
         use "cdelledonne/vim-cmake" -- CMake integration
 
         -- Treesitter
-        use {
-            "nvim-treesitter/nvim-treesitter",
-            run = ":TSUpdate"
-        } -- Treesitter integration
+        use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"} -- Treesitter integration
         use "nvim-treesitter/playground" -- TSPlaygroundToggle - access treesitter data
 
         -- LSP
@@ -82,7 +75,6 @@ return require("packer").startup {
         use "hrsh7th/cmp-buffer" -- Buffer source for nvim-cmp
         use "hrsh7th/cmp-path" -- Path source for nvim-cmp
         use "hrsh7th/cmp-nvim-lua" -- Nvim-Lua source for nvim-cmp
-        use "quangnguyen30192/cmp-nvim-ultisnips" -- Ultisnips source for nvim-cmp
         use "hrsh7th/nvim-cmp" -- completion integration
         use "nvim-lua/lsp_extensions.nvim" -- LSP extensions (like closing labels for Dart)
         use "jose-elias-alvarez/null-ls.nvim" -- Linting and formatting

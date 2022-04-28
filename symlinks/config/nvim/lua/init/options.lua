@@ -1,7 +1,7 @@
 local opt = vim.opt
 
 opt.wildignore = "__pycache__"
-opt.wildignore = opt.wildignore + {"*.o", "*~", "*.pyc", "*pycache*"}
+opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
 
 -- Indentation config
 opt.tabstop = 2

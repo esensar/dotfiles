@@ -40,6 +40,7 @@ null_ls.setup({
         null_ls.builtins.formatting.trim_newlines,
         null_ls.builtins.formatting.trim_whitespace,
         null_ls.builtins.hover.dictionary,
+        null_ls.builtins.code_actions.gitsigns,
     },
     on_attach = function(client)
         if client.resolved_capabilities.document_formatting then

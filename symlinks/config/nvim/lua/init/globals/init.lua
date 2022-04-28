@@ -14,6 +14,3 @@ if pcall(require, "plenary") then
         return require(name)
     end
 end
-
--- `vim.opt`
-require("init.globals.opt")

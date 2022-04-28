@@ -20,7 +20,7 @@ return require("packer").startup {
         use "tpope/vim-sleuth" -- Intendation heuristics
 
         -- General improvements
-        use "airblade/vim-gitgutter" -- Git signs
+        use "lewis6991/gitsigns.nvim" -- Git signs
         use "godlygeek/tabular" -- Tabular command for alignment
         use "vim-scripts/utl.vim" -- Universal text linking
         use {"mbbill/undotree", cmd = "UndotreeToggle"} -- Undos in a tree for easy access

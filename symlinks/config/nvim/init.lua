@@ -15,11 +15,6 @@ vim.api.nvim_exec('let $VIMPLUGINS = expand($VIMHOME."/lua/personal/plugins.lua"
 -- Leader config to <Space>
 vim.g.mapleader = " "
 
--- Globals taken from TJ config
--- Helpful for configuration
--- Might be removed in future version of NeoVim
-require("init.globals")
-
 require("init.plugins")
 
 require("init.options")

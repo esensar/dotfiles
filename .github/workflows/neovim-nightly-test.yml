@@ -24,7 +24,13 @@ jobs:
           neovim: true
           version: nightly
       - name: Install packer
-        run: git clone https://github.com/wbthomason/packer.nvim $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
+        if: ${{ matrix.platform != 'windows-latest' }}
+        run: |
+          git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+      - name: Install packer on Windows
+        if: ${{ matrix.platform == 'windows-latest' }}
+        run: |
+          git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
       - name: Run neovim checks
         run: make check_neovim
         env:

@@ -262,8 +262,8 @@ install_brew_basics: homebrew check_os
 .PHONY: install_asdf
 install_asdf: check_os
 	@echo "Installing ASDF VM..."
-	@git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
-	@echo "Installed ASDF Version 0.8.0"
+	@git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
+	@echo "Installed ASDF Version 0.10.0"
 	@echo "To install latest version:"
 	@echo ""
 	@echo "cd ~/.asdf"
@@ -311,6 +311,13 @@ install_vim: check_os link_vim
 	@echo "Start Vim or NeoVim and run:"
 	@echo "For NeoVim: :PackerInstall"
 	@echo "For Vim: :PlugInstall"
+
+.PHONY: check_neovim
+check_neovim: check_os
+	@echo "Running vim config basic test"
+	@FORCE_PACKER_INSTALL=1 nvim --headless -c 'autocmd User PackerComplete quitall'
+	@nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
+	@nvim --headless -c 'quitall'
 
 .PHONY: oh_my_zsh
 oh_my_zsh: check_os

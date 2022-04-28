@@ -18,6 +18,14 @@ jobs:
         run: make bootstrap
         env:
           DOTFILES_CI: 1
+      - name: Install neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+      - name: Run neovim checks
+        run: make nvim_check
+        env:
+          DOTFILES_CI: 1
   create-key:
     strategy:
       matrix:

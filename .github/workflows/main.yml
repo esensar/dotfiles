@@ -29,3 +29,12 @@ jobs:
         run: echo "test\n\n" | make create_personal_ssh_github_key
         env:
           DOTFILES_CI: 1
+  stylua:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run stylua
+        uses: JohnnyMorganz/stylua-action@1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --check .

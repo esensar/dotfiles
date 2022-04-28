@@ -23,7 +23,9 @@ jobs:
         with:
           neovim: true
       - name: Install packer
-        run: git clone https://github.com/wbthomason/packer.nvim $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
+        run: |
+          NVIM_HOME=$(printf "luado return vim.fn.stdpath(\"data\")\n%%print\n" | nvim -es)
+          git clone https://github.com/wbthomason/packer.nvim $NVIM_HOME/site/pack/packer/start/packer.nvim
       - name: Run neovim checks
         run: make check_neovim
         env:

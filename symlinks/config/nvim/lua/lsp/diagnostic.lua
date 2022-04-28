@@ -2,56 +2,56 @@
 --    - LSP diagnostics config -
 -------------------------------------------------------------------------------
 
-local null_ls = require('null-ls')
+local null_ls = require("null-ls")
 
 null_ls.setup({
-    sources = {
-        -- Python
-        null_ls.builtins.diagnostics.flake8,
-        null_ls.builtins.formatting.isort,
-        null_ls.builtins.formatting.autopep8,
+	sources = {
+		-- Python
+		null_ls.builtins.diagnostics.flake8,
+		null_ls.builtins.formatting.isort,
+		null_ls.builtins.formatting.autopep8,
 
-        -- Kotlin
-        null_ls.builtins.formatting.ktlint,
-        null_ls.builtins.diagnostics.ktlint,
+		-- Kotlin
+		null_ls.builtins.formatting.ktlint,
+		null_ls.builtins.diagnostics.ktlint,
 
-        -- C++ and C
-        null_ls.builtins.formatting.clang_format,
+		-- C++ and C
+		null_ls.builtins.formatting.clang_format,
 
-        -- Cmake
-        null_ls.builtins.formatting.cmake_format,
+		-- Cmake
+		null_ls.builtins.formatting.cmake_format,
 
-        -- Lua
-        null_ls.builtins.formatting.lua_format,
+		-- Lua
+		null_ls.builtins.formatting.stylua,
 
-        -- Dart
-        null_ls.builtins.formatting.dart_format,
+		-- Dart
+		null_ls.builtins.formatting.dart_format,
 
-        -- Go
-        null_ls.builtins.formatting.gofmt,
+		-- Go
+		null_ls.builtins.formatting.gofmt,
 
-        -- Rust
-        null_ls.builtins.formatting.rustfmt,
+		-- Rust
+		null_ls.builtins.formatting.rustfmt,
 
-        -- Java
-        null_ls.builtins.formatting.google_java_format,
+		-- Java
+		null_ls.builtins.formatting.google_java_format,
 
-        -- General
-        null_ls.builtins.formatting.trim_newlines,
-        null_ls.builtins.formatting.trim_whitespace,
-        null_ls.builtins.hover.dictionary,
-        null_ls.builtins.code_actions.gitsigns,
-    },
-    on_attach = function(client)
-        if client.resolved_capabilities.document_formatting then
-            vim.cmd([[
+		-- General
+		null_ls.builtins.formatting.trim_newlines,
+		null_ls.builtins.formatting.trim_whitespace,
+		null_ls.builtins.hover.dictionary,
+		null_ls.builtins.code_actions.gitsigns,
+	},
+	on_attach = function(client)
+		if client.resolved_capabilities.document_formatting then
+			vim.cmd([[
             augroup LspFormatting
                 autocmd! * <buffer>
                 autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
             augroup END
             ]])
-        end
-    end
+		end
+	end,
 })
 
 vim.keymap.set("n", "]w", vim.diagnostic.goto_next)

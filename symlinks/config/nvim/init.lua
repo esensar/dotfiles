@@ -1,11 +1,11 @@
 if require("init.first_load")() then
-    return
+	return
 end
 
 -- Allow `require('impatient')` to fail, in case plugins are not yet installed
 _ = pcall(require, "impatient")
 
-vim.cmd [[filetype plugin indent on]]
+vim.cmd([[filetype plugin indent on]])
 
 vim.api.nvim_exec('let $OVIMHOME = $HOME."/.vim"', false)
 vim.api.nvim_exec('let $VIMHOME = $HOME."/.config/nvim"', false)
@@ -25,7 +25,7 @@ require("lsp")
 vim.cmd("syntax on")
 require("init.colors")
 
-vim.keymap.set("n", "Q", "gq", {noremap = false})
+vim.keymap.set("n", "Q", "gq", { noremap = false })
 vim.keymap.set("i", "<C-U>", "<C-G>u<C-U>")
 
 vim.cmd("command! Wq :wq")

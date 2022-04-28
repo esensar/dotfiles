@@ -23,7 +23,7 @@ jobs:
         with:
           neovim: true
       - name: Run neovim checks
-        run: make nvim_check
+        run: make check_neovim
         env:
           DOTFILES_CI: 1
   create-key:

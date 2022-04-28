@@ -24,7 +24,7 @@ jobs:
           neovim: true
           version: nightly
       - name: Install packer
-        run: git clone https://github.com/wbthomason/packer.nvim /share/nvim/site/pack/packer/start/packer.nvim
+        run: git clone https://github.com/wbthomason/packer.nvim $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
       - name: Run neovim checks
         run: make check_neovim
         env:

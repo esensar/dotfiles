@@ -314,9 +314,10 @@ install_vim: check_os link_vim
 
 .PHONY: check_neovim
 check_neovim: check_os
-	@echo "Running vim config basic test"
-	@FORCE_PACKER_INSTALL=1 nvim --headless -c 'autocmd User PackerComplete quitall'
+	@echo "This expects that packer is already installed"
+	@echo "Installing packer packages"
 	@nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
+	@echo "Doing a basic neovim startup and quit"
 	@nvim --headless -c 'quitall'
 
 .PHONY: oh_my_zsh

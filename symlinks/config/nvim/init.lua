@@ -1,4 +1,4 @@
-if require("init.first_load")() then
+if require("init.first_load")(os.getenv("FORCE_PACKER_INSTALL") ~= nil) then
 	return
 end
 

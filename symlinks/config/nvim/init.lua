@@ -3,7 +3,7 @@ if require("init.first_load")() then
 end
 
 -- Allow `require('impatient')` to fail, in case plugins are not yet installed
-_ = pcall(require, "impatient")
+local _ = pcall(require, "impatient")
 
 vim.cmd([[filetype plugin indent on]])
 

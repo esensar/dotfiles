@@ -54,3 +54,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --check .
+  luacheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run luacheck
+        uses: lunarmodules/luacheck@v0.26.0
+        with:
+          args: symlinks/config/nvim

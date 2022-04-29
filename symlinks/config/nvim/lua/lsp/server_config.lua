@@ -4,7 +4,7 @@
 
 local M = {}
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(_, bufnr)
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 	-- Lsp keymaps

@@ -14,7 +14,7 @@ local function get_pr_url(...)
 
 	-- Remove prefix if it is available, for some of common git services
 	local common_services = { "github.com", "bitbucket.org", "gitlab.com" }
-	for k, service in pairs(common_services) do
+	for _, service in pairs(common_services) do
 		if string.find(origin_url, service, 1, true) then
 			-- Common mechanism for managing multiple SSH keys
 			origin_url = string.gsub(origin_url, "://.*" .. service, "://" .. service)

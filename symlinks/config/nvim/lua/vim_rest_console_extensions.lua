@@ -9,7 +9,7 @@ end
 
 -- Opens up a new tab if current buffer is not empty
 local function new_tab_if_needed()
-	if vim.api.nvim_buf_get_name("%") ~= "" then
+	if vim.api.nvim_buf_get_name(0) ~= "" then
 		-- Current buffer is not empty, open up a new tab
 		vim.cmd("tabnew")
 	end
@@ -42,9 +42,9 @@ function M.open_scratch_rest_console()
 end
 
 -- Opens up a rest console which can be saved -- cached by name
-function M.open_cached_rest_console(...)
-	local name = select(1, ...)
-	if select("#", ...) == 0 then
+function M.open_cached_rest_console(args)
+	local name = args[0] or args[1]
+	if not name then
 		name = require("common.projects").get_project_id()
 	end
 	open_cached_rest_console(name)
@@ -57,9 +57,9 @@ function M.open_named_cached_rest_console(name)
 end
 
 -- Opens up a rest console based on local file path
-function M.open_local_rest_console(...)
-	local file = select(1, ...)
-	if select("#", ...) == 0 then
+function M.open_local_rest_console(args)
+	local file = args[0] or args[1]
+	if not file then
 		file = "default"
 	end
 	open_rest_console(file)

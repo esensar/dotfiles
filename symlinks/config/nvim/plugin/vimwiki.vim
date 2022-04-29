@@ -29,4 +29,4 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_listsyms = '✗○◐●✓'
 
 
-command! -count=0 -nargs=1 VimwikiOpenSubdirectoryIndex :lua require('vimwiki_extensions').open_subdirectory_index_file(<count>, <f-args>)
+command! -count=0 -nargs=1 VimwikiOpenSubdirectoryIndex :lua require('esensar.vimwiki_extensions').open_subdirectory_index_file(<count>, <f-args>)

@@ -3,5 +3,5 @@
 -------------------------------------------------------------------------------
 
 vim.api.nvim_create_user_command("EditLocalVimrc", function(_)
-	require("direnv_vimrc_local").open_local_vimrc()
+	require("esensar.direnv_vimrc_local").open_local_vimrc()
 end, { nargs = 0 })

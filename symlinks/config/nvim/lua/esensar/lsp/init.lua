@@ -2,6 +2,6 @@
 --    - LSP configuration -
 -------------------------------------------------------------------------------
 
-require("lsp.diagnostic")
-require("lsp.servers")
-require("lsp.completion")
+require("esensar.lsp.diagnostic")
+require("esensar.lsp.servers")
+require("esensar.lsp.completion")

@@ -1,4 +1,4 @@
-if require("init.first_load")() then
+if require("esensar.init.first_load")() then
 	return
 end
 
@@ -15,15 +15,15 @@ vim.api.nvim_exec('let $VIMPLUGINS = expand($VIMHOME."/lua/personal/plugins.lua"
 -- Leader config to <Space>
 vim.g.mapleader = " "
 
-require("init.plugins")
+require("esensar.init.plugins")
 
-require("init.options")
+require("esensar.init.options")
 
-require("lsp")
+require("esensar.lsp")
 
 -- Colorscheme
 vim.cmd("syntax on")
-require("init.colors")
+require("esensar.init.colors")
 
 vim.keymap.set("n", "Q", "gq", { noremap = false })
 vim.keymap.set("i", "<C-U>", "<C-G>u<C-U>")

@@ -45,14 +45,14 @@ end
 function M.open_cached_rest_console(args)
 	local name = args[0] or args[1]
 	if not name then
-		name = require("common.projects").get_project_id()
+		name = require("esensar.common.projects").get_project_id()
 	end
 	open_cached_rest_console(name)
 end
 
 -- Opens up a rest console which can be saved -- cached by name
 function M.open_named_cached_rest_console(name)
-	name = require("common.projects").get_project_id() .. name
+	name = require("esensar.common.projects").get_project_id() .. name
 	open_cached_rest_console(name)
 end
 

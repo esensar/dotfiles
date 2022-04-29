@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------
 
 local null_ls = require("null-ls")
-local custom_sources = require("lsp.null-ls_sources")
+local custom_sources = require("esensar.lsp.null-ls_sources")
 
 null_ls.setup({
 	sources = {

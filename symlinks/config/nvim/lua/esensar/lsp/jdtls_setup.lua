@@ -2,7 +2,7 @@
 --    - JDTLS server configuration -
 -------------------------------------------------------------------------------
 
-local common_config = require("lsp.server_config")
+local common_config = require("esensar.lsp.server_config")
 local M = {}
 
 function M.setup()

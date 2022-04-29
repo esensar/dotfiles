@@ -2,7 +2,7 @@
 --    - Vim REST Console setup and extra commands -
 -------------------------------------------------------------------------------
 
-local vim_rest_console_extensions = require("vim_rest_console_extensions")
+local vim_rest_console_extensions = require("esensar.vim_rest_console_extensions")
 vim.api.nvim_create_user_command(
 	"ScratchRestConsole",
 	vim_rest_console_extensions.open_scratch_rest_console,

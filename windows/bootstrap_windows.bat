@@ -2,13 +2,17 @@ REM First move over old files to backup
 mkdir %UserProfile%\vimbak
 mkdir %UserProfile%\gitbak
 move %UserProfile%\_vimrc %UserProfile%\vimbak
+move %UserProfile%\.ideavimrc %UserProfile%\vimbak
+move %UserProfile%\.vsvimrc %UserProfile%\vimbak
 move %UserProfile%\vimfiles %UserProfile%\vimbak
-move %UserProfile%\.gitconfig %UserProfile%\vimbak
-move %UserProfile%\.gitignore %UserProfile%\vimbak
+move %UserProfile%\.gitconfig %UserProfile%\gitbak
+move %UserProfile%\.gitignore %UserProfile%\gitbak
 type NUL > %UserProfile%\.gitconfig.local
 
 REM Then link new files in
 mklink %UserProfile%\_vimrc %~dp0..\symlinks\vimrc
+mklink %UserProfile%\.ideavimrc %~dp0..\symlinks\ideavimrc
+mklink %UserProfile%\.vsvimrc %~dp0..\symlinks\vsvimrc
 mklink /D %UserProfile%\vimfiles %~dp0..\symlinks\vim
 mklink %UserProfile%\.gitconfig %~dp0..\symlinks\gitconfig
 mklink %UserProfile%\.gitignore %~dp0..\symlinks\gitignore

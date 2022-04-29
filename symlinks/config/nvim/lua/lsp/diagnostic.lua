@@ -3,6 +3,7 @@
 -------------------------------------------------------------------------------
 
 local null_ls = require("null-ls")
+local custom_sources = require("lsp.null-ls_sources")
 
 null_ls.setup({
 	sources = {
@@ -44,7 +45,10 @@ null_ls.setup({
 		null_ls.builtins.formatting.trim_whitespace,
 		null_ls.builtins.hover.dictionary,
 		null_ls.builtins.code_actions.gitsigns,
-		null_ls.builtins.code_actions.refactoring,
+
+		-- Godot
+		custom_sources.formatters.gdformat,
+		custom_sources.diagnostics.gdlint,
 	},
 	on_attach = function(client)
 		if client.resolved_capabilities.document_formatting then

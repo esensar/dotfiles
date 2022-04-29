@@ -49,6 +49,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Enter nvim config home
+        run: cd symlinks/config/nvim
       - name: Run stylua
         uses: JohnnyMorganz/stylua-action@1.0.0
         with:
@@ -58,6 +60,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Enter nvim config home
+        run: cd symlinks/config/nvim
       - name: Run luacheck
         uses: lunarmodules/luacheck@v0.26.0
         with:

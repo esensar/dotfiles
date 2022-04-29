@@ -75,6 +75,7 @@ return require("packer").startup({
 		use("hrsh7th/cmp-buffer") -- Buffer source for nvim-cmp
 		use("hrsh7th/cmp-path") -- Path source for nvim-cmp
 		use("hrsh7th/cmp-nvim-lua") -- Nvim-Lua source for nvim-cmp
+		use("hrsh7th/cmp-omni") -- omnifunc source for nvim-cmp
 		use("hrsh7th/nvim-cmp") -- completion integration
 		use("jose-elias-alvarez/null-ls.nvim") -- Linting and formatting
 

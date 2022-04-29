@@ -56,3 +56,7 @@ cmp.setup({
 		{ name = "buffer" },
 	},
 })
+
+cmp.setup.filetype("ledger", {
+	sources = cmp.config.sources({ name = "omni" }),
+})

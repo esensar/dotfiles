@@ -318,7 +318,7 @@ check_neovim: check_os
 	@echo "Installing packer packages"
 	@nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
 	@echo "Doing a basic neovim startup and quit"
-	@nvim --headless -c 'quitall'
+	@nvim --headless -c 'set display-=msgsep' -c 'quitall'
 
 .PHONY: oh_my_zsh
 oh_my_zsh: check_os

@@ -4,6 +4,7 @@
 
 local null_ls = require("null-ls")
 local custom_sources = require("esensar.lsp.null-ls_sources")
+local common_config = require("esensar.lsp.server_config")
 
 null_ls.setup({
 	sources = {
@@ -50,16 +51,7 @@ null_ls.setup({
 		custom_sources.formatters.gdformat,
 		custom_sources.diagnostics.gdlint,
 	},
-	on_attach = function(client)
-		if client.resolved_capabilities.document_formatting then
-			vim.cmd([[
-            augroup LspFormatting
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-            augroup END
-            ]])
-		end
-	end,
+	on_attach = common_config.on_attach,
 })
 
 vim.keymap.set("n", "]w", vim.diagnostic.goto_next)

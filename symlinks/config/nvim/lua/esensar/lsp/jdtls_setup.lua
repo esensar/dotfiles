@@ -9,15 +9,14 @@ function M.setup()
 	require("jdtls").setup_dap()
 	require("jdtls.setup").add_commands()
 	local on_attach = function(client, bufnr)
-		vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-
 		common_config.on_attach(client, bufnr)
 
+		local opts = { buffer = bufnr }
 		local code_action_fun = function()
 			require("jdtls").code_action()
 		end
-		vim.keymap.set("n", "<A-CR>", code_action_fun)
-		vim.keymap.set("n", "<Leader>ac", code_action_fun)
+		vim.keymap.set("n", "<A-CR>", code_action_fun, opts)
+		vim.keymap.set("n", "<Leader>ac", code_action_fun, opts)
 	end
 
 	local root_markers = { "gradlew", "pom.xml" }

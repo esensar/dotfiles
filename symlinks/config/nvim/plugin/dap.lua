@@ -44,7 +44,12 @@ end
 
 dap.listeners.after["event_terminated"]["me"] = function()
 	for _, keymap in pairs(keymap_restore) do
-		vim.keymap.set(keymap.mode, keymap.lhs, keymap.rhs, { silent = keymap.silent == 1, buffer = keymap.buffer })
+		vim.keymap.set(
+			keymap.mode,
+			keymap.lhs,
+			keymap.callback or keymap.rhs,
+			{ silent = keymap.silent == 1, buffer = keymap.buffer }
+		)
 	end
 	keymap_restore = {}
 end
@@ -122,6 +127,7 @@ dap.configurations.cpp = {
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
+dap.configurations.zig = dap.configurations.cpp
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()

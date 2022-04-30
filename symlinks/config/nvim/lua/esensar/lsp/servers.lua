@@ -27,7 +27,7 @@ local servers = {
 	"terraformls",
 	"tsserver",
 	"vimls",
-	"zls"
+	"zls",
 }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({

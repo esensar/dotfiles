@@ -38,6 +38,9 @@ null_ls.setup({
 		-- Rust
 		null_ls.builtins.formatting.rustfmt,
 
+		-- Zig
+		null_ls.builtins.formatting.zigfmt,
+
 		-- Java
 		null_ls.builtins.formatting.google_java_format,
 

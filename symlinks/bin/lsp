@@ -188,6 +188,7 @@ declare -A SUPPORTED_SERVERS=(
 ["xml"]="lemminx"
 ["kotlin"]="kotlin-language-server",
 ["rust"]="rust-analyzer"
+["zig"]="zls"
 )
 declare -A LINK_SOURCES=(
 ["omnisharp"]="$HOME/lsp/dotnet/omnisharp/run"
@@ -195,6 +196,7 @@ declare -A LINK_SOURCES=(
 ["lemminx"]="$HOME/lsp/xml/lemminx/lemminx"
 ["kotlin-language-server"]="$HOME/lsp/kotlin/kotlin-language-server/bin/kotlin-language-server"
 ["rust-analyzer"]="$HOME/lsp/rust/rust-analyzer/rust-analyzer"
+["zls"]="$HOME/lsp/zig/zls/zls"
 )
 declare -A LINK_TARGETS=(
 ["omnisharp"]="$HOME/.local/bin/omnisharp"
@@ -202,6 +204,7 @@ declare -A LINK_TARGETS=(
 ["lemminx"]="$HOME/.local/bin/lemminx"
 ["kotlin-language-server"]="$HOME/.local/bin/kotlin-language-server"
 ["rust-analyzer"]="$HOME/.local/bin/rust-analyzer"
+["zls"]="$HOME/.local/bin/zls"
 )
 
 is_linked () {
@@ -407,6 +410,26 @@ install () {
       gunzip /tmp/rust-analyzer.gz -c > $HOME/lsp/rust/rust-analyzer/rust-analyzer
       chmod +x $HOME/lsp/rust/rust-analyzer/rust-analyzer
       ;;
+    zls)
+      if [ -z "$VERSION" ]; then
+	VERSION="0.9.0"
+      fi
+      case $UNAME in
+	Linux)
+	  FILE_NAME="x86_64-linux.tar.xz"
+	  ;;
+	Windows)
+	  FILE_NAME="x86_64-windows.tar.xz"
+	  ;;
+	Darwin)
+	  FILE_NAME="x86_64-macos.tar.xz"
+	  ;;
+      esac
+      wget -O - https://github.com/zigtools/zls/releases/download/$VERSION/$FILE_NAME > /tmp/zls.xz
+      mkdir -p $HOME/lsp/zig/zls
+      tar -xJf /tmp/zls.xz --strip-components=1 -C $HOME/lsp/zig/zls
+      chmod +x $HOME/lsp/zig/zls/zls
+      ;;
     *)
       echo "Unknown server: $SERVER"
       echo "Run 'lsp status --all' for a list of available servers"
@@ -447,6 +470,9 @@ uninstall () {
       ;;
     rust-analyzer)
       rm -rf $HOME/lsp/rust/rust-analyzer
+      ;;
+    zls)
+      rm -rf $HOME/lsp/zig/zls
       ;;
     *)
       echo "Unknown server: $SERVER"

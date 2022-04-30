@@ -11,24 +11,24 @@ set ideajoin
 set idearefactormode=keep
 
 " IdeaVIM mappings
-nnoremap [c :action VcsShowPrevChangeMarker<cr>
-nnoremap ]c :action VcsShowNextChangeMarker<cr>
+nmap [c <Action>(VcsShowPrevChangeMarker)
+nmap ]c <Action>(VcsShowNextChangeMarker)
 
-nnoremap <C-P> :action SearchEverywhere<CR>
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gi :action GotoImplementation<CR>
-nnoremap gr :action FindUsages<CR>
-nnoremap <leader>rn :action RenameElement<CR>
-nnoremap <C-A-F> :action FindInPath<CR>
-nnoremap <leader>tn :action RunAnything<CR>
-nnoremap <leader>tf :action RunClass<CR>
-inoremap <C-K> <esc>:action ParameterInfo<CR>a
-nnoremap <C-K> :action ParameterInfo<CR>
+nmap <C-P> <Action>(SearchEverywhere)
+nmap gd <Action>(GotoDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gr <Action>(FindUsages)
+nmap <leader>rn <Action>(RenameElement)
+nmap <C-A-F> <Action>(FindInPath)
+nmap <leader>tn <Action>(RunAnything)
+nmap <leader>tf <Action>(RunClass)
+imap <C-K> <Action>(ParameterInfo)
+nmap <C-K> <Action>(ParameterInfo)
 
-nnoremap <leader>db :action ToggleLineBreakpoint<CR>
-nnoremap <leader>dc :action ChooseDebugConfiguration<CR>
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+nmap <leader>dc <Action>(ChooseDebugConfiguration)
 
-nnoremap <leader>ac :action ShowIntentionActions<CR>
+nmap <leader>ac <Action>(ShowIntentionActions)
 
 command! Start action Run
 if &ide =~? 'rider'
@@ -40,11 +40,14 @@ command! Scratch action NewScratchBuffer
 command! Ex NERDTree
 command! Gw action Git.Add
 command! Ggpull action Git.Pull
+command! Ggpush action Vcs.Push
 command! Gdiffsplit action Git.CompareWithBranch
 command! G action Git.Menu
 command! Gpro action Github.Create.Pull.Request
 command! Gblame action Annotate
 command! TODO action ActivateTODOToolWindow
-command! te action ActivateTerminalToolWindow
+command! Term action ActivateTerminalToolWindow
 command! Sync action Android.SyncProject
-command! Reformat action ReformatCode
+command! Format action ReformatCode
+
+nmap <leader>tb <Action>(Annotate)

@@ -53,6 +53,9 @@ null_ls.setup({
 		-- Godot
 		custom_sources.formatters.gdformat,
 		custom_sources.diagnostics.gdlint,
+
+		-- Vim-Ledger
+		custom_sources.completion.ledger,
 	},
 	on_attach = common_config.on_attach,
 })

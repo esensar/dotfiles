@@ -6,4 +6,7 @@ return {
 	diagnostics = {
 		gdlint = require("esensar.lsp.null-ls_sources.gdlint"),
 	},
+	completion = {
+		ledger = require("esensar.lsp.null-ls_sources.ledger"),
+	},
 }

@@ -20,6 +20,14 @@ vim.keymap.set("n", "<leader>dc", dap.continue)
 vim.keymap.set("n", "<leader>dso", dap.step_over)
 vim.keymap.set("n", "<leader>dsi", dap.step_into)
 
+-- Neovim Lua debugging
+vim.api.nvim_create_user_command("NeovimDebugStart", function()
+	require("osv").launch()
+end, {})
+vim.api.nvim_create_user_command("NeovimDebugThis", function()
+	require("osv").run_this()
+end, {})
+
 -- Nvim DAP UI
 local dapui = require("dapui")
 dapui.setup()
@@ -54,6 +62,15 @@ dap.listeners.after["event_terminated"]["me"] = function()
 	keymap_restore = {}
 end
 
+-- dap utils
+local function executable_input()
+	return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+end
+
+local function args_input()
+	return vim.split(vim.fn.input("Args: "), " ")
+end
+
 -- Additional servers
 dap.adapters.lldb = {
 	type = "executable",
@@ -61,14 +78,16 @@ dap.adapters.lldb = {
 	name = "lldb",
 }
 
+dap.adapters.nlua = function(callback, config)
+	callback({ type = "server", host = config.host, port = config.port })
+end
+
 dap.configurations.cpp = {
 	{
 		name = "Launch",
 		type = "lldb",
 		request = "launch",
-		program = function()
-			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-		end,
+		program = executable_input,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = false,
 		args = {},
@@ -96,14 +115,10 @@ dap.configurations.cpp = {
 		name = "Launch with args",
 		type = "lldb",
 		request = "launch",
-		program = function()
-			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-		end,
+		program = executable_input,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = false,
-		args = function()
-			return vim.split(vim.fn.input("Args: "), " ")
-		end,
+		args = args_input,
 		runInTerminal = false,
 		postRunCommands = { "process handle -p true -s false -n false SIGWINCH" },
 	},
@@ -128,6 +143,26 @@ dap.configurations.cpp = {
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 dap.configurations.zig = dap.configurations.cpp
+
+dap.configurations.lua = {
+	{
+		type = "nlua",
+		request = "attach",
+		name = "Attach to running Neovim instance",
+		host = function()
+			local value = vim.fn.input("Host [127.0.0.1]: ")
+			if value ~= "" then
+				return value
+			end
+			return "127.0.0.1"
+		end,
+		port = function()
+			local val = tonumber(vim.fn.input("Port: "))
+			assert(val, "Please provide a port number")
+			return val
+		end,
+	},
+}
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()

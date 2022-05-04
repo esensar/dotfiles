@@ -14,6 +14,7 @@ vim.api.nvim_exec('let $VIMPLUGINS = expand($VIMHOME."/lua/personal/plugins.lua"
 
 -- Leader config to <Space>
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 require("esensar.init.plugins")
 

@@ -26,7 +26,7 @@ opt.showcmd = true -- Display incomplete commands
 opt.incsearch = true -- Do incremental searching
 opt.autoread = true -- Reload files changed outside
 opt.hidden = true -- Allow leaving unsaved buffers
-opt.inccommand = "nosplit" -- Enable live preview of text replacement
+opt.inccommand = "split" -- Enable live preview of text replacement
 opt.hlsearch = true
 opt.mouse = "a"
 

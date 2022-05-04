@@ -51,8 +51,8 @@ return require("packer").startup({
 		-- Language support
 		use("tpope/vim-rails") -- Enables all rails command through vim and integrates with projectionist
 		use("c-brenn/phoenix.vim") -- Similar to vim-rails, but for phoenix
-		use("tpope/vim-salve") -- Clojure integration with projectionist
-		use("tpope/vim-fireplace") -- Clojure REPL and integration
+		use("Olical/conjure") -- Lisp languages REPL integration
+		use("Olical/aniseed") -- Fennel nvim support
 		use("vimwiki/vimwiki") -- Vimwiki - personal wiki in vim
 		use("esensar/vimwiki-reviews-lua") -- Vimwiki extension for periodic reviews
 		use("ledger/vim-ledger") -- Support for ledger-cli format

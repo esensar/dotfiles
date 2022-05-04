@@ -18,6 +18,7 @@ return require("packer").startup({
 		use("tpope/vim-repeat") -- Better . repeat
 		use("tpope/vim-commentary") -- Commenting motion
 		use("tpope/vim-sleuth") -- Intendation heuristics
+		use("tpope/vim-eunuch") -- UNIX helpers
 
 		-- General improvements
 		use("lewis6991/gitsigns.nvim") -- Git signs

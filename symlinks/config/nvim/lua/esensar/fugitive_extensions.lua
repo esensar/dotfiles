@@ -53,7 +53,7 @@ end
 -- Prints current branches PR url (not saved to :messages)
 -- Makes it easy to use terminal for opening url on click
 function M.print_pr_url(...)
-	vim.cmd('echo "' .. get_pr_url(...) .. '"')
+	print(get_pr_url(...))
 end
 
 -- Copies current branches PR url to system clipboard

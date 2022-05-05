@@ -67,9 +67,6 @@ local function popup_and_run(type)
 	end
 
 	local function run()
-		print(vim.inspect(eval_functions))
-		print(vim.inspect(eval_functions[type]))
-		print(vim.inspect(eval_functions[type](win.bufnr)))
 		local st, r = eval_functions[type](win.bufnr)
 		if st == false then
 			vim.notify("Execution failed: \n" .. r)

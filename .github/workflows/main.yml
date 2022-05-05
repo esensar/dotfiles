@@ -14,8 +14,12 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          path: '.dotfiles'
       - name: Run bootstrap
-        run: make bootstrap
+        run: |
+          cd ~/.dotfiles
+          make bootstrap
         env:
           DOTFILES_CI: 1
       - name: Install neovim
@@ -31,12 +35,15 @@ jobs:
         run: |
           git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
       - name: Run neovim checks
-        run: make check_neovim
+        run: |
+          cd ~/.dotfiles
+          make check_neovim
         env:
           DOTFILES_CI: 1
       - name: Run tests
         if: ${{ matrix.platform != 'windows-latest' }}
         run: |
+          cd ~/.dotfiles
           source ~/.profile
           make run_tests
         env:

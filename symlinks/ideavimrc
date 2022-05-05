@@ -44,7 +44,7 @@ command! Ggpush action Vcs.Push
 command! Gdiffsplit action Git.CompareWithBranch
 command! G action Git.Menu
 command! Gpro action Github.Create.Pull.Request
-command! Gblame action Annotate
+command! Git blame action Annotate
 command! TODO action ActivateTODOToolWindow
 command! Term action ActivateTerminalToolWindow
 command! Sync action Android.SyncProject

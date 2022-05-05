@@ -94,5 +94,6 @@ return require("packer").startup({
 		-- Telescope
 		use("nvim-telescope/telescope.nvim") -- Fuzzy searcher
 		use("nvim-telescope/telescope-dap.nvim") -- DAP integration for Telescope
+		use("nvim-telescope/telescope-ui-select.nvim") -- UI select for Telescope
 	end,
 })

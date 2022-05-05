@@ -79,3 +79,4 @@ vim.ui.input = function(opts, on_confirm)
 end
 
 -- Selections
+-- Using telescope for select UI

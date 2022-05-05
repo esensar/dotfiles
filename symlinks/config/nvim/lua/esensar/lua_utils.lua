@@ -1,3 +1,5 @@
+local aeval = require("aniseed.eval")
+
 local M = {}
 
 function M.eval_lua_buffer(bufnr)
@@ -17,6 +19,15 @@ function M.eval_lua_code(code_string)
 		end
 	end
 	return unpack(res)
+end
+
+function M.eval_fennel_buffer(bufnr)
+	local buffer_content = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+	return M.eval_fennel_code(table.concat(buffer_content, "\n"))
+end
+
+function M.eval_fennel_code(code_string)
+	return aeval.str(code_string, {})
 end
 
 return M

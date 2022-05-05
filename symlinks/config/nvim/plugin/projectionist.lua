@@ -103,6 +103,7 @@ local vim_doc_template = {
 local flutter_config = {
 	["*"] = {
 		start = "flutter run",
+		dispatch = "flutter test",
 	},
 	["lib/*.dart"] = {
 		alternate = "test/{}_test.dart",
@@ -376,6 +377,7 @@ local kotlin_project_config = {
 local mint_config = {
 	["*"] = {
 		start = "mint start",
+		dispatch = "mint test",
 	},
 	["source/*.mint"] = {
 		type = "source",
@@ -407,6 +409,8 @@ local mint_config = {
 local crystal_config = {
 	["*"] = {
 		start = "crystal run",
+		dispatch = "crystal spec",
+		console = "crystal eval",
 	},
 	["src/*.cr"] = {
 		type = "source",
@@ -435,6 +439,7 @@ local function c_project_config(source_extension, header_extension)
 	return {
 		["*"] = {
 			start = "make run",
+			dispatch = "make test",
 		},
 		["src/*." .. source_extension] = {
 			type = "source",
@@ -465,6 +470,70 @@ local function c_project_config(source_extension, header_extension)
 	}
 end
 
+local rust_config = {
+	["*"] = {
+		start = "cargo run",
+		dispatch = "cargo test",
+	},
+	["src/*.rs"] = {
+		type = "source",
+	},
+}
+
+local zig_config = {
+	["*"] = {
+		start = "zig build run",
+		dispatch = "zig test",
+	},
+	["src/*.zig"] = {
+		type = "source",
+	},
+}
+
+local lein_config = {
+	["*"] = {
+		start = "lein run",
+		dispatch = "lein test",
+		console = "lein repl",
+	},
+	["src/*.clj"] = {
+		type = "source",
+		alternate = {
+			"test/{}_test.clj",
+		},
+	},
+	["src/*.cljs"] = {
+		type = "source",
+		alternate = {
+			"test/{}_test.cljs",
+		},
+	},
+	["src/*.cljc"] = {
+		type = "source",
+		alternate = {
+			"test/{}_test.cljc",
+		},
+	},
+	["test/*_test.clj"] = {
+		type = "test",
+		alternate = {
+			"src/{}.clj",
+		},
+	},
+	["test/*_test.cljs"] = {
+		type = "test",
+		alternate = {
+			"src/{}.cljs",
+		},
+	},
+	["test/*_test.cljc"] = {
+		type = "test",
+		alternate = {
+			"src/{}.cljc",
+		},
+	},
+}
+
 vim.g.projectionist_heuristics = {
 	["pubspec.yaml"] = flutter_config,
 	["requirements.txt|pyproject.toml"] = python_config,
@@ -478,4 +547,7 @@ vim.g.projectionist_heuristics = {
 	["build.gradle|build.gradle.kts"] = kotlin_project_config,
 	["mint.json"] = mint_config,
 	["shard.yml"] = crystal_config,
+	["Cargo.toml"] = rust_config,
+	["build.zig"] = zig_config,
+	["project.clj"] = lein_config,
 }

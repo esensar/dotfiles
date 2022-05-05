@@ -39,7 +39,6 @@ function M.get_directory_index(vimwiki_index, directory)
 		index[noext] = filename
 	end
 
-	table.sort(index)
 	return index
 end
 
@@ -60,12 +59,18 @@ function M.open_subdirectory_index_file(vimwiki_index, subdirectory)
 	}
 
 	-- Add items
+	local items = {}
 	for title, fname in pairs(index) do
 		if title ~= "index" then
 			title = string.gsub(title, "-", " ")
 			title = title:sub(1, 1):upper() .. title:sub(2)
-			table.insert(lines, builder.list_item(builder.link(fname, title)))
+			table.insert(items, builder.list_item(builder.link(fname, title)))
 		end
+	end
+	table.sort(items)
+
+	for _, item in ipairs(items) do
+		table.insert(lines, item)
 	end
 
 	local buf = vim.api.nvim_get_current_buf()

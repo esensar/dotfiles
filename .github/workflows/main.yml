@@ -34,6 +34,9 @@ jobs:
         run: make check_neovim
         env:
           DOTFILES_CI: 1
+      - uses: actions/setup-python@v3
+        if: ${{ matrix.platform != 'windows-latest' }}
+        name: Setup python for bin tools
       - name: Run tests
         if: ${{ matrix.platform != 'windows-latest' }}
         run: |

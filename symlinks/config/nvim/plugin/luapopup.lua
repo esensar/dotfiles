@@ -1,6 +1,7 @@
 -- Luapopup - get a popup with lua buffer and run the code in neovim afterwards
 local popup = require("nui.popup")
 local event = require("nui.utils.autocmd").event
+local lua_utils = require("esensar.lua_utils")
 
 local last_win
 
@@ -33,18 +34,7 @@ local function popup_and_run()
 	end
 
 	local function run()
-		local buffer_content = vim.api.nvim_buf_get_lines(win.bufnr, 0, -1, false)
-		-- Taken from https://github.com/bfredl/nvim-luadev/blob/master/lua/luadev.lua
-		local block = coroutine.create(loadstring(table.concat(buffer_content, "\n")))
-		local res = { coroutine.resume(block) }
-		if not res[1] then
-			_G._errstack = block
-			-- if the only frame on the traceback is the chunk itself, skip the traceback
-			if debug.getinfo(block, 0, "f").func ~= buffer_content then
-				res[2] = debug.traceback(block, res[2], 0)
-			end
-		end
-		local st, r = unpack(res)
+		local st, r = lua_utils.eval_lua_buffer(win.bufnr)
 		if st == false then
 			vim.notify("Execution failed: \n" .. r)
 		else

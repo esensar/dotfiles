@@ -1,9 +1,0 @@
-! ------------------------------------------------------------------------------
-! ROFI Color theme
-! Copyright: Rasmus Steinke
-! ------------------------------------------------------------------------------
-rofi.color-enabled: true
-rofi.color-window: cbg, cbg, c00
-rofi.color-normal: cbg, c12, cbg, cfg, c12
-rofi.color-active: cbg, c04, cbg, c00, c04
-rofi.color-urgent: cbg, c05, cbg, c00, c05

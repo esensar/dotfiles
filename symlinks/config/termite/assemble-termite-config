@@ -1,8 +1,0 @@
-#!/bin/sh
-
-termitedirectory="$HOME/.config/termite"
-outputfilename="config"
-
-touch $termitedirectory/$outputfilename
-cat $termitedirectory/baseconfig > $termitedirectory/$outputfilename
-cat $termitedirectory/termitetheme >> $termitedirectory/$outputfilename

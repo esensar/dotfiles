@@ -184,7 +184,6 @@ link_termux: check_os link_apps_config
 .PHONY: link_xconfig
 link_xconfig: check_os
 	@echo "Linking X config files..."
-	$(call link,xinitrc,.xinitrc)
 	$(call link,zprofile,.zprofile)
 
 .PHONY: link_i3config

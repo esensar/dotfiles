@@ -4,11 +4,6 @@
 
 cd ~
 
-# Switch to ZSH shell
-if test -t 1; then
-exec zsh
-fi
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -123,7 +118,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-source "$HOME/.cargo/env"
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash

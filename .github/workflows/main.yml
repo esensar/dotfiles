@@ -36,7 +36,9 @@ jobs:
           DOTFILES_CI: 1
       - name: Run tests
         if: ${{ matrix.platform != 'windows-latest' }}
-        run: make run_tests
+        run: |
+          source ~/.profile
+          make run_tests
         env:
           DOTFILES_CI: 1
   create-key:

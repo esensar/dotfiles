@@ -69,7 +69,7 @@ local function popup_and_run(type)
 	local function run()
 		local st, r = eval_functions[type](win.bufnr)
 		if st == false then
-			vim.notify("Execution failed: \n" .. r)
+			vim.notify("Execution failed: \n" .. r, vim.log.levels.ERROR)
 		else
 			vim.notify("Successfully executed operation!")
 		end

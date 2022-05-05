@@ -34,6 +34,11 @@ jobs:
         run: make check_neovim
         env:
           DOTFILES_CI: 1
+      - name: Run tests
+        if: ${{ matrix.platform != 'windows-latest' }}
+        run: make run_tests
+        env:
+          DOTFILES_CI: 1
   create-key:
     strategy:
       matrix:

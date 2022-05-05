@@ -315,6 +315,11 @@ check_neovim: check_os
 	@echo "Doing a basic neovim startup and quit"
 	@nvim --headless -c 'set display-=msgsep' -c 'quitall'
 
+.PHONY: run_tests
+run_tests: check_os
+	@echo "Running all tests from tests/"
+	@./tests/run_all
+
 .PHONY: oh_my_zsh
 oh_my_zsh: check_os
 	@echo "Installing oh-my-zsh..."

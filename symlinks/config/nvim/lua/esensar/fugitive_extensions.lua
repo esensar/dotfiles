@@ -11,6 +11,7 @@ local function get_pr_url(...)
 	origin_url = string.gsub(origin_url, ".git$", "")
 	origin_url = string.gsub(origin_url, ":", "/")
 	origin_url = string.gsub(origin_url, "git@", "https://")
+	origin_url = string.gsub(origin_url, "https///", "https://")
 
 	-- Remove prefix if it is available, for some of common git services
 	local common_services = { "github.com", "bitbucket.org", "gitlab.com" }

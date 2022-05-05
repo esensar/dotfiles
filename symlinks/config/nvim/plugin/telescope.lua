@@ -21,6 +21,7 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("dap")
+require("telescope").load_extension("notify")
 
 vim.keymap.set("n", "<C-P>", function()
 	require("telescope.builtin").find_files()

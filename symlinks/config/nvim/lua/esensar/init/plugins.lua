@@ -33,6 +33,8 @@ return require("packer").startup({
 		use("romainl/vim-devdocs") -- Quick DevDocs.io search using :DD
 		use("gpanders/editorconfig.nvim") -- .editorconfig support
 		use("lewis6991/impatient.nvim") -- Caching lua modules for faster startup
+		use("rcarriga/nvim-notify") -- notifications UI
+		use("MunifTanjim/nui.nvim") -- General UI
 
 		-- Tools
 		use("direnv/direnv.vim") -- Integration with Direnv

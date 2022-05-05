@@ -80,3 +80,9 @@ end
 
 -- Selections
 -- Using telescope for select UI
+
+-- Terminal
+vim.api.nvim_create_user_command("BottomTerminal", function()
+	require("esensar.ui").new_bottom_split({})
+	vim.fn.termopen(os.getenv("SHELL"))
+end, {})

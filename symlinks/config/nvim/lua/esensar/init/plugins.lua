@@ -68,7 +68,14 @@ return require("packer").startup({
 		use("cdelledonne/vim-cmake") -- CMake integration
 
 		-- Treesitter
-		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Treesitter integration
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			run = function()
+				if not os.getenv("DOTFILES_CI") then
+					vim.cmd("TSUpdate")
+				end
+			end,
+		}) -- Treesitter integration
 		use("nvim-treesitter/playground") -- TSPlaygroundToggle - access treesitter data
 
 		-- LSP

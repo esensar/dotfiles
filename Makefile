@@ -97,7 +97,7 @@ bootstrap_mac: check_os link bootstrap_common oh_my_zsh homebrew install_brew_ba
 	@echo "Bootstrapped mac components!"
 
 .PHONY: bootstrap_common
-bootstrap_common: check_os link_all_common set_default_theme prepare_projects_dir prepare_screenshots_dir prepare_scripts_cache_dir install_vim install_asdf alacritty_terminfo
+bootstrap_common: check_os link_all_common prepare_projects_dir prepare_screenshots_dir prepare_scripts_cache_dir install_vim install_asdf alacritty_terminfo
 	@echo "Bootstrapped common components!"
 
 .PHONY: link
@@ -189,10 +189,6 @@ link_xconfig: check_os
 .PHONY: link_i3config
 link_i3config: check_os link_xconfig link_apps_config
 	@echo "Linking i3 config files..."
-
-.PHONY: set_default_theme
-set_default_theme: check_os
-	@echo 'gruvbox-dark' > $(DOTFILES_DIR)/themes/current-theme
 
 # TODO Parametrize projects dir creation and automate gitconfig setup
 .PHONY: prepare_projects_dir

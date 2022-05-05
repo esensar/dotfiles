@@ -13,3 +13,7 @@ vim.keymap.set("n", "<Leader>tf", ":TestFile<CR>", opts)
 vim.keymap.set("n", "<Leader>ts", ":TestSuite<CR>", opts)
 vim.keymap.set("n", "<Leader>tl", ":TestLast<CR>", opts)
 vim.keymap.set("n", "<Leader>tg", ":TestVisit<CR>", opts)
+
+vim.api.nvim_create_user_command("PlenaryTestFile", function()
+	require("plenary.test_harness").test_directory(vim.fn.expand("%:p"))
+end, {})

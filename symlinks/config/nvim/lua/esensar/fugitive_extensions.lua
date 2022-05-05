@@ -57,7 +57,7 @@ end
 
 -- Copies current branches PR url to system clipboard
 function M.copy_pr_url(...)
-	vim.cmd('let @+ = "' .. get_pr_url(...) .. '"')
+	vim.fn.setreg("+", get_pr_url(...))
 end
 
 -- Opens current banches PR url in default browser
@@ -75,6 +75,11 @@ end
 -- Switches to branch
 function M.checkout_branch(branch)
 	vim.cmd("Git checkout " .. branch)
+end
+
+-- Deletes a branch
+function M.delete_branch(branch)
+	vim.cmd("Git branch -d " .. branch)
 end
 
 return M

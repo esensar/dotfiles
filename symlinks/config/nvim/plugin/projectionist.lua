@@ -273,14 +273,14 @@ local lua_vim_plugin_config = {
 	["lua/*.lua"] = {
 		type = "source",
 		alternate = "tests/{}.lua",
-		template = {
-			'describe("{}:", function()',
-			"end)",
-		},
 	},
 	["tests/*.lua"] = {
 		type = "test",
 		alternate = "lua/{}.lua",
+		template = {
+			'describe("{}:", function()',
+			"end)",
+		},
 	},
 	["README.md"] = {
 		template = vim_readme_template,

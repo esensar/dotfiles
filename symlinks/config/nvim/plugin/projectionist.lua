@@ -272,9 +272,9 @@ local lua_vim_plugin_config = {
 	},
 	["lua/*.lua"] = {
 		type = "source",
-		alternate = "tests/{}.lua",
+		alternate = "tests/{}_spec.lua",
 	},
-	["tests/*.lua"] = {
+	["tests/*_spec.lua"] = {
 		type = "test",
 		alternate = "lua/{}.lua",
 		template = {

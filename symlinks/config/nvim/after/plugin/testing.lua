@@ -17,3 +17,7 @@ vim.keymap.set("n", "<Leader>tg", ":TestVisit<CR>", opts)
 vim.api.nvim_create_user_command("PlenaryTestFile", function()
 	require("plenary.test_harness").test_directory(vim.fn.expand("%:p"))
 end, {})
+
+vim.api.nvim_create_user_command("PlenaryTestFileWithLocalMinInit", function()
+	require("plenary.test_harness").test_directory(vim.fn.expand("%:p"), { minimal_init = "tests/minimal.vim" })
+end, {})

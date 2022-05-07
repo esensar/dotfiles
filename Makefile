@@ -315,7 +315,7 @@ check_neovim: check_os
 	@echo "Doing a basic neovim startup and quit"
 	@nvim --headless -c 'set display-=msgsep' -c 'quitall'
 	@echo "Running plenary tests"
-	@nvim --headless -c 'PlenaryBustedDirectory symlinks/config/nvim/lua/tests'
+	@nvim --headless -c 'set display-=msgsep' -c 'PlenaryBustedDirectory symlinks/config/nvim/lua/tests'
 
 .PHONY: run_tests
 run_tests: check_os

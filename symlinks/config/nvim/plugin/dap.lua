@@ -28,6 +28,11 @@ vim.api.nvim_create_user_command("NeovimDebugThis", function()
 	require("osv").run_this()
 end, {})
 
+-- Vscode launch.json support
+vim.api.nvim_create_user_command("DapLoadVsCodeLaunch", function(args)
+	require("dap.ext.vscode").load_launchjs(args.args)
+end, {})
+
 -- Nvim DAP UI
 local dapui = require("dapui")
 dapui.setup()

@@ -19,6 +19,13 @@ local eval_functions = {
 	[popup_type.lua] = lua_utils.eval_lua_buffer,
 	[popup_type.fennel] = lua_utils.eval_fennel_buffer,
 }
+local validate_functions = {
+	[popup_type.lua] = lua_utils.is_valid_lua_code_buffer,
+	[popup_type.fennel] = function(_)
+		-- No validation for fennel
+		return true
+	end,
+}
 
 local function get_last_win(type)
 	if type == popup_type.lua then
@@ -80,9 +87,14 @@ local function popup_and_run(type)
 
 	-- map keys
 	win:map("n", "<CR>", function(_)
-		hidden = true
-		win:hide()
-		run()
+		local valid, message = validate_functions[type](win.bufnr)
+		if not valid then
+			vim.notify("Parsing code failed: \n" .. vim.inspect(message), vim.log.levels.ERROR)
+		else
+			hidden = true
+			win:hide()
+			run()
+		end
 	end, { noremap = true })
 	win:map("n", "<Esc>", function(_)
 		cancel()

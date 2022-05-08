@@ -10,7 +10,7 @@ vim.cmd([[filetype plugin indent on]])
 vim.api.nvim_exec('let $OVIMHOME = $HOME."/.vim"', false)
 vim.api.nvim_exec('let $VIMHOME = $HOME."/.config/nvim"', false)
 vim.api.nvim_exec('let $NVIMHOME = $HOME."/.local/share/nvim"', false)
-vim.api.nvim_exec('let $VIMPLUGINS = expand($VIMHOME."/lua/personal/plugins.lua")', false)
+vim.api.nvim_exec('let $VIMPLUGINS = expand($VIMHOME."/lua/esensar/init/plugins.lua")', false)
 
 -- Leader config to <Space>
 vim.g.mapleader = " "
@@ -39,3 +39,11 @@ vim.cmd("set path+=**")
 
 -- automatically rebalance windows on vim resize
 vim.cmd("autocmd VimResized * :wincmd =")
+
+vim.api.nvim_create_user_command("EditConfigInitLua", function()
+	vim.cmd("edit $VIMHOME/init.lua")
+end, {})
+
+vim.api.nvim_create_user_command("EditConfigPlugins", function()
+	vim.cmd("edit $VIMPLUGINS")
+end, {})

@@ -280,7 +280,7 @@ local lua_vim_plugin_config = {
 		template = {
 			'local subject = require("{dot}")',
 			"",
-			'describe("{}:", function()',
+			'describe("{dot}:", function()',
 			"end)",
 		},
 	},

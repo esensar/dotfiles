@@ -49,10 +49,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "lua",
 	group = au_id,
 	callback = function()
-		vim.keymap.set("n", "<Leader>tn", ":PlenaryTestFile<CR>", opts)
-		vim.keymap.set("n", "<Leader>tf", ":PlenaryTestFile<CR>", opts)
-		vim.keymap.set("n", "<Leader>ts", ":PlenaryTestSuite<CR>", opts)
-		vim.keymap.set("n", "<Leader>tl", ":PlenaryTestLast<CR>", opts)
-		vim.keymap.set("n", "<Leader>tg", ":PlenaryVisitLastTest<CR>", opts)
+		local local_opts = { silent = true, buffer = true }
+		vim.keymap.set("n", "<Leader>tn", ":PlenaryTestFile<CR>", local_opts)
+		vim.keymap.set("n", "<Leader>tf", ":PlenaryTestFile<CR>", local_opts)
+		vim.keymap.set("n", "<Leader>ts", ":PlenaryTestSuite<CR>", local_opts)
+		vim.keymap.set("n", "<Leader>tl", ":PlenaryTestLast<CR>", local_opts)
+		vim.keymap.set("n", "<Leader>tg", ":PlenaryVisitLastTest<CR>", local_opts)
 	end,
 })

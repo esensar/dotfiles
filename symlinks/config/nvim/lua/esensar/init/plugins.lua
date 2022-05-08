@@ -8,9 +8,12 @@ return require("packer").startup({
 		use("tpope/vim-surround") -- Surround with ', ", etc
 		use("tpope/vim-fugitive") -- Git integration
 		use("tpope/vim-vinegar") -- Netrw improvements
-		use("tpope/vim-obsession") -- Session.vim management
-		use("tpope/vim-dadbod") -- Database access
-		use("kristijanhusak/vim-dadbod-ui") -- UI For Dadbod
+		use({ "tpope/vim-obsession", cmd = "Obsession" }) -- Session.vim management
+		use({
+			"kristijanhusak/vim-dadbod-ui",
+			cmd = "DBUI",
+			requires = "tpope/vim-dadbod", -- database access
+		}) -- UI For Dadbod
 		use("tpope/vim-speeddating") -- <C-A> and <C-X> for dates
 		use("tpope/vim-dispatch") -- Dispatch command
 		use("tpope/vim-projectionist") -- Project config file!
@@ -22,7 +25,7 @@ return require("packer").startup({
 
 		-- General improvements
 		use("lewis6991/gitsigns.nvim") -- Git signs
-		use("godlygeek/tabular") -- Tabular command for alignment
+		use({ "godlygeek/tabular", cmd = "Tabularize" }) -- Tabular command for alignment
 		use("vim-scripts/utl.vim") -- Universal text linking
 		use({ "mbbill/undotree", cmd = "UndotreeToggle" }) -- Undos in a tree for easy access
 		use("mhinz/vim-grepper") -- Grepper command - improved grepping throughout project
@@ -30,7 +33,7 @@ return require("packer").startup({
 		use("wellle/targets.vim") -- Additional targets for inside and around motions
 		use("flazz/vim-colorschemes") -- All popular colorschemes
 		use("romainl/vim-qf") -- Quickfix list upgrades
-		use("romainl/vim-devdocs") -- Quick DevDocs.io search using :DD
+		use({ "romainl/vim-devdocs", cmd = "DD" }) -- Quick DevDocs.io search using :DD
 		use("gpanders/editorconfig.nvim") -- .editorconfig support
 		use("lewis6991/impatient.nvim") -- Caching lua modules for faster startup
 		use("rcarriga/nvim-notify") -- notifications UI
@@ -52,20 +55,20 @@ return require("packer").startup({
 		use("saadparwaiz1/cmp_luasnip") -- cmp snippets support
 
 		-- Language support
-		use("tpope/vim-rails") -- Enables all rails command through vim and integrates with projectionist
-		use("c-brenn/phoenix.vim") -- Similar to vim-rails, but for phoenix
+		use({ "tpope/vim-rails", ft = "ruby" }) -- Enables all rails command through vim and integrates with projectionist
+		use({ "c-brenn/phoenix.vim", ft = "elixir" }) -- Similar to vim-rails, but for phoenix
 		use("Olical/conjure") -- Lisp languages REPL integration
 		use("Olical/aniseed") -- Fennel nvim support
 		use("vimwiki/vimwiki") -- Vimwiki - personal wiki in vim
 		use("esensar/vimwiki-reviews-lua") -- Vimwiki extension for periodic reviews
-		use("ledger/vim-ledger") -- Support for ledger-cli format
-		use("tandrewnichols/vim-docile") -- Support for vim doc.txt format
-		use("habamax/vim-godot") -- Godot engine (and script) support
+		use({ "ledger/vim-ledger", ft = "ledger" }) -- Support for ledger-cli format
+		use({ "tandrewnichols/vim-docile", ft = "help" }) -- Support for vim doc.txt format
+		use({ "habamax/vim-godot", ft = "gdscript" }) -- Godot engine (and script) support
 		use("guns/vim-sexp") -- Precision editing for S-expressions
 		use("tpope/vim-sexp-mappings-for-regular-people") -- Simpler keymaps for vim-sexp
-		use("tridactyl/vim-tridactyl") -- Tridactyl config file support
-		use("aklt/plantuml-syntax") -- PlantUML support
-		use("cdelledonne/vim-cmake") -- CMake integration
+		use({ "tridactyl/vim-tridactyl", ft = "tridactyl" }) -- Tridactyl config file support
+		use({ "aklt/plantuml-syntax", ft = "plantuml" }) -- PlantUML support
+		use({ "cdelledonne/vim-cmake", ft = "cmake" }) -- CMake integration
 
 		-- Treesitter
 		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Treesitter integration
@@ -85,7 +88,7 @@ return require("packer").startup({
 		-- LSP language specific
 		use("tjdevries/nlua.nvim") -- Built-in Lua integration with LSP
 		use("akinsho/flutter-tools.nvim") -- Additional flutter integrations
-		use("mfussenegger/nvim-jdtls") -- Additional java integrations
+		use({ "mfussenegger/nvim-jdtls", ft = "java" }) -- Additional java integrations
 
 		-- Lua support
 		use("nvim-lua/popup.nvim") -- Popup API integration - needed for some plugins

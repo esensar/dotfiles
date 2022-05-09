@@ -11,19 +11,19 @@ local configuration_overrides = {
 		flags = {
 			-- Slow Godot LS
 			debounce_text_changes = 600,
-		}
+		},
 	},
 	omnisharp = {
 		cmd = {
 			vim.fn.glob("$HOME") .. "/lsp/dotnet/omnisharp/run",
 			"--languageserver",
 			"--hostPID",
-			tostring(vim.fn.getpid())
+			tostring(vim.fn.getpid()),
 		},
 	},
 	lemminx = {
-		cmd = { 'lemminx' }
-	}
+		cmd = { "lemminx" },
+	},
 }
 
 -- Lsp default language servers
@@ -52,16 +52,19 @@ local servers = {
 	"zls",
 }
 for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup(vim.tbl_extend('force', common_config, configuration_overrides[lsp] or {}))
+	lspconfig[lsp].setup(vim.tbl_extend("force", common_config, configuration_overrides[lsp] or {}))
 end
 
 -- Lua bultin lsp
-require("nlua.lsp.nvim").setup(lspconfig, vim.tbl_extend('force', common_config, {
-	-- Tell LSP which globals should be considered real
-	globals = {},
-}))
+require("nlua.lsp.nvim").setup(
+	lspconfig,
+	vim.tbl_extend("force", common_config, {
+		-- Tell LSP which globals should be considered real
+		globals = {},
+	})
+)
 
 -- Flutter tools
 require("flutter-tools").setup({
-	lsp = common_config
+	lsp = common_config,
 })

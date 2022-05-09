@@ -12,6 +12,8 @@ usage () {
       usage_uninstall; exit 0 ;;
     update)
       usage_update; exit 0 ;;
+    update-all)
+      usage_update_all; exit 0 ;;
   esac
   if [ ! -z "$1" ]; then
     echo -e "Unknown command: $1 \n"
@@ -22,6 +24,7 @@ usage () {
   echo "Commands:"
   echo "  install          - installs a new AUR package, no-op if already installed"
   echo "  update           - updates a previously installed AUR package, fails if not found"
+  echo "  update-all       - updates all previously installed AUR package"
   echo "  uninstall        - uninstalls an AUR package"
   echo ""
   echo "Options:"
@@ -77,6 +80,20 @@ usage_update () {
   echo "  -v --verbose     - enables verbose logging"
   echov "Examples:"
   echov "  > aurfetch update neovim-rpc-api-explorer"
+  echov ""
+}
+
+usage_update_all () {
+  echo "Aurfetch Update-all"
+  echo "Updates all installed AUR package."
+  echo -e "\nUsage: aurfetch update-all [options]\n"
+  echo ""
+  echo "Options:"
+  echo "  -q --quick       - skips diff previews"
+  echo "  -h --help        - prints this help message"
+  echo "  -v --verbose     - enables verbose logging"
+  echov "Examples:"
+  echov "  > aurfetch update-all"
   echov ""
 }
 
@@ -182,6 +199,13 @@ update() {
   cd $LOC
 }
 
+update-all() {
+  PACKAGES=$(pacman -Qm)
+  for PAK in $PACKAGES; do
+    update $PAK
+  done
+}
+
 uninstall() {
   if [ ! "$PACKAGE" = "pacman -Qm $PACKAGE" ]; then
     echo "$PACKAGE is not installed!"
@@ -197,7 +221,7 @@ uninstall() {
   fi
 }
 
-if [ -z "$PACKAGE" ]; then
+if [ -z "$PACKAGE" ] && [ "$COMMAND" != "update-all" ]; then
   echo "Missing package name!"
   exit 1
 fi
@@ -214,6 +238,9 @@ case $COMMAND in
     ;;
   update)
     update
+    ;;
+  update-all)
+    update-all
     ;;
   uninstall)
     uninstall

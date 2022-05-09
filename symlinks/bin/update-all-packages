@@ -13,24 +13,7 @@ then
 	sudo pacman -Syu
 
 	# Update AUR packages
-	LOC=$PWD
-
-	cd $AUR_INSTALL_HOME
-	for folder in *; do
-		cd $folder;
-		echo "Working in $PWD.";
-		if [ -z "$(ls -a | grep -w .git)" ]; then
-			echo "$folder is not a git directory!";
-		else
-			if [ "$(git pull)" == "Already up to date." ]; then
-				echo "Package $folder is up to date.";
-			else
-				makepkg -si
-			fi
-		fi
-		cd ..;
-	done
-	cd $LOC
+	aurfetch update-all -q
 fi
 
 if type apt > /dev/null 2>&1

@@ -185,10 +185,10 @@ update() {
 uninstall() {
   if [ ! "$PACKAGE" = "pacman -Qm $PACKAGE" ]; then
     echo "$PACKAGE is not installed!"
-    exit 1
+  else
+    sudo pacman -Rns $PACKAGE
   fi
   echov "Removing package with pacman -Rns $PACKAGE"
-  sudo pacman -Rns $PACKAGE
   if [ $KEEP_CACHE -eq 0 ]; then
     echov "Deleting cache - $AUR_INSTALL_HOME/$PACKAGE"
     if [ -d "$AUR_INSTALL_HOME/$PACKAGE" ]; then

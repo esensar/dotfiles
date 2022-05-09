@@ -27,13 +27,9 @@ export LANG=en_US.UTF-8
 
 export DEFAULT_USER="ensar"
 
-export MY_VIM_HOME=$HOME/.vim
-export MY_VIM_PLUGINS_HOME=$MY_VIM_HOME/plugged
-export MY_VIM_PLUGIN_MANAGER=plug
 export MY_DOTFILES_HOME=$HOME/.dotfiles
 export MY_CONFIG_DIR=$HOME/.config
-export MY_THEMES_DIR=$HOME/.dotfiles/themes
-export MY_CONFIG_CACHE_DIR=$HOME/.script_cache
+export MY_CONFIG_CACHE_DIR=$HOME/.local/share/script_cache
 export MY_PROJECTS_HOME=$HOME/Projects
 export MY_DOCUMENTS_HOME=$HOME/Documents
 

@@ -13,19 +13,11 @@ if !has('win32') && !has('win64')
    if empty(glob('$PLUGLOCATION'))
       silent !curl -fLo $PLUGLOCATION --create-dirs
                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      if empty($MYVIMRC)
-         autocmd VimEnter * PlugInstall --sync | source $HOME . '.vimrc'
-      else
-         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-      endif
+      autocmd VimEnter * PlugInstall --sync | source $HOME . '.vimrc'
    endif
 endif
 
-if empty($MY_VIM_HOME)
-  call plug#begin($VIMHOME . '/plugged')
-else
-  call plug#begin($MY_VIM_HOME . '/plugged')
-endif
+call plug#begin($VIMHOME . '/plugged')
 
 " -----------------------------------------------------------------------------
 "     - General -

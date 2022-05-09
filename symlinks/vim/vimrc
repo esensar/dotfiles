@@ -8,15 +8,11 @@ else
   let $NVIMHOME = $HOME."/.local/share/nvim"
 endif
 let $VIMPLUGINS = expand($VIMHOME."/plugins.vim")
-let $LOCAL_VIMRC = $HOME."/.vimrc.local"
 
 " -----------------------------------------------------------------------------
 "     - Load up plugins -
 " -----------------------------------------------------------------------------
 " Use local vimrc for overrides if available and desired
-if filereadable($LOCAL_VIMRC)
-  source $LOCAL_VIMRC
-endif
 source $VIMPLUGINS
 
 " -----------------------------------------------------------------------------

@@ -14,11 +14,11 @@ else
 endif
 SCRIPTS_DIR := $(DOTFILES_DIR)/bin
 SYMLINKS_DIR := $(DOTFILES_DIR)/symlinks
-BACKUP_DIR := $(HOME)/dotfiles_backup
+BACKUP_DIR := $(HOME)/.local/share/dotfiles_backup
 SSH_KEYS_HOME := $(HOME)/.ssh
 SSH_CONFIG_FILE := $(SSH_KEYS_HOME)/config
 PERSONAL_SSH_KEYS_HOME := $(SSH_KEYS_HOME)/Personal
-SCRIPTS_CACHE_DIR := $(HOME)/.script_cache
+SCRIPTS_CACHE_DIR := $(HOME)/.local/share/script_cache
 PROJECTS_ROOT := $(HOME)/Projects
 DOCUMENTS_ROOT := $(HOME)/Documents
 PICTURES_ROOT := $(HOME)/Pictures

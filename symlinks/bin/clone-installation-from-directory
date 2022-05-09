@@ -10,7 +10,7 @@ then
 
 	echo "Installing packages from AUR using aurfetch..."
 	while read p; do
-		aurfetch -q $p
+		aurfetch install -q $p
 	done <$SELECTED_INSTALL_DIR/AUR
 fi
 

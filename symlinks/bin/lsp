@@ -2,11 +2,7 @@
 
 set -e
 
-echov () {
-  if [ $VERBOSE -eq 1 ]; then
-    echo "$@"
-  fi
-}
+. ~/.config/sh-utils/echo.sh
 
 usage () {
   case $1 in
@@ -101,7 +97,8 @@ usage_status () {
   echo "  -v --verbose     - enables verbose logging"
   echov ""
   echov "Examples:"
-  echov "  > lsp status java"
+  echov "  > lsp status java
+"
   echov "  Language java:"
   echov "    Server google-java-format (UNKNOWN):"
   echov "      Installed: true"
@@ -109,7 +106,8 @@ usage_status () {
   echov "      Location: /Users/ensar.sarajcic/lsp/java/google-java-format"
   echov "      On path: false"
   echov ""
-  echov "  > lsp status java --all"
+  echov "  > lsp status java --all
+"
   echov "  Language java:"
   echov "    Server google-java-format (UNKNOWN):"
   echov "      Installed: true"

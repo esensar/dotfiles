@@ -1,5 +1,3 @@
-set -l commands status link install uninstall
-
 function __fish-lsp-available-servers
     lsp status --all | grep 'Server.*:' | awk '{print $2}' | sed 's/[:,]//g' | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
 end

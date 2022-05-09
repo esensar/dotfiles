@@ -1,32 +1,223 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Quick install flag
 set -e
 
-quick=
+. ~/.config/sh-utils/echo.sh
 
-while getopts q name
-do
-	case $name in
-		q)	quick=1;;
-		?)	echo "Usage: aurfetch [-q] packagename\n"
-				exit 2;;
-	esac
+usage () {
+  case $1 in
+    install)
+      usage_install; exit 0 ;;
+    uninstall)
+      usage_uninstall; exit 0 ;;
+    update)
+      usage_update; exit 0 ;;
+  esac
+  if [ ! -z "$1" ]; then
+    echo -e "Unknown command: $1 \n"
+  fi
+  echo "Basic AUR (Arch User Repository) manager."
+  echo "Enables easy cloning of AUR packages into known location ($AUR_INSTALL_HOME) and installation using makepkg"
+  echo -e "\nUsage: aurfetch COMMAND [options] [arguments] \n"
+  echo "Commands:"
+  echo "  install          - installs a new AUR package, no-op if already installed"
+  echo "  update           - updates a previously installed AUR package, fails if not found"
+  echo "  uninstall        - uninstalls an AUR package"
+  echo ""
+  echo "Options:"
+  echo "  -h --help        - prints this help message (if one of commands is passed, prints help message for that command)"
+  echo "  -v --verbose     - enables verbose logging"
+  if [ ! -z "$1" ]; then
+    exit 1
+  fi
+}
+
+usage_install () {
+  echo "Aurfetch Install"
+  echo "Installs a new AUR package. If the pacakge is already installed, then nothing happens."
+  echo -e "\nUsage: aurfetch install [options] <package-name>\n"
+  echo "Arguments:"
+  echo "  package-name     - name of the package, use 'aursearch' to find packages"
+  echo ""
+  echo "Options:"
+  echo "  -q --quick       - skip PKGBUILD preview and install the package directly"
+  echo "  -h --help        - prints this help message"
+  echo "  -v --verbose     - enables verbose logging"
+  echov "Examples:"
+  echov "  > aurfetch install neovim-rpc-api-explorer"
+  echov ""
+}
+
+usage_uninstall () {
+  echo "Aurfetch Uninstall"
+  echo "Uninstalls an AUR package. Fails if package was not found, but tries to clear cached download regardless."
+  echo -e "\nUsage: aurfetch uninstall [options] <package-name>\n"
+  echo "Arguments:"
+  echo "  package-name      - name of the package, use 'pacman -Qm' to find installed packages"
+  echo ""
+  echo "Options:"
+  echo "  -k --keep-cache  - keeps the repository in AUR download location, for quicker installation"
+  echo "  -h --help        - prints this help message"
+  echo "  -v --verbose     - enables verbose logging"
+  echov "Examples:"
+  echov "  > aurfetch uninstall neovim-rpc-api-explorer"
+  echov ""
+}
+
+usage_update () {
+  echo "Aurfetch Update"
+  echo "Updates an AUR package. Fails if package is not installed (even if cache is present)."
+  echo -e "\nUsage: aurfetch update [options] <package-name>\n"
+  echo "Arguments:"
+  echo "  package-name     - name of the package, use 'pacman -Qm' to find installed packages"
+  echo ""
+  echo "Options:"
+  echo "  -q --quick       - skips diff previews"
+  echo "  -h --help        - prints this help message"
+  echo "  -v --verbose     - enables verbose logging"
+  echov "Examples:"
+  echov "  > aurfetch update neovim-rpc-api-explorer"
+  echov ""
+}
+
+POSITIONAL=()
+QUICK=
+HELP=0
+VERBOSE=0
+ALL=0
+KEEP_CACHE=0
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+    -h|--help)
+      HELP=1
+      shift # past argument
+      ;;
+    -v|--verbose)
+      VERBOSE=1
+      shift # past argument
+      ;;
+    -q|--quick)
+      QUICK=1
+      shift # past argument
+      ;;
+    -k|--keep-cache)
+      KEEP_CACHE=1
+      shift # past argument
+      ;;
+    *)    # unknown option
+      POSITIONAL+=("$1") # save it in an array for later
+      shift # past argument
+      ;;
+  esac
 done
 
-# Move away from options
-shift $(($OPTIND - 1))
+COMMAND="${POSITIONAL[0]}"
 
-if [ -z "$1" ]; then
-	echo "Missing package name!"
-else
-	LOC=$PWD
-	PKG_NAME=$1
-	git clone https://aur.archlinux.org/$PKG_NAME.git $AUR_INSTALL_HOME/$PKG_NAME
-	cd $AUR_INSTALL_HOME/$PKG_NAME
-	if [ -z "$quick" ]; then
-		vim PKGBUILD
-	fi
-	makepkg -si
-	cd $LOC
+echov "Detected command: $COMMAND"
+
+if [ $HELP -eq 1 ]; then
+  usage $COMMAND
+  exit 0
 fi
+
+PACKAGE="${POSITIONAL[1]}"
+
+echov "Detected package: $PACKAGE"
+
+install() {
+  if [ "$PACKAGE" = "pacman -Qm $PACKAGE" ]; then
+    echo "$PACKAGE is already installed, exiting!"
+    exit 0
+  fi
+  LOC=$PWD
+  if [ ! -d "$AUR_INSTALL_HOME/$PACKAGE" ]; then
+    echov "Cloning package $PACKAGE to $AUR_INSTALL_HOME/$PACKAGE"
+    git clone https://aur.archlinux.org/$PACKAGE.git $AUR_INSTALL_HOME/$PACKAGE
+  fi
+  echov "Changing CWD to $AUR_INSTALL_HOME/$PACKAGE"
+  cd $AUR_INSTALL_HOME/$PACKAGE
+  if [ -z "$QUICK" ]; then
+    nvim PKGBUILD -c 'lua vim.notify("Exit with :q to accept this installation, or with :cq to abort")'
+  fi
+  echov "Running makepkg -si"
+  makepkg -si
+  echov "Coming back to $LOC"
+  cd $LOC
+}
+
+update() {
+  if [ ! "$PACKAGE" = "pacman -Qm $PACKAGE" ]; then
+    echo "$PACKAGE is not installed!"
+    exit 1
+  fi
+  LOC=$PWD
+  PKG_NAME=$1
+  EXISTING=1
+  if [ ! -d "$AUR_INSTALL_HOME/$PACKAGE" ]; then
+    EXISTING=0
+    echov "Cloning package $PACKAGE to $AUR_INSTALL_HOME/$PACKAGE"
+    git clone https://aur.archlinux.org/$PACKAGE.git $AUR_INSTALL_HOME/$PACKAGE
+  fi
+  echov "Changing CWD to $AUR_INSTALL_HOME/$PKG_NAME"
+  cd $AUR_INSTALL_HOME/$PKG_NAME
+  PREV_HEAD=$(git rev-parse HEAD)
+  git pull
+  if [ -z "$QUICK" ]; then
+    if [ $EXISTING -eq 1 ]; then
+      git difftool $PREV_HEAD
+      read -p "Accept these updates? [y/n]" ACCEPTED
+      if [ ! "$ACCEPTED" = "y" ]; then
+	echo "Exiting"
+	exit 1
+      fi
+    else
+      nvim PKGBUILD -c 'lua vim.notify("Exit with :q to accept this installation, or with :cq to abort")'
+    fi
+  fi
+  echov "Running makepkg -si"
+  makepkg -si
+  echov "Coming back to $LOC"
+  cd $LOC
+}
+
+uninstall() {
+  if [ ! "$PACKAGE" = "pacman -Qm $PACKAGE" ]; then
+    echo "$PACKAGE is not installed!"
+    exit 1
+  fi
+  echov "Removing package with pacman -Rns $PACKAGE"
+  sudo pacman -Rns $PACKAGE
+  if [ $KEEP_CACHE -eq 0 ]; then
+    echov "Deleting cache - $AUR_INSTALL_HOME/$PACKAGE"
+    if [ -d "$AUR_INSTALL_HOME/$PACKAGE" ]; then
+      rm -r "$AUR_INSTALL_HOME/$PACKAGE"
+    fi
+  fi
+}
+
+if [ -z "$PACKAGE" ]; then
+  echo "Missing package name!"
+  exit 1
+fi
+
+if ! type pacman > /dev/null 2>&1
+then
+  echo "Pacman is not installed. This tool should only be used on Arch Linux!"
+  exit 1
+fi
+
+case $COMMAND in
+  install)
+    install
+    ;;
+  update)
+    update
+    ;;
+  uninstall)
+    uninstall
+    ;;
+  *)
+    usage $COMMAND; exit 1 ;;
+esac

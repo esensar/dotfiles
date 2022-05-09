@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [ ! -f $MY_CONFIG_CACHE_DIR/brew-upgrade-date ]; then
-  echo $( date +%s ) > $MY_CONFIG_CACHE_DIR/brew-upgrade-date
-fi
-
-LAST_BREW_UPGRADE=$( cat $MY_CONFIG_CACHE_DIR/brew-upgrade-date )
-
-print-system-upgrade-date $LAST_BREW_UPGRADE mac-update

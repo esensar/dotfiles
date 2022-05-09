@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Quick install flag
+set -e
+
 quick=
 
 while getopts q name

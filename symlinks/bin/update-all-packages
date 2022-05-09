@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -e
+
+UNAME=$(sh -c 'uname 2>/dev/null || echo Unknown')
+
 if type pacman > /dev/null 2>&1
 then
 	# Clear out orphans
@@ -55,10 +59,39 @@ then
 fi
 
 # Update rubygems
-gem update --system
-gem update
+if type gem > /dev/null 2>&1
+then
+	gem update --system
+	gem update
+fi
 
-vim +PlugUpdate +qall
+if type nvim > /dev/null 2>&1
+then
+	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+fi
+
+if type -f vim > /dev/null 2>&1
+then
+	command vim +PlugUpdate +qall
+fi
+
+if type asdf > /dev/null 2>&1
+then
+	asdf update
+	asdf plugin-update --all
+fi
+
+if type brew > /dev/null 2>&1
+then
+	brew update
+	brew upgrade
+	if [ "$UNAME" = "Darwin" ]; then
+		brew upgrade --cask
+	fi
+	if [ $? -eq 0 ]; then
+		echo $( date +%s ) > $MY_CONFIG_CACHE_DIR/brew-upgrade-date
+	fi
+fi
 
 if type pacman > /dev/null 2>&1
 then

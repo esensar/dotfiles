@@ -2,7 +2,7 @@ source ~/.dotfiles/symlinks/profile.common
 
 export MACHINE_TYPE='linux'
 
-export AUR_INSTALL_HOME=~/.aur
+export AUR_INSTALL_HOME=~/.local/share/aurfetch
 export GRIM_DEFAULT_DIR=~/Pictures/Screenshots
 
 export PATH="$PATH:$HOME/Android/sdk/platform-tools/"

@@ -1,7 +1,13 @@
 #!/bin/bash
 
 if [ $MACHINE_TYPE == "mac" ]; then
-	print-last-brew-update
+	if [ ! -f $MY_CONFIG_CACHE_DIR/brew-upgrade-date ]; then
+		echo $( date +%s ) > $MY_CONFIG_CACHE_DIR/brew-upgrade-date
+	fi
+
+	LAST_BREW_UPGRADE=$( cat $MY_CONFIG_CACHE_DIR/brew-upgrade-date )
+
+	print-system-upgrade-date $LAST_BREW_UPGRADE update-all-packages
 else
 	if type pacman &> /dev/null
 	then

@@ -4,7 +4,27 @@
 
 local lspconfig = require("lspconfig")
 local common_config = require("esensar.lsp.server_config")
-local capabilities = require("esensar.lsp.capabilities")
+
+-- Language specific LSP config overrides
+local configuration_overrides = {
+	gdscript = {
+		flags = {
+			-- Slow Godot LS
+			debounce_text_changes = 600,
+		}
+	},
+	omnisharp = {
+		cmd = {
+			vim.fn.glob("$HOME") .. "/lsp/dotnet/omnisharp/run",
+			"--languageserver",
+			"--hostPID",
+			tostring(vim.fn.getpid())
+		},
+	},
+	lemminx = {
+		cmd = { 'lemminx' }
+	}
+}
 
 -- Lsp default language servers
 local servers = {
@@ -15,11 +35,14 @@ local servers = {
 	"crystalline",
 	"cucumber_language_server",
 	"dockerls",
+	"gdscript",
 	"gopls",
 	"hls",
 	"jsonls",
 	"kotlin_language_server",
+	"lemminx",
 	"mint",
+	"omnisharp",
 	"pyright",
 	"rust_analyzer",
 	"solang",
@@ -29,49 +52,16 @@ local servers = {
 	"zls",
 }
 for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
-		on_attach = common_config.on_attach,
-		capabilities = capabilities,
-	})
+	lspconfig[lsp].setup(vim.tbl_extend('force', common_config, configuration_overrides[lsp] or {}))
 end
 
-lspconfig["gdscript"].setup({
-	on_attach = common_config.on_attach,
-	capabilities = capabilities,
-	flags = {
-		-- Slow Godot LS
-		debounce_text_changes = 600,
-	},
-})
-
 -- Lua bultin lsp
-require("nlua.lsp.nvim").setup(lspconfig, {
-	on_attach = common_config.on_attach,
-	capabilities = capabilities,
-	-- Include globals you want to tell the LSP are real :)
+require("nlua.lsp.nvim").setup(lspconfig, vim.tbl_extend('force', common_config, {
+	-- Tell LSP which globals should be considered real
 	globals = {},
-})
+}))
 
 -- Flutter tools
 require("flutter-tools").setup({
-	lsp = {
-		on_attach = common_config.on_attach,
-		capabilities = capabilities,
-	},
-})
-
--- Dotnet LS
-local pid = vim.fn.getpid()
-local omnisharp_bin = vim.fn.glob("$HOME") .. "/lsp/dotnet/omnisharp/run"
-lspconfig.omnisharp.setup({
-	cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
-	on_attach = common_config.on_attach,
-	capabilities = capabilities,
-})
-
--- Leminx (XML Language server)
-lspconfig.lemminx.setup({
-	cmd = { "lemminx" },
-	on_attach = common_config.on_attach,
-	capabilities = capabilities,
+	lsp = common_config
 })

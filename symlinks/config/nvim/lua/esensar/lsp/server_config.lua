@@ -2,9 +2,9 @@
 --    - LSP servers common config -
 -------------------------------------------------------------------------------
 
-local M = {}
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-M.on_attach = function(client, bufnr)
+local function on_attach(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- Lsp keymaps
@@ -29,4 +29,7 @@ M.on_attach = function(client, bufnr)
 	end
 end
 
-return M
+return {
+	on_attach = on_attach,
+	capabilities = capabilities
+}

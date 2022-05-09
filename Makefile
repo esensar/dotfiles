@@ -340,7 +340,7 @@ alacritty_terminfo: check_os
 .PHONY: prepare_backup_dir
 prepare_backup_dir: check_os
 	@echo "Creating $(BACKUP_DIR)"
-	@mkdir $(BACKUP_DIR)
+	@mkdir -p $(BACKUP_DIR)
 
 .PHONY: clean_backup
 clean_backup: check_os

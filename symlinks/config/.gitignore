@@ -54,3 +54,5 @@
 !/waybar/
 !/wlogout/**
 !/wlogout/
+!/sh-utils/**
+!/sh-utils/

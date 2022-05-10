@@ -62,6 +62,14 @@ if type asdf > /dev/null 2>&1
 then
 	asdf update
 	asdf plugin-update --all
+
+	ASDF_INSTALLED_GLOBAL_PACKAGES=$(comm -12 <(cat $HOME/.tool-versions | cut -f1 -d ' ' | sort) <(asdf plugin list | sort))
+	ASDF_PACKAGES_TO_UPDATE=$(comm -3 <(echo "$ASDF_INSTALLED_GLOBAL_PACKAGES" | sort) <(printf "java\nruby" | sort))
+	echo $ASDF_PACKAGES_TO_UPDATE
+	for PKG in $ASDF_PACKAGES_TO_UPDATE; do
+		asdf install $PKG latest
+		asdf global $PKG $(asdf latest $PKG)
+	done
 fi
 
 if type brew > /dev/null 2>&1

@@ -16,16 +16,26 @@ vim.keymap.set("n", "<Leader>tg", ":TestVisit<CR>", opts)
 
 local last_path = nil
 
+local function get_plenary_test_opts()
+	if vim.g["esensar#testing#use_minimal"] then
+		return {
+			minimal_init = vim.g["esensar#testing#minimal_init"] or "tests/minimal.vim",
+		}
+	else
+		return nil
+	end
+end
+
 vim.api.nvim_create_user_command("PlenaryTestFile", function()
 	last_path = vim.fn.expand("%:p")
 
-	require("plenary.test_harness").test_directory(last_path)
+	require("plenary.test_harness").test_directory(last_path, get_plenary_test_opts())
 end, {})
 
 vim.api.nvim_create_user_command("PlenaryTestSuite", function()
 	last_path = vim.fn["projectionist#path"]()
 
-	require("plenary.test_harness").test_directory(last_path)
+	require("plenary.test_harness").test_directory(last_path, get_plenary_test_opts())
 end, {})
 
 vim.api.nvim_create_user_command("PlenaryTestLast", function()
@@ -33,7 +43,7 @@ vim.api.nvim_create_user_command("PlenaryTestLast", function()
 		vim.notify("No plenary tests run yet! Nothing to do here", vim.log.levels.WARN)
 		return
 	end
-	require("plenary.test_harness").test_directory(last_path)
+	require("plenary.test_harness").test_directory(last_path, get_plenary_test_opts())
 end, {})
 
 vim.api.nvim_create_user_command("PlenaryVisitLastTest", function()

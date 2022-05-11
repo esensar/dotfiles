@@ -160,7 +160,24 @@ local statuslines = {
 			status = status .. " %1*%M%*" -- Modified
 			status = status .. " %2*%r%*" -- Read only
 			status = status .. get_paste_string()
-			-- TODO: Add lsp status
+
+			-- Take just the first message which makes sense
+			local first_lsp_message = vim.tbl_filter(function(msg)
+				return not msg.done and msg.progress
+			end, vim.lsp.util.get_progress_messages())[1]
+			if first_lsp_message then
+				status = status
+					.. " %2*"
+					.. "["
+					.. first_lsp_message.name
+					.. "]"
+					.. "("
+					.. first_lsp_message.percentage
+					.. "%%)"
+					.. " "
+					.. first_lsp_message.title
+					.. "%*"
+			end
 			-- TODO: Add current container if devcontainer is used
 			return status
 		end
@@ -197,6 +214,12 @@ return {
 			group = au_id,
 			callback = function()
 				update_colors()
+			end,
+		})
+		vim.api.nvim_create_autocmd({ "User LspProgressUpdate", "User LspRequest" }, {
+			group = au_id,
+			callback = function()
+				vim.cmd("redrawstatus")
 			end,
 		})
 		vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {

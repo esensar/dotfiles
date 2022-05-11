@@ -169,13 +169,11 @@ local statuslines = {
 				status = status
 					.. " %2*"
 					.. "["
-					.. first_lsp_message.name
+					.. (first_lsp_message.name or "")
 					.. "]"
-					.. "("
-					.. first_lsp_message.percentage
-					.. "%%)"
+					.. (first_lsp_message.percentage and "(" .. first_lsp_message.percentage .. "%%)" or "")
 					.. " "
-					.. first_lsp_message.title
+					.. (first_lsp_message.title or "")
 					.. "%*"
 			end
 			-- TODO: Add current container if devcontainer is used

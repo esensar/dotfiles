@@ -62,6 +62,14 @@ null_ls.setup({
 
 vim.keymap.set("n", "]w", vim.diagnostic.goto_next)
 vim.keymap.set("n", "[w", vim.diagnostic.goto_prev)
-vim.api.nvim_create_user_command("Warnings", vim.diagnostic.setqflist, {})
-vim.api.nvim_create_user_command("WarningsLoc", vim.diagnostic.setloclist, {})
-vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
+vim.api.nvim_create_user_command(
+	"Warnings",
+	vim.diagnostic.setqflist,
+	{ desc = "Show all LSP project warning in a quickfix list" }
+)
+vim.api.nvim_create_user_command(
+	"WarningsLoc",
+	vim.diagnostic.setloclist,
+	{ desc = "Show LSP buffer warnings in a location list" }
+)
+vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, { desc = "Format current buffer using LSP" })

@@ -44,7 +44,7 @@ end
 -- Opens up a rest console which can be saved -- cached by name
 function M.open_cached_rest_console(args)
 	local name = args[0] or args[1]
-	if not name then
+	if string.len(name) == 0 then
 		name = require("esensar.common.projects").get_project_id()
 	end
 	open_cached_rest_console(name)

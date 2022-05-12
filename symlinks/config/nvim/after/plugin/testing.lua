@@ -30,13 +30,13 @@ vim.api.nvim_create_user_command("PlenaryTestFile", function()
 	last_path = vim.fn.expand("%:p")
 
 	require("plenary.test_harness").test_directory(last_path, get_plenary_test_opts())
-end, {})
+end, { desc = "Test current file using plenary.nvim" })
 
 vim.api.nvim_create_user_command("PlenaryTestSuite", function()
 	last_path = vim.fn["projectionist#path"]()
 
 	require("plenary.test_harness").test_directory(last_path, get_plenary_test_opts())
-end, {})
+end, { desc = "Run all tests using plenary.nvim" })
 
 vim.api.nvim_create_user_command("PlenaryTestLast", function()
 	if not last_path then
@@ -44,7 +44,7 @@ vim.api.nvim_create_user_command("PlenaryTestLast", function()
 		return
 	end
 	require("plenary.test_harness").test_directory(last_path, get_plenary_test_opts())
-end, {})
+end, { desc = "Run last run test using plenary.nvim" })
 
 vim.api.nvim_create_user_command("PlenaryVisitLastTest", function()
 	if not last_path then
@@ -52,7 +52,7 @@ vim.api.nvim_create_user_command("PlenaryVisitLastTest", function()
 		return
 	end
 	vim.cmd("edit " .. last_path)
-end, {})
+end, { desc = "Visit latest run test using plenary.nvim" })
 
 local au_id = vim.api.nvim_create_augroup("plenary_test_group", {})
 vim.api.nvim_create_autocmd("FileType", {

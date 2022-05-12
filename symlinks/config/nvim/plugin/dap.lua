@@ -23,15 +23,15 @@ vim.keymap.set("n", "<leader>dsi", dap.step_into)
 -- Neovim Lua debugging
 vim.api.nvim_create_user_command("NeovimDebugStart", function()
 	require("osv").launch()
-end, {})
+end, { desc = "Start debugging neovim" })
 vim.api.nvim_create_user_command("NeovimDebugThis", function()
 	require("osv").run_this()
-end, {})
+end, { desc = "Start debugging this neovim lua script" })
 
 -- Vscode launch.json support
 vim.api.nvim_create_user_command("DapLoadVsCodeLaunch", function(args)
 	require("dap.ext.vscode").load_launchjs(args.args)
-end, {})
+end, { desc = "Load VsCode launch.json for DAP" })
 
 -- Nvim DAP UI
 local dapui = require("dapui")

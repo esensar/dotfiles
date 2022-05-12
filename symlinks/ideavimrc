@@ -24,6 +24,8 @@ nmap <leader>tn <Action>(RunAnything)
 nmap <leader>tf <Action>(RunClass)
 imap <C-K> <Action>(ParameterInfo)
 nmap <C-K> <Action>(ParameterInfo)
+nmap ]w <Action>(GotoNextError)
+nmap [w <Action>(GotoPreviousError)
 
 nmap <leader>db <Action>(ToggleLineBreakpoint)
 nmap <leader>dc <Action>(ChooseDebugConfiguration)

@@ -13,6 +13,8 @@ set idearefactormode=keep
 " IdeaVIM mappings
 nmap [c <Action>(VcsShowPrevChangeMarker)
 nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap ]w <Action>(GotoNextError)
+nmap [w <Action>(GotoPreviousError)
 
 nmap <C-P> <Action>(SearchEverywhere)
 nmap gd <Action>(GotoDeclaration)
@@ -22,15 +24,15 @@ nmap <leader>rn <Action>(RenameElement)
 nmap <C-A-F> <Action>(FindInPath)
 nmap <leader>tn <Action>(RunAnything)
 nmap <leader>tf <Action>(RunClass)
-imap <C-K> <Action>(ParameterInfo)
-nmap <C-K> <Action>(ParameterInfo)
-nmap ]w <Action>(GotoNextError)
-nmap [w <Action>(GotoPreviousError)
+xmap <C-K> <Action>(ParameterInfo)
+nmap <leader>c <Action>(HideSideWindows)
 
 nmap <leader>db <Action>(ToggleLineBreakpoint)
 nmap <leader>dc <Action>(ChooseDebugConfiguration)
 
 nmap <leader>ac <Action>(ShowIntentionActions)
+
+nmap <leader>tb <Action>(Annotate)
 
 command! Start action Run
 if &ide =~? 'rider'
@@ -51,5 +53,5 @@ command! TODO action ActivateTODOToolWindow
 command! Term action ActivateTerminalToolWindow
 command! Sync action Android.SyncProject
 command! Format action ReformatCode
-
-nmap <leader>tb <Action>(Annotate)
+command! EditVimConfig e ~/.ideavimrc
+command! ReloadVimConfig action IdeaVim.ReloadVimRc.reload

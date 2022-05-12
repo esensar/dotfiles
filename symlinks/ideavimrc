@@ -33,6 +33,7 @@ nmap <leader>dc <Action>(ChooseDebugConfiguration)
 nmap <leader>ac <Action>(ShowIntentionActions)
 
 nmap <leader>tb <Action>(Annotate)
+nmap - :Ex<CR>
 
 command! Start action Run
 if &ide =~? 'rider'
@@ -55,3 +56,8 @@ command! Sync action Android.SyncProject
 command! Format action ReformatCode
 command! EditVimConfig e ~/.ideavimrc
 command! ReloadVimConfig action IdeaVim.ReloadVimRc.reload
+command! Warnings action ActivateProblemsViewToolWindow
+
+nmap <leader>vec :EditVimConfig<CR>
+nmap <leader>vep :EditVimConfig<CR>
+nmap <leader>vrc :ReloadVimConfig<CR>

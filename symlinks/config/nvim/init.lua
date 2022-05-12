@@ -39,16 +39,3 @@ vim.cmd("set path+=**")
 
 -- automatically rebalance windows on vim resize
 vim.cmd("autocmd VimResized * :wincmd =")
-
-vim.api.nvim_create_user_command("EditVimConfig", function()
-	vim.cmd("edit $VIMHOME/init.lua")
-end, {})
-
-vim.api.nvim_create_user_command("EditVimPlugins", function()
-	vim.cmd("edit $VIMPLUGINS")
-end, {})
-
-vim.api.nvim_create_user_command("ReloadVimConfig", function()
-	require("plenary.reload").reload_module("esensar", true)
-	vim.cmd("source $MYVIMRC")
-end, {})

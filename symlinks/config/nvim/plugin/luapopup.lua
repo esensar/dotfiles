@@ -117,7 +117,7 @@ end
 
 vim.api.nvim_create_user_command("LuaPopup", function()
 	popup_and_run(popup_type.lua)
-end, {})
+end, { desc = "Show a popup for writing lua code that will be executed after closing" })
 
 vim.api.nvim_create_user_command("LuaPopupRestore", function()
 	if get_last_win(popup_type.lua) then
@@ -125,11 +125,11 @@ vim.api.nvim_create_user_command("LuaPopupRestore", function()
 	else
 		vim.notify("No popup to restore! Use :LuaPopup first!", vim.log.levels.WARN)
 	end
-end, {})
+end, { desc = "Restore last popup displayed with LuaPopup command" })
 
 vim.api.nvim_create_user_command("FennelPopup", function()
 	popup_and_run(popup_type.fennel)
-end, {})
+end, { desc = "Show a popup for writing fennel code that will be executed after closing" })
 
 vim.api.nvim_create_user_command("FennelPopupRestore", function()
 	if get_last_win(popup_type.fennel) then
@@ -137,4 +137,4 @@ vim.api.nvim_create_user_command("FennelPopupRestore", function()
 	else
 		vim.notify("No popup to restore! Use :FennelPopup first!", vim.log.levels.WARN)
 	end
-end, {})
+end, { desc = "Restore last popup displayed with FennelPopup command" })

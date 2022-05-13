@@ -1,0 +1,40 @@
+[gd_resource type="EditorSettings" format=3]
+
+[resource]
+interface/theme/base_color = Color(0.21, 0.24, 0.29, 1)
+interface/theme/accent_color = Color(0.44, 0.73, 0.98, 1)
+interface/theme/contrast = 0.3
+text_editor/theme/highlighting/symbol_color = Color(0.67, 0.785, 1, 1)
+text_editor/theme/highlighting/keyword_color = Color(1, 0.44, 0.52, 1)
+text_editor/theme/highlighting/control_flow_keyword_color = Color(1, 0.55, 0.8, 1)
+text_editor/theme/highlighting/base_type_color = Color(0.26, 1, 0.76, 1)
+text_editor/theme/highlighting/engine_type_color = Color(0.556, 1, 0.856, 1)
+text_editor/theme/highlighting/user_type_color = Color(0.778, 1, 0.928, 1)
+text_editor/theme/highlighting/comment_color = Color(0.8025, 0.81, 0.8225, 0.5)
+text_editor/theme/highlighting/string_color = Color(1, 0.925, 0.63, 1)
+text_editor/theme/highlighting/background_color = Color(0.1155, 0.132, 0.1595, 1)
+text_editor/theme/highlighting/completion_background_color = Color(0.21, 0.24, 0.29, 1)
+text_editor/theme/highlighting/completion_selected_color = Color(1, 1, 1, 0.07)
+text_editor/theme/highlighting/completion_existing_color = Color(1, 1, 1, 0.14)
+text_editor/theme/highlighting/completion_font_color = Color(0.8025, 0.81, 0.8225, 1)
+text_editor/theme/highlighting/text_color = Color(0.8025, 0.81, 0.8225, 1)
+text_editor/theme/highlighting/line_number_color = Color(0.8025, 0.81, 0.8225, 0.5)
+text_editor/theme/highlighting/safe_line_number_color = Color(0.8025, 0.972, 0.8225, 0.75)
+text_editor/theme/highlighting/caret_color = Color(1, 1, 1, 1)
+text_editor/theme/highlighting/text_selected_color = Color(0.084, 0.096, 0.116, 1)
+text_editor/theme/highlighting/selection_color = Color(0.44, 0.73, 0.98, 0.4)
+text_editor/theme/highlighting/brace_mismatch_color = Color(1, 0.47, 0.42, 1)
+text_editor/theme/highlighting/current_line_color = Color(1, 1, 1, 0.07)
+text_editor/theme/highlighting/line_length_guideline_color = Color(0.21, 0.24, 0.29, 1)
+text_editor/theme/highlighting/word_highlighted_color = Color(1, 1, 1, 0.07)
+text_editor/theme/highlighting/number_color = Color(0.63, 1, 0.88, 1)
+text_editor/theme/highlighting/function_color = Color(0.34, 0.7, 1, 1)
+text_editor/theme/highlighting/member_variable_color = Color(0.736, 0.88, 1, 1)
+text_editor/theme/highlighting/mark_color = Color(1, 0.47, 0.42, 0.3)
+text_editor/theme/highlighting/breakpoint_color = Color(1, 0.47, 0.42, 1)
+text_editor/theme/highlighting/code_folding_color = Color(1, 1, 1, 0.7)
+text_editor/theme/highlighting/search_result_color = Color(1, 1, 1, 0.07)
+asset_library/available_urls = {
+"godotengine.org (Official)": "https://godotengine.org/asset-library/api"
+}
+asset_library/use_threads = true

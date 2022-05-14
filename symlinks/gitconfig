@@ -25,6 +25,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[filter "personal-godot-configuration-projects"]
+	clean = sed -e "/projects.*/d"
 [include]
 	path = ~/.gitconfig.local
 [includeIf "gitdir/i:~/Projects/Optimum/"]

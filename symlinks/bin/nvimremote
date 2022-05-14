@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+SERVER_NAME=$1
+FILE=$2
+LINE=$3
+COLUMN=$4
+
+if test -S $SERVER_NAME; then
+	/usr/bin/wmctrl -a "Neovim Godot"
+	~/.asdf/shims/nvim --server $SERVER_NAME --remote $2
+	~/.asdf/shims/nvim --server $SERVER_NAME --remote-send ":call cursor($LINE, $COLUMN)<CR>"
+else
+	/usr/bin/alacritty --title "Neovim Godot" -e /usr/bin/fish -c "nvim --listen $SERVER_NAME $2 --cmd \"call cursor($LINE, $COLUMN)\""
+fi

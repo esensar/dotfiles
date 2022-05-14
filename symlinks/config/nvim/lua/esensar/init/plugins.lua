@@ -76,7 +76,7 @@ return require("packer").startup({
 
 		-- LSP
 		use("neovim/nvim-lspconfig") -- Easy LSP Config
-		use("alexaandru/nvim-lspupdate") -- Easy install and update for many LSP servers
+		use("williamboman/nvim-lsp-installer") -- Easy LSP install
 		use("hrsh7th/cmp-nvim-lsp") -- LSP source for cmp
 		use("hrsh7th/cmp-buffer") -- Buffer source for nvim-cmp
 		use("hrsh7th/cmp-path") -- Path source for nvim-cmp

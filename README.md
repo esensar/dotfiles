@@ -8,14 +8,14 @@ make bootstrap
 
 ## Contents
 1. *installed_packages* directory used in Linux and Mac installations to create groups of installed packages, which can easily be cloned using **clone-installation** script. List is generated using **migrate-installation** script and it can be compared with any other using **compare-installation**.
-2. *themes* directory used mostly for **Arch Linux** installations to generate custom themes from small files containing color definitions
-3. *symlinks* directory containing many configuration files which are symlinked during installation process in their correct places to be used later
+2. *symlinks* directory containing many configuration files which are symlinked during installation process in their correct places to be used later
     - **Git** related files - global *gitconfig* and *gitignore*
     - **Shell** config files - bash/zsh/fish for linux/mac
     - **Vim/Nvim** config files
     - **Arch** config files - many configuration files controlling most of the setup
     - **config** directory, containing custom configurations for many apps (most of Linux apps and some of Mac OS apps)
     - **bin** director containing many useful scripts, many of them requiring **Arch Linux** and its setup
+3. *tests* directory contains various generic tests that are used in CI to confirm the custom tools and configuration work as expected
 
 ## Installation manual
 ### Linux (Arch)

@@ -5,9 +5,6 @@ export MACHINE_TYPE='linux'
 export AUR_INSTALL_HOME=~/.local/share/aurfetch
 export GRIM_DEFAULT_DIR=~/Pictures/Screenshots
 
-export PATH="$PATH:$HOME/Android/sdk/platform-tools/"
-export PATH="$PATH:$HOME/Android/sdk/tools/bin"
-
 # Local aliases and variables
 if [ -f "$HOME/.profile.local" ]; then
     source $HOME/.profile.local

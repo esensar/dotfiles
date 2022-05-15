@@ -178,6 +178,8 @@ VERSION="${POSITIONAL[2]}"
 echov "Detected server: $SERVER"
 echov "Detected version: $VERSION"
 
+LSP_HOME="$HOME/.local/opt"
+
 declare -A SUPPORTED_SERVERS=(
 ["java"]="jdtls"
 ["dotnet"]="omnisharp"
@@ -189,12 +191,12 @@ declare -A SUPPORTED_SERVERS=(
 ["zig"]="zls"
 )
 declare -A LINK_SOURCES=(
-["omnisharp"]="$HOME/lsp/dotnet/omnisharp/run"
-["solang"]="$HOME/lsp/solidity/solang/solang"
-["lemminx"]="$HOME/lsp/xml/lemminx/lemminx"
-["kotlin-language-server"]="$HOME/lsp/kotlin/kotlin-language-server/bin/kotlin-language-server"
-["rust-analyzer"]="$HOME/lsp/rust/rust-analyzer/rust-analyzer"
-["zls"]="$HOME/lsp/zig/zls/zls"
+["omnisharp"]="$LSP_HOME/dotnet/omnisharp/run"
+["solang"]="$LSP_HOME/solidity/solang/solang"
+["lemminx"]="$LSP_HOME/xml/lemminx/lemminx"
+["kotlin-language-server"]="$LSP_HOME/kotlin/kotlin-language-server/bin/kotlin-language-server"
+["rust-analyzer"]="$LSP_HOME/rust/rust-analyzer/rust-analyzer"
+["zls"]="$LSP_HOME/zig/zls/zls"
 )
 declare -A LINK_TARGETS=(
 ["omnisharp"]="$HOME/.local/bin/omnisharp"
@@ -255,8 +257,8 @@ link_server () {
 	exit 0
 	;;
       hls)
-	SOURCE_TO_CHECK="$HOME/lsp/haskell/hls/haskell-language-server-wrapper"
-	SOURCE="$HOME/lsp/haskell/hls/*"
+	SOURCE_TO_CHECK="$LSP_HOME/haskell/hls/haskell-language-server-wrapper"
+	SOURCE="$LSP_HOME/haskell/hls/*"
 	TARGET="$HOME/.local/bin"
 	;;
       *)
@@ -301,8 +303,8 @@ install () {
       fi
       FILE_NAME=$(curl https://download.eclipse.org/jdtls/milestones/$VERSION/latest.txt)
       wget -O - https://download.eclipse.org/jdtls/milestones/$VERSION/$FILE_NAME > /tmp/jdtls.tar.gz
-      mkdir -p $HOME/lsp/java/jdtls
-      tar -xf /tmp/jdtls.tar.gz -C $HOME/lsp/java/jdtls
+      mkdir -p $LSP_HOME/java/jdtls
+      tar -xf /tmp/jdtls.tar.gz -C $LSP_HOME/java/jdtls
       ;;
     omnisharp)
       if [ -z "$VERSION" ]; then
@@ -317,8 +319,8 @@ install () {
 	  ;;
       esac
       wget -O - https://github.com/OmniSharp/omnisharp-roslyn/releases/download/$VERSION/$FILE_NAME > /tmp/omnisharp.tar.gz
-      mkdir -p $HOME/lsp/dotnet/omnisharp
-      tar -xf /tmp/omnisharp.tar.gz -C $HOME/lsp/dotnet/omnisharp
+      mkdir -p $LSP_HOME/dotnet/omnisharp
+      tar -xf /tmp/omnisharp.tar.gz -C $LSP_HOME/dotnet/omnisharp
       ;;
     hls)
       if [ -z "$VERSION" ]; then
@@ -333,9 +335,9 @@ install () {
 	  ;;
       esac
       wget -O - https://github.com/haskell/haskell-language-server/releases/download/$VERSION/$FILE_NAME > /tmp/hls.tar.gz
-      mkdir -p $HOME/lsp/haskell/hls
-      tar -xf /tmp/hls.tar.gz -C $HOME/lsp/haskell/hls
-      chmod +x $HOME/lsp/haskell/hls/*
+      mkdir -p $LSP_HOME/haskell/hls
+      tar -xf /tmp/hls.tar.gz -C $LSP_HOME/haskell/hls
+      chmod +x $LSP_HOME/haskell/hls/*
       ;;
     solang)
       if [ -z "$VERSION" ]; then
@@ -352,9 +354,9 @@ install () {
 	  FILE_NAME="solang-mac-intel"
 	  ;;
       esac
-      mkdir -p $HOME/lsp/solidity/solang
-      wget -O - https://github.com/hyperledger-labs/solang/releases/download/$VERSION/$FILE_NAME > $HOME/lsp/solidity/solang/solang
-      chmod +x $HOME/lsp/solidity/solang/solang
+      mkdir -p $LSP_HOME/solidity/solang
+      wget -O - https://github.com/hyperledger-labs/solang/releases/download/$VERSION/$FILE_NAME > $LSP_HOME/solidity/solang/solang
+      chmod +x $LSP_HOME/solidity/solang/solang
       ;;
     lemminx)
       if [ -z "$VERSION" ]; then
@@ -371,11 +373,11 @@ install () {
 	  FILE_NAME="lemminx-osx-x86_64.zip"
 	  ;;
       esac
-      mkdir -p $HOME/lsp/xml/lemminx
+      mkdir -p $LSP_HOME/xml/lemminx
 
       wget -O - https://download.jboss.org/jbosstools/vscode/stable/lemminx-binary/$VERSION/$FILE_NAME > /tmp/lemminx-download.zip
-      unzip -p /tmp/lemminx-download.zip > $HOME/lsp/xml/lemminx/lemminx
-      chmod +x $HOME/lsp/xml/lemminx/lemminx
+      unzip -p /tmp/lemminx-download.zip > $LSP_HOME/xml/lemminx/lemminx
+      chmod +x $LSP_HOME/xml/lemminx/lemminx
       ;;
     kotlin-language-server)
       if [ -z "$VERSION" ]; then
@@ -383,9 +385,9 @@ install () {
       fi
       FILE_NAME="server.zip"
       wget -O - https://github.com/fwcd/kotlin-language-server/releases/download/$VERSION/$FILE_NAME > /tmp/kotlin-language-server.zip
-      mkdir -p $HOME/lsp/kotlin
+      mkdir -p $LSP_HOME/kotlin
       unzip /tmp/kotlin-language-server.zip -d /tmp/kotlin-language-server
-      mv /tmp/kotlin-language-server/server $HOME/lsp/kotlin/kotlin-language-server
+      mv /tmp/kotlin-language-server/server $LSP_HOME/kotlin/kotlin-language-server
       ;;
     rust-analyzer)
       if [ -z "$VERSION" ]; then
@@ -404,9 +406,9 @@ install () {
 	  ;;
       esac
       wget -O - https://github.com/rust-analyzer/rust-analyzer/releases/download/$VERSION/$FILE_NAME > /tmp/rust-analyzer.gz
-      mkdir -p $HOME/lsp/rust/rust-analyzer
-      gunzip /tmp/rust-analyzer.gz -c > $HOME/lsp/rust/rust-analyzer/rust-analyzer
-      chmod +x $HOME/lsp/rust/rust-analyzer/rust-analyzer
+      mkdir -p $LSP_HOME/rust/rust-analyzer
+      gunzip /tmp/rust-analyzer.gz -c > $LSP_HOME/rust/rust-analyzer/rust-analyzer
+      chmod +x $LSP_HOME/rust/rust-analyzer/rust-analyzer
       ;;
     zls)
       if [ -z "$VERSION" ]; then
@@ -424,9 +426,9 @@ install () {
 	  ;;
       esac
       wget -O - https://github.com/zigtools/zls/releases/download/$VERSION/$FILE_NAME > /tmp/zls.xz
-      mkdir -p $HOME/lsp/zig/zls
-      tar -xJf /tmp/zls.xz --strip-components=1 -C $HOME/lsp/zig/zls
-      chmod +x $HOME/lsp/zig/zls/zls
+      mkdir -p $LSP_HOME/zig/zls
+      tar -xJf /tmp/zls.xz --strip-components=1 -C $LSP_HOME/zig/zls
+      chmod +x $LSP_HOME/zig/zls/zls
       ;;
     *)
       echo "Unknown server: $SERVER"
@@ -449,28 +451,28 @@ uninstall () {
   SERVER=$1
   case $SERVER in
     jdtls)
-      rm -rf $HOME/lsp/java/jdtls
+      rm -rf $LSP_HOME/java/jdtls
       ;;
     omnisharp)
-      rm -rf $HOME/lsp/dotnet/omnisharp
+      rm -rf $LSP_HOME/dotnet/omnisharp
       ;;
     hls)
-      rm -rf $HOME/lsp/haskell/hls
+      rm -rf $LSP_HOME/haskell/hls
       ;;
     solang)
-      rm -rf $HOME/lsp/solidity/solang
+      rm -rf $LSP_HOME/solidity/solang
       ;;
     lemminx)
-      rm -rf $HOME/lsp/xml/lemminx
+      rm -rf $LSP_HOME/xml/lemminx
       ;;
     kotlin-language-server)
-      rm -rf $HOME/lsp/kotlin/kotlin-language-server
+      rm -rf $LSP_HOME/kotlin/kotlin-language-server
       ;;
     rust-analyzer)
-      rm -rf $HOME/lsp/rust/rust-analyzer
+      rm -rf $LSP_HOME/rust/rust-analyzer
       ;;
     zls)
-      rm -rf $HOME/lsp/zig/zls
+      rm -rf $LSP_HOME/zig/zls
       ;;
     *)
       echo "Unknown server: $SERVER"
@@ -490,7 +492,7 @@ status () {
   ERRORSTART="\033[91m"
   INFOSTART="\033[34m"
   MODEND="\033[0m"
-  LANGUAGES=$(ls $HOME/lsp)
+  LANGUAGES=$(ls $LSP_HOME)
   echov "Found languages: $LANGUAGES"
   if [ $ALL -eq 1 ]; then
     echov "Adding all supported languages"
@@ -508,8 +510,8 @@ status () {
   fi
   echov ""
   for lang in $LANGUAGES; do
-    if [ -d "$HOME/lsp/$lang" ]; then
-      INSTALLED_SERVERS=$(ls $HOME/lsp/$lang)
+    if [ -d "$LSP_HOME/$lang" ]; then
+      INSTALLED_SERVERS=$(ls $LSP_HOME/$lang)
     else
       INSTALLED_SERVERS=""
     fi
@@ -561,9 +563,9 @@ status () {
 	  fi
 	  echo -e "    Installed: ${INFOSTART}true${MODEND}"
 	  echo "    Version: $VERSION"
-	  echo "    Location: $HOME/lsp/$lang/$server"
+	  echo "    Location: $LSP_HOME/$lang/$server"
 	  LINKED=$(is_linked $server)
-	  if [[ ":$PATH:" == *":$HOME/lsp/$lang/$server:"* ]]; then
+	  if [[ ":$PATH:" == *":$LSP_HOME/$lang/$server:"* ]]; then
 	    echo -e "    On path: ${INFOSTART}true${MODEND}"
 	  elif [ $LINKED -eq 1 ]; then
 	    echo -e "    On path: ${INFOSTART}${BOLDSTART}linked${MODEND}${MODEND}"
@@ -584,7 +586,7 @@ status () {
   if [ $HAD_UNKNOWN -eq 1 ]; then
     if [ $KNOWN_ONLY -eq 0 ]; then
       echov "Found unknown servers."
-      echov "Make sure $HOME/lsp contains only LSP servers and similar tools."
+      echov "Make sure $HOME/.local/opt contains only LSP servers and similar tools."
     fi
   fi
 }

@@ -18,9 +18,7 @@
 # fi
 
 # set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/bin-loc:$HOME/.local/bin:$PATH"
-
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -32,8 +30,6 @@ export MY_CONFIG_DIR=$HOME/.config
 export MY_CONFIG_CACHE_DIR=$HOME/.local/share/script_cache
 export MY_PROJECTS_HOME=$HOME/Projects
 export MY_DOCUMENTS_HOME=$HOME/Documents
-
-export NVM_DIR="$HOME/.nvm"
 
 export EDITOR=nvim
 export VISUAL=nvim

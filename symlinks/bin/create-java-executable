@@ -20,4 +20,4 @@ if [ -z "$OUTPUT" ]; then
   OUTPUT=$filename
 fi
 
-cat ~/bin/java-helpers/java-stub.sh $FILE > $OUTPUT && chmod +x $OUTPUT
+cat ~/.local/opt/script_utils/java-stub.sh $FILE > $OUTPUT && chmod +x $OUTPUT

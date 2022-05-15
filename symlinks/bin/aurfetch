@@ -2,7 +2,7 @@
 
 set -e
 
-. ~/.config/sh-utils/echo.sh
+. ~/.local/opt/script_utils/echo.sh
 
 usage () {
   case $1 in

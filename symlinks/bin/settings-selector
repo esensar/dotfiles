@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SETTINGS_DIRECTORY=$HOME/bin/settings
+SETTINGS_DIRECTORY=$HOME/.local/opt/script_utils/settings
 
 function get_settings()
 {

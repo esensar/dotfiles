@@ -19,6 +19,7 @@ SSH_KEYS_HOME := $(HOME)/.ssh
 SSH_CONFIG_FILE := $(SSH_KEYS_HOME)/config
 PERSONAL_SSH_KEYS_HOME := $(SSH_KEYS_HOME)/Personal
 SCRIPTS_CACHE_DIR := $(HOME)/.local/share/script_cache
+SCRIPTS_UTILS_DIR := $(HOME)/.local/opt/script_utils
 PROJECTS_ROOT := $(HOME)/Projects
 DOCUMENTS_ROOT := $(HOME)/Documents
 PICTURES_ROOT := $(HOME)/Pictures
@@ -149,6 +150,12 @@ link_vim: check_os
 link_apps_config: check_os
 	@echo "Linking apps config files..."
 	$(call link,config,.config)
+
+.PHONY: link_script_utils
+link_script_utils: check_os
+	@echo "Linking script_utils files..."
+	@mkdir -p $(SCRIPTS_UTILS_DIR)
+	$(call link,script_utils,.local/opt/script_utils)
 
 .PHONY: link_tool_versions
 link_tool_versions: check_os

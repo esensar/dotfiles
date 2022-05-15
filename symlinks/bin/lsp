@@ -2,7 +2,7 @@
 
 set -e
 
-. ~/.config/sh-utils/echo.sh
+. ~/.local/opt/script_utils/echo.sh
 
 usage () {
   case $1 in
@@ -178,7 +178,7 @@ VERSION="${POSITIONAL[2]}"
 echov "Detected server: $SERVER"
 echov "Detected version: $VERSION"
 
-LSP_HOME="$HOME/.local/opt"
+LSP_HOME="$HOME/.local/opt/lsp"
 
 declare -A SUPPORTED_SERVERS=(
 ["java"]="jdtls"

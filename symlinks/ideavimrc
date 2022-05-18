@@ -24,7 +24,8 @@ nmap <leader>rn <Action>(RenameElement)
 nmap <C-A-F> <Action>(FindInPath)
 nmap <leader>tn <Action>(RunAnything)
 nmap <leader>tf <Action>(RunClass)
-xmap <C-K> <Action>(ParameterInfo)
+imap <A-K> <Action>(ParameterInfo)
+nmap <A-K> <Action>(ParameterInfo)
 nmap <leader>c <Action>(HideSideWindows)
 
 nmap <leader>db <Action>(ToggleLineBreakpoint)
@@ -57,6 +58,7 @@ command! Format action ReformatCode
 command! EditVimConfig e ~/.ideavimrc
 command! ReloadVimConfig action IdeaVim.ReloadVimRc.reload
 command! Warnings action ActivateProblemsViewToolWindow
+command! Logs action ActivateLogcatToolWindow
 
 nmap <leader>vec :EditVimConfig<CR>
 nmap <leader>vep :EditVimConfig<CR>

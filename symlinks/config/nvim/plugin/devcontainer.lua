@@ -1,2 +1,6 @@
 -- Devcontainer setup
-require("devcontainer").setup({})
+require("devcontainer").setup({
+	autocommands = {
+		clean = true,
+	},
+})

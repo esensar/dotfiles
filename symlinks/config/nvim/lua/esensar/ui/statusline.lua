@@ -177,9 +177,8 @@ local statuslines = {
 					.. "%*"
 			end
 
-			local devcontainer_build_status = require("devcontainer.status").get_status().build_status
-			local build_status_last = devcontainer_build_status[#devcontainer_build_status]
-			if build_status_last and build_status_last.running then
+			local build_status_last = require("devcontainer.status").find_build({ running = true })
+			if build_status_last then
 				local build_lines = build_status_last.commands_run
 				local command_info = build_lines[#build_lines]
 				local command_status_line = ""
@@ -235,7 +234,8 @@ return {
 				update_colors()
 			end,
 		})
-		vim.api.nvim_create_autocmd({ "User LspProgressUpdate", "User LspRequest" }, {
+		vim.api.nvim_create_autocmd("User", {
+			pattern = { "LspProgressUpdate", "LspRequest", "DevcontainerBuildProgress" },
 			group = au_id,
 			callback = function()
 				vim.cmd("redrawstatus")

@@ -18,7 +18,7 @@ function M.new_bottom_split(opts)
 end
 
 function M.new_centered_popup(opts)
-	local split = nui_popup(vim.tbl_extend("force", {
+	local popup = nui_popup(vim.tbl_extend("force", {
 		enter = true,
 		focusable = true,
 		border = {
@@ -31,9 +31,9 @@ function M.new_centered_popup(opts)
 		},
 	}, opts))
 
-	split:mount()
+	popup:mount()
 
-	return split
+	return popup
 end
 
 return M

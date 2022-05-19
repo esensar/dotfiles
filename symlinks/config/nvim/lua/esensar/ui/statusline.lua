@@ -176,7 +176,28 @@ local statuslines = {
 					.. (first_lsp_message.title or "")
 					.. "%*"
 			end
-			-- TODO: Add current container if devcontainer is used
+
+			local devcontainer_build_status = require("devcontainer.status").get_status().build_status
+			local build_status_last = devcontainer_build_status[#devcontainer_build_status]
+			if build_status_last and build_status_last.running then
+				local build_lines = build_status_last.commands_run
+				local command_info = build_lines[#build_lines]
+				local command_status_line = ""
+				if command_info then
+					command_status_line = "(" .. string.sub(command_info, 0, 10) .. ")"
+				end
+				status = status
+					.. " %4*"
+					.. "["
+					.. (build_status_last.current_step or "")
+					.. "/"
+					.. (build_status_last.step_count or "")
+					.. "]"
+					.. (build_status_last.progress and "(" .. build_status_last.progress .. "%%)" or "")
+					.. " "
+					.. command_status_line
+					.. "%*"
+			end
 			return status
 		end
 

@@ -38,4 +38,11 @@ vim.keymap.set("n", "<Leader>c", ":ccl <bar> lcl<CR>")
 vim.cmd("set path+=**")
 
 -- automatically rebalance windows on vim resize
-vim.cmd("autocmd VimResized * :wincmd =")
+local au_id = vim.api.nvim_create_augroup("esensar_init_lua", {})
+vim.api.nvim_create_autocmd("VimResized", {
+	pattern = "*",
+	group = au_id,
+	callback = function()
+		vim.cmd("wincmd =")
+	end,
+})

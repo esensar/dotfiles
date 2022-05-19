@@ -19,12 +19,14 @@ local function on_attach(client, bufnr)
 	vim.keymap.set("n", "<Leader>ac", vim.lsp.buf.code_action, opts)
 
 	if client.resolved_capabilities.document_formatting then
-		vim.cmd([[
-			augroup LspFormatting
-			autocmd! * <buffer>
-			autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-			augroup END
-			]])
+		local au_id = vim.api.nvim_create_augroup("LspFormatting", {})
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = au_id,
+			callback = function()
+				vim.lsp.buf.formatting_seq_sync()
+			end,
+			buffer = bufnr,
+		})
 	end
 end
 

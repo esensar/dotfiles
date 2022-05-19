@@ -16,7 +16,7 @@ local configuration_overrides = {
 	},
 	omnisharp = {
 		cmd = {
-			vim.fn.glob("$HOME") .. "/lsp/dotnet/omnisharp/run",
+			vim.fn.glob("$HOME") .. "/.local/share/lsp/dotnet/omnisharp/run",
 			"--languageserver",
 			"--hostPID",
 			tostring(vim.fn.getpid()),

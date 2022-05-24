@@ -21,9 +21,7 @@ function M.setup()
 
 	local root_markers = { "gradlew", "pom.xml" }
 	local root_dir = require("jdtls.setup").find_root(root_markers)
-	local home = os.getenv("HOME")
 
-	local workspace_folder = home .. "/.workspace" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 	local config = {
 		flags = {
 			allow_incremental_sync = true,
@@ -41,7 +39,8 @@ function M.setup()
 			},
 		},
 	}
-	config.cmd = { "jdtls-start.sh", workspace_folder }
+	config.cmd = { "jdtls" }
+	config.root_dir = root_dir
 	config.on_init = function(client, _)
 		client.notify("workspace/didChangeConfiguration", { settings = config.settings })
 	end

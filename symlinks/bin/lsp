@@ -49,9 +49,9 @@ usage_install () {
   echo "  -h --help        - prints this help message"
   echo "  -v --verbose     - enables verbose logging"
   echov "Examples:"
-  echov "  > lsp install jdtls"
+  echov "  > lsp install zls"
   echov ""
-  echov "  > lsp install jdtls 1.4.0"
+  echov "  > lsp install zls 1.4.0"
 }
 
 usage_link () {
@@ -65,7 +65,7 @@ usage_link () {
   echo "  -h --help        - prints this help message"
   echo "  -v --verbose     - enables verbose logging"
   echov "Examples:"
-  echov "  > lsp link jdtls"
+  echov "  > lsp link zls"
 }
 
 usage_uninstall () {
@@ -79,7 +79,7 @@ usage_uninstall () {
   echo "  -h --help        - prints this help message"
   echo "  -v --verbose     - enables verbose logging"
   echov "Examples:"
-  echov "  > lsp uninstall jdtls"
+  echov "  > lsp uninstall zls"
 }
 
 usage_status () {
@@ -97,25 +97,14 @@ usage_status () {
   echo "  -v --verbose     - enables verbose logging"
   echov ""
   echov "Examples:"
-  echov "  > lsp status java
+  echov "  > lsp status zig
 "
-  echov "  Language java:"
-  echov "    Server google-java-format (UNKNOWN):"
-  echov "      Installed: true"
-  echov "      Version: UNKNOWN"
-  echov "      Location: /Users/ensar.sarajcic/lsp/java/google-java-format"
-  echov "      On path: false"
+  echov "  Language zig:"
   echov ""
-  echov "  > lsp status java --all
+  echov "  > lsp status zig --all
 "
-  echov "  Language java:"
-  echov "    Server google-java-format (UNKNOWN):"
-  echov "      Installed: true"
-  echov "      Version: UNKNOWN"
-  echov "      Location: /Users/ensar.sarajcic/lsp/java/google-java-format"
-  echov "      On path: false"
-  echov ""
-  echov "    Server jdtls:"
+  echov "  Language zig:"
+  echov "    Server zls:"
   echov "      Installed: false"
 }
 
@@ -253,7 +242,7 @@ link_server () {
   if [ -z "$SOURCE" ]; then
     case $SERVER in
       jdtls)
-	echo "No need to link jdtls. Use 'jdtls-start.sh' instead!"
+	echo "No need to link jdtls."
 	exit 0
 	;;
       hls)
@@ -298,13 +287,10 @@ install () {
   VERSION=$2
   case $SERVER in
     jdtls)
-      if [ -z "$VERSION" ]; then
-	VERSION="1.4.0"
-      fi
-      FILE_NAME=$(curl https://download.eclipse.org/jdtls/milestones/$VERSION/latest.txt)
-      wget -O - https://download.eclipse.org/jdtls/milestones/$VERSION/$FILE_NAME > /tmp/jdtls.tar.gz
-      mkdir -p $LSP_HOME/java/jdtls
-      tar -xf /tmp/jdtls.tar.gz -C $LSP_HOME/java/jdtls
+      echo "jdtls is no longer supported by this!"
+      echo "Use the following: "
+      echo ""
+      echo "curl https://raw.githubusercontent.com/eruizc-dev/jdtls-launcher/master/install.sh | bash"
       ;;
     omnisharp)
       if [ -z "$VERSION" ]; then

@@ -26,7 +26,7 @@ local function on_attach(client, bufnr)
 		vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
 	end
 
-	if client.server_capabilities.document_formatting then
+	if client.server_capabilities.documentFormattingProvider then
 		local au_id = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = au_id })
 		vim.api.nvim_create_autocmd("BufWritePre", {

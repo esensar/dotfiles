@@ -6,28 +6,20 @@ local common_config = require("esensar.lsp.server_config")
 local M = {}
 
 function M.setup()
-	require("jdtls").setup_dap()
-	require("jdtls.setup").add_commands()
-	local on_attach = function(client, bufnr)
-		common_config.on_attach(client, bufnr)
+	local _, installed_jdtls = require("nvim-lsp-installer.servers").get_server("jdtls")
 
-		local opts = { buffer = bufnr }
-		local code_action_fun = function()
-			require("jdtls").code_action()
-		end
-		vim.keymap.set("n", "<A-CR>", code_action_fun, opts)
-		vim.keymap.set("n", "<Leader>ac", code_action_fun, opts)
-	end
+	require("jdtls").setup_dap({ hotcoredeplace = "auto" })
+	require("jdtls.setup").add_commands()
 
 	local root_markers = { "gradlew", "pom.xml" }
 	local root_dir = require("jdtls.setup").find_root(root_markers)
 
-	local config = {
+	local config = vim.tbl_extend("force", installed_jdtls["_default_options"], {
 		flags = {
 			allow_incremental_sync = true,
 		},
-		on_attach = on_attach,
-	}
+		on_attach = common_config.on_attach,
+	})
 	config.settings = {
 		java = {
 			signatureHelp = { enabled = true },
@@ -39,7 +31,6 @@ function M.setup()
 			},
 		},
 	}
-	config.cmd = { "jdtls" }
 	config.root_dir = root_dir
 	config.on_init = function(client, _)
 		client.notify("workspace/didChangeConfiguration", { settings = config.settings })

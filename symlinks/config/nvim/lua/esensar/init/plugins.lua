@@ -48,6 +48,7 @@ return require("packer").startup({
 		use("diepm/vim-rest-console") -- REST console for vim
 		use("esensar/nvim-dev-container") -- devcontainer.json support
 		use("jbyuki/one-small-step-for-vimkind") -- Debugger for Nvim-Lua
+		use("esensar/neovim-java-plugin-host") -- Host for Java plugins
 
 		-- Snippets
 		use("L3MON4D3/LuaSnip") -- snippets support

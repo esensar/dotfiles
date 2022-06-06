@@ -5,14 +5,28 @@
 local common_config = require("esensar.lsp.server_config")
 local M = {}
 
+local function is_in_config_home(bufname)
+	bufname = bufname or vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+	local dirname = vim.fn.fnamemodify(bufname, ":p:h")
+	local getparent = function(p)
+		return vim.fn.fnamemodify(p, ":h")
+	end
+	local config_path = vim.fn.resolve(vim.fn.expand(vim.fn.stdpath("config")))
+	while getparent(dirname) ~= dirname do
+		if dirname == config_path then
+			return true
+		else
+			dirname = getparent(dirname)
+		end
+	end
+	return false
+end
+
 function M.setup()
 	local _, installed_jdtls = require("nvim-lsp-installer.servers").get_server("jdtls")
 
 	require("jdtls").setup_dap({ hotcoredeplace = "auto" })
 	require("jdtls.setup").add_commands()
-
-	local root_markers = { "gradlew", "pom.xml" }
-	local root_dir = require("jdtls.setup").find_root(root_markers)
 
 	local config = vim.tbl_extend("force", installed_jdtls["_default_options"], {
 		flags = {
@@ -31,7 +45,14 @@ function M.setup()
 			},
 		},
 	}
-	config.root_dir = root_dir
+
+	if is_in_config_home() then
+		config.settings.java.project = {
+			referencedLibraries = require("java_plugin_host").classpath,
+		}
+	end
+	config.root_dir = require("jdtls.setup").find_root({ "gradlew", "pom.xml" })
+
 	config.on_init = function(client, _)
 		client.notify("workspace/didChangeConfiguration", { settings = config.settings })
 	end

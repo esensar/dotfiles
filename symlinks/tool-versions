@@ -12,3 +12,4 @@ actionlint 1.6.12
 act 0.2.26
 shellcheck 0.8.0
 cmake 3.23.1
+maven 3.8.5

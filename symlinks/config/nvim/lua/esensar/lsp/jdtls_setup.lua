@@ -47,6 +47,7 @@ function M.setup()
 	}
 
 	if is_in_config_home() then
+		config.root_dir = vim.fn.resolve(vim.fn.expand(vim.fn.stdpath("config"))) .. "/rplugin/java"
 		config.settings.java.project = {
 			referencedLibraries = require("java_plugin_host").classpath,
 		}

@@ -18,7 +18,9 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.ktlint,
 
 		-- C++ and C
-		null_ls.builtins.formatting.clang_format,
+		null_ls.builtins.formatting.clang_format.with({
+			filetypes = { "cpp", "c" },
+		}),
 
 		-- Cmake
 		null_ls.builtins.formatting.cmake_format,

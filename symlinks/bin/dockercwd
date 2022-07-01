@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Runs command in cwd from docker (mounts cwd to /app in docker)
+POSITIONAL=()
+NETWORK=docker_default
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+    -n|--network)
+      NETWORK=$2
+      shift # past argument
+      shift # past value
+      ;;
+    *)    # unknown option
+      POSITIONAL+=("$1") # save it in an array for later
+      shift # past argument
+      ;;
+  esac
+done
+
+echo "docker run -it --rm --network $NETWORK --mount type=bind,source="$(pwd)",target=/app ${POSITIONAL[@]}"
+docker run -it --rm --network $NETWORK --mount type=bind,source="$(pwd)",target=/app ${POSITIONAL[@]}

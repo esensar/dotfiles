@@ -63,13 +63,18 @@ then
 	asdf update
 	asdf plugin-update --all
 
-	ASDF_INSTALLED_GLOBAL_PACKAGES=$(comm -12 <(cat $HOME/.tool-versions | cut -f1 -d ' ' | sort) <(asdf plugin list | sort))
-	ASDF_PACKAGES_TO_UPDATE=$(comm -3 <(echo "$ASDF_INSTALLED_GLOBAL_PACKAGES" | sort) <(printf "java\nruby" | sort))
-	echo $ASDF_PACKAGES_TO_UPDATE
-	for PKG in $ASDF_PACKAGES_TO_UPDATE; do
-		asdf install $PKG latest
-		asdf global $PKG $(asdf latest $PKG)
-	done
+	echo "========== ASDF UPDATES =========="
+	echo "Available updates: "
+	while IFS= read -r PKG; do
+		if [ $(echo "$PKG" | cut -f3) = "missing" ]; then
+			PKG_NAME=$(echo "$PKG" | cut -f1)
+			if [ "$PKG_NAME" != "java" -a "$PKG_NAME" != "ruby" ]; then
+				PKG_VER=$(echo $PKG | cut -f2)
+				echo "  $PKG_NAME - $PKG_VER (install with 'asdf install $PKG_NAME $PKG_VER' and set as global default with 'asdf global $PKG_NAME $PKG_VER')"
+			fi
+		fi
+	done <<< "$(asdf latest --all)"
+	echo "========== ASDF UPDATES =========="
 fi
 
 if type brew > /dev/null 2>&1

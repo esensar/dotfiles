@@ -46,9 +46,9 @@ return require("packer").startup({
 		use("rcarriga/nvim-dap-ui") -- UI components for DAP
 		use("theHamsta/nvim-dap-virtual-text") -- Virtual text display for DAP
 		use("diepm/vim-rest-console") -- REST console for vim
-		use("esensar/nvim-dev-container") -- devcontainer.json support
+		use("https://codeberg.org/esensar/nvim-dev-container") -- devcontainer.json support
 		use("jbyuki/one-small-step-for-vimkind") -- Debugger for Nvim-Lua
-		use("esensar/neovim-java-plugin-host") -- Host for Java plugins
+		use("https://codeberg.org/neovim-java/neovim-java-plugin-host") -- Host for Java plugins
 
 		-- Snippets
 		use("L3MON4D3/LuaSnip") -- snippets support
@@ -61,7 +61,7 @@ return require("packer").startup({
 		use("Olical/conjure") -- Lisp languages REPL integration
 		use("Olical/aniseed") -- Fennel nvim support
 		use("vimwiki/vimwiki") -- Vimwiki - personal wiki in vim
-		use("esensar/vimwiki-reviews-lua") -- Vimwiki extension for periodic reviews
+		use("https://codeberg.org/vimwiki-reviews/vimwiki-reviews-lua") -- Vimwiki extension for periodic reviews
 		use({ "ledger/vim-ledger", ft = "ledger" }) -- Support for ledger-cli format
 		use({ "tandrewnichols/vim-docile", ft = "help" }) -- Support for vim doc.txt format
 		use({ "habamax/vim-godot", ft = "gdscript" }) -- Godot engine (and script) support

@@ -1,6 +1,24 @@
+# vim: filetype=muttrc
+unmailboxes *
+
+set realname = "Firstname Lastname"
 set imap_user = "username@mail.com"
 set imap_pass = "YOURAPPPASSWORD"
 set folder = "imapurl"
 set smtp_url = "smptul"
 set smtp_pass = "YOURAPPPASSWORD"
 set spoolfile = "+INBOX"
+
+set from = "username@mail.com"
+set envelope_from
+set use_from = "yes"
+set record = "+Sent"
+set trash = "+Trash"
+set postponed = "+Drafts"
+set mail_check = 6
+
+unset imap_passive
+
+set imap_keepalive = 300
+
+account-hook $folder "set imap_pass=YOURAPPPASSWORD"

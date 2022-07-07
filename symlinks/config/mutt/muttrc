@@ -25,7 +25,11 @@ auto_view text/html
 alternative_order text/plain text/enriched text/html
 set editor = "vim"
 
-source accounts/personal
+source accounts/gmail
+folder-hook $folder 'source ~/.config/mutt/accounts/gmail'
+
+source accounts/ensarsarajcic
+folder-hook $folder 'source ~/.config/mutt/accounts/ensarsarajcic'
 
 # Mailbox type
 set mbox_type = Maildir
@@ -35,7 +39,9 @@ mailboxes = +Inbox
 set imap_check_subscribed
 
 source /usr/share/doc/neomutt/vim-keys/vim-keys.rc
+source colors-gruvbox.muttrc
 
 macro index,pager A "<save-message>=Archive<enter>" "Archive Message"
 
-source colors-gruvbox.muttrc
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/mutt/accounts/gmail<enter><change-folder>!<enter>'
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/mutt/accounts/ensarsarajcic<enter><change-folder>!<enter>'

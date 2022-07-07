@@ -37,3 +37,5 @@ set imap_check_subscribed
 source /usr/share/doc/neomutt/vim-keys/vim-keys.rc
 
 macro index,pager A "<save-message>=Archive<enter>" "Archive Message"
+
+source colors-gruvbox.muttrc

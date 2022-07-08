@@ -46,9 +46,9 @@ make bootstrap
 
 After installation optionally check out `installed_packages` directory for packages to install using `clone-installation`.
 
-This repository also provides a simple way to generate main personal ssh key to be used with GitHub:
+This repository also provides a simple way to generate personal ssh keys to be used with used git hosts:
 ```
-make create_personal_ssh_github_key
+make create_personal_ssh_keys
 ```
 
 It is recommended to also clone `vimwiki` and use it (this is a private repository and applies only to owner):

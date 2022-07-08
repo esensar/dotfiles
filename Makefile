@@ -80,6 +80,23 @@ define write_git_ssh_config_entry
 	@echo "  IdentityFile $3" >> $(SSH_CONFIG_FILE)
 endef
 
+# Creates a new ssh key and saves it to config
+# Takes 3 parameters:
+#	 - Email
+#	 - Host name (ex. codeberg)
+#  - Host (ex. codeberg.org)
+define create_personal_git_ssh_key
+	ssh-keygen -f $(PERSONAL_SSH_KEYS_HOME)/id_ed25519_$2 -t ed25519 -b 4096 -C $1
+	@echo "Personal $2 key created!"
+	@echo "Copy public key by running:"
+	@echo ""
+	@echo "cat $(PERSONAL_SSH_KEYS_HOME)/id_ed25519_$2.pub | $(COPY_TOOL)"
+	@echo ""
+	@echo "Open SSH page on $3"
+	@echo "and paste copied public key"
+	$(call write_git_ssh_config_entry,$3,,$(PERSONAL_SSH_KEYS_HOME)/id_ed25519_$2)
+endef
+
 .PHONY: bootstrap
 bootstrap: check_os
 	@echo "Bootstrapped everything!"
@@ -215,26 +232,22 @@ prepare_scripts_cache_dir: check_os
 .PHONY: clone_personal_vimwiki
 clone_personal_vimwiki: check_os
 	@echo "Cloning personal vimwiki"
-	@git clone git@github.com:esensar/vimwiki.wiki.git ~/vimwiki
+	@git clone git@ensarsarajcic.com:esensar/vimwiki.wiki.git ~/vimwiki
 
 .PHONY: prepare_ssh_dir
 prepare_ssh_dir: check_os
 	@echo "Creating ssh directories"
 	@mkdir -p $(HOME)/.ssh/Personal
 
-.PHONY: create_personal_ssh_github_key
-create_personal_ssh_github_key: check_os prepare_ssh_dir
-	@echo "Creating personal GitHub key"
-	@read -p "Enter your email: " email; \
-	ssh-keygen -f $(PERSONAL_SSH_KEYS_HOME)/id_rsa_github -t rsa -b 4096 -C $$email
-	@echo "Personal GitHub key created!"
-	@echo "Copy public key by running:"
-	@echo ""
-	@echo "cat $(PERSONAL_SSH_KEYS_HOME)/id_rsa_github.pub | $(COPY_TOOL)"
-	@echo ""
-	@echo "Open: https://github.com/settings/ssh/new"
-	@echo "and paste copied public key"
-	$(call write_git_ssh_config_entry,github.com,,$(PERSONAL_SSH_KEYS_HOME)/id_rsa_github)
+.PHONY: create_personal_ssh_keys
+.ONESHELL:
+create_personal_ssh_keys: check_os prepare_ssh_dir
+	@echo "Creating personal ssh keys"
+	@read -p "Enter your email: " email;
+	$(call create_personal_git_ssh_key,$$email,personal_git,git.ensarsarajcic.com);
+	$(call create_personal_git_ssh_key,$$email,codeberg,codeberg.org);
+	$(call create_personal_git_ssh_key,$$email,sourcehut,git.sr.ht);
+	$(call create_personal_git_ssh_key,$$email,github,github.com);
 
 .PHONY: prepare_fish_shell
 prepare_fish_shell: check_os

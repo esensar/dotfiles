@@ -52,7 +52,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run key creation
-        run: echo "test\n\n" | make create_personal_ssh_github_key
+        run: echo "test\n\n\n\n\n\n\n\n" | make create_personal_ssh_keys
         env:
           DOTFILES_CI: 1
   stylua:

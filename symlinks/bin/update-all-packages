@@ -3,8 +3,55 @@
 set -e
 
 UNAME=$(sh -c 'uname 2>/dev/null || echo Unknown')
+declare -A SKIP=()
+POSITIONAL=()
 
-if type pacman > /dev/null 2>&1
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+    -s|--skip)
+      shift # past argument
+      SKIP["$1"]=1
+      shift # past value
+      ;;
+    *)    # unknown option
+      POSITIONAL+=("$1") # save it in an array for later
+      shift # past argument
+      ;;
+  esac
+done
+
+declare -A RUN=()
+
+for command in "pacman" "apt" "flatpak" "gem" "nvim" "asdf" "brew" "pacman";
+do
+	echo $command
+	if type $command > /dev/null 2>&1
+	then
+		if [ "${SKIP[$command]}" = "1" ]; then
+			RUN[$command]=0
+		else
+			RUN[$command]=1
+		fi
+	else
+		RUN[$command]=0
+	fi
+done
+
+# Special case for vim
+if type -f vim > /dev/null 2>&1
+then
+	if [ "${SKIP[vim]}" = "1" ]; then
+		RUN[vim]=0
+	else
+		RUN[vim]=1
+	fi
+else
+	RUN[vim]=0
+fi
+
+if [ "${RUN[pacman]}" = "1" ]
 then
 	# Clear out orphans
 	sudo pacman -Rns $(pacman -Qtdq)
@@ -16,7 +63,7 @@ then
 	aurfetch update-all -q
 fi
 
-if type apt > /dev/null 2>&1
+if [ "${RUN[apt]}" = "1" ]
 then
 	# Clear out orphans
 	sudo apt autoremove
@@ -29,7 +76,7 @@ then
 	sudo apt autoremove
 fi
 
-if type flatpak > /dev/null 2>&1
+if [ "${RUN[flatpak]}" = "1" ]
 then
 	# Clear out unused flatpak apps
 	flatpak uninstall --unused
@@ -41,24 +88,23 @@ then
 	flatpak uninstall --unused
 fi
 
-# Update rubygems
-if type gem > /dev/null 2>&1
+if [ "${RUN[gem]}" = "1" ]
 then
 	gem update --system
 	gem update
 fi
 
-if type nvim > /dev/null 2>&1
+if [ "${RUN[nvim]}" = "1" ]
 then
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 fi
 
-if type -f vim > /dev/null 2>&1
+if [ "${RUN[vim]}" = "1" ]
 then
 	command vim +PlugUpdate +qall
 fi
 
-if type asdf > /dev/null 2>&1
+if [ "${RUN[asdf]}" = "1" ]
 then
 	asdf update
 	asdf plugin-update --all
@@ -77,7 +123,7 @@ then
 	echo "========== ASDF UPDATES =========="
 fi
 
-if type brew > /dev/null 2>&1
+if [ "${RUN[brew]}" = "1" ]
 then
 	brew update
 	brew upgrade
@@ -89,7 +135,7 @@ then
 	fi
 fi
 
-if type pacman > /dev/null 2>&1
+if [ "${RUN[pacman]}" = "1" ]
 then
 	# Clear out orphans once again
 	sudo pacman -Rns $(pacman -Qtdq)

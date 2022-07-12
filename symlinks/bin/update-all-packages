@@ -24,7 +24,7 @@ done
 
 declare -A RUN=()
 
-for command in "pacman" "apt" "flatpak" "gem" "nvim" "asdf" "brew" "pacman";
+for command in "pacman" "apt" "dnf" "flatpak" "gem" "nvim" "asdf" "brew" "pacman";
 do
 	echo $command
 	if type $command > /dev/null 2>&1
@@ -74,6 +74,18 @@ then
 
 	# Clear out orphans
 	sudo apt autoremove
+fi
+
+if [ "${RUN[dnf]}" = "1" ]
+then
+	# Clear out orphans
+	sudo dnf autoremove
+
+	# Update dnf packages
+	sudo dnf update
+
+	# Clear out orphans
+	sudo dnf autoremove
 fi
 
 if [ "${RUN[flatpak]}" = "1" ]

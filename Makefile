@@ -234,6 +234,11 @@ clone_personal_vimwiki: check_os
 	@echo "Cloning personal vimwiki"
 	@git clone git@ensarsarajcic.com:esensar/vimwiki.wiki.git ~/vimwiki
 
+.PHONY: clone_termux_shortcuts
+clone_termux_shortcuts: check_os
+	@echo "Cloning termux shortcuts"
+	@git clone git@ensarsarajcic.com:esensar/termux-shortcuts.git ~/.shortcuts
+
 .PHONY: prepare_ssh_dir
 prepare_ssh_dir: check_os
 	@echo "Creating ssh directories"

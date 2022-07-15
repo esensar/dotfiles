@@ -1,0 +1,15 @@
+macro index,pager A "<save-message>=Archive<enter>" "Archive Message"
+
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/mutt/accounts/gmail<enter><change-folder>!<enter>'
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/mutt/accounts/ensarsarajcic<enter><change-folder>!<enter>'
+
+bind index,pager - sidebar-toggle-visible
+bind index,pager \Cj sidebar-next
+bind index,pager \Ck sidebar-prev
+bind index,pager \Co sidebar-open
+bind index,pager \Cp sidebar-prev-new
+bind index,pager \Cn sidebar-next-new
+
+bind editor <Tab> complete-query
+
+# vim: filetype=neomuttrc

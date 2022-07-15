@@ -23,12 +23,14 @@ alternative_order text/plain text/enriched text/html
 auto_view text/html
 # Order to try and show multipart emails
 alternative_order text/plain text/enriched text/html
-set editor = "vim"
+set editor = "nvim"
 
-source accounts/gmail
+set text_flowed=yes
+
+source ~/.config/mutt/accounts/gmail
 folder-hook $folder 'source ~/.config/mutt/accounts/gmail'
 
-source accounts/ensarsarajcic
+source ~/.config/mutt/accounts/ensarsarajcic
 folder-hook $folder 'source ~/.config/mutt/accounts/ensarsarajcic'
 
 # Mailbox type
@@ -40,8 +42,4 @@ set imap_check_subscribed
 
 source /usr/share/doc/neomutt/vim-keys/vim-keys.rc
 source colors-gruvbox.muttrc
-
-macro index,pager A "<save-message>=Archive<enter>" "Archive Message"
-
-macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/mutt/accounts/gmail<enter><change-folder>!<enter>'
-macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/mutt/accounts/ensarsarajcic<enter><change-folder>!<enter>'
+source keymaps.muttrc

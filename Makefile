@@ -355,6 +355,12 @@ oh_my_zsh: check_os
 	@echo "Installing oh-my-zsh..."
 	@sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+.PHONY: oh_my_fish
+oh_my_fish: check_os
+	@echo "Installing oh-my-fish..."
+	@curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+	@fish -c "omf install"
+
 .PHONY: homebrew
 homebrew: check_os
 	@echo "Installing homebrew..."

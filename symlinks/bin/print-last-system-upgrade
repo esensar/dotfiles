@@ -21,5 +21,11 @@ else
 		LAST_SYSTEM_UPGRADE_DATE=$( date -d "$LAST_SYSTEM_UPGRADE" +%s )
 	fi
 
+	if type dnf &> /dev/null
+	then
+		LAST_SYSTEM_UPGRADE=$( stat /var/cache/dnf/packages.db | grep Modify | sed 's/Modify: //' )
+		LAST_SYSTEM_UPGRADE_DATE=$( date -d "$LAST_SYSTEM_UPGRADE" +%s )
+	fi
+
 	print-system-upgrade-date $LAST_SYSTEM_UPGRADE_DATE update-all-packages
 fi

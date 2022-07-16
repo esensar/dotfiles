@@ -1,11 +1,15 @@
 # Main tools mapping
-set $term alacritty
+set $term footclient
 set $menu "ulauncher-toggle"
-set $filemanager thunar
+set $filemanager nautilus
 set $processviewer $term -e htop
+set $browser firefox
 
 # start a terminal
 bindsym $mod+Return exec $term
+
+# start browser
+bindsym $mod+b exec $browser
 
 # start todoist
 bindsym $mod+$alt+t exec todoist

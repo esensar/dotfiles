@@ -1,0 +1,1 @@
+exec swaybg -i "$(shuf -n1 -e ~/Pictures/Wallpapers/*.png)" -m fill

@@ -24,6 +24,8 @@ PROJECTS_ROOT := $(HOME)/Projects
 DOCUMENTS_ROOT := $(HOME)/Documents
 PICTURES_ROOT := $(HOME)/Pictures
 SCREENSHOTS_ROOT := $(PICTURES_ROOT)/Screenshots
+WALLPAPERS_ROOT := $(PICTURES_ROOT)/Wallpapers
+LOCKSCREENS_ROOT := $(PICTURES_ROOT)/Lockscreens
 PERSONAL_PROJECTS_ROOT := $(PROJECTS_ROOT)/Personal
 PRACTICE_PROJECTS_ROOT := $(PERSONAL_PROJECTS_ROOT)/Mixed\ Technology/Practice
 COPY_TOOL := pbcopy
@@ -360,6 +362,14 @@ oh_my_fish: check_os
 	@echo "Installing oh-my-fish..."
 	@curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 	@fish -c "omf install"
+
+.PHONY: wallpapers_and_lockscreens
+wallpapers_and_lockscreens: check_os
+	@echo "Copying default wallpapers and lockscreens..."
+	@mkdir -p $(WALLPAPERS_ROOT)
+	@mkdir -p $(LOCKSCREENS_ROOT)
+	@cp /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png $(WALLPAPERS_ROOT)
+	@cp /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png $(LOCKSCREENS_ROOT)
 
 .PHONY: homebrew
 homebrew: check_os

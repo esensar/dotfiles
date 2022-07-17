@@ -1,5 +1,5 @@
 # Define locker script
-set $locker ~/bin/lockscreen
+set $locker swaylock -f -i "$(shuf -n1 -e ~/Pictures/Lockscreens/*.png)" -s fill
 bindsym $alt+L exec $locker
 
 # IDLE CONFIG

@@ -5,4 +5,6 @@ if [ "$PACKAGE_MANAGER" = "pacman" ]; then
 	echo "sudo pacman -S"
 elif [ "$PACKAGE_MANAGER" = "apt" ]; then
 	echo "sudo apt install"
+elif [ "$PACKAGE_MANAGER" = "dnf" ]; then
+	echo "sudo dnf install"
 fi

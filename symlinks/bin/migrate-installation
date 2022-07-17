@@ -27,6 +27,11 @@ then
 	sudo dpkg-query -f '${binary:Package}\n' -W > $PACKAGES_DIRECTORY/apt
 fi
 
+if type dnf > /dev/null 2>&1
+then
+	dnf repoquery --userinstalled > $PACKAGES_DIRECTORY/dnf
+fi
+
 if type flatpak > /dev/null 2>&1
 then
 	flatpak list | cut -f2 > $PACKAGES_DIRECTORY/flatpak

@@ -9,5 +9,9 @@ if type pacman > /dev/null 2>&1
 then
 	PACKAGE_MANAGER="pacman"
 fi
+if type dnf > /dev/null 2>&1
+then
+	PACKAGE_MANAGER="dnf"
+fi
 
 echo $PACKAGE_MANAGER

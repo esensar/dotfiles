@@ -18,7 +18,7 @@ CURDIR=$PWD
 
 if type pacman > /dev/null 2>&1
 then
-	pacman -Qqe | grep -vx "$(pacman -Qqm)" > $PACKAGES_DIRECTORY/Arch
+	pacman -Qqe | grep -vx "$(pacman -Qqm)" > $PACKAGES_DIRECTORY/pacman
 	pacman -Qqm > $PACKAGES_DIRECTORY/AUR
 fi
 

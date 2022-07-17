@@ -8,7 +8,7 @@ if [ "${RUN[pacman]}" = "1" ]
 then
 	# Install arch packages
 	echo "Installing Arch packages..."
-	sudo xargs -a $SELECTED_INSTALL_DIR/Arch pacman -S --noconfirm --needed
+	sudo xargs -a $SELECTED_INSTALL_DIR/pacman pacman -S --noconfirm --needed
 
 	echo "Installing packages from AUR using aurfetch..."
 	while read p; do

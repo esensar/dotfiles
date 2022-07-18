@@ -540,6 +540,49 @@ local lein_config = {
 	},
 }
 
+local clojure_config = {
+	["*"] = {
+		dispatch = "clj -M:test",
+		console = "clj -M:dev",
+	},
+	["src/clj/*.clj"] = {
+		type = "source",
+		alternate = {
+			"test/clj/{}_test.clj",
+		},
+	},
+	["src/clj/*.cljs"] = {
+		type = "source",
+		alternate = {
+			"test/clj/{}_test.cljs",
+		},
+	},
+	["src/clj/*.cljc"] = {
+		type = "source",
+		alternate = {
+			"test/clj/{}_test.cljc",
+		},
+	},
+	["test/clj/*_test.clj"] = {
+		type = "test",
+		alternate = {
+			"src/clj/{}.clj",
+		},
+	},
+	["test/clj/*_test.cljs"] = {
+		type = "test",
+		alternate = {
+			"src/clj/{}.cljs",
+		},
+	},
+	["test/clj/*_test.cljc"] = {
+		type = "test",
+		alternate = {
+			"src/clj/{}.cljc",
+		},
+	},
+}
+
 vim.g.projectionist_heuristics = {
 	["pubspec.yaml"] = flutter_config,
 	["requirements.txt|pyproject.toml"] = python_config,
@@ -556,4 +599,5 @@ vim.g.projectionist_heuristics = {
 	["Cargo.toml"] = rust_config,
 	["build.zig"] = zig_config,
 	["project.clj"] = lein_config,
+	["deps.edn"] = clojure_config,
 }

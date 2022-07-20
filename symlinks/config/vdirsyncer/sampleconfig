@@ -1,0 +1,43 @@
+# An example configuration for vdirsyncer.
+
+[general]
+# A folder where vdirsyncer can store some metadata about each pair.
+status_path = "~/.local/share/vdirsyncer/status/"
+
+# CARDDAV
+[pair contacts]
+a = "contacts_local"
+b = "contacts_remote"
+collections = ["default"]
+conflict_resolution = "a wins"
+
+[storage contacts_local]
+type = "filesystem"
+path = "~/.local/share/khard/contacts/"
+fileext = ".vcf"
+
+[storage contacts_remote]
+type = "carddav"
+url = ""
+auth = "basic"
+username = ""
+password = ""
+
+# CALDAV
+[pair calendar]
+a = "calendar_local"
+b = "calendar_remote"
+collections = ["default"]
+conflict_resolution = "a wins"
+
+[storage calendar_local]
+type = "filesystem"
+path = "~/.local/share/khal/calendars/"
+fileext = ".ics"
+
+[storage calendar_remote]
+type = "caldav"
+url = ""
+auth = "basic"
+username = ""
+password = ""

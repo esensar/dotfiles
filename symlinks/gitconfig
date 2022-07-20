@@ -1,6 +1,6 @@
 [user]
 	name = Ensar Sarajčić
-	email = es.ensar@gmail.com
+	email = dev@ensarsarajcic.com
 [core]
 	editor = nvim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol

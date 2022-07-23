@@ -1,9 +1,11 @@
 # Define locker script
-set $locker swaylock -f -i "$(shuf -n1 -e ~/Pictures/Lockscreens/*.png)" -s fill
+set $locker 'swaylock -f -i "$(shuf -n1 -e ~/Pictures/Lockscreens/*.png)" -s fill'
 bindsym $alt+L exec $locker
 
 # IDLE CONFIG
 exec swayidle -w \
          timeout 300 $locker \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep $locker
+         timeout 330 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         timeout 600 'systemctl suspend' \
+         before-sleep $locker \
+         before-sleep 'playerctl pause'

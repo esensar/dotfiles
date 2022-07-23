@@ -80,9 +80,9 @@ then
 	echo "Available updates: "
 	while IFS= read -r PKG; do
 		if [ $(echo "$PKG" | cut -f3) = "missing" ]; then
-			PKG_NAME=$(echo "$PKG" | cut -f1)
+			PKG_NAME=$(echo $PKG | cut -f1 -d " ")
 			if [ "$PKG_NAME" != "java" -a "$PKG_NAME" != "ruby" ]; then
-				PKG_VER=$(echo $PKG | cut -f2)
+				PKG_VER=$(echo $PKG | cut -f2 -d " ")
 				echo "  $PKG_NAME - $PKG_VER (install with 'asdf install $PKG_NAME $PKG_VER' and set as global default with 'asdf global $PKG_NAME $PKG_VER')"
 			fi
 		fi

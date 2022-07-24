@@ -1,7 +1,15 @@
 [calendars]
 
-[[default]]
-path = ~/.local/share/khal/calendars/default
+[[personal]]
+path = ~/.local/share/khal/calendars/personal
+type = discover
+
+[[todo]]
+path = ~/.local/share/khal/calendars/todo
+type = discover
+
+[[contact_birthdays]]
+path = ~/.local/share/khal/calendars/contact_birthdays
 type = discover
 
 [locale]
@@ -12,4 +20,4 @@ datetimeformat = %Y-%m-%d %H:%M
 longdatetimeformat = %Y-%m-%d %H:%M
 
 [default]
-default_calendar = default
+default_calendar = personal

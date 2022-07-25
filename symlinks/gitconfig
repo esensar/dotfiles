@@ -34,7 +34,7 @@
 [includeIf "gitdir/i:~/Projects/University/"]
 	path = ~/.gitconfig.university
 [pull]
-	rebase = false
+	rebase = true
 [init]
 	defaultBranch = main
 [sendemail]

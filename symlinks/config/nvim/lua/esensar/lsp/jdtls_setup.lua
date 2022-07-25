@@ -23,12 +23,14 @@ local function is_in_config_home(bufname)
 end
 
 function M.setup()
-	local _, installed_jdtls = require("nvim-lsp-installer.servers").get_server("jdtls")
+	local installed_jdtls = {
+		settings = require("mason-registry.jdtls"):get_lsp_settings_schema():or_else({ properties = {} }).properties,
+	}
 
 	require("jdtls").setup_dap({ hotcoredeplace = "auto" })
 	require("jdtls.setup").add_commands()
 
-	local config = vim.tbl_extend("force", installed_jdtls["_default_options"], {
+	local config = vim.tbl_extend("force", installed_jdtls, {
 		flags = {
 			allow_incremental_sync = true,
 		},

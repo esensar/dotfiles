@@ -3,7 +3,8 @@
 -------------------------------------------------------------------------------
 
 local lspconfig = require("lspconfig")
-require("nvim-lsp-installer").setup({})
+require("mason").setup()
+require("mason-lspconfig").setup()
 local common_config = require("esensar.lsp.server_config")
 
 -- Language specific LSP config overrides

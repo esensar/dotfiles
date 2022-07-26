@@ -49,7 +49,11 @@ null_ls.setup({
 		-- General
 		null_ls.builtins.formatting.trim_newlines,
 		null_ls.builtins.formatting.trim_whitespace,
-		null_ls.builtins.hover.dictionary,
+		null_ls.builtins.hover.dictionary.with({
+			filetypes = { "text", "markdown", "vimwiki" },
+		}),
+		null_ls.builtins.diagnostics.misspell,
+		null_ls.builtins.completion.spell,
 		null_ls.builtins.code_actions.gitsigns,
 
 		-- Godot

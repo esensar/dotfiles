@@ -53,7 +53,6 @@ null_ls.setup({
 			filetypes = { "text", "markdown", "vimwiki" },
 		}),
 		null_ls.builtins.diagnostics.misspell,
-		null_ls.builtins.completion.spell,
 		null_ls.builtins.code_actions.gitsigns,
 
 		-- Godot

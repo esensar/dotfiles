@@ -1,0 +1,50 @@
+Create Both
+Expunge Both
+SyncState *
+
+IMAPAccount personal
+Host myhost
+User myusername
+Pass mypass
+SSLType IMAPS
+AuthMechs LOGIN
+
+IMAPStore personal-remote
+Account personal
+
+MaildirStore personal-local
+Path ~/mail/personal/
+Inbox ~/mail/personal/inbox
+
+Channel personal-inbox
+Far :personal-remote:
+Near :personal-local:
+Patterns "INBOX"
+
+Channel personal-sent
+Far :personal-remote:Sent
+Near :personal-local:sent
+
+Channel personal-trash
+Far :personal-remote:Trash
+Near :personal-local:trash
+
+Channel personal-archive
+Far :personal-remote:Archive
+Near :personal-local:archive
+
+Channel personal-drafts
+Far :personal-remote:Drafts
+Near :personal-local:drafts
+
+Channel personal-spam
+Far :personal-remote:Spam
+Near :personal-local:spam
+
+Group personal
+Channel personal-inbox
+Channel personal-sent
+Channel personal-trash
+Channel personal-archive
+Channel personal-drafts
+Channel personal-spam

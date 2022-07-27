@@ -65,3 +65,5 @@
 !/systemd/**
 !/systemd/
 /systemd/user/*.wants
+!/mbsync/**
+!/mbsync/

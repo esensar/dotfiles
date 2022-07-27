@@ -1,0 +1,7 @@
+[Unit]
+Description=Sync calendars and addressbooks with vdirsyncer
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/vdirsyncer sync

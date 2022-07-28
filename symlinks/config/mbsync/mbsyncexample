@@ -14,7 +14,7 @@ Account personal
 
 MaildirStore personal-local
 Path ~/mail/personal/
-Inbox ~/mail/personal/inbox
+Inbox ~/mail/personal/INBOX
 
 Channel personal-inbox
 Far :personal-remote:
@@ -23,23 +23,23 @@ Patterns "INBOX"
 
 Channel personal-sent
 Far :personal-remote:Sent
-Near :personal-local:sent
+Near :personal-local:Sent
 
 Channel personal-trash
 Far :personal-remote:Trash
-Near :personal-local:trash
+Near :personal-local:Trash
 
 Channel personal-archive
 Far :personal-remote:Archive
-Near :personal-local:archive
+Near :personal-local:Archive
 
 Channel personal-drafts
 Far :personal-remote:Drafts
-Near :personal-local:drafts
+Near :personal-local:Drafts
 
 Channel personal-spam
 Far :personal-remote:Spam
-Near :personal-local:spam
+Near :personal-local:Spam
 
 Group personal
 Channel personal-inbox

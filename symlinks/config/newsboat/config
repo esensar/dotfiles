@@ -26,3 +26,7 @@ bind-key K prev article
 # Macros
 # Open in mpv
 macro m set browser "mpv %u" ; open-in-browser ; set browser xdg-open
+
+# Feed integration
+urls-source "ocnews"
+include         ~/.config/newsboat/ocnewsconf

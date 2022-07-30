@@ -26,6 +26,15 @@ local configuration_overrides = {
 	lemminx = {
 		cmd = { "lemminx" },
 	},
+	rust_analyzer = {
+		settings = {
+			["rust-analyzer"] = {
+				checkOnSave = {
+					command = "clippy"
+				},
+			}
+		}
+	}
 }
 
 -- Lsp default language servers

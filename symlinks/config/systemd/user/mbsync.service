@@ -1,5 +1,7 @@
 [Unit]
 Description=Mailbox synchronization service
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot

@@ -583,6 +583,25 @@ local clojure_config = {
 	},
 }
 
+local golang_config = {
+	["*"] = {
+		start = "go run .",
+		dispatch = "go test ./...",
+	},
+	["*.go"] = {
+		type = "source",
+		alternate = {
+			"{}_test.go",
+		},
+	},
+	["*_test.go"] = {
+		type = "test",
+		alternate = {
+			"{}.go",
+		},
+	},
+}
+
 vim.g.projectionist_heuristics = {
 	["pubspec.yaml"] = flutter_config,
 	["requirements.txt|pyproject.toml"] = python_config,
@@ -597,6 +616,7 @@ vim.g.projectionist_heuristics = {
 	["mint.json"] = mint_config,
 	["shard.yml"] = crystal_config,
 	["Cargo.toml"] = rust_config,
+	["go.mod"] = golang_config,
 	["build.zig"] = zig_config,
 	["project.clj"] = lein_config,
 	["deps.edn"] = clojure_config,

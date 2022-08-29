@@ -371,6 +371,13 @@ wallpapers_and_lockscreens: check_os
 	@cp /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png $(WALLPAPERS_ROOT)
 	@cp /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png $(LOCKSCREENS_ROOT)
 
+.PHONY: user_systemd_services
+user_systemd_services: check_os
+	@echo "Enabling user systemd services..."
+	@echo "Please install and configure mbsync and vdirsyncer..."
+	@systemd enable --now --user mbsync.timer
+	@systemd enable --now --user vdirsyncer.timer
+
 .PHONY: homebrew
 homebrew: check_os
 	@echo "Installing homebrew..."

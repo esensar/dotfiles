@@ -1,5 +1,5 @@
 # Main tools mapping
-set $term footclient
+set $term alacritty
 set $menu "ulauncher-toggle"
 set $filemanager nautilus
 set $processviewer $term -e htop

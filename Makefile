@@ -375,8 +375,8 @@ wallpapers_and_lockscreens: check_os
 user_systemd_services: check_os
 	@echo "Enabling user systemd services..."
 	@echo "Please install and configure mbsync and vdirsyncer..."
-	@systemd enable --now --user mbsync.timer
-	@systemd enable --now --user vdirsyncer.timer
+	@systemctl enable --now --user mbsync.timer
+	@systemctl enable --now --user vdirsyncer.timer
 
 .PHONY: homebrew
 homebrew: check_os

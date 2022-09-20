@@ -1,5 +1,5 @@
 # Start up notification manager
-exec --no-startup-id mako
+exec swaync
 exec kdeconnect-indicator
 exec ulauncher --hide-window
 exec libinput-gestures-setup start

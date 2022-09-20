@@ -1,0 +1,5 @@
+# Mako control key bindings
+bindsym --release control+space exec swaync-client --hide-latest
+bindsym --release control+space+period exec swaync-client --close-all
+bindsym --release control+space+o exec swaync-client --open-panel
+bindsym --release $mod+v exec swaync-client -t -sw

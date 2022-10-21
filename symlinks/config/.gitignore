@@ -67,3 +67,4 @@
 /systemd/user/*.wants
 !/mbsync/**
 !/mbsync/
+!mimeapps.list

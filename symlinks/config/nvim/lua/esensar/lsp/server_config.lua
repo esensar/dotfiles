@@ -2,7 +2,7 @@
 --    - LSP servers common config -
 -------------------------------------------------------------------------------
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local function on_attach(client, bufnr)
 	-- Lsp keymaps
@@ -31,7 +31,9 @@ local function on_attach(client, bufnr)
 		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = au_id })
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = au_id,
-			callback = function() vim.lsp.buf.format() end,
+			callback = function()
+				vim.lsp.buf.format()
+			end,
 			buffer = bufnr,
 		})
 	end

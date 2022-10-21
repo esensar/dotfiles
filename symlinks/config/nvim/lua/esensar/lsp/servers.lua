@@ -67,11 +67,15 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Lua bultin lsp
+local nlua_capabilities = vim.deepcopy(common_config.capabilities)
+nlua_capabilities.textDocument.formatting = false
+nlua_capabilities.textDocument.rangeFormatting = false
 require("nlua.lsp.nvim").setup(
 	lspconfig,
 	vim.tbl_extend("force", common_config, {
 		-- Tell LSP which globals should be considered real
 		globals = {},
+		capabilities = nlua_capabilities,
 	})
 )
 

@@ -77,7 +77,8 @@
     "clock#date": {
         "interval": 10,
         "format": "  {:%e %b %Y}", // Icon: calendar-alt
-        "tooltip-format": "{:%e %B %Y}"
+        "tooltip-format": "{:%e %B %Y}",
+				"on-click": "notify-send \"$(khal list -f '{title}')\""
     },
 
     "cpu": {

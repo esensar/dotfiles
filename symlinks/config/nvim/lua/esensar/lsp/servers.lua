@@ -30,11 +30,11 @@ local configuration_overrides = {
 		settings = {
 			["rust-analyzer"] = {
 				checkOnSave = {
-					command = "clippy"
+					command = "clippy",
 				},
-			}
-		}
-	}
+			},
+		},
+	},
 }
 
 -- Lsp default language servers

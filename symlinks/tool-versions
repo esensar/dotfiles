@@ -2,6 +2,7 @@ direnv 2.32.1
 nodejs 18.1.0
 python system
 ruby 3.0.0
-neovim 0.7.2
+neovim 0.8.0
 java openjdk-17.0.2
-rust 1.60.0
+rust 1.64.0
+golang 1.19.1

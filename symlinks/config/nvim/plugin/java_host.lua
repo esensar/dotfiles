@@ -5,4 +5,6 @@ require("java_plugin_host").setup({
 		load_class = true,
 		compile_java = true,
 	},
+	common_host = {},
+	log_level = "trace",
 })

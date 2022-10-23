@@ -2,15 +2,16 @@
 
 set -e
 
-SERVER_NAME=$1
-FILE=$2
-LINE=$3
-COLUMN=$4
+WINDOW_NAME=$1
+SERVER_NAME=$2
+FILE=$3
+LINE=$4
+COLUMN=$5
 
 if test -S $SERVER_NAME; then
-	/usr/bin/wmctrl -a "Neovim Godot"
+	/usr/bin/wmctrl -a "$WINDOW_NAME"
 	~/.asdf/shims/nvim --server $SERVER_NAME --remote $2
 	~/.asdf/shims/nvim --server $SERVER_NAME --remote-send ":call cursor($LINE, $COLUMN)<CR>"
 else
-	/usr/bin/alacritty --title "Neovim Godot" -e /usr/bin/fish -c "nvim --listen $SERVER_NAME $2 --cmd \"call cursor($LINE, $COLUMN)\""
+	/usr/bin/alacritty --title "$WINDOW_NAME" -e /usr/bin/fish -c "nvim --listen $SERVER_NAME $2 --cmd \"call cursor($LINE, $COLUMN)\""
 fi

@@ -12,6 +12,8 @@ assign [class="jetbrains-rider"] $ide_workspace
 assign [class="octave-gui"] $ide_workspace
 assign [instance="vim"] $editor_workspace
 assign [instance="download"] $ongoing_operations
+assign [class="Godot"] $ide_workspace
+assign [class="FreeTube"] $music_workspace
 
 # Buggy apps
 for_window [class="Spotify"] move to workspace $music_workspace

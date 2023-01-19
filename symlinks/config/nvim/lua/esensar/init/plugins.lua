@@ -38,6 +38,7 @@ return require("packer").startup({
 		use("lewis6991/impatient.nvim") -- Caching lua modules for faster startup
 		use("rcarriga/nvim-notify") -- notifications UI
 		use("MunifTanjim/nui.nvim") -- General UI
+		use("jiangmiao/auto-pairs") -- Autoclosing of brackets and quotes
 
 		-- Tools
 		use("direnv/direnv.vim") -- Integration with Direnv
@@ -90,6 +91,7 @@ return require("packer").startup({
 		-- LSP language specific
 		use("tjdevries/nlua.nvim") -- Built-in Lua integration with LSP
 		use("akinsho/flutter-tools.nvim") -- Additional flutter integrations
+		use("simrat39/rust-tools.nvim") -- Additional rust integrations
 		use({ "mfussenegger/nvim-jdtls", ft = "java" }) -- Additional java integrations
 
 		-- Lua support

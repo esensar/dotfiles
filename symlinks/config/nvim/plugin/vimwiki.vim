@@ -28,5 +28,10 @@ let g:vimwiki_global_ext = 0
 " Prettier checkboxes
 let g:vimwiki_listsyms = '✗○◐●✓'
 
+augroup VimwikiBufEnterMarkdown
+	autocmd!
+	autocmd BufEnter *.md setl syntax=markdown
+augroup END
+
 
 command! -count=0 -nargs=1 VimwikiOpenSubdirectoryIndex :lua require('esensar.vimwiki_extensions').open_subdirectory_index_file(<count>, <f-args>)

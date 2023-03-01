@@ -89,7 +89,7 @@ return require("packer").startup({
 		use("jose-elias-alvarez/null-ls.nvim") -- Linting and formatting
 
 		-- LSP language specific
-		use("tjdevries/nlua.nvim") -- Built-in Lua integration with LSP
+		use("folke/neodev.nvim") -- Built-in Lua integration with LSP
 		use("akinsho/flutter-tools.nvim") -- Additional flutter integrations
 		use("simrat39/rust-tools.nvim") -- Additional rust integrations
 		use({ "mfussenegger/nvim-jdtls", ft = "java" }) -- Additional java integrations

@@ -5,6 +5,7 @@
 local lspconfig = require("lspconfig")
 require("mason").setup()
 require("mason-lspconfig").setup()
+require("neodev").setup()
 local common_config = require("esensar.lsp.server_config")
 
 -- Language specific LSP config overrides
@@ -52,6 +53,7 @@ local servers = {
 	"jsonls",
 	"kotlin_language_server",
 	"lemminx",
+	"lua_ls",
 	"mint",
 	"omnisharp",
 	"pyright",

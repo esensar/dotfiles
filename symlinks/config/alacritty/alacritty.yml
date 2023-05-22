@@ -1,5 +1,3 @@
-alt_send_esc: true
-
 import:
   - ~/.config/alacritty/font.yml
   - ~/.config/alacritty/colors.yml

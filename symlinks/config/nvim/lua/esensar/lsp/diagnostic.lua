@@ -77,4 +77,4 @@ vim.api.nvim_create_user_command(
 	vim.diagnostic.setloclist,
 	{ desc = "Show LSP buffer warnings in a location list" }
 )
-vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, { desc = "Format current buffer using LSP" })
+vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, { desc = "Format current buffer using LSP" })

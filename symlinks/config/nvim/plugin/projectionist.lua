@@ -481,6 +481,9 @@ local rust_config = {
 		start = "cargo run",
 		dispatch = "cargo test",
 	},
+	["Cargo.toml"] = {
+		type = "crate",
+	},
 	["src/*.rs"] = {
 		type = "source",
 	},

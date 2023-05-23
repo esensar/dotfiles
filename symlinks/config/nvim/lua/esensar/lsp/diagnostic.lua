@@ -21,6 +21,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.clang_format.with({
 			filetypes = { "cpp", "c" },
 		}),
+		null_ls.builtins.diagnostics.clang_check,
 
 		-- Cmake
 		null_ls.builtins.formatting.cmake_format,

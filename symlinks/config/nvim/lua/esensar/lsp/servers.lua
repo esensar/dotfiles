@@ -50,13 +50,14 @@ local servers = {
 	"gdscript",
 	"gopls",
 	"hls",
+	"html",
+	"jedi_language_server",
 	"jsonls",
 	"kotlin_language_server",
 	"lemminx",
 	"lua_ls",
 	"mint",
 	"omnisharp",
-	"pyright",
 	"solang",
 	"terraformls",
 	"tsserver",
@@ -66,19 +67,6 @@ local servers = {
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup(vim.tbl_extend("force", common_config, configuration_overrides[lsp] or {}))
 end
-
--- Lua bultin lsp
-local nlua_capabilities = vim.deepcopy(common_config.capabilities)
-nlua_capabilities.textDocument.formatting = false
-nlua_capabilities.textDocument.rangeFormatting = false
-require("nlua.lsp.nvim").setup(
-	lspconfig,
-	vim.tbl_extend("force", common_config, {
-		-- Tell LSP which globals should be considered real
-		globals = {},
-		capabilities = nlua_capabilities,
-	})
-)
 
 -- Flutter tools
 require("flutter-tools").setup({

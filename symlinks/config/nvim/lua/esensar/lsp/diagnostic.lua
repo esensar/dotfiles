@@ -17,6 +17,12 @@ null_ls.setup({
 		null_ls.builtins.formatting.ktlint,
 		null_ls.builtins.diagnostics.ktlint,
 
+		-- Clojure
+		null_ls.builtins.diagnostics.clj_kondo,
+		null_ls.builtins.formatting.joker.with({
+			filetypes = { "clojure" },
+		}),
+
 		-- C++ and C
 		null_ls.builtins.formatting.clang_format.with({
 			filetypes = { "cpp", "c" },

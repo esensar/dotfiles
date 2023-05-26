@@ -125,7 +125,7 @@ link: check_os clean_backup prepare_backup_dir
 	@echo "Linked everything!"
 
 .PHONY: link_all_common
-link_all_common: check_os link_bin link_tmux link_screen link_git link_ctags link_vim link_apps_config link_tool_versions link_profile link_bash link_zsh
+link_all_common: check_os link_bin link_tmux link_screen link_git link_ctags link_vim link_clojure link_apps_config link_tool_versions link_profile link_bash link_zsh
 	@echo "Linked common files!"
 
 .PHONY: link_all_mac
@@ -164,6 +164,11 @@ link_vim: check_os
 	$(call link,vim,.vim)
 	$(call link,ideavimrc,.ideavimrc)
 	$(call link,vsvimrc,.vsvimrc)
+
+.PHONY: link_clojure
+link_clojure: check_os
+	@echo "Linking clojure config..."
+	$(call link,config/clojure,.clojure)
 
 .PHONY: link_apps_config
 link_apps_config: check_os

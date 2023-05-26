@@ -409,7 +409,7 @@ check_os:
 
 .PHONY: fail_with_unknown_host
 fail_with_unknown_host:
-	$(error Unkown host system!)
+	$(error Unknown host system!)
 
 .PHONY: fail_with_bad_dotfiles_location
 fail_with_bad_dotfiles_location:

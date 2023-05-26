@@ -67,4 +67,6 @@
 /systemd/user/*.wants
 !/mbsync/**
 !/mbsync/
+!/clojure/
+!/clojure/**
 !mimeapps.list

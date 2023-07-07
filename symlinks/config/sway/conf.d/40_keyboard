@@ -1,10 +1,10 @@
 # Keyboard configuration
 input type:keyboard {
   xkb_layout us,bs
-	xkb_options grp:alt_space_toggle,ctrl:nocaps
+    xkb_options grp:alt_space_toggle,ctrl:nocaps
 
-	repeat_delay 400
-	repeat_rate 25
+    repeat_delay 400
+    repeat_rate 25
 }
 
 # Ensures waybar is updated when language is switched

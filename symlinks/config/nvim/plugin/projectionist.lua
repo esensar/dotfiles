@@ -487,6 +487,9 @@ local rust_config = {
 	["src/*.rs"] = {
 		type = "source",
 	},
+	["tests/*.rs"] = {
+		type = "test",
+	},
 }
 
 local zig_config = {

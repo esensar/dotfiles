@@ -2,4 +2,4 @@
 bindsym --release control+space exec swaync-client --close-latest
 bindsym --release control+space+period exec swaync-client --close-all
 bindsym --release control+space+o exec swaync-client --open-panel
-bindsym --release $mod+v exec swaync-client -t -sw
+bindsym --release $mod+Shift+v exec swaync-client -t -sw

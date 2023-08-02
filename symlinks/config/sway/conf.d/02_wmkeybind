@@ -37,6 +37,9 @@ bindsym $mod+s split h
 # split in vertical orientation
 bindsym $mod+v split v
 
+# remove splits
+bindsym $mod+x split none
+
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 

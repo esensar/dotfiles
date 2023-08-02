@@ -36,6 +36,15 @@ local configuration_overrides = {
 			},
 		},
 	},
+	lua_ls = {
+		settings = {
+			Lua = {
+				format = {
+					enable = false,
+				},
+			},
+		},
+	},
 }
 
 -- Lsp default language servers

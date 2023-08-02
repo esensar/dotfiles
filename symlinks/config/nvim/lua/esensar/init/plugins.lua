@@ -43,6 +43,10 @@ return require("packer").startup({
 
 		-- Tools
 		use("direnv/direnv.vim") -- Integration with Direnv
+		use("nvim-neotest/neotest") -- Running tests from NeoVim
+		use("nvim-neotest/neotest-plenary")
+		use("rouge8/neotest-rust")
+		use("nvim-neotest/neotest-vim-test") -- vim-test plugin for neotest
 		use("vim-test/vim-test") -- Running tests from vim
 		use("mfussenegger/nvim-dap") -- Debug Adapter Protocol
 		use("rcarriga/nvim-dap-ui") -- UI components for DAP

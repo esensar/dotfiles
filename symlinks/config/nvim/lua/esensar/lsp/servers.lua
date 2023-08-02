@@ -5,7 +5,9 @@
 local lspconfig = require("lspconfig")
 require("mason").setup()
 require("mason-lspconfig").setup()
-require("neodev").setup()
+require("neodev").setup({
+	library = { plugins = { "neotest" }, types = true },
+})
 local common_config = require("esensar.lsp.server_config")
 
 -- Language specific LSP config overrides

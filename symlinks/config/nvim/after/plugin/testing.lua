@@ -2,68 +2,49 @@
 --    - Vim-test and general testing config -
 -------------------------------------------------------------------------------
 
--- make test commands execute using dispatch.vim
-vim.g["test#strategy"] = "dispatch"
-vim.g["test#csharp#runner"] = "dotnettest"
+local neotest = require("neotest")
+neotest.setup({
+	adapters = {
+		require("neotest-rust"),
+		require("neotest-plenary"),
+		require("neotest-vim-test")({
+			ignore_file_types = { "rust", "lua" },
+		}),
+	},
+})
+
+local last = nil
 
 -- Map test running commands
 local opts = { silent = true }
-vim.keymap.set("n", "<Leader>tn", ":TestNearest<CR>", opts)
-vim.keymap.set("n", "<Leader>tf", ":TestFile<CR>", opts)
-vim.keymap.set("n", "<Leader>ts", ":TestSuite<CR>", opts)
-vim.keymap.set("n", "<Leader>tl", ":TestLast<CR>", opts)
-vim.keymap.set("n", "<Leader>tg", ":TestVisit<CR>", opts)
-
-local last_path = nil
-
-local function get_plenary_test_opts()
-	if vim.g["esensar#testing#use_minimal"] then
-		return {
-			minimal_init = vim.g["esensar#testing#minimal_init"] or "tests/minimal.vim",
-		}
+vim.keymap.set("n", "<Leader>tn", function()
+	last = nil
+	neotest.run.run()
+end, opts)
+vim.keymap.set("n", "<Leader>tdn", function()
+	last = { strategy = "dap", suite = false }
+	neotest.run.run(last)
+end, opts)
+vim.keymap.set("n", "<Leader>tf", function()
+	last = vim.fn.expand("%")
+	neotest.run.run(last)
+end, opts)
+vim.keymap.set("n", "<Leader>tdf", function()
+	last = { vim.fn.expand("%"), strategy = "dap", suite = false }
+	neotest.run.run(last)
+end, opts)
+vim.keymap.set("n", "<Leader>ts", function()
+	last = { suite = true }
+	neotest.run.run(last)
+end, opts)
+vim.keymap.set("n", "<Leader>tds", function()
+	last = { strategy = "dap", suite = true }
+	neotest.run.run(last)
+end, opts)
+vim.keymap.set("n", "<Leader>tl", function()
+	if last then
+		neotest.run.run(last)
 	else
-		return nil
+		neotest.run.run()
 	end
-end
-
-vim.api.nvim_create_user_command("PlenaryTestFile", function()
-	last_path = vim.fn.expand("%:p")
-
-	require("plenary.test_harness").test_directory(last_path, get_plenary_test_opts())
-end, { desc = "Test current file using plenary.nvim" })
-
-vim.api.nvim_create_user_command("PlenaryTestSuite", function()
-	last_path = vim.fn["projectionist#path"]()
-
-	require("plenary.test_harness").test_directory(last_path, get_plenary_test_opts())
-end, { desc = "Run all tests using plenary.nvim" })
-
-vim.api.nvim_create_user_command("PlenaryTestLast", function()
-	if not last_path then
-		vim.notify("No plenary tests run yet! Nothing to do here", vim.log.levels.WARN)
-		return
-	end
-	require("plenary.test_harness").test_directory(last_path, get_plenary_test_opts())
-end, { desc = "Run last run test using plenary.nvim" })
-
-vim.api.nvim_create_user_command("PlenaryVisitLastTest", function()
-	if not last_path then
-		vim.notify("No plenary tests run yet! Nothing to do here", vim.log.levels.WARN)
-		return
-	end
-	vim.cmd("edit " .. last_path)
-end, { desc = "Visit latest run test using plenary.nvim" })
-
-local au_id = vim.api.nvim_create_augroup("plenary_test_group", {})
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "lua",
-	group = au_id,
-	callback = function()
-		local local_opts = { silent = true, buffer = true }
-		vim.keymap.set("n", "<Leader>tn", ":PlenaryTestFile<CR>", local_opts)
-		vim.keymap.set("n", "<Leader>tf", ":PlenaryTestFile<CR>", local_opts)
-		vim.keymap.set("n", "<Leader>ts", ":PlenaryTestSuite<CR>", local_opts)
-		vim.keymap.set("n", "<Leader>tl", ":PlenaryTestLast<CR>", local_opts)
-		vim.keymap.set("n", "<Leader>tg", ":PlenaryVisitLastTest<CR>", local_opts)
-	end,
-})
+end, opts)

@@ -60,9 +60,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run stylua
-        uses: JohnnyMorganz/stylua-action@1.0.0
+        uses: JohnnyMorganz/stylua-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
           args: --check .
   luacheck:
     runs-on: ubuntu-latest

@@ -48,3 +48,4 @@ vim.keymap.set("n", "<Leader>tl", function()
 		neotest.run.run()
 	end
 end, opts)
+vim.keymap.set("n", "<Leader>tp", neotest.output_panel.open, opts)

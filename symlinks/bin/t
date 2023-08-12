@@ -120,20 +120,15 @@ if [ -z "$TIMESHEET_LEDGER_HOME" ]; then
 fi
 
 time_in () {
-  PROJECT=$1
-  COMMENT=$2
-
   LAST_ENTRY=$(grep "$PROJECT" "$TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal" | tail -1 | cut -f1 -d ' ')
   if [ "$LAST_ENTRY" = "i" ]; then
     echo "Timer for project $PROJECT was already started. Aborting..."
     exit 1
   fi
-  echo "i $(date '+%Y-%m-%d %H:%M:%S') $PROJECT $COMMENT" >> "$TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal"
+  echo "i $(date '+%Y-%m-%d %H:%M:%S') $PROJECT  $COMMENT" >> "$TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal"
 }
 
 time_out () {
-  PROJECT=$1
-
   LAST_ENTRY=$(grep "$PROJECT" "$TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal" | tail -1 | cut -f1 -d ' ')
   if [ -z "$LAST_ENTRY" ]; then
     echo "Timer for project $PROJECT is not started. Aborting..."
@@ -147,20 +142,18 @@ time_out () {
 }
 
 time_bal () {
-  PROJECT=$1
-
-  ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $1
+  ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT
 }
 
 case $COMMAND in
   in)
-    time_in $PROJECT $COMMENT
+    time_in
     ;;
   out)
-    time_out $PROJECT
+    time_out
     ;;
   bal)
-    time_bal $PROJECT
+    time_bal
     ;;
   *)
     usage $COMMAND; exit 1 ;;

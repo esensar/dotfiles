@@ -109,7 +109,7 @@ if [ $HELP -eq 1 ]; then
 fi
 
 PROJECT="${POSITIONAL[1]}"
-COMMENT="${POSITIONAL[2]}"
+COMMENT="${POSITIONAL[@]:2}"
 
 echov "Project: $PROJECT"
 echov "Comment: $COMMENT"

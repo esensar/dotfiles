@@ -608,6 +608,19 @@ local golang_config = {
 	},
 }
 
+local playdate_config = {
+	["*"] = {
+		start = "pdc Source output.pdx && PlaydateSimulator output.pdx",
+		dispatch = "pdc Source output.pdx && PlaydateSimulator.debug output.pdx",
+	},
+	["Source/pdxinfo"] = {
+		type = "metadata",
+	},
+	["Source/*.lua"] = {
+		type = "source",
+	},
+}
+
 vim.g.projectionist_heuristics = {
 	["pubspec.yaml"] = flutter_config,
 	["requirements.txt|pyproject.toml"] = python_config,
@@ -626,4 +639,5 @@ vim.g.projectionist_heuristics = {
 	["build.zig"] = zig_config,
 	["project.clj"] = lein_config,
 	["deps.edn"] = clojure_config,
+	["Source/main.lua|Source/pdxinfo"] = playdate_config,
 }

@@ -43,3 +43,10 @@ eval (asdf exec direnv hook fish | source)
 function direnv
 	asdf exec direnv "$argv"
 end
+
+function asdfexec
+    begin
+        asdf shell $argv[1] $argv[2]
+        $argv[3..]
+    end
+end

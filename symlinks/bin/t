@@ -142,7 +142,7 @@ time_out () {
 }
 
 time_bal () {
-  ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT
+  ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT $COMMENT
 }
 
 case $COMMAND in

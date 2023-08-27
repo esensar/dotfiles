@@ -63,7 +63,49 @@ return require("lazy").setup({
 	{ "c-brenn/phoenix.vim", ft = "elixir" }, -- Similar to vim-rails, but for phoenix
 	"Olical/conjure", -- Lisp languages REPL integration
 	"Olical/aniseed", -- Fennel nvim support
-	"vimwiki/vimwiki", -- Vimwiki - personal wiki in vim
+	{
+		"vimwiki/vimwiki",
+		init = function()
+			local personal_wiki = {
+				path = "~/vimwiki/",
+				ext = ".md",
+				index = "Home",
+				syntax = "markdown",
+				auto_diary_index = 1,
+				auto_generate_links = 1,
+				auto_toc = 1,
+			}
+			local work_wiki = {
+				path = "~/vimwiki_work/",
+				ext = ".md",
+				index = "Home",
+				syntax = "markdown",
+				auto_diary_index = 1,
+				auto_generate_links = 1,
+				auto_toc = 1,
+			}
+			local test_wiki = {
+				path = "/tmp/",
+			}
+			vim.g.vimwiki_list = { personal_wiki, work_wiki, test_wiki }
+			vim.g.vimwiki_global_ext = 0
+			vim.g.vimwiki_listsyms = "✗○◐●✓"
+
+			local augroup = vim.api.nvim_create_augroup("VimwikiBufEnterMarkdown", {})
+			vim.api.nvim_create_autocmd("BufEnter", {
+				pattern = "*.md",
+				command = "setl syntax=markdown",
+				group = augroup,
+			})
+
+			vim.api.nvim_create_user_command("VimwikiOpenSubdirectoryIndex", function(opts)
+				require("esensar.vimwiki_extensions").open_subdirectory_index_file(opts.count, opts.args)
+			end, {
+				count = 0,
+				nargs = 1,
+			})
+		end,
+	}, -- Vimwiki - personal wiki in vim
 	"https://codeberg.org/vimwiki-reviews/vimwiki-reviews-lua", -- Vimwiki extension for periodic reviews
 	{ "ledger/vim-ledger", ft = "ledger" }, -- Support for ledger-cli format
 	{ "tandrewnichols/vim-docile", ft = "help" }, -- Support for vim doc.txt format

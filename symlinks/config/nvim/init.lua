@@ -1,6 +1,4 @@
-if require("esensar.init.first_load")() then
-	return
-end
+require("esensar.init.first_load")
 
 -- Allow `require('impatient')` to fail, in case plugins are not yet installed
 local _ = pcall(require, "impatient")

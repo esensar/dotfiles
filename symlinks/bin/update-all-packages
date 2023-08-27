@@ -63,7 +63,7 @@ fi
 
 if [ "${RUN[nvim]}" = "1" ]
 then
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	nvim --headless -c 'Lazy! sync' -c 'quitall'
 fi
 
 if [ "${RUN[vim]}" = "1" ]

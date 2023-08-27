@@ -339,14 +339,14 @@ install_exercism: check_os
 install_vim: check_os link_vim
 	@echo "Vim package installation is no longer done automatically!"
 	@echo "Start Vim or NeoVim and run:"
-	@echo "For NeoVim: :PackerInstall"
+	@echo "For NeoVim: :Lazy install"
 	@echo "For Vim: :PlugInstall"
 
 .PHONY: check_neovim
 check_neovim: check_os
-	@echo "This expects that packer is already installed"
-	@echo "Installing packer packages"
-	@nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
+	@echo "This expects that lazy is already installed"
+	@echo "Installing lazy packages"
+	@nvim --headless -c 'Lazy! sync' -c 'quitall'
 	@echo "Doing a basic neovim startup and quit"
 	@nvim --headless -c 'set display-=msgsep' -c 'quitall'
 	@echo "Running plenary tests"

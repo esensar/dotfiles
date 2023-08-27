@@ -187,7 +187,8 @@ local statuslines = {
 				end
 				status = status
 					.. " %4*"
-					.. "["
+					.. (build_status_last.build_title or "")
+					.. " ["
 					.. (build_status_last.current_step or "")
 					.. "/"
 					.. (build_status_last.step_count or "")

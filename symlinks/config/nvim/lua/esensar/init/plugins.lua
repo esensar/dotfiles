@@ -91,13 +91,6 @@ return require("lazy").setup({
 			vim.g.vimwiki_global_ext = 0
 			vim.g.vimwiki_listsyms = "✗○◐●✓"
 
-			local augroup = vim.api.nvim_create_augroup("VimwikiBufEnterMarkdown", {})
-			vim.api.nvim_create_autocmd("BufEnter", {
-				pattern = "*.md",
-				command = "setl syntax=markdown",
-				group = augroup,
-			})
-
 			vim.api.nvim_create_user_command("VimwikiOpenSubdirectoryIndex", function(opts)
 				require("esensar.vimwiki_extensions").open_subdirectory_index_file(opts.count, opts.args)
 			end, {

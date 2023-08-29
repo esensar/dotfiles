@@ -1,9 +1,1 @@
-{
-    "com.github.noam09.ulauncher-gnome-control-center": {
-        "id": "com.github.noam09.ulauncher-gnome-control-center",
-        "url": "https://github.com/noam09/ulauncher-gnome-control-center",
-        "updated_at": "2022-09-23T19:46:03.337195",
-        "last_commit": "ff8b0875ed5d78dcc1db5f638b201a460cc6d7f7",
-        "last_commit_time": "2020-10-06T08:36:54"
-    }
-}
+{}

@@ -69,4 +69,6 @@
 !/mbsync/
 !/clojure/
 !/clojure/**
+!/btop/
+!/btop/**
 !mimeapps.list

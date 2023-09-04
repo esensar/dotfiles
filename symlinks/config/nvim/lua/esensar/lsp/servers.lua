@@ -2,12 +2,18 @@
 --    - LSP servers configuration -
 -------------------------------------------------------------------------------
 
+require("neodev").setup({
+	library = { plugins = { "neotest", "plenary.nvim" }, types = true },
+	-- Always add neovim plugins into lua_ls library, even if not neovim config
+	override = function(root_dir, library)
+		library.enabled = true
+		library.plugins = true
+	end,
+})
+
 local lspconfig = require("lspconfig")
 require("mason").setup()
 require("mason-lspconfig").setup()
-require("neodev").setup({
-	library = { plugins = { "neotest", "plenary.nvim" }, types = true },
-})
 local common_config = require("esensar.lsp.server_config")
 
 -- Language specific LSP config overrides

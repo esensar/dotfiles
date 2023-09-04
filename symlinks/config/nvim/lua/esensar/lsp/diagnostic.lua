@@ -2,75 +2,80 @@
 --    - LSP diagnostics config -
 -------------------------------------------------------------------------------
 
-local null_ls = require("null-ls")
-local custom_sources = require("esensar.lsp.null-ls_sources")
-local common_config = require("esensar.lsp.server_config")
-
-null_ls.setup({
-	sources = {
-		-- Python
-		null_ls.builtins.diagnostics.flake8,
-		null_ls.builtins.formatting.isort,
-		null_ls.builtins.formatting.autopep8,
-
-		-- Kotlin
-		null_ls.builtins.formatting.ktlint,
-		null_ls.builtins.diagnostics.ktlint,
-
-		-- Clojure
-		null_ls.builtins.diagnostics.clj_kondo,
-		null_ls.builtins.formatting.joker.with({
-			filetypes = { "clojure" },
-		}),
-
-		-- C++ and C
-		null_ls.builtins.formatting.clang_format.with({
-			filetypes = { "cpp", "c" },
-		}),
-		null_ls.builtins.diagnostics.clang_check,
-
-		-- Cmake
-		null_ls.builtins.formatting.cmake_format,
-
-		-- Lua
-		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.diagnostics.luacheck.with({
-			extra_args = { "--config", vim.fn.stdpath("config") .. "/.luacheckrc" },
-		}),
-
-		-- Dart
-		null_ls.builtins.formatting.dart_format,
-
-		-- Go
-		null_ls.builtins.formatting.gofmt,
-
-		-- Rust
-		null_ls.builtins.formatting.rustfmt,
-
-		-- Zig
-		null_ls.builtins.formatting.zigfmt,
-
-		-- Java
-		null_ls.builtins.formatting.google_java_format,
-
-		-- General
-		null_ls.builtins.formatting.trim_newlines,
-		null_ls.builtins.formatting.trim_whitespace,
-		null_ls.builtins.hover.dictionary.with({
-			filetypes = { "text", "markdown", "vimwiki" },
-		}),
-		null_ls.builtins.diagnostics.misspell,
-		null_ls.builtins.code_actions.gitsigns,
-
-		-- Godot
-		custom_sources.formatters.gdformat,
-		custom_sources.diagnostics.gdlint,
-
-		-- Vim-Ledger
-		custom_sources.completion.ledger,
+require("formatter").setup({
+	filetype = {
+		python = {
+			require("formatter.filetypes.python").isort,
+			require("formatter.filetypes.python").autopep8,
+		},
+		kotlin = {
+			require("formatter.filetypes.kotlin").ktlint,
+		},
+		cpp = {
+			require("formatter.filetypes.cpp").clangformat,
+		},
+		c = {
+			require("formatter.filetypes.c").clangformat,
+		},
+		cmake = {
+			require("formatter.filetypes.cmake").cmakeformat,
+		},
+		lua = {
+			require("formatter.filetypes.lua").stylua,
+		},
+		dart = {
+			require("formatter.filetypes.dart").dartformat,
+		},
+		go = {
+			require("formatter.filetypes.go").gofmt,
+		},
+		rust = {
+			require("formatter.filetypes.rust").rustfmt,
+		},
+		zig = {
+			require("formatter.filetypes.zig").zigfmt,
+		},
+		java = {
+			require("formatter.filetypes.java").clangformat,
+		},
+		godot = {
+			require("esensar.lsp.formatters.gdformat"),
+		},
+		["*"] = {
+			require("formatter.filetypes.any").remove_trailing_whitespace,
+		},
 	},
-	on_attach = common_config.on_attach,
 })
+
+require("lint").linters_by_ft = {
+	python = { "flake8" },
+	kotlin = { "ktlint" },
+	clojure = { "clj_kondo" },
+	c = { "clang_check" },
+	cpp = { "clang_check" },
+	lua = { "luacheck" },
+	gdscript = { "gdlint" },
+}
+
+require("lint").linters.misspell = {
+	name = "Misspell",
+	stdin = true,
+	cmd = "misspell",
+	parser = require("lint.parser").from_pattern("(%w+):(%d+):(%d+):(.+)", { "file", "lnum", "col", "message" }),
+}
+
+require("lint").linters.gdlint = {
+	name = "GDLint",
+	cmd = "gdlint",
+	stdin = true,
+	args = {
+		function()
+			vim.fn.expand("%")
+		end,
+	},
+	stream = "stderr",
+	parser = require("lint.parser").from_pattern("(.+):(%d+): Error: (.*)", { "file", "lnum", "message" }),
+}
 
 vim.keymap.set("n", "]w", vim.diagnostic.goto_next)
 vim.keymap.set("n", "[w", vim.diagnostic.goto_prev)
@@ -85,3 +90,13 @@ vim.api.nvim_create_user_command(
 	{ desc = "Show LSP buffer warnings in a location list" }
 )
 vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, { desc = "Format current buffer using LSP" })
+
+-- Auto linting
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	callback = function()
+		vim.cmd("FormatWrite")
+		require("lint").try_lint()
+		require("lint").try_lint({ "codespell" })
+		require("lint").try_lint({ "misspell" })
+	end,
+})

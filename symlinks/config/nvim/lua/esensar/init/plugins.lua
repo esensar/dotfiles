@@ -6,6 +6,7 @@ return require("lazy").setup({
 	"tpope/vim-fugitive", -- Git integration
 	"tpope/vim-vinegar", -- Netrw improvements
 	{ "tpope/vim-obsession", cmd = "Obsession" }, -- Session.vim management
+	"tpope/vim-dadbod", -- database access
 	{
 		"kristijanhusak/vim-dadbod-ui",
 		cmd = "DBUI",

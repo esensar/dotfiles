@@ -1,5 +1,5 @@
 function __fish-timesheets-available-projects
-    grep 'account Project:.*' "$TIMESHEET_LEDGER_HOME/config/02_accounts.dat" | cut -f2 -d ' '
+    grep 'account Project:.*' "$TIMESHEET_LEDGER_HOME/config/accounts.dat" | cut -f2 -d ' '
 end
 
 function __fish-timesheets-running-projects

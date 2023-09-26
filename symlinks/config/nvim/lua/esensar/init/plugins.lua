@@ -62,7 +62,18 @@ return require("lazy").setup({
 	-- Language support
 	{ "tpope/vim-rails", ft = "ruby" }, -- Enables all rails command through vim and integrates with projectionist
 	{ "c-brenn/phoenix.vim", ft = "elixir" }, -- Similar to vim-rails, but for phoenix
-	"Olical/conjure", -- Lisp languages REPL integration
+	{
+		"Olical/conjure",
+		init = function()
+			vim.g["conjure#filetypes"] = {
+				"clojure",
+				"fennel",
+				"racket",
+				"scheme",
+				"lisp",
+			}
+		end,
+	}, -- Lisp languages REPL integration
 	"Olical/aniseed", -- Fennel nvim support
 	{
 		"vimwiki/vimwiki",

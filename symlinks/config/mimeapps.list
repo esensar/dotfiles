@@ -5,6 +5,9 @@ text/calendar=org.gnome.Calendar.desktop
 x-scheme-handler/terminal=alacritty.desktop
 x-scheme-handler/discord-647066573147996161=discord-647066573147996161.desktop
 video/mp4=org.videolan.VLC.desktop
+text/markdown=nvim.desktop
+video/webm=org.videolan.VLC.desktop
+text/x-log=nvim.desktop
 
 [Added Associations]
 x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
@@ -14,3 +17,6 @@ image/png=org.kde.krita.desktop;
 text/x-kotlin=nvim.desktop;
 application/json=nvim.desktop;
 video/mp4=org.videolan.VLC.desktop;
+text/markdown=nvim.desktop;
+video/webm=org.videolan.VLC.desktop;
+text/x-log=nvim.desktop;

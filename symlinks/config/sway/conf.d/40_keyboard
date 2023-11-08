@@ -1,6 +1,6 @@
 # Keyboard configuration
 input type:keyboard {
-  xkb_layout us,bs
+  xkb_layout us,ba
     xkb_options grp:alt_space_toggle,ctrl:nocaps
 
     repeat_delay 400

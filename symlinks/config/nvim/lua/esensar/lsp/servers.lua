@@ -41,6 +41,15 @@ local configuration_overrides = {
 				checkOnSave = {
 					command = "clippy",
 				},
+				procMacro = {
+					enable = true,
+				},
+				hoverActions = {
+					enable = false,
+				},
+				cargo = {
+					loadOutDirsFromCheck = true,
+				},
 			},
 		},
 	},

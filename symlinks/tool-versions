@@ -7,3 +7,4 @@ java openjdk-17.0.2
 rust stable
 golang 1.19.1
 clojure 1.11.1.1342
+lua system

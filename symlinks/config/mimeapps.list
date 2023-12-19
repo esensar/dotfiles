@@ -8,6 +8,7 @@ video/mp4=org.videolan.VLC.desktop
 text/markdown=nvim.desktop
 video/webm=org.videolan.VLC.desktop
 text/x-log=nvim.desktop
+text/plain=nvim.desktop
 
 [Added Associations]
 x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
@@ -20,3 +21,4 @@ video/mp4=org.videolan.VLC.desktop;
 text/markdown=nvim.desktop;
 video/webm=org.videolan.VLC.desktop;
 text/x-log=nvim.desktop;
+text/plain=nvim.desktop;

@@ -97,6 +97,7 @@ end
 -- Flutter tools
 require("flutter-tools").setup({
 	lsp = common_config,
+	flutter_lookup_cmd = "asdf where flutter"
 })
 
 -- Rust tools

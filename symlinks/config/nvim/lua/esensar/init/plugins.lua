@@ -35,7 +35,7 @@ return require("lazy").setup({
 	{ "romainl/vim-devdocs", cmd = "DD" }, -- Quick DevDocs.io search using :DD
 	"gpanders/editorconfig.nvim", -- .editorconfig support
 	"lewis6991/impatient.nvim", -- Caching lua modules for faster startup
-	"rcarriga/nvim-notify", -- notifications UI
+	"j-hui/fidget.nvim", -- notifications UI
 	"MunifTanjim/nui.nvim", -- General UI
 	"jiangmiao/auto-pairs", -- Autoclosing of brackets and quotes
 
@@ -137,6 +137,12 @@ return require("lazy").setup({
 	"hrsh7th/nvim-cmp", -- completion integration
 	"mhartington/formatter.nvim", -- formatting support
 	"mfussenegger/nvim-lint", -- linting support
+	{
+		"smjonas/inc-rename.nvim",
+		config = function()
+			require("inc_rename").setup()
+		end,
+	},
 
 	-- LSP language specific
 	"folke/neodev.nvim", -- Built-in Lua integration with LSP

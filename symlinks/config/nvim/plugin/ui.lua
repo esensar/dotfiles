@@ -3,12 +3,9 @@ local input = require("nui.input")
 local event = require("nui.utils.autocmd").event
 
 -- Notifications
-local notify = require("notify")
-notify.setup({
-	render = "minimal",
-	stages = "static",
-})
-vim.notify = notify
+local fidget = require("fidget")
+fidget.setup()
+vim.notify = fidget.notify
 
 -- Inputs
 local input_ui

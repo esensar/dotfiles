@@ -33,15 +33,22 @@ local edit_modes = {
 
 local function update_colors()
 	local status_line_hl = vim.api.nvim_get_hl(0, { name = "StatusLine" })
-	local bg = status_line_hl.bg
+	local bg
+	if status_line_hl.reverse then
+		bg = status_line_hl.fg
+	else
+		bg = status_line_hl.bg
+	end
 
 	local function set_user_highlight_based_on(user_hl_name, based_on)
 		local hl_based_on = vim.api.nvim_get_hl(0, { name = based_on })
-		local user_config = {
-			foreground = hl_based_on.fg,
+		while hl_based_on.link do
+			hl_based_on = vim.api.nvim_get_hl(0, { name = hl_based_on.link })
+		end
+		local user_config = vim.tbl_extend("force", hl_based_on, {
 			background = bg,
 			bold = true,
-		}
+		})
 		vim.api.nvim_set_hl(0, user_hl_name, user_config)
 	end
 

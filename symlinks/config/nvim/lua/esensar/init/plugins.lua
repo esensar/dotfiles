@@ -30,7 +30,7 @@ return require("lazy").setup({
 	"mhinz/vim-grepper", -- Grepper command - improved grepping throughout project
 	"radenling/vim-dispatch-neovim", -- vim-dispatch for neovim - uses terminal
 	"wellle/targets.vim", -- Additional targets for inside and around motions
-	"sainnhe/gruvbox-material", -- Gruvbox
+	"ellisonleao/gruvbox.nvim", -- colorscheme
 	"romainl/vim-qf", -- Quickfix list upgrades
 	{ "romainl/vim-devdocs", cmd = "DD" }, -- Quick DevDocs.io search using :DD
 	"gpanders/editorconfig.nvim", -- .editorconfig support

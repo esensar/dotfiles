@@ -35,24 +35,6 @@ local configuration_overrides = {
 	lemminx = {
 		cmd = { "lemminx" },
 	},
-	rust_analyzer = {
-		settings = {
-			["rust-analyzer"] = {
-				checkOnSave = {
-					command = "clippy",
-				},
-				procMacro = {
-					enable = true,
-				},
-				hoverActions = {
-					enable = false,
-				},
-				cargo = {
-					loadOutDirsFromCheck = true,
-				},
-			},
-		},
-	},
 	lua_ls = {
 		settings = {
 			Lua = {
@@ -97,20 +79,30 @@ end
 -- Flutter tools
 require("flutter-tools").setup({
 	lsp = common_config,
-	flutter_lookup_cmd = "asdf where flutter"
+	flutter_lookup_cmd = "asdf where flutter",
 })
 
 -- Rust tools
-local rt = require("rust-tools")
-
-rt.setup({
+vim.g.rustaceanvim = {
 	server = vim.tbl_extend("force", common_config, {
 		on_attach = function(client, bufnr)
 			common_config.on_attach(client, bufnr)
-			-- Hover actions
-			vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-			-- Code action groups
-			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
 		end,
+		settings = {
+			["rust-analyzer"] = {
+				checkOnSave = {
+					command = "clippy",
+				},
+				procMacro = {
+					enable = true,
+				},
+				hoverActions = {
+					enable = false,
+				},
+				cargo = {
+					loadOutDirsFromCheck = true,
+				},
+			},
+		},
 	}),
-})
+}

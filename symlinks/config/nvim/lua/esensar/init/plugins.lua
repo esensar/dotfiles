@@ -147,7 +147,7 @@ return require("lazy").setup({
 	-- LSP language specific
 	"folke/neodev.nvim", -- Built-in Lua integration with LSP
 	"akinsho/flutter-tools.nvim", -- Additional flutter integrations
-	"simrat39/rust-tools.nvim", -- Additional rust integrations
+	{ "mrcjkb/rustaceanvim", ft = "rust" }, -- Additional rust integrations
 	{ "mfussenegger/nvim-jdtls", ft = "java" }, -- Additional java integrations
 
 	-- Lua support

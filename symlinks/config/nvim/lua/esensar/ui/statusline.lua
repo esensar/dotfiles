@@ -32,13 +32,13 @@ local edit_modes = {
 }
 
 local function update_colors()
-	local status_line_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
-	local bg = status_line_hl.foreground
+	local status_line_hl = vim.api.nvim_get_hl(0, { name = "StatusLine" })
+	local bg = status_line_hl.bg
 
 	local function set_user_highlight_based_on(user_hl_name, based_on)
-		local hl_based_on = vim.api.nvim_get_hl_by_name(based_on, true)
+		local hl_based_on = vim.api.nvim_get_hl(0, { name = based_on })
 		local user_config = {
-			foreground = hl_based_on.foreground,
+			foreground = hl_based_on.fg,
 			background = bg,
 			bold = true,
 		}
@@ -138,7 +138,7 @@ end
 
 local function get_current_override()
 	local bufnr = vim.fn.winbufnr(vim.g.statusline_winid)
-	return get_override(vim.api.nvim_buf_get_option(bufnr, "filetype"))
+	return get_override(vim.api.nvim_get_option_value("filetype", { buf = bufnr }))
 end
 
 local statuslines = {
@@ -162,19 +162,9 @@ local statuslines = {
 			status = status .. get_paste_string()
 
 			-- Take just the first message which makes sense
-			local first_lsp_message = vim.tbl_filter(function(msg)
-				return not msg.done and msg.progress
-			end, vim.lsp.util.get_progress_messages())[1]
+			local first_lsp_message = vim.lsp.status()
 			if first_lsp_message then
-				status = status
-					.. " %2*"
-					.. "["
-					.. (first_lsp_message.name or "")
-					.. "]"
-					.. (first_lsp_message.percentage and "(" .. first_lsp_message.percentage .. "%%)" or "")
-					.. " "
-					.. (first_lsp_message.title or "")
-					.. "%*"
+				status = status .. " %2*" .. first_lsp_message .. "%*"
 			end
 
 			local build_status_last = require("devcontainer.status").find_build({ running = true })

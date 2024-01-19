@@ -1,4 +1,2 @@
-vim.o.termguicolors = true -- Does not look good with gruvbox
-vim.o.background = "dark"
-vim.g.gruvbox_italic = 1
-vim.cmd([[colorscheme gruvbox]])
+vim.g.gruvbox_baby_use_original_palette = true
+vim.cmd([[colorscheme gruvbox-baby]])

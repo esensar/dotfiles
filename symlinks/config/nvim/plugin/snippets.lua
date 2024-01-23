@@ -12,6 +12,9 @@ luasnip.add_snippets("all", {
 	s("diso", { f(function(_, _)
 		return os.date("%Y-%m-%dT%H:%M:%S")
 	end) }),
+	s("disoutc", { f(function(_, _)
+		return os.date("!%Y-%m-%dT%H:%M:%SZ")
+	end) }),
 })
 
 require("luasnip.loaders.from_vscode").lazy_load()

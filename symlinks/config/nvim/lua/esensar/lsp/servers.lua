@@ -69,6 +69,7 @@ local servers = {
 	"solang",
 	"terraformls",
 	"tsserver",
+	"vale_ls",
 	"vimls",
 	"zls",
 }
@@ -101,6 +102,7 @@ vim.g.rustaceanvim = {
 				},
 				cargo = {
 					loadOutDirsFromCheck = true,
+					features = "all"
 				},
 			},
 		},

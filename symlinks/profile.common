@@ -36,5 +36,7 @@ export VISUAL=nvim
 export ELIXIR_EDITOR="nvim"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+export ANDROID_HOME="$HOME/Android/Sdk"
+
 alias vim="nvim"
 alias vi="nvim"

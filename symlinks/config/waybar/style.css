@@ -56,6 +56,10 @@
     font-size: 14px;
 }
 
+#workspaces {
+    font-family: SauceCodePro Nerd Font;
+}
+
 /* Each module */
 #battery,
 #clock,

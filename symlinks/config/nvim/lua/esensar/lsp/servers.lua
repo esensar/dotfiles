@@ -71,6 +71,7 @@ local servers = {
 	"tsserver",
 	"vale_ls",
 	"vimls",
+	"wgsl_analyzer",
 	"zls",
 }
 for _, lsp in ipairs(servers) do

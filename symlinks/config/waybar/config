@@ -125,7 +125,7 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
-        "persistent_workspaces": {
+        "persistent-workspaces": {
             "": []
         },
         "format": "{icon}{name}",

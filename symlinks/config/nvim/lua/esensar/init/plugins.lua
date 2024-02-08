@@ -38,6 +38,7 @@ return require("lazy").setup({
 	"j-hui/fidget.nvim", -- notifications UI
 	"MunifTanjim/nui.nvim", -- General UI
 	"jiangmiao/auto-pairs", -- Autoclosing of brackets and quotes
+	"nvim-pack/nvim-spectre", -- Find and replace
 
 	-- Tools
 	"direnv/direnv.vim", -- Integration with Direnv

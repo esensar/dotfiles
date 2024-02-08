@@ -6,6 +6,7 @@ assign [class="discord"] $chat_workspace
 assign [instance="element"] $chat_workspace
 assign [class="Gvim"] $editor_workspace
 assign [class="jetbrains-idea-ce"] $ide_workspace
+assign [class="jetbrains-idea"] $ide_workspace
 assign [class="libreoffice"] $note_workspace
 assign [class="jetbrains-studio"] $ide_workspace
 assign [class="jetbrains-rider"] $ide_workspace

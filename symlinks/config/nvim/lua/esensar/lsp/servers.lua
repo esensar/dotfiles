@@ -90,6 +90,14 @@ vim.g.rustaceanvim = {
 		on_attach = function(client, bufnr)
 			common_config.on_attach(client, bufnr)
 		end,
+		cmd = {"ra-multiplex"},
+		-- init_options = {
+		-- 	lspMux = {
+		-- 		version = "1",
+		-- 		method = "connect",
+		-- 		server = "rust-analyzer",
+		-- 	},
+		-- },
 		settings = {
 			["rust-analyzer"] = {
 				checkOnSave = {
@@ -103,7 +111,7 @@ vim.g.rustaceanvim = {
 				},
 				cargo = {
 					loadOutDirsFromCheck = true,
-					features = "all"
+					features = "all",
 				},
 			},
 		},

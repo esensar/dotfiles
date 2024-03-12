@@ -20,9 +20,13 @@ usage () {
   echo "Generates input for ledger-cli time tracking"
   echo -e "\nUsage: time COMMAND [options] [arguments] \n"
   echo "Commands:"
-  echo "  in          - starts a new time entry"
-  echo "  out         - completes an old time entry"
-  echo "  bal         - outputs current timesheet"
+  echo "  in           - starts a new time entry"
+  echo "  out          - completes an old time entry"
+  echo "  toggle       - toggle current timer"
+  echo "  bal          - outputs current timesheet"
+  echo "  invoice      - generate an invoice from account balance"
+  echo "  invoice_list - generate data for an invoice from account balance"
+  echo "  waybar       - generate output for waybar module"
   echo ""
   echo "Options:"
   echo "  -h --help        - prints this help message (if one of commands is passed, prints help message for that command)"
@@ -44,9 +48,9 @@ usage_in () {
   echo "  -h --help        - prints this help message"
   echo "  -v --verbose     - enables verbose logging"
   echov "Examples:"
-  echov "  > time in project:test"
+  echov "  > t in project:test"
   echov ""
-  echov "  > time in project:test parsing"
+  echov "  > t in project:test parsing"
 }
 
 usage_out () {
@@ -60,7 +64,7 @@ usage_out () {
   echo "  -h --help        - prints this help message"
   echo "  -v --verbose     - enables verbose logging"
   echov "Examples:"
-  echov "  > time out project:test"
+  echov "  > t out project:test"
 }
 
 usage_bal () {
@@ -74,7 +78,7 @@ usage_bal () {
   echo "  -h --help        - prints this help message"
   echo "  -v --verbose     - enables verbose logging"
   echov "Examples:"
-  echov "  > time bal project:test"
+  echov "  > t bal project:test"
 }
 
 POSITIONAL=()
@@ -145,6 +149,101 @@ time_bal () {
   ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT $COMMENT
 }
 
+time_bal () {
+  ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT $COMMENT
+}
+
+time_invoice () {
+  tail -n 1 $TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal | grep -Eq "^i.*\$" && echo "Please stop current timer before generating an invoice!" && exit 1
+  if [ -z "$INVOICE_GENERATOR_HOME" ]; then
+    echo "INVOICE_GENERATOR_HOME variable not defined. It must point to a directory that hosts your invoice templates and stores invoices."
+    exit 1
+  fi
+  if [ -z "$PROJECT" ]; then
+    echo "Project is required!"
+    exit 1
+  fi
+  if [ -z "$COMMENT" ]; then
+    echo "Task is required!"
+    exit 1
+  fi
+  echo "Please generate an invoice manually! This is the total"
+  t invoice_list "$PROJECT" "$COMMENT"
+
+  echo "===="
+  echo "Please input amount to invoice"
+  read -p "Amount in EUR: " AMOUNT
+
+  CLIENT=$(echo $PROJECT | cut -f3 -d ":")
+  echo "Please input a directory name for this invoice"
+  read -p "Directory name: " DIRECTORY_NAME
+  echo "Please input a title for this invoice"
+  read -p "Title: " INVOICE_TITLE
+
+  INVOICE_DIR="$INVOICE_GENERATOR_HOME/invoices/$CLIENT/$DIRECTORY_NAME"
+  INVOICE_FILE="$INVOICE_DIR/invoice.tex"
+  mkdir "$INVOICE_DIR"
+  cp "$INVOICE_GENERATOR_HOME/invoices/$CLIENT/template.tex" "$INVOICE_DIR/invoice.tex"
+  sed -i "s/===INVOICETITLE===/$INVOICE_TITLE/" "$INVOICE_FILE"
+
+  INVOICE_ITEMS=""
+  HOURLY_RATE="50"
+
+  read -p "Would you like to customize entries? [Y/n]" CUSTOMIZE
+
+  if [ "Y" == "$CUSTOMIZE" ]; then
+    while read -p "Enter name for invoice entry. Empty name ends input: " ENTRY_NAME; do
+      if [ -z "$ENTRY_NAME" ]; then
+        echo "Done with reading entries."
+        break
+      fi
+
+      read -p "Enter number of hours for this entry ($ENTRY_NAME): " HOURS
+      INVOICE_ITEMS="$INVOICE_ITEMS  \\\\invoiceitem{$ENTRY_NAME}{$HOURS}{$HOURLY_RATE}{}\n"
+    done
+  else
+      read -p "Enter number of hours for this invoice: " HOURS
+      INVOICE_ITEMS="$INVOICE_ITEMS  \\\\invoiceitem{Development work (hourly)}{$HOURS}{$HOURLY_RATE}{}\n"
+  fi
+
+  sed -i "s/===INVOICETABLE===/$INVOICE_ITEMS/" "$INVOICE_FILE"
+  LAST_PWD="$PWD"
+
+  echo "" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  echo "$(date '+%Y-%m-%d') * $COMMENT" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  echo "    ($PROJECT)  -$(ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT and @"$COMMENT" --format "%(total)")" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  echo "    Invoiced:$(echo $PROJECT | sed "s/Project://")  $AMOUNT€" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  echo "    Magic"  >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+
+  echo "Generated an invoice in $INVOICE_DIR/invoice.tex"
+  echo "Please review it and use pdflatex to generate it!"
+}
+
+time_invoice_list () {
+  if [ -z "$PROJECT" ]; then
+    echo "Project is required!"
+    exit 1
+  fi
+  if [ -z "$COMMENT" ]; then
+    ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" reg --by-payee "$PROJECT"
+  else
+    ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" reg --by-payee "$PROJECT" and @"$COMMENT"
+  fi
+}
+
+time_toggle () {
+  LAST_PROJECT=$(ledger reg -f $TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal --tail 1 --format "%(account)")
+  LAST_COMMENT=$(ledger reg -f $TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal --tail 1 --format "%(payee)")
+  tail -n 1 $TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal | grep -Eq "^i.*\$" && t out "$LAST_PROJECT" "$LAST_COMMENT" || t in "$LAST_PROJECT" "$LAST_COMMENT"
+}
+
+time_waybar () {
+  TOOLTIP=$(ledger reg -f $TIMESHEET_LEDGER_HOME/main.journal --tail 1 --format "Current: %(account) -- %(payee) %(scrub(amount))")
+  CLASS=$(tail -n 1 $TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal | grep -Eq "^i.*\$" && echo "active" || echo "paused")
+  TEXT=$(tail -n 1 $TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal | grep -Eq "^i.*\$" && echo "󱎫" || echo "󱎬")
+  echo "{\"text\":\"$TEXT\", \"tooltip\":\"$TOOLTIP\", \"class\":\"$CLASS\",\"alt\":\"$CLASS\"}"
+}
+
 case $COMMAND in
   in)
     time_in
@@ -154,6 +253,18 @@ case $COMMAND in
     ;;
   bal)
     time_bal
+    ;;
+  invoice)
+    time_invoice
+    ;;
+  invoice_list)
+    time_invoice_list
+    ;;
+  toggle)
+    time_toggle
+    ;;
+  waybar)
+    time_waybar
     ;;
   *)
     usage $COMMAND; exit 1 ;;

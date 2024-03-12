@@ -50,14 +50,9 @@
 
 /* The whole bar */
 #waybar {
-    background: #323232;
     color: white;
-    font-family: Cantarell, Noto Sans, sans-serif;
+    font-family: SauceCodePro Nerd Font Propo;
     font-size: 14px;
-}
-
-#workspaces {
-    font-family: SauceCodePro Nerd Font;
 }
 
 /* Each module */
@@ -70,9 +65,16 @@
 #network,
 #pulseaudio,
 #temperature,
+#custom-current-task,
+#custom-apps-menu,
+#custom-power-menu,
+#custom-notification,
+#idle_inhibitor,
+#workspaces,
+#backlight,
 #tray {
-    padding-left: 10px;
-    padding-right: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 
@@ -183,18 +185,37 @@
     font-weight: bold;
     font-size: 18px;
     padding-right: 10px;
+    margin: 0px;
 }
 
 #custom-power-menu {
     font-weight: bold;
     font-size: 18px;
     padding-right: 10px;
+    margin: 0px;
 }
 
 #custom-apps-menu {
     font-weight: bold;
     font-size: 18px;
     padding-right: 10px;
+}
+
+#custom-current-task {
+    font-weight: bold;
+    margin-left: 16px;
+}
+
+#custom-current-task.active {
+    color: green;
+}
+
+#custom-current-task.paused {
+    color: gray;
+}
+
+#workspaces {
+    margin: 0px;
 }
 
 #workspaces button {

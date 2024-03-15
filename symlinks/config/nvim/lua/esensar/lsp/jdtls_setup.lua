@@ -24,11 +24,11 @@ end
 
 function M.setup()
 	local installed_jdtls = {
-		settings = require("mason-registry.jdtls"):get_lsp_settings_schema():or_else({ properties = {} }).properties,
 	}
 
+	installed_jdtls.cmd = { "jdtls" }
+
 	require("jdtls").setup_dap({ hotcoredeplace = "auto" })
-	require("jdtls.setup").add_commands()
 
 	local config = vim.tbl_extend("force", installed_jdtls, {
 		flags = {

@@ -490,6 +490,9 @@ local rust_config = {
 	["tests/*.rs"] = {
 		type = "test",
 	},
+	["benches/*.rs"] = {
+		type = "bench",
+	},
 }
 
 local zig_config = {

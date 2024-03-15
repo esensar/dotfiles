@@ -5,7 +5,9 @@
 local neotest = require("neotest")
 neotest.setup({
 	adapters = {
-		require("neotest-rust"),
+		require("neotest-rust")({
+			args = { "--no-capture" },
+		}),
 		require("neotest-plenary"),
 		require("neotest-vim-test")({
 			ignore_file_types = { "rust", "lua" },

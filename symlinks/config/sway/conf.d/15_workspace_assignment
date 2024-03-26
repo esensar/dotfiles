@@ -10,6 +10,7 @@ assign [class="jetbrains-idea"] $ide_workspace
 assign [class="libreoffice"] $note_workspace
 assign [class="jetbrains-studio"] $ide_workspace
 assign [class="jetbrains-rider"] $ide_workspace
+assign [app_id="eclipse"] $ide_workspace
 assign [class="octave-gui"] $ide_workspace
 assign [instance="vim"] $editor_workspace
 assign [instance="download"] $ongoing_operations

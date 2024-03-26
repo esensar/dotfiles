@@ -210,7 +210,7 @@ time_invoice () {
   LAST_PWD="$PWD"
 
   echo "" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
-  echo "$(date '+%Y-%m-%d') * $COMMENT" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  echo "$(date '+%Y-%m-%d') $COMMENT" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
   echo "    ($PROJECT)  -$(ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT and @"$COMMENT" --format "%(total)")" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
   echo "    Invoiced:$(echo $PROJECT | sed "s/Project://")  $AMOUNT€" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
   echo "    Magic"  >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"

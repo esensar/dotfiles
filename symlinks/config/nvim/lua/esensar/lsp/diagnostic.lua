@@ -36,7 +36,7 @@ require("formatter").setup({
 			require("formatter.filetypes.zig").zigfmt,
 		},
 		java = {
-			require("formatter.filetypes.java").clangformat,
+			require("esensar.lsp.formatters.clang-format-java"),
 		},
 		godot = {
 			require("esensar.lsp.formatters.gdformat"),

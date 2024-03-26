@@ -23,18 +23,26 @@ local function is_in_config_home(bufname)
 end
 
 function M.setup()
-	local installed_jdtls = {
-	}
+	local installed_jdtls = {}
 
 	installed_jdtls.cmd = { "jdtls" }
 
 	require("jdtls").setup_dap({ hotcoredeplace = "auto" })
 
-	local config = vim.tbl_extend("force", installed_jdtls, {
+	local config = vim.tbl_deep_extend("force", installed_jdtls, {
 		flags = {
 			allow_incremental_sync = true,
 		},
 		on_attach = common_config.on_attach,
+		capabilities = {
+			textDocument = {
+				completion = {
+					completionItem = {
+						snippetSupport = true,
+					},
+				},
+			},
+		},
 	})
 	config.settings = {
 		java = {

@@ -43,6 +43,7 @@ return require("lazy").setup({
 	-- Tools
 	"direnv/direnv.vim", -- Integration with Direnv
 	"nvim-neotest/neotest", -- Running tests from NeoVim
+	"nvim-neotest/nvim-nio",
 	"nvim-neotest/neotest-plenary",
 	"rouge8/neotest-rust",
 	"nvim-neotest/neotest-vim-test", -- vim-test plugin for neotest
@@ -56,7 +57,10 @@ return require("lazy").setup({
 	"https://codeberg.org/neovim-java/neovim-java-plugin-host", -- Host for Java plugins
 
 	-- Snippets
-	"L3MON4D3/LuaSnip", -- snippets support
+	{
+		"L3MON4D3/LuaSnip",
+		build = "make install_jsregexp",
+	}, -- snippets support
 	"rafamadriz/friendly-snippets", -- Collection of snippets
 	"saadparwaiz1/cmp_luasnip", -- cmp snippets support
 

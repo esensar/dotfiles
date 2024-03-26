@@ -326,6 +326,9 @@ local java_project_config = {
 	["src/main/resources/*"] = {
 		type = "resource",
 	},
+	["src/main/resources/META-INF/MANIFEST.MF"] = {
+		type = "manifest",
+	},
 	["src/test/resources/*"] = {
 		type = "testresource",
 	},
@@ -377,6 +380,36 @@ local kotlin_project_config = {
 	},
 	["src/test/resources/*"] = {
 		type = "testresource",
+	},
+}
+
+local maven_project_config = {
+	["*"] = {
+		start = "mvn package",
+	},
+	["pom.xml"] = {
+		type = "pom",
+	},
+}
+
+local gradle_project_config = {
+	["*"] = {
+		start = "./gradlew assemble",
+	},
+	["build.gradle"] = {
+		type = "build",
+	},
+	["build.gradle.kts"] = {
+		type = "build",
+	},
+	["settings.gradle"] = {
+		type = "settings",
+	},
+	["gradle.properties"] = {
+		type = "properties",
+	},
+	["local.properties"] = {
+		type = "localproperties",
 	},
 }
 
@@ -635,6 +668,8 @@ vim.g.projectionist_heuristics = {
 	["lua/"] = lua_vim_plugin_config,
 	["build.gradle|pom.xml"] = java_project_config,
 	["build.gradle|build.gradle.kts"] = kotlin_project_config,
+	["build.gradle|build.gradle.kts|settings.gradle"] = gradle_project_config,
+	["pom.xml"] = maven_project_config,
 	["mint.json"] = mint_config,
 	["shard.yml"] = crystal_config,
 	["Cargo.toml"] = rust_config,

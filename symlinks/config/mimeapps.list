@@ -10,6 +10,7 @@ video/webm=org.videolan.VLC.desktop
 text/x-log=nvim.desktop
 text/plain=nvim.desktop
 x-scheme-handler/fleet=jetbrains-fleet.desktop
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_app_eclipse_.desktop
 
 [Added Associations]
 x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
@@ -23,3 +24,4 @@ text/markdown=nvim.desktop;
 video/webm=org.videolan.VLC.desktop;
 text/x-log=nvim.desktop;
 text/plain=nvim.desktop;
+image/x-portable-pixmap=gimp.desktop;

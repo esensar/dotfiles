@@ -154,6 +154,7 @@ return require("lazy").setup({
 	"akinsho/flutter-tools.nvim", -- Additional flutter integrations
 	{ "mrcjkb/rustaceanvim", ft = "rust" }, -- Additional rust integrations
 	{ "mfussenegger/nvim-jdtls", ft = "java" }, -- Additional java integrations
+	"scalameta/nvim-metals", -- Scala
 
 	-- Lua support
 	"nvim-lua/popup.nvim", -- Popup API integration - needed for some plugins

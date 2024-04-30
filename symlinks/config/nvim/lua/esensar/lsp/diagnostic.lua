@@ -10,6 +10,7 @@ require("formatter").setup({
 		},
 		kotlin = {
 			require("formatter.filetypes.kotlin").ktlint,
+			require("formatter.filetypes.kotlin").detekt,
 		},
 		cpp = {
 			require("formatter.filetypes.cpp").clangformat,
@@ -40,6 +41,10 @@ require("formatter").setup({
 		},
 		godot = {
 			require("esensar.lsp.formatters.gdformat"),
+		},
+		xml = {
+			require("formatter.filetypes.xml").xmlformat,
+			require("formatter.filetypes.xml").xmllint,
 		},
 		["*"] = {
 			require("formatter.filetypes.any").remove_trailing_whitespace,

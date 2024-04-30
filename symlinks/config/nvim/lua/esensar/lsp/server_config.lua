@@ -41,7 +41,7 @@ local function on_attach(client, bufnr)
 	end
 
 	if vim.fn.has("nvim-0.10") then
-		vim.lsp.inlay_hint.enable(bufnr, true)
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 	end
 end
 

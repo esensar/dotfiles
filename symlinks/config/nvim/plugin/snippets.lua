@@ -105,7 +105,7 @@ local function jdocsnip(args, _, old_state)
 		end
 		vim.list_extend(nodes, { t({ " * ", " * @throws " .. exc .. " " }), ins, t({ "", "" }) })
 		param_nodes.ex = ins
-		insert = insert + 1
+		-- insert = insert + 1
 	end
 
 	vim.list_extend(nodes, { t({ " */" }) })

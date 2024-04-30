@@ -5,7 +5,7 @@
 require("neodev").setup({
 	library = { plugins = { "neotest", "plenary.nvim" }, types = true },
 	-- Always add neovim plugins into lua_ls library, even if not neovim config
-	override = function(root_dir, library)
+	override = function(_, library)
 		library.enabled = true
 		library.plugins = true
 	end,
@@ -55,6 +55,7 @@ local servers = {
 	"crystalline",
 	"cucumber_language_server",
 	"dockerls",
+	"dotls",
 	"gdscript",
 	"gopls",
 	"hls",
@@ -90,7 +91,7 @@ vim.g.rustaceanvim = {
 		on_attach = function(client, bufnr)
 			common_config.on_attach(client, bufnr)
 		end,
-		cmd = {"ra-multiplex"},
+		cmd = { "ra-multiplex" },
 		-- init_options = {
 		-- 	lspMux = {
 		-- 		version = "1",

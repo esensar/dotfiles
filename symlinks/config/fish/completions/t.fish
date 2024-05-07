@@ -39,5 +39,9 @@ complete -c t -x -n "__fish_seen_subcommand_from bal" -a '(__fish-timesheets-ava
 complete -c t -x -n "__fish_seen_subcommand_from invoice" -n "__fish_timesheets_arg_number 2" -a '(__fish-timesheets-available-projects)'
 complete -c t -x -n "__fish_seen_subcommand_from invoice" -n "__fish_timesheets_arg_number 3" -a '(__fish-timesheets-existing-comments)'
 
+# clear
+complete -c t -x -n "__fish_seen_subcommand_from clear" -n "__fish_timesheets_arg_number 2" -a '(__fish-timesheets-available-projects)'
+complete -c t -x -n "__fish_seen_subcommand_from clear" -n "__fish_timesheets_arg_number 3" -a '(__fish-timesheets-existing-comments)'
+
 # Invoice list
 complete -c t -x -n "__fish_seen_subcommand_from invoice_list" -a '(__fish-timesheets-available-projects)'

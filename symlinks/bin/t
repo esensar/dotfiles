@@ -25,6 +25,7 @@ usage () {
   echo "  toggle       - toggle current timer"
   echo "  bal          - outputs current timesheet"
   echo "  invoice      - generate an invoice from account balance"
+  echo "  clear        - clear time for account and comment"
   echo "  invoice_list - generate data for an invoice from account balance"
   echo "  waybar       - generate output for waybar module"
   echo ""
@@ -219,6 +220,12 @@ time_invoice () {
   echo "Please review it and use pdflatex to generate it!"
 }
 
+time_clear () {
+  echo "" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  echo "$(date '+%Y-%m-%d') * $COMMENT" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  echo "    ($PROJECT)  -$(ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT and @"$COMMENT" --format "%(total)")" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+}
+
 time_invoice_list () {
   if [ -z "$PROJECT" ]; then
     echo "Project is required!"
@@ -256,6 +263,9 @@ case $COMMAND in
     ;;
   invoice)
     time_invoice
+    ;;
+  clear)
+    time_clear
     ;;
   invoice_list)
     time_invoice_list

@@ -18,7 +18,6 @@ return require("lazy").setup({
 	"tpope/vim-projectionist", -- Project config file!
 	"tpope/vim-unimpaired", -- Additional [ and ] mappings
 	"tpope/vim-repeat", -- Better . repeat
-	"tpope/vim-commentary", -- Commenting motion
 	"tpope/vim-sleuth", -- Intendation heuristics
 	"tpope/vim-eunuch", -- UNIX helpers
 

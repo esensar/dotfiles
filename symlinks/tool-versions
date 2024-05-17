@@ -1,10 +1,10 @@
 direnv 2.34.0
 nodejs 18.1.0
 python system
-ruby 3.0.0
-neovim 0.9.5
+neovim 0.10.0
 java openjdk-17.0.2
 rust stable
 golang 1.19.1
 clojure 1.11.1.1342
 lua system
+maven system

@@ -167,6 +167,7 @@
             "on-click": "blueman-manager"
         },
         "temperature": {
+            "hwmon-path": ["/sys/class/hwmon/hwmon3/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
             "critical-threshold": 80,
             "interval": 5,
             "format": "{icon} {temperatureC}°C",

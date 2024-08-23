@@ -23,6 +23,8 @@ else
 end
 
 abbr -a batdiff "git diff --name-only --diff-filter=d | xargs bat --diff"
+abbr -a ggpush "git push origin (__git.current_branch)"
+abbr -a ggpull "git pull origin (__git.current_branch)"
 
 source ~/.config/fish/platform_config/$MACHINE_TYPE.fish
 

@@ -62,6 +62,10 @@ require("lint").linters_by_ft = {
 	gdscript = { "gdlint" },
 }
 
+local codespell_config = require("lint").linters.codespell
+table.insert(codespell_config.args, 0, "crate")
+table.insert(codespell_config.args, 0, "-L")
+
 require("lint").linters.misspell = {
 	name = "Misspell",
 	stdin = true,

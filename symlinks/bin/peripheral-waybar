@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+
+set -e
+
+. ~/.local/opt/script_utils/echo.sh
+
+usage () {
+  if [ ! -z "$1" ]; then
+    echo -e "Unknown peripheral: $1 \n"
+  fi
+  echo "Basic peripheral info component for waybar."
+  echo -e "\nUsage: peripheral-waybar PERIPHERAL"
+  echo "Options:"
+  echo "  -h --help        - prints this help message (if one of commands is passed, prints help message for that command)"
+  echo "  -v --verbose     - enables verbose logging"
+  echo "  -c --check       - checks if component should be displayed"
+  echo "  -n --notify      - show a notification with full info"
+  if [ ! -z "$1" ]; then
+    exit 1
+  fi
+}
+
+POSITIONAL=()
+HELP=0
+VERBOSE=0
+CHECK=0
+NOTIFY=0
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+    -h|--help)
+      HELP=1
+      shift # past argument
+      ;;
+    -v|--verbose)
+      VERBOSE=1
+      shift # past argument
+      ;;
+    -c|--check)
+      CHECK=1
+      shift # past argument
+      ;;
+    -n|--notify)
+      NOTIFY=1
+      shift # past argument
+      ;;
+    *)    # unknown option
+      POSITIONAL+=("$1") # save it in an array for later
+      shift # past argument
+      ;;
+  esac
+done
+
+PERIPHERAL="${POSITIONAL[0]}"
+
+echov "Detected peripheral: $PERIPHERAL"
+
+if [ $HELP -eq 1 ]; then
+  usage $PERIPHERAL
+  exit 0
+fi
+
+mouse_waybar () {
+  LAST_UPDATE_FILE=$MY_CONFIG_CACHE_DIR/peripheral-waybar-mouse-last-update
+  LAST_STATUS_FILE=$MY_CONFIG_CACHE_DIR/peripheral-waybar-mouse-last-status
+  if [ ! -f "$LAST_UPDATE_FILE" ]; then
+    UPG_DATE=0
+  else
+    UPG_DATE=$(cat $LAST_UPDATE_FILE)
+  fi
+  if [ -z "$UPG_DATE" ]; then
+    UPG_DATE=0
+  fi
+  CURR_DATE=$( date +%s )
+  DIFF=$(( CURR_DATE - UPG_DATE ))
+  if (( DIFF > 32 )); then
+    BATTERY_LEVEL=$(rivalcfg --battery-level)
+    echo $CURR_DATE > $LAST_UPDATE_FILE
+    echo $BATTERY_LEVEL > $LAST_STATUS_FILE
+  else
+    BATTERY_LEVEL=$(cat $LAST_STATUS_FILE)
+  fi
+  if [ $CHECK -eq 1 ]; then
+    if [[ $BATTERY_LEVEL == *"Unable"* ]]; then
+      exit 1
+    else
+      exit 0
+    fi
+  fi
+  if [ $NOTIFY -eq 1 ]; then
+    notify-send "Mouse battery level" "$BATTERY_LEVEL"
+    exit 0
+  fi
+  TOOLTIP=$BATTERY_LEVEL
+  PERCENTAGE=$(echo $BATTERY_LEVEL | cut -d ']' -f2 | tr -d ' ' | tr -d '%')
+  CLASS="default"
+  if (( PERCENTAGE < 30 )); then
+    CLASS="warning"
+  fi
+  if (( PERCENTAGE < 15 )); then
+    CLASS="critical"
+  fi
+  echo "{\"text\":\"$PERCENTAGE%\", \"tooltip\":\"$TOOLTIP\", \"class\":\"$CLASS\", \"alt\":\"$CLASS\", \"percentage\":\"$PERCENTAGE\"}"
+}
+
+case $PERIPHERAL in
+  mouse)
+    mouse_waybar
+    ;;
+  *)
+    usage $PERIPHERAL; exit 1 ;;
+esac

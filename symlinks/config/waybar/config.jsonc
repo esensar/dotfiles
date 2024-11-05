@@ -35,6 +35,7 @@
             "cpu",
             "temperature",
             "custom/keyboard-layout",
+            "custom/mouse-battery",
             "bluetooth",
             "battery",
             "tray",
@@ -90,6 +91,16 @@
             // Signal sent by Sway key binding (~/.config/sway/key-bindings)
             "signal": 1, // SIGHUP
             "tooltip": false
+        },
+        "custom/mouse-battery": {
+            "interval": 5,
+            "exec": "source ~/.profile && peripheral-waybar mouse",
+            "exec-if": "which rivalcfg && source ~/.profile && peripheral-waybar --check mouse",
+            "on-click": "source ~/.profile && peripheral-waybar --notify mouse",
+            "format": "󰍽 {}", // Icon: mouse
+            "tooltip": false,
+            "exec-on-event": false,
+            "return-type": "json"
         },
         "disk": {
             "interval": 30,

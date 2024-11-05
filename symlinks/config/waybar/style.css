@@ -69,6 +69,7 @@
 #custom-apps-menu,
 #custom-power-menu,
 #custom-notification,
+#custom-mouse-battery,
 #idle_inhibitor,
 #workspaces,
 #backlight,
@@ -212,6 +213,14 @@
 
 #custom-current-task.paused {
     color: gray;
+}
+
+#custom-mouse-battery.warning {
+    color: orange;
+}
+
+#custom-mouse-battery.critical {
+    color: red;
 }
 
 #workspaces {

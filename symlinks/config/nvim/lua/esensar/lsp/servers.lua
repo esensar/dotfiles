@@ -69,7 +69,7 @@ local servers = {
 	"omnisharp",
 	"solang",
 	"terraformls",
-	"tsserver",
+	"ts_ls",
 	"vale_ls",
 	"vimls",
 	"wgsl_analyzer",
@@ -92,13 +92,6 @@ vim.g.rustaceanvim = {
 			common_config.on_attach(client, bufnr)
 		end,
 		cmd = { "ra-multiplex" },
-		-- init_options = {
-		-- 	lspMux = {
-		-- 		version = "1",
-		-- 		method = "connect",
-		-- 		server = "rust-analyzer",
-		-- 	},
-		-- },
 		settings = {
 			["rust-analyzer"] = {
 				checkOnSave = {

@@ -35,8 +35,6 @@ if [ -f "$HOME/.zshrc.local" ]; then
     source $HOME/.zshrc.local
 fi
 
-source /usr/local/opt/asdf/asdf.sh
-
 # Print update date
 print-last-brew-update
 

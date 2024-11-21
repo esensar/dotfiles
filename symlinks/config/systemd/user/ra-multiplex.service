@@ -3,7 +3,7 @@ Description=Rust analyzer multiplex server
 
 [Service]
 Type=simple
-ExecStart=%h/.asdf/shims/ra-multiplex server
+ExecStart=%h/.cargo/bin/ra-multiplex server
 
 [Install]
 WantedBy=default.target

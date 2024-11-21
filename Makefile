@@ -117,7 +117,7 @@ bootstrap_mac: check_os link bootstrap_common oh_my_zsh homebrew install_brew_ba
 	@echo "Bootstrapped mac components!"
 
 .PHONY: bootstrap_common
-bootstrap_common: check_os link_all_common prepare_projects_dir prepare_screenshots_dir prepare_scripts_cache_dir install_vim install_asdf alacritty_terminfo
+bootstrap_common: check_os link_all_common prepare_projects_dir prepare_screenshots_dir prepare_scripts_cache_dir install_vim install_mise alacritty_terminfo
 	@echo "Bootstrapped common components!"
 
 .PHONY: link
@@ -183,9 +183,9 @@ link_script_utils: check_os
 
 .PHONY: link_tool_versions
 link_tool_versions: check_os
-	@echo "Linking tool-versions file for asdf"
+	@echo "Linking tool-versions file for mise"
 	$(call link,tool-versions,.tool-versions)
-	$(call link,config/asdf/.default-gems,.default-gems)
+	$(call link,config/mise/.default-gems,.default-gems)
 
 .PHONY: link_profile
 link_profile: check_os
@@ -286,42 +286,13 @@ install_brew_basics: homebrew check_os
 	@echo "Installig basic brew packages..."
 	@brew bundle --file $(DOTFILES_DIR)/installed_packages/core/Brewfile
 
-.PHONY: install_asdf
-install_asdf: check_os
-	@echo "Installing ASDF VM..."
-	@git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
-	@echo "Installed ASDF Version 0.10.0"
-	@echo "To install latest version:"
-	@echo ""
-	@echo "cd ~/.asdf"
-	@echo "git fetch"
-	@echo "git checkout \"$$\(git describe --abbrev=0 --tags\)\""
-	@echo ""
-	@echo "Consider installing configured ASDF tools:"
-	@echo ""
-	@echo ""
-	@echo "Run in home directory:"
-	@echo "asdf install"
-	@echo ""
-	@echo ""
-	@echo "Consider installing ASDF plugins:"
-	@echo "=================================="
-	@echo "DIRENV:"
-	@echo "----------------------------------"
-	@echo "asdf plugin-add direnv"
-	@echo "asdf install direnv latest"
-	@echo ""
-	@echo "Check out installed version using: "
-	@echo "asdf list direnv"
-	@echo ""
-	@echo "Configure it as global using: "
-	@echo "asdf global direnv $$version"
-	@echo ""
-	@echo "Configure it with provided function:"
-	@echo "asdf direnv setup --shell fish --version latest"
-	@echo ""
+.PHONY: install_mise
+install_mise: check_os
+	@echo "Installing mise..."
+	@curl https://mise.run | sh
+	@mise direnv activate > ~/.config/direnv/lib/use_mise.sh
 	@echo "When using in projects, put the following in .envrc: "
-	@echo "use asdf"
+	@echo "use mise"
 	@echo "=================================="
 	@echo ""
 

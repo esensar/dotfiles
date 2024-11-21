@@ -71,23 +71,9 @@ then
 	command vim +PlugUpdate +qall
 fi
 
-if [ "${RUN[asdf]}" = "1" ]
+if [ "${RUN[mise]}" = "1" ]
 then
-	asdf update
-	asdf plugin-update --all
-
-	echo "========== ASDF UPDATES =========="
-	echo "Available updates: "
-	while IFS= read -r PKG; do
-		if [ $(echo "$PKG" | cut -f3) = "missing" ]; then
-			PKG_NAME=$(echo $PKG | cut -f1 -d " ")
-			if [ "$PKG_NAME" != "java" -a "$PKG_NAME" != "ruby" ]; then
-				PKG_VER=$(echo $PKG | cut -f2 -d " ")
-				echo "  $PKG_NAME - $PKG_VER (install with 'asdf install $PKG_NAME $PKG_VER' and set as global default with 'asdf global $PKG_NAME $PKG_VER')"
-			fi
-		fi
-	done <<< "$(asdf latest --all)"
-	echo "========== ASDF UPDATES =========="
+	mise self-update
 fi
 
 if [ "${RUN[brew]}" = "1" ]

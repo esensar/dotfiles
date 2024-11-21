@@ -1,1 +1,2 @@
+[general]
 import = ["~/.config/alacritty/font.toml", "~/.config/alacritty/colors.toml", "~/.config/alacritty/keymap.toml"]

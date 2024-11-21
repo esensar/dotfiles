@@ -82,7 +82,7 @@ end
 -- Flutter tools
 require("flutter-tools").setup({
 	lsp = common_config,
-	flutter_lookup_cmd = "asdf where flutter",
+	flutter_lookup_cmd = "mise where flutter",
 })
 
 -- Rust tools

@@ -21,7 +21,7 @@ done
 
 declare -A RUN=()
 
-for command in "pacman" "apt" "dnf" "flatpak" "gem" "nvim" "asdf" "brew" "pacman" "pip" "pip2" "pip3";
+for command in "pacman" "apt" "dnf" "flatpak" "gem" "nvim" "mise" "brew" "pacman" "pip" "pip2" "pip3";
 do
 	if type $command > /dev/null 2>&1
 	then

@@ -18,8 +18,8 @@ if test -S $SERVER_NAME; then
 			/usr/bin/wmctrl -a "$WINDOW_NAME"
 		fi
 	fi
-	~/.asdf/shims/nvim --server $SERVER_NAME --remote $2
-	~/.asdf/shims/nvim --server $SERVER_NAME --remote-send ":call cursor($LINE, $COLUMN)<CR>"
+	~/.local/share/mise/shims/nvim --server $SERVER_NAME --remote $2
+	~/.local/share/mise/shims/nvim --server $SERVER_NAME --remote-send ":call cursor($LINE, $COLUMN)<CR>"
 else
 	/usr/bin/alacritty --title "$WINDOW_NAME" -e /usr/bin/fish -c "nvim --listen $SERVER_NAME $2 --cmd \"call cursor($LINE, $COLUMN)\""
 fi

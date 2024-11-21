@@ -57,6 +57,7 @@ tags
 
 # ASDF
 .tool-versions
+mise.local.toml
 
 # Idea
 .idea

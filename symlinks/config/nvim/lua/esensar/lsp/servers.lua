@@ -111,3 +111,15 @@ vim.g.rustaceanvim = {
 		},
 	}),
 }
+
+require("crates").setup({
+	lsp = {
+		enabled = true,
+		on_attach = function(client, bufnr)
+			common_config.on_attach(client, bufnr)
+		end,
+		actions = true,
+		completion = true,
+		hover = true,
+	},
+})

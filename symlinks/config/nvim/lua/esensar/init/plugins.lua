@@ -45,6 +45,7 @@ return require("lazy").setup({
 	"nvim-neotest/nvim-nio",
 	"nvim-neotest/neotest-plenary",
 	"rouge8/neotest-rust",
+	"saecki/crates.nvim",
 	"nvim-neotest/neotest-vim-test", -- vim-test plugin for neotest
 	"vim-test/vim-test", -- Running tests from vim
 	"mfussenegger/nvim-dap", -- Debug Adapter Protocol

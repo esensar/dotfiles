@@ -1,0 +1,25 @@
+profile dual {
+	output DP-1 mode 1920x1080 position 0,0
+	output DP-2 mode 1920x1080 position 1920,0
+	exec swaymsg workspace '$music_workspace', move workspace to DP-2
+	exec swaymsg workspace '$email_workspace', move workspace to DP-2
+	exec swaymsg workspace '$ide_workspace', move workspace to DP-1
+	exec swaymsg input type:tablet_tool map_to_output DP-1
+	exec swaymsg input type:tablet_tool map_from_region 0.0x0.0 1.0x0.9
+}
+
+profile single {
+	output DP-1 mode 1920x1080 position 0,0
+	exec swaymsg workspace '$music_workspace', move workspace to DP-1
+	exec swaymsg workspace '$email_workspace', move workspace to DP-1
+	exec swaymsg workspace '$ide_workspace', move workspace to DP-1
+	exec swaymsg input type:tablet_tool map_to_output DP-1
+}
+
+profile laptop {
+	output DP-1 mode 1920x1080 position 0,0
+	output eDP-1 mode 1920x1080 position 0,1080
+	exec swaymsg workspace '$music_workspace', move workspace to eDP-1
+	exec swaymsg workspace '$email_workspace', move workspace to eDP-1
+	exec swaymsg workspace '$ide_workspace', move workspace to DP-1
+}

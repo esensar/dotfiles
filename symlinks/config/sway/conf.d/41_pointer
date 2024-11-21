@@ -2,9 +2,4 @@ input type:pointer {
 	accel_profile flat
 }
 
-input type:tablet_tool {
-	map_to_output DP-1
-	map_from_region 0.0x0.0 1.0x0.9
-}
-
 focus_follows_mouse yes

@@ -40,3 +40,5 @@ export ANDROID_HOME="$HOME/Android/Sdk"
 
 alias vim="nvim"
 alias vi="nvim"
+
+source "$HOME/.cargo/env"

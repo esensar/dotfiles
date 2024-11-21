@@ -4,7 +4,7 @@ bindsym $alt+L exec 'swaylock'
 # IDLE CONFIG
 exec swayidle -w \
          timeout 300 'swaylock' \
-         timeout 330 'swaymsg "output * dpms off"' \
-				 resume 'swaymsg "output * dpms on"' \
+         timeout 330 'swaymsg "output * power off"' \
+				 resume 'swaymsg "output * power on"' \
          timeout 600 'systemctl suspend' \
          before-sleep 'swaylock; playerctl pause'

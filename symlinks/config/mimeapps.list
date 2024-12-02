@@ -11,17 +11,21 @@ text/x-log=nvim.desktop
 text/plain=nvim.desktop
 x-scheme-handler/fleet=jetbrains-fleet.desktop
 x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_app_eclipse_.desktop
+image/png=org.gnome.Loupe.desktop
+image/jpeg=org.gnome.Loupe.desktop
+application/json=nvim.desktop
 
 [Added Associations]
 x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
 x-scheme-handler/tel=org.gnome.Shell.Extensions.GSConnect.desktop;
 application/pdf=libreoffice-writer.desktop;
-image/png=org.kde.krita.desktop;
+image/png=org.kde.krita.desktop;org.gnome.Loupe.desktop;
 text/x-kotlin=nvim.desktop;
-application/json=nvim.desktop;
+application/json=nvim.desktop;org.gnome.TextEditor.desktop;
 video/mp4=org.videolan.VLC.desktop;
 text/markdown=nvim.desktop;
 video/webm=org.videolan.VLC.desktop;
 text/x-log=nvim.desktop;
 text/plain=nvim.desktop;
 image/x-portable-pixmap=gimp.desktop;
+image/jpeg=org.gnome.Loupe.desktop;

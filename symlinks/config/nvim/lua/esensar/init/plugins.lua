@@ -155,7 +155,11 @@ return require("lazy").setup({
 	-- LSP language specific
 	"folke/neodev.nvim", -- Built-in Lua integration with LSP
 	"akinsho/flutter-tools.nvim", -- Additional flutter integrations
-	{ "mrcjkb/rustaceanvim", ft = "rust" }, -- Additional rust integrations
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^5", -- Recommended
+		lazy = false, -- This plugin is already lazy
+	},
 	{ "mfussenegger/nvim-jdtls", ft = "java" }, -- Additional java integrations
 	"scalameta/nvim-metals", -- Scala
 

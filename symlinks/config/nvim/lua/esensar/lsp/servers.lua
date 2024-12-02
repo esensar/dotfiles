@@ -91,8 +91,11 @@ vim.g.rustaceanvim = {
 		on_attach = function(client, bufnr)
 			common_config.on_attach(client, bufnr)
 		end,
-		cmd = { "ra-multiplex" },
-		settings = {
+		logfile = vim.fn.tempname() .. "-rust-analyzer.log",
+		cmd = function()
+			return { "ra-multiplex", "client", "--", "--log-file", vim.g.rustaceanvim.server.logfile }
+		end,
+		default_settings = {
 			["rust-analyzer"] = {
 				checkOnSave = {
 					command = "clippy",

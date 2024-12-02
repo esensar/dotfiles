@@ -5,7 +5,7 @@
 local neotest = require("neotest")
 neotest.setup({
 	adapters = {
-		require("neotest-rust")({
+		require("rustaceanvim.neotest")({
 			args = { "--no-capture" },
 		}),
 		require("neotest-plenary"),

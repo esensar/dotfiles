@@ -8,3 +8,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Explorer exec $filemanager
+bindsym XF86HomePage exec $browser
+bindsym XF86Calculator exec gnome-calculator
+bindsym XF86Tools exec spotify

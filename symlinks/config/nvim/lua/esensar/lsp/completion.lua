@@ -21,14 +21,14 @@ cmp.setup({
 		["<C-y>"] = cmp.mapping.confirm({ select = true }),
 		["<C-n>"] = function(fallback)
 			if cmp.visible() then
-				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				cmp.select_next_item()
 			else
 				fallback()
 			end
 		end,
 		["<C-p>"] = function(fallback)
 			if cmp.visible() then
-				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+				cmp.select_prev_item()
 			else
 				fallback()
 			end

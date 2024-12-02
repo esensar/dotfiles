@@ -88,6 +88,16 @@ require("flutter-tools").setup({
 -- Rust tools
 vim.g.rustaceanvim = {
 	server = vim.tbl_extend("force", common_config, {
+		capabilities = vim.tbl_extend("force", common_config.capabilities, {
+			-- TODO wait for nvim-cmp fix
+			textDocument = {
+				completion = {
+					completionItem = {
+						snippetSupport = false,
+					},
+				},
+			},
+		}),
 		on_attach = function(client, bufnr)
 			common_config.on_attach(client, bufnr)
 		end,

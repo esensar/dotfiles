@@ -4,3 +4,4 @@ exec kdeconnect-indicator
 exec ulauncher --hide-window
 exec libinput-gestures-setup start
 exec kanshi
+exec openrgb --startminimized

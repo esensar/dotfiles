@@ -21,14 +21,14 @@ cmp.setup({
 		["<C-y>"] = cmp.mapping.confirm({ select = true }),
 		["<C-n>"] = function(fallback)
 			if cmp.visible() then
-				cmp.select_next_item()
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 			else
 				fallback()
 			end
 		end,
 		["<C-p>"] = function(fallback)
 			if cmp.visible() then
-				cmp.select_prev_item()
+				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
 			else
 				fallback()
 			end
@@ -62,10 +62,21 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "buffer" },
 	},
+	view = {
+		docs = {
+			auto_open = true,
+		},
+	},
+	preselect = cmp.PreselectMode.None,
 })
 
 cmp.setup.filetype("ledger", {
-	sources = cmp.config.sources({ name = "omni" }),
+	sources = {
+		name = "omni",
+		option = {
+			disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
+		},
+	},
 })
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")

@@ -3,5 +3,5 @@
 -------------------------------------------------------------------------------
 
 require("esensar.lsp.diagnostic")
-require("esensar.lsp.servers")
 require("esensar.lsp.completion")
+require("esensar.lsp.servers")

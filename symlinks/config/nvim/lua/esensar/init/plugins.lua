@@ -36,7 +36,11 @@ return require("lazy").setup({
 	"lewis6991/impatient.nvim", -- Caching lua modules for faster startup
 	"j-hui/fidget.nvim", -- notifications UI
 	"MunifTanjim/nui.nvim", -- General UI
-	"jiangmiao/auto-pairs", -- Autoclosing of brackets and quotes
+	{
+		"windwp/nvim-autopairs", -- Autoclosing of brackets and quotes
+		event = "InsertEnter",
+		config = true,
+	},
 	"nvim-pack/nvim-spectre", -- Find and replace
 
 	-- Tools

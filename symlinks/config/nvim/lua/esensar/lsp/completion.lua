@@ -67,3 +67,6 @@ cmp.setup({
 cmp.setup.filetype("ledger", {
 	sources = cmp.config.sources({ name = "omni" }),
 })
+
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

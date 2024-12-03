@@ -45,7 +45,70 @@ return require("lazy").setup({
 
 	-- Tools
 	"direnv/direnv.vim", -- Integration with Direnv
-	"nvim-neotest/neotest", -- Running tests from NeoVim
+	{
+		"nvim-neotest/neotest", -- Running tests from NeoVim
+		keys = {
+			{ "<Leader>tn", mode = "n" },
+			{ "<Leader>tdn", mode = "n" },
+			{ "<Leader>tf", mode = "n" },
+			{ "<Leader>tdf", mode = "n" },
+			{ "<Leader>tl", mode = "n" },
+			{ "<Leader>ts", mode = "n" },
+			{ "<Leader>tds", mode = "n" },
+			{ "<Leader>tp", mode = "n" },
+		},
+		config = function()
+			local neotest = require("neotest")
+			neotest.setup({
+				adapters = {
+					require("rustaceanvim.neotest")({
+						args = { "--no-capture" },
+					}),
+					require("neotest-plenary"),
+					require("neotest-vim-test")({
+						ignore_file_types = { "rust", "lua" },
+					}),
+				},
+			})
+
+			local last = nil
+
+			-- Map test running commands
+			local opts = { silent = true }
+			vim.keymap.set("n", "<Leader>tn", function()
+				last = nil
+				neotest.run.run()
+			end, opts)
+			vim.keymap.set("n", "<Leader>tdn", function()
+				last = { strategy = "dap", suite = false }
+				neotest.run.run(last)
+			end, opts)
+			vim.keymap.set("n", "<Leader>tf", function()
+				last = vim.fn.expand("%")
+				neotest.run.run(last)
+			end, opts)
+			vim.keymap.set("n", "<Leader>tdf", function()
+				last = { vim.fn.expand("%"), strategy = "dap", suite = false }
+				neotest.run.run(last)
+			end, opts)
+			vim.keymap.set("n", "<Leader>ts", function()
+				last = { suite = true }
+				neotest.run.run(last)
+			end, opts)
+			vim.keymap.set("n", "<Leader>tds", function()
+				last = { strategy = "dap", suite = true }
+				neotest.run.run(last)
+			end, opts)
+			vim.keymap.set("n", "<Leader>tl", function()
+				if last then
+					neotest.run.run(last)
+				else
+					neotest.run.run()
+				end
+			end, opts)
+			vim.keymap.set("n", "<Leader>tp", neotest.output_panel.open, opts)
+		end,
+	},
 	"nvim-neotest/nvim-nio",
 	"nvim-neotest/neotest-plenary",
 	"saecki/crates.nvim",

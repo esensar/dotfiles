@@ -12,3 +12,5 @@ command githubprexplore js let url = document.getElementById("clone-help-git-url
 command githubexplorelocal js let url = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("alacritty --command fish -c 'git-explore-local " + url + "'")
 
 source ~/.config/tridactyl/tridactylrc.local
+
+set editorcmd alacritty --command fish -c 'nvim %f'

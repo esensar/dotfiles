@@ -75,3 +75,5 @@
 !/ra-multiplex/
 !/ra-multiplex/**
 !/kanshi
+!/OpenRGB
+!/OpenRGB/**

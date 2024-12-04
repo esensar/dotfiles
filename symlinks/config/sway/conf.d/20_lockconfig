@@ -5,6 +5,6 @@ bindsym $alt+L exec 'swaylock'
 exec swayidle -w \
          timeout 300 'swaylock' \
          timeout 330 'swaymsg "output * power off"' \
-				 resume 'swaymsg "output * power on"' \
-         timeout 600 'systemctl suspend' \
+         resume 'swaymsg "output * power on"; openrgb -p ~/.config/OpenRGB/full_cyan.orp' \
+         timeout 600 'openrgb -b 0 -m off; systemctl suspend' \
          before-sleep 'swaylock; playerctl pause'

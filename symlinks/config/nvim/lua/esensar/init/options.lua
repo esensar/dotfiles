@@ -29,3 +29,5 @@ opt.hlsearch = true
 opt.mouse = "a"
 
 opt.encoding = "utf-8"
+
+opt.exrc = true

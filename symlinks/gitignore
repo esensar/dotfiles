@@ -64,6 +64,9 @@ mise.local.toml
 
 # vim
 Session.vim
+.exrc
+.nvimrc
+.nvim.lua
 
 # Projectionist
 .projections.json

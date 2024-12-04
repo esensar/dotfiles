@@ -157,3 +157,11 @@ luasnip.add_snippets("java", {
 require("luasnip.loaders.from_vscode").lazy_load()
 
 require("luasnip").filetype_extend("java", { "javadoc", "java-tests" })
+
+luasnip.add_snippets("rust", {
+	s("tests", {
+		t({ "#[cfg(test)]", "mod tests {", "    use super:*;", "    " }),
+		i(0),
+		t({ "", "}" }),
+	}),
+})

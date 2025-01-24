@@ -11,11 +11,15 @@
 [diff]
 	tool = nvimdiff
 [difftool]
-	prompt = true
+	prompt = false
+[difftool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
 	tool = nvimdiff
 [mergetool]
 	keepBackup = false
+[mergetool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\""
 [guitool "Add to .gitignore"]
 	cmd = echo \"\n$FILENAME\" >> .gitignore & git add .gitignore
 	needsfile = yes

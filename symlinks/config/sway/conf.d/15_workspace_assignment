@@ -14,6 +14,8 @@ assign [app_id="eclipse"] $ide_workspace
 assign [class="octave-gui"] $ide_workspace
 assign [instance="vim"] $editor_workspace
 assign [instance="download"] $ongoing_operations
+assign [class="steam"] $ongoing_operations
+assign [class="steam_app_*"] $ongoing_operations
 assign [class="Godot"] $ide_workspace
 assign [class="FreeTube"] $music_workspace
 

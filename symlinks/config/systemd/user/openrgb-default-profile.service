@@ -1,0 +1,10 @@
+[Unit]
+Description=Set openrgb to default profile
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+ExecStart=/usr/bin/openrgb -p %h/.config/OpenRGB/full_cyan.orp
+Type=simple
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

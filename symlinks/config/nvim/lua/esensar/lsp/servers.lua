@@ -17,6 +17,7 @@ require("mason-lspconfig").setup()
 local common_config = require("esensar.lsp.server_config")
 
 -- Language specific LSP config overrides
+local zig_loc = vim.api.nvim_exec2("!mise where zig", { output = true }).output
 local configuration_overrides = {
 	gdscript = {
 		flags = {
@@ -42,6 +43,12 @@ local configuration_overrides = {
 					enable = false,
 				},
 			},
+		},
+	},
+	zls = {
+		settings = {
+			zig_exe_path = zig_loc .. "/zig",
+			zig_lib_path = zig_loc .. "/lib",
 		},
 	},
 }
@@ -86,18 +93,8 @@ require("flutter-tools").setup({
 })
 
 -- Rust tools
-vim.g.rustaceanvim = {
+vim.g.rustaceanvim = vim.tbl_deep_extend("force", vim.g.rustaceanvim or {}, {
 	server = vim.tbl_extend("force", common_config, {
-		capabilities = vim.tbl_extend("force", common_config.capabilities, {
-			-- TODO wait for nvim-cmp fix
-			textDocument = {
-				completion = {
-					completionItem = {
-						snippetSupport = false,
-					},
-				},
-			},
-		}),
 		on_attach = function(client, bufnr)
 			common_config.on_attach(client, bufnr)
 		end,
@@ -117,13 +114,12 @@ vim.g.rustaceanvim = {
 					enable = false,
 				},
 				cargo = {
-					loadOutDirsFromCheck = true,
 					features = "all",
 				},
 			},
 		},
 	}),
-}
+})
 
 require("crates").setup({
 	lsp = {

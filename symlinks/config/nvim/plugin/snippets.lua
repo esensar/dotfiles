@@ -160,7 +160,7 @@ require("luasnip").filetype_extend("java", { "javadoc", "java-tests" })
 
 luasnip.add_snippets("rust", {
 	s("tests", {
-		t({ "#[cfg(test)]", "mod tests {", "    use super:*;", "    " }),
+		t({ "#[cfg(test)]", "mod tests {", "    use super::*;", "    " }),
 		i(0),
 		t({ "", "}" }),
 	}),

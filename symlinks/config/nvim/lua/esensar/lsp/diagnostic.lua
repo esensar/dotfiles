@@ -56,8 +56,8 @@ require("lint").linters_by_ft = {
 	python = { "flake8" },
 	kotlin = { "ktlint" },
 	clojure = { "clj_kondo" },
-	c = { "clang_check" },
-	cpp = { "clang_check" },
+	c = { "clangtidy" },
+	cpp = { "clangtidy" },
 	lua = { "luacheck" },
 	gdscript = { "gdlint" },
 }

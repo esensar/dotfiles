@@ -5,3 +5,4 @@ exec ulauncher --hide-window
 exec libinput-gestures-setup start
 exec kanshi
 exec openrgb --startminimized --server --profile ~/.config/OpenRGB/full_cyan.orp
+exec nextcloud

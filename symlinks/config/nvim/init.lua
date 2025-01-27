@@ -30,7 +30,7 @@ vim.keymap.set("i", "<C-U>", "<C-G>u<C-U>")
 vim.cmd("command! Wq :wq")
 vim.cmd("command! W :w")
 
-vim.keymap.set("n", "<Leader>c", ":ccl <bar> lcl<CR>")
+vim.keymap.set("n", "<Leader>c", ":ccl <bar> lcl <bar> lua require'neotest'.output_panel.close()<CR>")
 
 -- Allow recursive searches
 vim.cmd("set path+=**")

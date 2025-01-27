@@ -78,3 +78,5 @@ erl_crash.dump
 pyrightconfig.json
 
 **/.lsp/sqlite.db
+
+.sync_*.db*

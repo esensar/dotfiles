@@ -37,7 +37,7 @@ then
 	sudo dnf autoremove
 
 	# Update dnf packages
-	sudo dnf update
+	sudo dnf update --refresh
 
 	# Clear out orphans
 	sudo dnf autoremove

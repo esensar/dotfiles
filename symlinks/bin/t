@@ -125,6 +125,9 @@ if [ -z "$TIMESHEET_LEDGER_HOME" ]; then
 fi
 
 time_in () {
+  if echo "$PROJECT" | grep -q ".*:Client:.*:"; then
+    echo "WARNING: Using sub-projects per client is deprecated. Consider using just Client instead of sub-projects for easier management"
+  fi
   LAST_ENTRY=$(grep "$PROJECT" "$TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal" | tail -1 | cut -f1 -d ' ')
   if [ "$LAST_ENTRY" = "i" ]; then
     echo "Timer for project $PROJECT was already started. Aborting..."

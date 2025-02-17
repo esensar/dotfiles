@@ -75,7 +75,7 @@ mouse_waybar () {
   CURR_DATE=$( date +%s )
   DIFF=$(( CURR_DATE - UPG_DATE ))
   if (( DIFF > 32 )); then
-    BATTERY_LEVEL=$(rivalcfg --battery-level)
+    BATTERY_LEVEL=$(rivalcfg --battery-level 2> /dev/null)
     echo $CURR_DATE > $LAST_UPDATE_FILE
     echo $BATTERY_LEVEL > $LAST_STATUS_FILE
   else

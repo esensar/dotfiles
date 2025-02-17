@@ -59,3 +59,13 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 bindsym $mod+t layout toggle tabbed split
+
+# Swipe to swap workspaces
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
+
+# Allow container movements by pinching them
+bindgesture pinch:inward+up move up
+bindgesture pinch:inward+down move down
+bindgesture pinch:inward+left move left
+bindgesture pinch:inward+right move right

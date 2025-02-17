@@ -94,6 +94,9 @@ require("flutter-tools").setup({
 
 -- Rust tools
 vim.g.rustaceanvim = vim.tbl_deep_extend("force", vim.g.rustaceanvim or {}, {
+	dap = {
+		configuration = false,
+	},
 	server = vim.tbl_extend("force", common_config, {
 		on_attach = function(client, bufnr)
 			common_config.on_attach(client, bufnr)

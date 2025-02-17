@@ -204,6 +204,7 @@ return require("lazy").setup({
 	"hrsh7th/cmp-nvim-lua", -- Nvim-Lua source for nvim-cmp
 	"hrsh7th/cmp-omni", -- omnifunc source for nvim-cmp
 	"hrsh7th/nvim-cmp", -- completion integration
+	"rcarriga/cmp-dap", -- DAP nvim-cmp
 	"mhartington/formatter.nvim", -- formatting support
 	"mfussenegger/nvim-lint", -- linting support
 	{

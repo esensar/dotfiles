@@ -76,11 +76,41 @@ local function args_input()
 	return vim.split(vim.fn.input("Args: "), " ")
 end
 
+local function server_input()
+	return vim.fn.input("Server to connect to: ")
+end
+
 -- Additional servers
 dap.adapters.lldb = {
 	type = "executable",
-	command = "codelldb",
+	command = "lldb",
 	name = "lldb",
+}
+
+dap.adapters.rustlldb = {
+	type = "executable",
+	command = "rust-lldb",
+	name = "rustlldb",
+}
+
+dap.adapters.gdb = {
+	name = "gdb",
+	type = "executable",
+	command = "gdb",
+	args = { "--quiet", "--interpreter=dap", "--eval-command", "set print pretty on" },
+}
+
+dap.adapters.rustgdb = {
+	name = "rustgdb",
+	type = "executable",
+	command = "rust-gdb",
+	args = { "--quiet", "--interpreter=dap", "--eval-command", "set print pretty on" },
+}
+
+dap.adapters.codelldb = {
+	type = "executable",
+	command = "codelldb",
+	name = "codelldb",
 }
 
 dap.adapters.nlua = function(callback, config)
@@ -90,64 +120,61 @@ end
 dap.configurations.cpp = {
 	{
 		name = "Launch",
-		type = "lldb",
+		type = "gdb",
 		request = "launch",
 		program = executable_input,
 		cwd = "${workspaceFolder}",
-		stopOnEntry = false,
-		args = {},
-		-- 💀
-		-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-		--
-		--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-		--
-		-- Otherwise you might get the following error:
-		--
-		--    Error on launch: Failed to attach to the target process
-		--
-		-- But you should be aware of the implications:
-		-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-
-		runInTerminal = false,
-		-- 💀
-		-- If you use `runInTerminal = true` and resize the terminal window,
-		-- lldb-vscode will receive a `SIGWINCH` signal which can cause problems
-		-- To avoid that uncomment the following option
-		-- See https://github.com/mfussenegger/nvim-dap/issues/236#issuecomment-1066306073
-		postRunCommands = { "process handle -p true -s false -n false SIGWINCH" },
+		stopAtBeginningOfMainSubprogram = false,
 	},
 	{
 		name = "Launch with args",
-		type = "lldb",
+		type = "gdb",
 		request = "launch",
 		program = executable_input,
 		cwd = "${workspaceFolder}",
-		stopOnEntry = false,
 		args = args_input,
-		runInTerminal = false,
-		postRunCommands = { "process handle -p true -s false -n false SIGWINCH" },
 	},
 	{
 		name = "Attach to process",
-		type = "lldb",
+		type = "gdb",
 		request = "attach",
+		program = executable_input,
 		pid = require("dap.utils").pick_process,
 		args = {},
 	},
 	{
 		name = "Attach to PID",
-		type = "lldb",
+		type = "gdb",
 		request = "attach",
+		program = executable_input,
 		pid = function()
 			return tonumber(vim.fn.input("PID: "))
 		end,
 		args = {},
 	},
+	{
+		name = "Attach to gdbserver",
+		type = "gdb",
+		request = "attach",
+		target = server_input,
+		program = executable_input,
+		cwd = "${workspaceFolder}",
+	},
 }
 
 dap.configurations.c = dap.configurations.cpp
-dap.configurations.rust = dap.configurations.cpp
 dap.configurations.zig = dap.configurations.cpp
+
+local rust_config = {}
+for _, item in ipairs(dap.configurations.cpp) do
+	table.insert(
+		rust_config,
+		vim.tbl_extend("force", item, {
+			type = "rustgdb",
+		})
+	)
+end
+dap.configurations.rust = rust_config
 
 dap.configurations.lua = {
 	{

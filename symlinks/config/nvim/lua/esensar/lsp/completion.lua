@@ -8,6 +8,9 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 cmp.setup({
+	enabled = function()
+		return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+	end,
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
@@ -76,6 +79,12 @@ cmp.setup.filetype("ledger", {
 		option = {
 			disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
 		},
+	},
+})
+
+cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+	sources = {
+		{ name = "dap" },
 	},
 })
 

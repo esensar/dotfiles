@@ -45,6 +45,12 @@ local configuration_overrides = {
 			},
 		},
 	},
+	vale_ls = {
+		filetypes = vim.list_extend(
+			vim.list_slice(require("lspconfig.configs.vale_ls").default_config.filetypes),
+			{ "mail" }
+		),
+	},
 	zls = {
 		settings = {
 			zig_exe_path = zig_loc .. "/zig",

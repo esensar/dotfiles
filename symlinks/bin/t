@@ -174,15 +174,33 @@ time_invoice () {
   echo "Please generate an invoice manually! This is the total"
   t invoice_list "$PROJECT" "$COMMENT"
 
+  CLIENT=$(echo "$PROJECT" | cut -f3 -d ":")
+  CLIENT_CONFIG=$(grep "$CLIENT" "$MY_CONFIG_CACHE_DIR/invoice_client_config" || echo "")
+
+  if [ -z "$CLIENT_CONFIG" ]; then
+    echo "===="
+    echo "Missing configuration for client $CLIENT"
+    unset HOURLY_RATE
+    until [[ $HOURLY_RATE == +([0-9]) ]] ; do
+      read -r -p "Please input hourly rate: " HOURLY_RATE
+    done
+    unset CURRENCY_SYMBOL
+    read -r -p "Please input currency symbol used: " CURRENCY_SYMBOL
+    printf "%s\t%s\t%s\n" "$CLIENT" "$HOURLY_RATE" "$CURRENCY_SYMBOL" >> "$MY_CONFIG_CACHE_DIR/invoice_client_config"
+    echo "===="
+  else
+    HOURLY_RATE=$(echo "$CLIENT_CONFIG" | cut -f2 -d '	')
+    CURRENCY_SYMBOL=$(echo "$CLIENT_CONFIG" | cut -f3 -d '	')
+  fi
+
   echo "===="
   echo "Please input amount to invoice"
-  read -p "Amount in EUR: " AMOUNT
+  read -r -p "Amount in used currency ($CURRENCY_SYMBOL): " AMOUNT
 
-  CLIENT=$(echo $PROJECT | cut -f3 -d ":")
   echo "Please input a directory name for this invoice"
-  read -p "Directory name: " DIRECTORY_NAME
+  read -r -p "Directory name: " DIRECTORY_NAME
   echo "Please input a title for this invoice"
-  read -p "Title: " INVOICE_TITLE
+  read -r -p "Title: " INVOICE_TITLE
 
   INVOICE_DIR="$INVOICE_GENERATOR_HOME/invoices/$CLIENT/$DIRECTORY_NAME"
   INVOICE_FILE="$INVOICE_DIR/invoice.tex"
@@ -191,32 +209,44 @@ time_invoice () {
   sed -i "s/===INVOICETITLE===/$INVOICE_TITLE/" "$INVOICE_FILE"
 
   INVOICE_ITEMS=""
-  HOURLY_RATE="50"
 
-  read -p "Would you like to customize entries? [Y/n]" CUSTOMIZE
+  read -r -p "Would you like to customize entries? [Y/n]" CUSTOMIZE
 
   if [ "Y" == "$CUSTOMIZE" ]; then
-    while read -p "Enter name for invoice entry. Empty name ends input: " ENTRY_NAME; do
+    while read -r -p "Enter name for invoice entry. Empty name ends input: " ENTRY_NAME; do
       if [ -z "$ENTRY_NAME" ]; then
         echo "Done with reading entries."
         break
       fi
 
-      read -p "Enter number of hours for this entry ($ENTRY_NAME): " HOURS
+      unset HOURS
+      until [[ $HOURS == +([0-9]) ]] ; do
+        read -r -p "Enter number of hours for this entry ($ENTRY_NAME): " HOURS
+      done
       INVOICE_ITEMS="$INVOICE_ITEMS  \\\\invoiceitem{$ENTRY_NAME}{$HOURS}{$HOURLY_RATE}{}\n"
     done
   else
-      read -p "Enter number of hours for this invoice: " HOURS
+      unset HOURS
+      until [[ $HOURS == +([0-9]) ]] ; do
+        read -r -p "Enter number of hours for this invoice: " HOURS
+      done
       INVOICE_ITEMS="$INVOICE_ITEMS  \\\\invoiceitem{Development work (hourly)}{$HOURS}{$HOURLY_RATE}{}\n"
   fi
 
   sed -i "s/===INVOICETABLE===/$INVOICE_ITEMS/" "$INVOICE_FILE"
-  LAST_PWD="$PWD"
+
+  if [ "$COMMENT" == ".*" ]; then
+    LEDGER_INVOICE_TITLE="$INVOICE_TITLE invoice"
+  else
+    LEDGER_INVOICE_TITLE="$COMMENT"
+  fi
 
   echo "" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
-  echo "$(date '+%Y-%m-%d') $COMMENT" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
-  echo "    ($PROJECT)  -$(ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT and @"$COMMENT" --format "%(total)")" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
-  echo "    Invoiced:$(echo $PROJECT | sed "s/Project://")  $AMOUNT€" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  echo "$(date '+%Y-%m-%d') ! $LEDGER_INVOICE_TITLE" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  if [ "$COMMENT" != ".*" ]; then
+    echo "    ($PROJECT)  -$(ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" bal $PROJECT and @"$COMMENT" --format "%(total)")" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
+  fi
+  echo "    Invoiced:$(echo $PROJECT | sed "s/Project://")  $AMOUNT$CURRENCY_SYMBOL" >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
   echo "    Magic"  >> "$TIMESHEET_LEDGER_HOME/invoices/$(date +%Y).journal"
 
   echo "Generated an invoice in $INVOICE_DIR/invoice.tex"

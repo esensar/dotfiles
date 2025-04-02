@@ -3,7 +3,7 @@ set $term alacritty
 set $menu "ulauncher-toggle"
 set $filemanager nautilus
 set $processviewer $term -e htop
-set $browser firefox
+set $browser librewolf
 
 # start a terminal
 bindsym $mod+Return exec $term

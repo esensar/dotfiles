@@ -1,4 +1,5 @@
 # Assign windows to workspaces
+assign [app_id="librewolf"] $browser_workspace
 assign [app_id="firefox"] $browser_workspace
 assign [class="Hexchat"] $chat_workspace
 assign [class="Slack"] $chat_workspace
@@ -16,6 +17,7 @@ assign [instance="vim"] $editor_workspace
 assign [instance="download"] $ongoing_operations
 assign [class="steam"] $ongoing_operations
 assign [class="steam_app_*"] $ongoing_operations
+assign [app_id="gamescope"] $ongoing_operations
 assign [class="Godot"] $ide_workspace
 assign [class="FreeTube"] $music_workspace
 

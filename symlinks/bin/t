@@ -194,7 +194,7 @@ time_invoice () {
   fi
 
   echo "===="
-  echo "Please input amount to invoice"
+  echo "Please input amount to invoice (rate is $HOURLY_RATE)"
   read -r -p "Amount in used currency ($CURRENCY_SYMBOL): " AMOUNT
 
   echo "Please input a directory name for this invoice"
@@ -220,14 +220,14 @@ time_invoice () {
       fi
 
       unset HOURS
-      until [[ $HOURS == +([0-9]) ]] ; do
+      until [[ $HOURS == +([0-9\.]) ]] ; do
         read -r -p "Enter number of hours for this entry ($ENTRY_NAME): " HOURS
       done
       INVOICE_ITEMS="$INVOICE_ITEMS  \\\\invoiceitem{$ENTRY_NAME}{$HOURS}{$HOURLY_RATE}{}\n"
     done
   else
       unset HOURS
-      until [[ $HOURS == +([0-9]) ]] ; do
+      until [[ $HOURS == +([0-9\.]) ]] ; do
         read -r -p "Enter number of hours for this invoice: " HOURS
       done
       INVOICE_ITEMS="$INVOICE_ITEMS  \\\\invoiceitem{Development work (hourly)}{$HOURS}{$HOURLY_RATE}{}\n"

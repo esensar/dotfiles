@@ -7,16 +7,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 local function on_attach(client, bufnr)
 	-- Lsp keymaps
 	local opts = { buffer = bufnr }
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-	vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-	vim.keymap.set("n", "<Leader>rn", function()
-		return ":IncRename " .. vim.fn.expand("<cword>")
-	end, vim.tbl_extend("force", opts, { expr = true }))
-	vim.keymap.set({ "n", "i" }, "<A-k>", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-	vim.keymap.set("n", "<A-CR>", vim.lsp.buf.code_action, opts)
-	vim.keymap.set("n", "<Leader>ac", vim.lsp.buf.code_action, opts)
 
 	-- Optional config
 	if client.server_capabilities.completionProvider then

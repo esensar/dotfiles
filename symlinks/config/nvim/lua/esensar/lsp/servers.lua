@@ -11,7 +11,6 @@ require("neodev").setup({
 	end,
 })
 
-local lspconfig = require("lspconfig")
 require("mason").setup()
 require("mason-lspconfig").setup()
 local common_config = require("esensar.lsp.server_config")
@@ -89,7 +88,8 @@ local servers = {
 	"zls",
 }
 for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup(vim.tbl_extend("force", common_config, configuration_overrides[lsp] or {}))
+	vim.lsp.config(lsp, vim.tbl_extend("force", common_config, configuration_overrides[lsp] or {}))
+	vim.lsp.enable(lsp)
 end
 
 -- Flutter tools

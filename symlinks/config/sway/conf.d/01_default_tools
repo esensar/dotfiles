@@ -2,7 +2,7 @@
 set $term alacritty
 set $menu "ulauncher-toggle"
 set $filemanager nautilus
-set $processviewer btop
+set $processviewer $term -e btop
 set $browser librewolf
 
 # start a terminal

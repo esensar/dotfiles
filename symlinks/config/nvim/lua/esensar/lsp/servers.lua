@@ -77,6 +77,7 @@ local servers = {
 	"kotlin_language_server",
 	"lemminx",
 	"lua_ls",
+	"mesonlsp",
 	"mint",
 	"omnisharp",
 	"solang",
@@ -113,9 +114,10 @@ vim.g.rustaceanvim = vim.tbl_deep_extend("force", vim.g.rustaceanvim or {}, {
 		end,
 		default_settings = {
 			["rust-analyzer"] = {
-				checkOnSave = {
+				check = {
 					command = "clippy",
 				},
+				checkOnSave = true,
 				procMacro = {
 					enable = true,
 				},

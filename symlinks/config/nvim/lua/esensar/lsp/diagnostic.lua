@@ -40,6 +40,12 @@ if not vim.g.disable_formatting then
 			java = {
 				require("esensar.lsp.formatters.clang-format-java"),
 			},
+			javascript = {
+				require("formatter.filetypes.javascript").eslint_d,
+			},
+			typescript = {
+				require("formatter.filetypes.typescript").eslint_d,
+			},
 			godot = {
 				require("esensar.lsp.formatters.gdformat"),
 			},
@@ -62,6 +68,8 @@ require("lint").linters_by_ft = {
 	cpp = { "clangtidy" },
 	lua = { "luacheck" },
 	gdscript = { "gdlint" },
+	typescript = { "eslint_d" },
+	javascript = { "eslint_d" },
 }
 
 local codespell_config = require("lint").linters.codespell
@@ -115,3 +123,5 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		require("lint").try_lint({ "misspell" })
 	end,
 })
+
+vim.diagnostic.config({ virtual_text = true })

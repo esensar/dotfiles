@@ -44,5 +44,3 @@ vim.api.nvim_create_autocmd("VimResized", {
 		vim.cmd("wincmd =")
 	end,
 })
-
-vim.diagnostic.config({ virtual_text = true })

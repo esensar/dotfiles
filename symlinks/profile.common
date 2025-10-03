@@ -33,6 +33,7 @@ export MY_DOCUMENTS_HOME=$HOME/Documents
 
 export EDITOR=nvim
 export VISUAL=nvim
+export SUDO_EDITOR=nvim
 export ELIXIR_EDITOR="nvim"
 export _JAVA_AWT_WM_NONREPARENTING=1
 

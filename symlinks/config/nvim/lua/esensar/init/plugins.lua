@@ -213,6 +213,21 @@ return require("lazy").setup({
 			require("inc_rename").setup()
 		end,
 	},
+	{
+		"jmbuhr/otter.nvim", -- LSP in embedded code blocks
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			vim.api.nvim_create_autocmd({ "FileType" }, {
+				pattern = { "toml" },
+				group = vim.api.nvim_create_augroup("EmbedToml", {}),
+				callback = function()
+					require("otter").activate()
+				end,
+			})
+		end,
+	},
 
 	-- LSP language specific
 	"folke/neodev.nvim", -- Built-in Lua integration with LSP

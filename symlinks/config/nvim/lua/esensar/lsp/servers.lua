@@ -57,6 +57,8 @@ local configuration_overrides = {
 		},
 	},
 }
+-- Enables outside rust diagnostics config
+vim.g.rust_diagnostics = "rust-analyzer"
 
 -- Lsp default language servers
 local servers = {
@@ -88,6 +90,11 @@ local servers = {
 	"wgsl_analyzer",
 	"zls",
 }
+if vim.g.rust_diagnostics == "bacon-ls" then
+	table.insert(servers, "bacon_ls")
+else
+	vim.lsp.enable("bacon_ls", false)
+end
 for _, lsp in ipairs(servers) do
 	vim.lsp.config(lsp, vim.tbl_extend("force", common_config, configuration_overrides[lsp] or {}))
 	vim.lsp.enable(lsp)
@@ -117,7 +124,10 @@ vim.g.rustaceanvim = vim.tbl_deep_extend("force", vim.g.rustaceanvim or {}, {
 				check = {
 					command = "clippy",
 				},
-				checkOnSave = true,
+				checkOnSave = vim.g.rust_diagnostics == "rust-analyzer",
+				diagnostics = {
+					enable = vim.g.rust_diagnostics == "rust-analyzer",
+				},
 				procMacro = {
 					enable = true,
 				},

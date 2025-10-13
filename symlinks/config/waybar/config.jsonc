@@ -35,7 +35,6 @@
             "cpu",
             "temperature",
             "custom/keyboard-layout",
-            "custom/mouse-battery",
             "bluetooth",
             "battery",
             "tray",
@@ -52,7 +51,8 @@
                 "critical": 15
             },
             // Connected to AC
-            "format": " {icon} {capacity}%", // Icon: bolt
+            "format": "{icon} {capacity}%", // Icon: bolt
+            "format-charging": " {icon} {capacity}%", // Icon: bolt
             // Not connected to AC
             "format-discharging": "{icon} {capacity}%",
             "format-icons": [
@@ -101,17 +101,6 @@
             "signal": 1, // SIGHUP
             "tooltip": false
         },
-        // Disabled due to many issues
-        // "custom/mouse-battery": {
-        //     "interval": 5,
-        //     "exec": "source ~/.profile && peripheral-waybar mouse",
-        //     "exec-if": "which rivalcfg && source ~/.profile && peripheral-waybar --check mouse",
-        //     "on-click": "source ~/.profile && peripheral-waybar --notify mouse",
-        //     "format": "󰍽 {}", // Icon: mouse
-        //     "tooltip": false,
-        //     "exec-on-event": false,
-        //     "return-type": "json"
-        // },
         "disk": {
             "interval": 30,
             "format": " {percentage_used}%"

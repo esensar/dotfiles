@@ -46,7 +46,7 @@
         // Modules
         // -------------------------------------------------------------------------
         "battery": {
-            "interval": 10,
+            "interval": 60,
             "states": {
                 "warning": 30,
                 "critical": 15
@@ -62,6 +62,15 @@
                 "", // Icon: battery-quarter
                 "" // Icon: battery-empty
             ],
+            "events": {
+                "on-discharging-warning": "notify-send -u normal 'Low Battery'",
+                "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
+                "on-charging-80": "notify-send -u normal 'Battery at max recommended charge! (80%)'",
+                "on-charging-85": "notify-send -u normal 'Battery over max recommended charge! (85%)'",
+                "on-charging-90": "notify-send -u normal 'Battery over max recommended charge! (90%)'",
+                "on-charging-95": "notify-send -u normal 'Battery over max recommended charge! (95%)'",
+                "on-charging-100": "notify-send -u normal 'Battery Full! (100%)'"
+            },
             "tooltip": true
         },
         "clock#time": {

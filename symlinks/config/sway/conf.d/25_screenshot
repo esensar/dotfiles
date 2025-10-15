@@ -1,18 +1,20 @@
 # Screenshot tools
+set $screenshot_notification notify-send --transient -t 3000 "Screenshot" -i camera-photo
+set $screenclip_notification $screenshot_notification -i edit-paste
 set $screenshot_name $(date +"%m-%d-%Y_%T").png
 set $screenshot_dir ~/Pictures/Screenshots
 set $screenshot grim
 set $screenclip slurp | grim -g -
-set $windowshot grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') -g -
-set $screenshot_to_file $screenshot $screenshot_dir/$screenshot_name
-set $screenclip_to_file $screenclip $screenshot_dir/$screenshot_name
-set $windowshot_to_file $windowshot $screenshot_dir/$screenshot_name
-set $screenshot_clipboard $screenshot - | wl-copy
-set $screenclip_clipboard $screenclip - | wl-copy
-set $windowshot_clipboard $windowshot - | wl-copy
-set $screenclip_text_clipboard $screenclip - | tesseract stdin stdout -l eng | wl-copy
+set $windowshot swaymsg -t get_tree | jq -r '[recurse(.nodes[])] + [recurse(.floating_nodes[])] | .[] | select(.focused) | "\(.rect.x),\(.rect.y) \(.rect.width)x\(.rect.height)"' | grim -g -
+set $screenshot_to_file $screenshot $screenshot_dir/$screenshot_name && $screenshot_notification "Saved screenshot to $screenshot_dir/$screenshot_name"
+set $screenclip_to_file $screenclip $screenshot_dir/$screenshot_name && $screenshot_notification "Saved screenclip to $screenshot_dir/$screenshot_name"
+set $windowshot_to_file $windowshot $screenshot_dir/$screenshot_name && $screenshot_notification "Saved windowshot to $screenshot_dir/$screenshot_name"
+set $screenshot_clipboard $screenshot - | wl-copy && $screenclip_notification "Saved screenshot to clipboard!"
+set $screenclip_clipboard $screenclip - | wl-copy && $screenclip_notification "Saved screenclip to clipboard!"
+set $windowshot_clipboard $windowshot - | wl-copy && $screenclip_notification "Saved windowshot to clipboard!"
+set $screenclip_text_clipboard $screenclip - | tesseract stdin stdout -l eng | wl-copy && $screenclip_notification "Captured text from screenclip to clipboard!"
 
-bindsym $mod+Control+3 exec $screeshot_to_file
+bindsym $mod+Control+3 exec $screenshot_to_file
 bindsym $mod+Control+4 exec $screenclip_to_file
 bindsym $mod+Control+5 exec $windowshot_to_file
 

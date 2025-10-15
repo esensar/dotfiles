@@ -10,10 +10,14 @@
 [
     {
         // -------------------------------------------------------------------------
-        // Global configuration
+        // Global configuration - Main Monitor
         // -------------------------------------------------------------------------
         "layer": "top",
         "position": "top",
+        "output": [
+            "eDP-1",
+            "DP-1"
+        ],
         // If height property would be not present, it'd be calculated dynamically
         "height": 30,
         "modules-left": [
@@ -27,6 +31,7 @@
             "custom/notification"
         ],
         "modules-right": [
+            "mpris",
             "network",
             "pulseaudio",
             "backlight",
@@ -112,6 +117,20 @@
                 "warning": 70,
                 "critical": 90
             }
+        },
+        "mpris": {
+            "format": "{player_icon} {dynamic}",
+            "format-paused": "{status_icon} <i>{dynamic}</i>",
+            "player-icons": {
+                "default": "▶",
+                "mpv": "🎵"
+            },
+            "status-icons": {
+                "paused": "⏸"
+            },
+            "album-len": 0,
+            "dynamic-len": 30
+            // "ignored-players": ["firefox"]
         },
         "network": {
             "interval": 5,
@@ -208,6 +227,133 @@
             "tooltip": false,
             "format": "",
             "on-click": "wlogout"
+        },
+        "custom/notification": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+                "notification": "<span foreground='red'><sup></sup></span>",
+                "none": "",
+                "dnd-notification": "<span foreground='red'><sup></sup></span>",
+                "dnd-none": ""
+            },
+            "return-type": "json",
+            "exec-if": "which swaync-client",
+            "exec": "swaync-client -swb",
+            "on-click": "swaync-client -t -sw",
+            "on-click-right": "swaync-client -d -sw",
+            "escape": true
+        },
+        "custom/current-task": {
+            "interval": 10,
+            "exec": "source ~/.profile && exec t waybar",
+            "on-click": "source ~/.profile && exec t toggle",
+            "exec-on-event": true,
+            "return-type": "json"
+        }
+    },
+    {
+        // -------------------------------------------------------------------------
+        // Secondary configuration - second+ monitor
+        // -------------------------------------------------------------------------
+        "layer": "top",
+        "position": "top",
+        "output": [
+            "DP-2",
+            "HDMI-1",
+            "HDMI-2"
+        ],
+        // If height property would be not present, it'd be calculated dynamically
+        "height": 30,
+        "modules-left": [
+            "sway/workspaces",
+            "sway/mode"
+        ],
+        "modules-center": [
+            "custom/current-task",
+            "clock#date",
+            "clock#time",
+            "custom/notification"
+        ],
+        "modules-right": [
+            "network",
+            "pulseaudio",
+            "tray"
+        ],
+        // -------------------------------------------------------------------------
+        // Modules
+        // -------------------------------------------------------------------------
+        "clock#time": {
+            "interval": 1,
+            "format": "{:%H:%M}",
+            "tooltip": true
+        },
+        "clock#date": {
+            "interval": 10,
+            "format": "  {:%e %b %Y}", // Icon: calendar-alt
+            "tooltip-format": "{:%e %B %Y}",
+            "on-click": "gnome-calendar"
+        },
+        "mpris": {
+            "format": "{player_icon} {dynamic}",
+            "format-paused": "{status_icon} <i>{dynamic}</i>",
+            "player-icons": {
+                "default": "▶",
+                "mpv": "🎵"
+            },
+            "status-icons": {
+                "paused": "⏸"
+            },
+            "album-len": 0,
+            "dynamic-len": 30
+            // "ignored-players": ["firefox"]
+        },
+        "network": {
+            "interval": 5,
+            "format-wifi": " {essid} ({signalStrength}%)", // Icon: wifi
+            "format-ethernet": " Connected", // Icon: ethernet
+            "format-disconnected": "⚠ Disconnected",
+            "tooltip-format": "{ifname}: {ipaddr}"
+        },
+        "sway/mode": {
+            "format": "<span style=\"italic\">{}</span>", // Icon: expand-arrows-alt
+            "tooltip": false
+        },
+        "sway/workspaces": {
+            "all-outputs": false,
+            "disable-scroll": true,
+            "persistent-workspaces": {
+                "": []
+            },
+            "format": "{icon}{name}",
+            "format-icons": {
+                "urgent": "",
+                "focused": "",
+                "default": ""
+            }
+        },
+        "pulseaudio": {
+            //"scroll-step": 1,
+            "format": "{icon} {volume}%",
+            "format-bluetooth": "{icon} {volume}%",
+            "format-muted": "",
+            "format-icons": {
+                "headphones": "󰋋",
+                "handsfree": "󰋎",
+                "headset": "󰋎",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": [
+                    "",
+                    ""
+                ]
+            },
+            "on-click": "pavucontrol"
+        },
+        "tray": {
+            "icon-size": 16,
+            "spacing": 5
         },
         "custom/notification": {
             "tooltip": false,

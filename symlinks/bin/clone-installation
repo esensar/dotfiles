@@ -10,9 +10,9 @@ function get_installations()
 # Get selected installation to clone
 if [ -z "$1" ]
 then
-	if type wofi > /dev/null 2>&1
+	if type rofi > /dev/null 2>&1
 	then
-		INSTALLATION=$( (echo empty; get_installations)  | wofi -dmenu -only-match -p "Select host to clone installation from:")
+		INSTALLATION=$( (echo empty; get_installations)  | rofi -dmenu -only-match -p "Select host to clone installation from:")
 	else
 		PS3='Please select installation to clone: '
 		select opt in $(get_installations)

@@ -1,7 +1,6 @@
 # Start up notification manager
 exec swaync
 exec kdeconnect-indicator
-exec ulauncher --hide-window
 exec libinput-gestures-setup start
 exec kanshi
 exec openrgb --startminimized --server --profile ~/.config/OpenRGB/full_cyan.orp

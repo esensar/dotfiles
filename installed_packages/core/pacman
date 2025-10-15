@@ -47,5 +47,5 @@ texinfo
 vim
 waybar
 which
-wofi
+rofi
 xorg-xwayland

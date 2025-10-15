@@ -7,7 +7,7 @@ function get_settings()
 	ls -l --time-style="long-iso" $SETTINGS_DIRECTORY | grep -v "~" | awk 'NR>1 {print $8}'
 }
 
-SETTING=$( (echo empty; get_settings)  | wofi -dmenu -only-match -p "Select settings script:")
+SETTING=$( (echo empty; get_settings)  | rofi -dmenu -only-match -p "Select settings script:")
 
 if [ x"empty" = x"${SETTING}" ]
 then

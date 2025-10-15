@@ -22,9 +22,9 @@ function concat_installation_files()
 
 if [ -z "$1" ]
 then
-	if type wofi > /dev/null 2>&1
+	if type rofi > /dev/null 2>&1
 	then
-		INSTALLATION=$( (echo empty; get_installations)  | wofi -dmenu -only-match -p "Select host to compare installation with:")
+		INSTALLATION=$( (echo empty; get_installations)  | rofi -dmenu -only-match -p "Select host to compare installation with:")
 	else
 		PS3='Please select installation to compare: '
 		select opt in $(get_installations)

@@ -9,7 +9,7 @@ function query_packages()
 function ask_for_package()
 {
 	PKG_LIST=query_packages
-	PKG=$( $PKG_LIST | wofi -dmenu -p "Select package or search:" )
+	PKG=$( $PKG_LIST | rofi -dmenu -p "Select package or search:" )
 	echo $PKG
 	FND_PKG=$( $PKG_LIST | tr -s " " "\n" | grep ${PKG} )
 	echo $FND_PKG

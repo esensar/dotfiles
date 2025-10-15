@@ -59,7 +59,7 @@ vim
 waybar
 which
 wl-clipboard
-wofi
+rofi
 xorg-xwayland
 zathura
 zsh

@@ -1,6 +1,6 @@
 # Main tools mapping
 set $term alacritty
-set $menu "ulauncher-toggle"
+set $menu 'rofi -show combi -modes combi -combi-modes "window,drun,run"'
 set $filemanager nautilus
 set $processviewer $term -e btop
 set $browser librewolf

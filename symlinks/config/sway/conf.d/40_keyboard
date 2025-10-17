@@ -6,6 +6,3 @@ input type:keyboard {
     repeat_delay 400
     repeat_rate 25
 }
-
-# Ensures waybar is updated when language is switched
-bindsym $alt+space exec "pkill --signal SIGRTMIN+1 waybar"

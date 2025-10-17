@@ -39,7 +39,7 @@
             "memory",
             "cpu",
             "temperature",
-            "custom/keyboard-layout",
+            "sway/language",
             "bluetooth",
             "battery",
             "tray",
@@ -97,14 +97,10 @@
                 "critical": 90
             }
         },
-        "custom/keyboard-layout": {
-            "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+        "sway/language": {
             // Interval set only as a fallback, as the value is updated by signal
-            "interval": 30,
-            "format": " {}", // Icon: keyboard
-            // Signal sent by Sway key binding (~/.config/sway/key-bindings)
-            "signal": 1, // SIGHUP
-            "tooltip": false
+            "format": "{flag}", // Icon: keyboard
+            "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
         },
         "disk": {
             "interval": 30,
@@ -119,14 +115,13 @@
             }
         },
         "mpris": {
-            "format": "{player_icon} {dynamic}",
-            "format-paused": "{status_icon} <i>{dynamic}</i>",
+            "format": "{player_icon} <i>{dynamic}</i>",
+            "format-paused": "{status_icon} {dynamic}",
             "player-icons": {
-                "default": "▶",
-                "mpv": "🎵"
+                "default": "⏸"
             },
             "status-icons": {
-                "paused": "⏸"
+                "paused": "▶"
             },
             "album-len": 0,
             "dynamic-len": 30
@@ -295,18 +290,16 @@
             "on-click": "gnome-calendar"
         },
         "mpris": {
-            "format": "{player_icon} {dynamic}",
-            "format-paused": "{status_icon} <i>{dynamic}</i>",
+            "format": "{player_icon} <i>{dynamic}</i>",
+            "format-paused": "{status_icon} {dynamic}",
             "player-icons": {
-                "default": "▶",
-                "mpv": "🎵"
+                "default": "⏸"
             },
             "status-icons": {
-                "paused": "⏸"
+                "paused": "▶"
             },
             "album-len": 0,
             "dynamic-len": 30
-            // "ignored-players": ["firefox"]
         },
         "network": {
             "interval": 5,

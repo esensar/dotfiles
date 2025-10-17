@@ -1,0 +1,28 @@
+#!/bin/bash
+
+OPTIONS=("Screenshot to file" "Screenclip to file" "Screenshot to clipboard" "Screenclip to clipboard")
+
+case $1 in
+	"Screenshot to file")
+		swaymsg -q 'exec $screenshot_to_file'
+		exit 0
+		;;
+	"Screenclip to file")
+		swaymsg -q 'exec $screenclip_to_file'
+		exit 0
+		;;
+	"Screenshot to clipboard")
+		swaymsg -q 'exec $screenshot_clipboard'
+		exit 0
+		;;
+	"Screenclip to clipboard")
+		swaymsg -q 'exec $screenclip_clipboard'
+		exit 0
+		;;
+	*)
+		echo -e "\0prompt\x1fScreenshot"
+		for entry in "${OPTIONS[@]}"
+    do
+        echo -e "${entry}"
+    done
+esac

@@ -14,12 +14,17 @@ set $screenclip_clipboard $screenclip - | wl-copy && $screenclip_notification "S
 set $windowshot_clipboard $windowshot - | wl-copy && $screenclip_notification "Saved windowshot to clipboard!"
 set $screenclip_text_clipboard $screenclip - | tesseract stdin stdout -l eng | wl-copy && $screenclip_notification "Captured text from screenclip to clipboard!"
 
+bindsym $mod+Print exec rofi -show screenshots -modi screenshots:~/.local/opt/script_utils/rofi-menus/screenshot-selector
+
+bindsym Print exec $screenshot_to_file
 bindsym $mod+Control+3 exec $screenshot_to_file
+bindsym Control+Print exec $screenclip_to_file
 bindsym $mod+Control+4 exec $screenclip_to_file
 bindsym $mod+Control+5 exec $windowshot_to_file
 
-# Selection screenshots
 bindsym $mod+Control+Shift+2 exec $screenclip_text_clipboard
+bindsym Shift+Print exec $screenshot_clipboard
 bindsym $mod+Control+Shift+3 exec $screenshot_clipboard
+bindsym Control+Shift+Print exec $screenclip_clipboard
 bindsym $mod+Control+Shift+4 exec $screenclip_clipboard
 bindsym $mod+Control+Shift+5 exec $windowshot_clipboard

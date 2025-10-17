@@ -1,23 +1,81 @@
-#!/bin/sh
+#!/bin/bash
 
-function query_packages()
+. ~/.local/opt/script_utils/parse-package-managers-params.bash
+
+query_pacman()
 {
 	QUERY_STRING=$1
-	pacman -Ssq $QUERY_STRING
+	pacman -Ssq "$QUERY_STRING" | tr -s " " "\n"
 }
 
-function ask_for_package()
+query_apt()
 {
-	PKG_LIST=query_packages
-	PKG=$( $PKG_LIST | rofi -dmenu -p "Select package or search:" )
-	echo $PKG
-	FND_PKG=$( $PKG_LIST | tr -s " " "\n" | grep ${PKG} )
-	echo $FND_PKG
+	QUERY_STRING=$1
+	apt-cache search "$QUERY_STRING" | cut -f1 -d ' ' | tr -s " " "\n"
+}
+
+query_dnf()
+{
+	QUERY_STRING=$1
+	dnf search "$QUERY_STRING" | grep "$QUERY_STRING" | cut -f1 | sed 's/\..*//' | tr -s " " "\n"
+}
+
+query_packages()
+{
+	if [ "${RUN[dnf]}" = "1" ]
+	then
+		query_dnf "$@"
+	elif [ "${RUN[apt]}" = "1" ]
+	then
+		query_apt "$@"
+	elif [ "${RUN[pacman]}" = "1" ]
+	then
+		query_pacman "$@"
+	fi
+}
+
+install_pacman()
+{
+	PKG=$1
+	alacritty --class "download" -e sudo pacman -S "$PKG"
+}
+
+install_apt()
+{
+	PKG=$1
+	alacritty --class "download" -e sudo apt install "$PKG"
+}
+
+install_dnf()
+{
+	PKG=$1
+	alacritty --class "download" -e sudo dnf install "$PKG"
+}
+
+install_package()
+{
+	if [ "${RUN[dnf]}" = "1" ]
+	then
+		install_dnf "$@"
+	elif [ "${RUN[apt]}" = "1" ]
+	then
+		install_apt "$@"
+	elif [ "${RUN[pacman]}" = "1" ]
+	then
+		install_pacman "$@"
+	fi
+}
+
+ask_for_package()
+{
+	PACKAGES=$(query_packages)
+	PKG=$( echo "$PACKAGES" | rofi -dmenu -p "Select package or search:" )
+	FND_PKG=$( echo "$PACKAGES" | tr -s " " "\n" | grep "$PKG" )
 	if [ -z "$PKG" ]; then
 		echo "Done"
-	elif [[ "$PKG" == "$FND_PKG" ]]; then
+	elif [ "$PKG" = "$FND_PKG" ]; then
 		# List contains the selected pkg
-		alacritty --title "download" -e "sudo pacman -S $PKG"
+		install_package "$PKG"
 	else
 		ask_for_package
 	fi

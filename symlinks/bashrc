@@ -3,6 +3,7 @@
 # for examples
 
 cd ~
+source ~/.profile
 
 # If not running interactively, don't do anything
 case $- in

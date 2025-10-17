@@ -284,6 +284,12 @@ time_waybar () {
   echo "{\"text\":\"$TEXT\", \"tooltip\":\"$TOOLTIP\", \"class\":\"$CLASS\",\"alt\":\"$CLASS\"}"
 }
 
+time_notify () {
+  TITLE=$(tail -n 1 $TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal | grep -Eq "^i.*\$" && echo "Timer started" || echo "Timer stopped")
+  TEXT=$(ledger reg -f $TIMESHEET_LEDGER_HOME/main.journal --tail 1 --format "Current task:\n%(account)\n%(payee) %(scrub(amount))")
+  notify-send -i org.gnome.clocks "$TITLE" "$TEXT"
+}
+
 case $COMMAND in
   in)
     time_in
@@ -308,6 +314,9 @@ case $COMMAND in
     ;;
   waybar)
     time_waybar
+    ;;
+  notify)
+    time_notify
     ;;
   *)
     usage $COMMAND; exit 1 ;;

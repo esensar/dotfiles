@@ -98,7 +98,6 @@
             }
         },
         "sway/language": {
-            // Interval set only as a fallback, as the value is updated by signal
             "format": "{flag}", // Icon: keyboard
             "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
         },
@@ -240,6 +239,7 @@
             "escape": true
         },
         "custom/current-task": {
+            "signal": 1,
             "interval": 10,
             "exec": "source ~/.profile && exec t waybar",
             "on-click": "source ~/.profile && exec t toggle",

@@ -11,8 +11,8 @@ bindsym $mod+Return exec $term
 # start browser
 bindsym $mod+b exec $browser
 
-# start todoist
-bindsym $mod+$alt+t exec todoist
+# toggle task
+bindsym $mod+$alt+t exec source ~/.profile && t toggle && pkill --signal SIGRTMIN+1 waybar && t notify
 
 # start menu (program launcher)
 bindsym $mod+space exec $menu

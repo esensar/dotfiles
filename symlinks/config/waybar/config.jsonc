@@ -14,10 +14,6 @@
         // -------------------------------------------------------------------------
         "layer": "top",
         "position": "top",
-        // "output": [
-        //     "eDP-1",
-        //     "DP-1"
-        // ],
         // If height property would be not present, it'd be calculated dynamically
         "height": 30,
         "modules-left": [
@@ -131,7 +127,8 @@
             "format-wifi": " {essid} ({signalStrength}%)", // Icon: wifi
             "format-ethernet": " Connected", // Icon: ethernet
             "format-disconnected": "⚠ Disconnected",
-            "tooltip-format": "{ifname}: {ipaddr}"
+            "tooltip-format": "{ifname}: {ipaddr}",
+            "on-click": "alacritty -e /usr/bin/fish -c nmtui"
         },
         "sway/mode": {
             "format": "<span style=\"italic\">{}</span>", // Icon: expand-arrows-alt
@@ -242,7 +239,7 @@
             "signal": 1,
             "interval": 10,
             "exec": "source ~/.profile && exec t waybar",
-            "on-click": "source ~/.profile && exec t toggle",
+            "on-click": "source ~/.profile && t toggle && exec t notify",
             "exec-on-event": true,
             "return-type": "json"
         }

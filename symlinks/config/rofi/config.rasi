@@ -1,0 +1,83 @@
+@theme "gruvbox-dark"
+
+configuration {
+    sort: true;
+}
+
+window {
+    background-color:   @normal-background;
+
+    location:       center;
+    width:          640;
+    border-radius:  8;
+}
+
+inputbar {
+    font:       "Cantarell 20";
+    padding:    12px;
+    spacing:    12px;
+    children:   [ icon-search, entry ];
+}
+
+icon-search {
+    expand:     false;
+    filename:   "search";
+    size: 28px;
+}
+
+icon-search, entry, element-icon, element-text {
+    vertical-align: 0.5;
+}
+
+entry {
+    font:   inherit;
+
+    placeholder         : "Search";
+    placeholder-color   : @alternate-normal-foreground;
+}
+
+message {
+    border:             2px 0 0;
+    border-color:       @alternate-normal-background;
+    background-color:   @alternate-normal-background;
+}
+
+textbox {
+    padding:    8px 24px;
+}
+
+listview {
+    lines:      10;
+    columns:    1;
+
+    fixed-height:   false;
+    border:         1px 0 0;
+    border-color:   @alternate-normal-background;
+}
+
+element {
+    padding:            8px 16px;
+    spacing:            16px;
+    background-color:   transparent;
+}
+
+element normal active {
+    text-color: @selected-normal-background;
+}
+
+element alternate active {
+    text-color: @selected-normal-background;
+}
+
+element selected normal, element selected active {
+    background-color:   @selected-normal-background;
+    text-color:         @selected-normal-foreground;
+}
+
+element-icon {
+    size:   1em;
+}
+
+element-text {
+    text-color: inherit;
+}

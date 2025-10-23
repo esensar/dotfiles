@@ -23,6 +23,7 @@ complete -c t -x -n "__fish_use_subcommand" -a toggle -d "toggle tracking time"
 complete -c t -x -n "__fish_use_subcommand" -a bal -d "print current balance"
 complete -c t -x -n "__fish_use_subcommand" -a invoice -d "generate an invoice"
 complete -c t -x -n "__fish_use_subcommand" -a invoice_list -d "generate invoice data"
+complete -c t -x -n "__fish_use_subcommand" -a today -d "generate data for today"
 complete -c t -x -n "__fish_use_subcommand" -a waybar -d "generate data for waybar"
 
 # In

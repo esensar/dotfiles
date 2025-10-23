@@ -27,6 +27,7 @@ usage () {
   echo "  invoice      - generate an invoice from account balance"
   echo "  clear        - clear time for account and comment"
   echo "  invoice_list - generate data for an invoice from account balance"
+  echo "  today        - generate data today"
   echo "  waybar       - generate output for waybar module"
   echo ""
   echo "Options:"
@@ -271,6 +272,10 @@ time_invoice_list () {
   fi
 }
 
+time_today () {
+  ledger -f "$TIMESHEET_LEDGER_HOME/main.journal" reg --by-payee --limit 'date == today'
+}
+
 time_toggle () {
   LAST_PROJECT=$(ledger reg -f $TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal --tail 1 --format "%(account)")
   LAST_COMMENT=$(ledger reg -f $TIMESHEET_LEDGER_HOME/timesheets/$(date +%Y).journal --tail 1 --format "%(payee)")
@@ -311,6 +316,9 @@ case $COMMAND in
     ;;
   toggle)
     time_toggle
+    ;;
+  today)
+    time_today
     ;;
   waybar)
     time_waybar

@@ -1,6 +1,7 @@
 [user]
 	name = Ensar Sarajčić
 	email = dev@ensarsarajcic.com
+	signingKey = 0CB9B5997C8F5F3F
 [core]
 	editor = nvim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -19,7 +20,7 @@
 [mergetool]
 	keepBackup = false
 [mergetool "nvimdiff"]
-	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\""
+	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 [guitool "Add to .gitignore"]
 	cmd = echo \"\n$FILENAME\" >> .gitignore & git add .gitignore
 	needsfile = yes
@@ -43,3 +44,5 @@
 	defaultBranch = main
 [sendemail]
 	annotate = yes
+[commit]
+	gpgsign = true

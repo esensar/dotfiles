@@ -1,7 +1,7 @@
 [user]
 	name = Ensar Sarajčić
 	email = dev@ensarsarajcic.com
-	signingKey = 0CB9B5997C8F5F3F
+	signingKey = C6C86B34D20787BE
 [core]
 	editor = nvim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol

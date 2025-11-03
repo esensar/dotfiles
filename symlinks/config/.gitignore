@@ -81,3 +81,5 @@
 !/vale/**
 !/rofi
 !/rofi/**
+!/yubikey-touch-detector
+!/yubikey-touch-detector/**

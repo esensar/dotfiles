@@ -83,3 +83,5 @@
 !/rofi/**
 !/yubikey-touch-detector
 !/yubikey-touch-detector/**
+!/notmuch
+!/notmuch/**

@@ -4,3 +4,4 @@ rdoc
 ri
 syntax_suggest
 update_rubygems
+irb

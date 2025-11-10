@@ -46,3 +46,7 @@
 	annotate = yes
 [commit]
 	gpgsign = true
+[format]
+	notes = true
+[notes]
+	rewriteMode = concatenate

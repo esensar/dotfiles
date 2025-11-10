@@ -185,31 +185,6 @@
     /* No styles */
 }
 
-/* Hide media player on secondary monitors */
-.DP-2 #mpris {
-    font-size: 0;
-    margin: 0;
-    padding: 0;
-}
-
-.HDMI-1 #mpris {
-    font-size: 0;
-    margin: 0;
-    padding: 0;
-}
-
-.HDMI-2 #mpris {
-    font-size: 0;
-    margin: 0;
-    padding: 0;
-}
-
-.eDP-1 #mpris {
-    font-size: 0;
-    margin: 0;
-    padding: 0;
-}
-
 #idle_inhibitor {
     font-weight: bold;
     font-size: 18px;

@@ -3,60 +3,26 @@
 -------------------------------------------------------------------------------
 
 if not vim.g.disable_formatting then
-	require("formatter").setup({
-		filetype = {
-			python = {
-				require("formatter.filetypes.python").isort,
-				require("formatter.filetypes.python").autopep8,
-			},
-			kotlin = {
-				require("formatter.filetypes.kotlin").ktlint,
-				require("formatter.filetypes.kotlin").detekt,
-			},
-			cpp = {
-				require("formatter.filetypes.cpp").clangformat,
-			},
-			c = {
-				require("formatter.filetypes.c").clangformat,
-			},
-			cmake = {
-				require("formatter.filetypes.cmake").cmakeformat,
-			},
-			lua = {
-				require("formatter.filetypes.lua").stylua,
-			},
-			dart = {
-				require("formatter.filetypes.dart").dartformat,
-			},
-			go = {
-				require("formatter.filetypes.go").gofmt,
-			},
-			rust = {
-				require("formatter.filetypes.rust").rustfmt,
-			},
-			zig = {
-				require("formatter.filetypes.zig").zigfmt,
-			},
-			java = {
-				require("esensar.lsp.formatters.clang-format-java"),
-			},
-			javascript = {
-				require("formatter.filetypes.javascript").eslint_d,
-			},
-			typescript = {
-				require("formatter.filetypes.typescript").eslint_d,
-			},
-			godot = {
-				require("esensar.lsp.formatters.gdformat"),
-			},
-			xml = {
-				require("formatter.filetypes.xml").xmlformat,
-				require("formatter.filetypes.xml").xmllint,
-			},
-			["*"] = {
-				require("formatter.filetypes.any").remove_trailing_whitespace,
-			},
+	require("conform").setup({
+		formatters_by_ft = {
+			python = { "isort", "autopep8" },
+			kotlin = { "ktlint", "detekt" },
+			cpp = { "clang-format" },
+			c = { "clang-format" },
+			cmake = { "cmake_format" },
+			lua = { "stylua" },
+			dart = { "dart_format" },
+			go = { "gofmt" },
+			rust = { "rustfmt" },
+			zig = { "zigfmt" },
+			java = { "clang-format" },
+			javascript = { "eslint_d" },
+			typescript = { "eslint_d" },
+			godot = { "gdformat" },
+			xml = { "xmlformatter", "xmllint" },
+			["*"] = { "trim_whitespace" },
 		},
+		lsp_format = "fallback",
 	})
 end
 
@@ -113,11 +79,16 @@ vim.api.nvim_create_user_command("Format", function()
 end, { desc = "Format current buffer using LSP" })
 
 -- Auto linting
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function(args)
+		if not vim.g.disable_formatting then
+			require("conform").format({ bufnr = args.buf })
+		end
+	end,
+})
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	callback = function()
-		if not vim.g.disable_formatting then
-			vim.cmd("FormatWrite")
-		end
 		require("lint").try_lint()
 		require("lint").try_lint({ "codespell" })
 		require("lint").try_lint({ "misspell" })

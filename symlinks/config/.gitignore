@@ -38,8 +38,6 @@
 !/newsboat/
 !/nvim/**
 !/nvim/
-!/omf/**
-!/omf/
 !/sway/**
 !/sway/
 !/termux/**

@@ -20,14 +20,12 @@ SSH_CONFIG_FILE := $(SSH_KEYS_HOME)/config
 PERSONAL_SSH_KEYS_HOME := $(SSH_KEYS_HOME)/Personal
 SCRIPTS_CACHE_DIR := $(HOME)/.local/share/script_cache
 SCRIPTS_UTILS_DIR := $(HOME)/.local/opt/script_utils
-PROJECTS_ROOT := $(HOME)/Projects
+PROJECTS_ROOT := $(HOME)/src
 DOCUMENTS_ROOT := $(HOME)/Documents
 PICTURES_ROOT := $(HOME)/Pictures
 SCREENSHOTS_ROOT := $(PICTURES_ROOT)/Screenshots
 WALLPAPERS_ROOT := $(PICTURES_ROOT)/Wallpapers
 LOCKSCREENS_ROOT := $(PICTURES_ROOT)/Lockscreens
-PERSONAL_PROJECTS_ROOT := $(PROJECTS_ROOT)/Personal
-PRACTICE_PROJECTS_ROOT := $(PERSONAL_PROJECTS_ROOT)/Mixed\ Technology/Practice
 COPY_TOOL := pbcopy
 
 ifeq ($(UNAME), Linux)
@@ -225,11 +223,9 @@ link_i3config: check_os link_xconfig link_apps_config
 .PHONY: prepare_projects_dir
 prepare_projects_dir: check_os
 	@echo "Creating projects directories"
-	@mkdir -p $(PERSONAL_PROJECTS_ROOT)
-	@mkdir -p $(PROJECTS_ROOT)/Optimum
+	@mkdir -p $(PROJECTS_ROOT)
+	@mkdir -p $(PROJECTS_ROOT)/local
 	@mkdir -p $(DOCUMENTS_ROOT)/Personal
-	@mkdir -p $(DOCUMENTS_ROOT)/Optimum
-	@mkdir -p $(PRACTICE_PROJECTS_ROOT)
 
 .PHONY: prepare_scripts_cache_dir
 prepare_scripts_cache_dir: check_os
@@ -264,12 +260,6 @@ create_personal_ssh_keys: check_os prepare_ssh_dir
 .PHONY: prepare_fish_shell
 prepare_fish_shell: check_os
 	@echo "Preparing fish shell..."
-	@echo "Installing omf framework"
-	@curl -L -k https://get.oh-my.fish | fish
-	@echo "Install foreign-env to enable .profile in fish by running:"
-	@echo ""
-	@echo "omf install foreign-env"
-	@echo ""
 
 .PHONY: prepare_screenshots_dir
 prepare_screenshots_dir: check_os
@@ -304,7 +294,7 @@ install_exercism: check_os
 	@mv /tmp/exercism ~/.local/bin/
 	@read -p "Enter your exercism API KEY (https://exercism.org/settings/api_cli): " apikey;
 	@echo "Configuring exercism..."
-	exercism configure --token="$$apikey" --workspace="~/Projects/Personal/Mixed Technology/Practice/exercism"
+	exercism configure --token="$$apikey" --workspace="~/src/github.com/esensar/exercism"
 
 .PHONY: install_vim
 install_vim: check_os link_vim

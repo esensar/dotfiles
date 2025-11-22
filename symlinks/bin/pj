@@ -1,0 +1,13 @@
+#!/usr/bin/sh
+
+# Taken from https://blog.esc.sh/how-i-organize-git-repos-locally/
+# And slightly modified
+
+PROJECTS_PATH="$HOME/src"
+REPO_PATH=$(find "${PROJECTS_PATH}" -mindepth 3 -maxdepth 3 -type d | awk -F "$PROJECTS_PATH" '{print $2}' | fzf)
+if [ -n "$REPO_PATH" ]; then
+	echo "$PROJECTS_PATH$REPO_PATH"
+	cd "${PROJECTS_PATH}${REPO_PATH}" || echo "Failed to navigate to ${PROJECTS_PATH}${REPO_PATH}"
+else
+	echo "No repository selected."
+fi

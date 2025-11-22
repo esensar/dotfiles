@@ -34,10 +34,6 @@
 	clean = sed -e "/projects.*/d"
 [include]
 	path = ~/.gitconfig.local
-[includeIf "gitdir/i:~/Projects/Optimum/"]
-	path = ~/.gitconfig.optimum
-[includeIf "gitdir/i:~/Projects/University/"]
-	path = ~/.gitconfig.university
 [pull]
 	rebase = true
 [init]

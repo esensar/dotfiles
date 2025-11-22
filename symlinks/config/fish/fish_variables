@@ -11,11 +11,6 @@ SETUVAR _fish_abbr_ggpull:ggl
 SETUVAR _fish_abbr_ggpush:ggp
 SETUVAR _fish_abbr_gitfzflog:git\x20log\x20\x2d\x2doneline\x20\x7c\x20fzf\x20\x2d\x2dmulti\x20\x2d\x2dpreview\x20\x22git\x20show\x20\x7b\x2b1\x7d\x22
 SETUVAR _fish_abbr_l:ls\x20\x2dlahF
-SETUVAR _fish_abbr_pjo:pj\x20open
-SETUVAR _fisher_gazorby_2F_fish_2D_abbreviation_2D_tips_files:/home/ensar/\x2econfig/fish/functions/__abbr_tips_bind_newline\x2efish\x1e/home/ensar/\x2econfig/fish/functions/__abbr_tips_bind_space\x2efish\x1e/home/ensar/\x2econfig/fish/functions/__abbr_tips_init\x2efish\x1e/home/ensar/\x2econfig/fish/conf\x2ed/abbr_tips\x2efish
-SETUVAR _fisher_jomik_2F_fish_2D_gruvbox_files:/Users/ensar\x2esarajcic/\x2econfig/fish/functions/theme_gruvbox\x2efish
-SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/ensar\x2esarajcic/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/ensar\x2esarajcic/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejomik/fish\x2dgruvbox\x1egazorby/fish\x2dabbreviation\x2dtips
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:005fd7

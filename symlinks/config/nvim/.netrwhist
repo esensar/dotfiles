@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/ensarsarajcic/Downloads/nodejs-server-server/api'
-let g:netrw_dirhist_2='/Users/ensarsarajcic/Downloads/nodejs-server-server'
-let g:netrw_dirhist_3='/Users/ensarsarajcic/Projects/University/iot_backend'
-let g:netrw_dirhist_4='/Users/ensarsarajcic/Projects/University/iot_backend/app'

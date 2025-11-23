@@ -1,6 +1,7 @@
 set -g __fish_git_prompt_showdirtystate 1
 set -g __fish_git_prompt_showuntrackedfiles 1
 set -g __fish_git_prompt_showcolorhints 1
+set -g ___fish_git_prompt_color_branch (set_color --bold "98971A")
 
 abbr -a ggpush "git push origin (__git.current_branch)"
 abbr -a ggpull "git pull origin (__git.current_branch)"

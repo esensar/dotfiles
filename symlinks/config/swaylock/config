@@ -1,0 +1,3 @@
+daemonize
+image="$(shuf -n1 -e ~/media/pictures/Lockscreens/*.png)"
+scaling=fill

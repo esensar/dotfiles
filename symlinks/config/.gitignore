@@ -40,6 +40,8 @@
 !/nvim/
 !/sway/**
 !/sway/
+!/swaylock/**
+!/swaylock/
 !/termux/**
 !/termux/
 !/tridactyl/**

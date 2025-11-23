@@ -29,7 +29,7 @@ export MY_DOTFILES_HOME=$HOME/.dotfiles
 export MY_CONFIG_DIR=$HOME/.config
 export MY_CONFIG_CACHE_DIR=$HOME/.local/share/script_cache
 export MY_PROJECTS_HOME=$HOME/src
-export MY_DOCUMENTS_HOME=$HOME/Documents
+export MY_DOCUMENTS_HOME=$HOME/doc
 
 export EDITOR=nvim
 export VISUAL=nvim

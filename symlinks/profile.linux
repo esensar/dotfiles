@@ -3,7 +3,9 @@ source ~/.dotfiles/symlinks/profile.common
 export MACHINE_TYPE='linux'
 
 export AUR_INSTALL_HOME=~/.local/share/aurfetch
-export GRIM_DEFAULT_DIR=~/Pictures/Screenshots
+export GRIM_DEFAULT_DIR=~/media/pictures/screenshots
+
+export ANDROID_HOME="$HOME/.local/opt/android/Sdk"
 
 # Local aliases and variables
 if [ -f "$HOME/.profile.local" ]; then

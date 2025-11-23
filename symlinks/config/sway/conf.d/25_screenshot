@@ -2,7 +2,7 @@
 set $screenshot_notification notify-send --transient -t 3000 "Screenshot" -i camera-photo
 set $screenclip_notification $screenshot_notification -i edit-paste
 set $screenshot_name $(date +"%m-%d-%Y_%T").png
-set $screenshot_dir ~/Pictures/Screenshots
+set $screenshot_dir ~/media/pictures/Screenshots
 set $screenshot grim
 set $screenclip slurp | grim -g -
 set $windowshot swaymsg -t get_tree | jq -r '[recurse(.nodes[])] + [recurse(.floating_nodes[])] | .[] | select(.focused) | "\(.rect.x),\(.rect.y) \(.rect.width)x\(.rect.height)"' | grim -g -

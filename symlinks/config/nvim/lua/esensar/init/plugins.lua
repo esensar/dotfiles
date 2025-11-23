@@ -148,16 +148,7 @@ return require("lazy").setup({
 		"vimwiki/vimwiki",
 		init = function()
 			local personal_wiki = {
-				path = "~/vimwiki/",
-				ext = ".md",
-				index = "Home",
-				syntax = "markdown",
-				auto_diary_index = 1,
-				auto_generate_links = 1,
-				auto_toc = 1,
-			}
-			local work_wiki = {
-				path = "~/vimwiki_work/",
+				path = "~/doc/vimwiki/",
 				ext = ".md",
 				index = "Home",
 				syntax = "markdown",
@@ -168,7 +159,7 @@ return require("lazy").setup({
 			local test_wiki = {
 				path = "/tmp/",
 			}
-			vim.g.vimwiki_list = { personal_wiki, work_wiki, test_wiki }
+			vim.g.vimwiki_list = { personal_wiki, test_wiki }
 			vim.g.vimwiki_global_ext = 0
 			vim.g.vimwiki_listsyms = "✗○◐●✓"
 

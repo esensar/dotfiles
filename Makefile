@@ -235,7 +235,7 @@ prepare_scripts_cache_dir: check_os
 .PHONY: clone_personal_vimwiki
 clone_personal_vimwiki: check_os
 	@echo "Cloning personal vimwiki"
-	@git clone git@git.ensarsarajcic.com:esensar/vimwiki.wiki.git ~/vimwiki
+	@git clone git@git.ensarsarajcic.com:esensar/vimwiki.wiki.git ~/doc/vimwiki
 
 .PHONY: clone_termux_shortcuts
 clone_termux_shortcuts: check_os

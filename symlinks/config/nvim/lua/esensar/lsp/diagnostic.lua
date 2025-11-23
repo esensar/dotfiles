@@ -20,7 +20,7 @@ if not vim.g.disable_formatting then
 			typescript = { "eslint_d" },
 			godot = { "gdformat" },
 			xml = { "xmlformatter", "xmllint" },
-			["*"] = { "trim_whitespace" },
+			["*"] = { "trim_whitespace", "trim_newlines" },
 		},
 		lsp_format = "fallback",
 	})

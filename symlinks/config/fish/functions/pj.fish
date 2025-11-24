@@ -4,7 +4,7 @@
 function pj -d "Search projects directory and navigate to selected project"
 	set -f projects_path "$HOME/src"
 	if count $argv >/dev/null
-		set -f repo_path (find "$projects_path" -mindepth 3 -maxdepth 3 -type d | awk -F "$projects_path" '{print $2}' | fzf --filter="$argv" | head -n 1)
+		set -f repo_path (find "$projects_path" -mindepth 3 -maxdepth 3 -type d | awk -F "$projects_path" '{print $2}' | fzf --filter="$argv\$" | head -n 1)
 	else
 		set -f repo_path (find "$projects_path" -mindepth 3 -maxdepth 3 -type d | awk -F "$projects_path" '{print $2}' | fzf)
 	end

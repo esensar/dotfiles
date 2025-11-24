@@ -664,6 +664,7 @@ vim.g.projectionist_heuristics = {
 	["*.csproj"] = csharp_project_config,
 	["plugin/|autoload/"] = vim_plugin_config,
 	["src/*.cpp|test/*.cpp"] = c_project_config("cpp", "hpp"),
+	["src/*.cc|test/*.cc"] = c_project_config("cc", "hh"),
 	["src/*.c|test/*.c"] = c_project_config("c", "h"),
 	["lua/"] = lua_vim_plugin_config,
 	["build.gradle|pom.xml"] = java_project_config,

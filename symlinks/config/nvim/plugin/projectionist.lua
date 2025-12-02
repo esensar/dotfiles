@@ -528,6 +528,12 @@ local rust_config = {
 	},
 }
 
+local rust_freestanding_config = {
+	["*"] = {
+		start = "set RUSTBIN (mktemp); rustc -o $RUSTBIN {} && $RUSTBIN",
+	},
+}
+
 local zig_config = {
 	["*"] = {
 		start = "zig build run",
@@ -674,6 +680,7 @@ vim.g.projectionist_heuristics = {
 	["mint.json"] = mint_config,
 	["shard.yml"] = crystal_config,
 	["Cargo.toml"] = rust_config,
+	["!Cargo.toml&*.rs"] = rust_freestanding_config,
 	["go.mod"] = golang_config,
 	["build.zig"] = zig_config,
 	["project.clj"] = lein_config,

@@ -47,6 +47,13 @@ return require("lazy").setup({
 	"direnv/direnv.vim", -- Integration with Direnv
 	{
 		"nvim-neotest/neotest", -- Running tests from NeoVim
+		dependencies = {
+			"lawrence-laz/neotest-zig",
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-neotest/neotest-vim-test",
+		},
 		keys = {
 			{ "<Leader>tn", mode = "n" },
 			{ "<Leader>tdn", mode = "n" },
@@ -64,9 +71,14 @@ return require("lazy").setup({
 					require("rustaceanvim.neotest")({
 						args = { "--no-capture" },
 					}),
+					require("neotest-zig")({
+						dap = {
+							adapter = "lldb",
+						},
+					}),
 					require("neotest-plenary"),
 					require("neotest-vim-test")({
-						ignore_file_types = { "rust", "lua" },
+						ignore_file_types = { "rust", "lua", "zig" },
 					}),
 				},
 			})
@@ -131,6 +143,7 @@ return require("lazy").setup({
 	-- Language support
 	{ "tpope/vim-rails", ft = "ruby" }, -- Enables all rails command through vim and integrates with projectionist
 	{ "c-brenn/phoenix.vim", ft = "elixir" }, -- Similar to vim-rails, but for phoenix
+	{ "clojure-vim/vim-jack-in", ft = "clojure" }, -- Clojure commands
 	{
 		"Olical/conjure",
 		init = function()

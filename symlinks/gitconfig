@@ -40,9 +40,12 @@
 	defaultBranch = main
 [sendemail]
 	annotate = yes
+	runPatatt = yes
 [commit]
 	gpgsign = true
 [format]
 	notes = true
 [notes]
 	rewriteMode = concatenate
+[patatt]
+	signingKey = openpgp:C6C86B34D20787BE

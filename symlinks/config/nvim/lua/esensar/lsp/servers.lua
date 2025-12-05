@@ -100,6 +100,16 @@ for _, lsp in ipairs(servers) do
 	vim.lsp.enable(lsp)
 end
 
+vim.lsp.config(
+	"ctags_lsp",
+	vim.tbl_extend("force", common_config, {
+		cmd = { "ctags-lsp" },
+		filetypes = { "hare" },
+		root_dir = vim.uv.cwd(),
+	})
+)
+vim.lsp.enable("ctags_lsp")
+
 -- Flutter tools
 require("flutter-tools").setup({
 	lsp = common_config,

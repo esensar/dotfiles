@@ -123,7 +123,7 @@ link: check_os clean_backup prepare_backup_dir
 	@echo "Linked everything!"
 
 .PHONY: link_all_common
-link_all_common: check_os link_bin link_tmux link_screen link_git link_ctags link_vim link_clojure link_apps_config link_tool_versions link_profile link_bash link_zsh
+link_all_common: check_os link_bin link_tmux link_screen link_git link_vim link_clojure link_apps_config link_tool_versions link_profile link_bash link_zsh
 	@echo "Linked common files!"
 
 .PHONY: link_all_mac
@@ -150,11 +150,6 @@ link_git: check_os
 	$(call link,gitignore,.gitignore)
 	$(call link,gitconfig,.gitconfig)
 	$(call link,gitconfig.optimum,.gitconfig.optimum)
-
-.PHONY: link_ctags
-link_ctags: check_os
-	@echo "Linking ctags files..."
-	$(call link,ctags,.ctags)
 
 .PHONY: link_vim
 link_vim: check_os

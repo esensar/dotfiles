@@ -22,6 +22,7 @@ bind-key j down article
 bind-key k up article
 bind-key J next article
 bind-key K prev article
+bind-key - view-dialogs
 
 # Macros
 # Open in mpv

@@ -5,7 +5,7 @@
 [core]
 	editor = nvim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	excludesfile = ~/.gitignore
+	excludesfile = ./gitignore
 	pager = less -+FX
 [web]
 	browser = xdg-open
@@ -21,10 +21,6 @@
 	keepBackup = false
 [mergetool "nvimdiff"]
 	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
-[guitool "Add to .gitignore"]
-	cmd = echo \"\n$FILENAME\" >> .gitignore & git add .gitignore
-	needsfile = yes
-	confirm = yes
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -33,7 +29,7 @@
 [filter "personal-godot-configuration-projects"]
 	clean = sed -e "/projects.*/d"
 [include]
-	path = ~/.gitconfig.local
+	path = ./local/config
 [pull]
 	rebase = true
 [init]

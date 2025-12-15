@@ -85,3 +85,5 @@
 !/notmuch/**
 !/ctags
 !/ctags/**
+!/git
+!/git/**

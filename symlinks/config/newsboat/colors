@@ -1,13 +1,13 @@
 # Newsboat colour scheme to work with the Gruvbox palette
 # Custom made based on https://github.com/morhetz/gruvbox
 
-color background          color235   default
-color listnormal          color223   default
-color listnormal_unread   color106     default
-color listfocus           color109   color243
-color listfocus_unread    color214   color243
-color info                color66   color236
-color article             color223   default
+color background          color223  color235
+color listnormal          color223  color235
+color listnormal_unread   color106  color235
+color listfocus           color109  color243
+color listfocus_unread    color214  color243
+color info                color66   color235
+color article             color223  color235
 
 # highlights
 highlight article "^(Feed|Link):.*$" color106 default bold

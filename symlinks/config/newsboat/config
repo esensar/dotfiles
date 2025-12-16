@@ -31,3 +31,8 @@ macro m set browser "mpv %u" ; open-in-browser ; set browser xdg-open
 # Feed integration
 urls-source "ocnews"
 include         ~/.config/newsboat/ocnewsconf
+ocnews-flag-star "s"
+
+# Podcasts
+download-path ~/download
+player "mpv --save-position-on-quit"

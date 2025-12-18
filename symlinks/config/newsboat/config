@@ -7,7 +7,7 @@ unbind-key              R
 bind-key                ^R  reload-all
 
 # Display
-show-read-feeds no
+show-read-feeds yes
 text-width      80
 include         ~/.config/newsboat/colors
 
@@ -34,5 +34,5 @@ include         ~/.config/newsboat/ocnewsconf
 ocnews-flag-star "s"
 
 # Podcasts
-download-path ~/download
+download-path ~/.local/share/podboat/download
 player "mpv --save-position-on-quit"

@@ -44,3 +44,5 @@
 	rewriteMode = concatenate
 [patatt]
 	signingKey = openpgp:C6C86B34D20787BE
+[rerere]
+	enabled = true

@@ -2,7 +2,8 @@
 
 ```
 /script install soju.py
-/script install vimode.py
+/script install vimode.py -- install this from git, better support https://github.com/GermainZ/weechat-vimode
+/script install autosort.py
 ```
 
 Add to `irc.conf`:

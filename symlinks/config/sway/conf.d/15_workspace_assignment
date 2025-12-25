@@ -20,6 +20,7 @@ assign [class="steam_app_*"] $ongoing_operations
 assign [app_id="gamescope"] $ongoing_operations
 assign [class="Godot"] $ide_workspace
 assign [class="FreeTube"] $music_workspace
+assign [app_id="mpv"] $music_workspace
 assign [app_id="download"] $ongoing_operations
 
 # Buggy apps

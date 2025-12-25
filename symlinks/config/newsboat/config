@@ -35,4 +35,6 @@ ocnews-flag-star "s"
 
 # Podcasts
 download-path ~/.local/share/podboat/download
+download-filename-format "%F-%h-%t.%e"
 player "mpv --save-position-on-quit"
+podlist-format "%4i %-12S [%5dMB/%5tMB] %b"

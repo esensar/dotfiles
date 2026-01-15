@@ -242,8 +242,8 @@
         "custom/current-task": {
             "signal": 1,
             "interval": 10,
-            "exec": "source ~/.profile && exec t waybar",
-            "on-click": "source ~/.profile && t toggle && exec t notify",
+            "exec": "timelog waybar",
+            "on-click": "timelog toggle && timelog notify",
             "exec-on-event": true,
             "return-type": "json"
         }

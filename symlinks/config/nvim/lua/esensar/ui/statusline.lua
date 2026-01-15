@@ -20,6 +20,8 @@ local filetype_glyphs = {
 	yml = "",
 	toml = "",
 	json = "",
+	timelog = "%1*󰔠%*",
+	timelogreport = "%1*󰔠%*",
 }
 
 local edit_modes = {

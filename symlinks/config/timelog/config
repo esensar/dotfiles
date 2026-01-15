@@ -1,0 +1,41 @@
+[core]
+duration-format=%hh %Mm
+datetime-format=%Y-%m-%d %H:%M:%S
+
+[logs]
+quiet=true
+
+[balance]
+default-start=this month
+
+[listing]
+default-start=last month
+
+[status]
+duration-format=%hh %Mm %Ss
+header-format=---\n[1m[35mActive tasks: [0m${task_count}\n---
+statusline-format=[34m${account}[0m (${task}) = ${duration}
+
+[display]
+task-item-format={:=50}
+task-item-maxlen=50
+account-item-format={:-30}
+account-item-maxlen=30
+duration-item-format={:8}
+duration-item-maxlen=8
+task-format=    ║${nesting_padding}│${space_nesting_padding_parent}${task}┤ ${duration} ├${space_nesting_padding_parent}${nesting_padding}│║
+account-format=    ║${nesting_padding_child}│${space_nesting_padding}                                                              ${space_nesting_padding}│${nesting_padding_child}║\n    ║${nesting_padding_child}└${nesting_padding}─┤ [1m[36m${account}[0m ├───────────────┤ ${duration} ├${nesting_padding}┘${nesting_padding_child}║
+pre-account-format=    ║${nesting_padding_child}┌─${nesting_padding}───────────────────────────────────────────────────────────${nesting_padding}──┐${nesting_padding_child}║\n    ║${nesting_padding_child}│${space_nesting_padding}                                                              ${space_nesting_padding}│${nesting_padding_child}║
+pre-total-format=    ╔═${nesting_padding}═══════════════════${nesting_padding}════════════════════════════════════════════╗
+total-format=    ║${space_nesting_padding}                                                                ${space_nesting_padding}║\n    ╚═${nesting_padding}═╣ [1m[35mTotal[0m                          ╠═══════════════╣ ${duration} ╠${nesting_padding}═╝
+nesting-sequence-child=│
+nesting-sequence-parent=─
+nesting-sequence-total=═
+skip-empty-accounts=false
+
+[include]
+path=config.local
+
+[timelogs]
+exclusive=true
+strict=true

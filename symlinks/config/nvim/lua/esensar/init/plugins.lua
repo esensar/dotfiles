@@ -193,6 +193,7 @@ return require("lazy").setup({
 	{ "tridactyl/vim-tridactyl", ft = "tridactyl" }, -- Tridactyl config file support
 	{ "aklt/plantuml-syntax", ft = "plantuml" }, -- PlantUML support
 	{ "cdelledonne/vim-cmake", ft = "cmake" }, -- CMake integration
+	{ "https://git.sr.ht/~esensar/timelog-vim" }, -- Support for timelog format
 
 	-- Treesitter
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- Treesitter integration

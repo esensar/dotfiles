@@ -20,6 +20,7 @@
 	keepBackup = false
 [mergetool "nvimdiff"]
 	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+	trustExitCode = false
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

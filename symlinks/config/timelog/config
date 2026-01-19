@@ -2,9 +2,6 @@
 duration-format=%hh %Mm
 datetime-format=%Y-%m-%d %H:%M:%S
 
-[logs]
-quiet=true
-
 [balance]
 default-start=this month
 

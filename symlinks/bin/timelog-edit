@@ -1,0 +1,40 @@
+#!/bin/bash
+
+CONFIG=""
+QUIET=""
+POS=0
+ARGS=("$@")
+while [[ $POS -lt $# ]]; do
+  KEY=${ARGS[$POS]}
+
+  case $KEY in
+    -q)
+      QUIET="-q"
+      unset "ARGS[$POS]"
+      ;;
+    -v)
+      QUIET="-v"
+      unset "ARGS[$POS]"
+      ;;
+    -C)
+      CONFIG="-C ${ARGS[$((POS + 1))]}"
+      unset "ARGS[$POS]"
+      unset "ARGS[$((POS + 1))]"
+      ;;
+  esac
+  POS=$(( POS + 1 ))
+done
+
+set -- "${ARGS[@]}"
+
+EDIT=$EDITOR
+if [ -z "$EDIT" ]; then
+  EDIT=/bin/vi
+fi
+
+ACCOUNT=$1
+if [ -n "$ACCOUNT" ]; then
+  ACCOUNT="-a $ACCOUNT"
+fi
+
+$EDIT "$(timelog $QUIET $CONFIG config $ACCOUNT timelogs append-file)"

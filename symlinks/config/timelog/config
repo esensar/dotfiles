@@ -36,3 +36,16 @@ path=config.local
 [timelogs]
 exclusive=true
 strict=true
+
+[timelog-waybar]
+text-format-active=${count}${extra}
+text-format-inactive=${extra}
+extra-active=󱎫
+extra-inactive=󱎬
+alt-format-active=${class}
+alt-format-inactive=${class}
+
+[timelog-report]
+duration-format=%hh %Mm
+datetime-format=%Y-%m-%d %H:%M:%S
+round-to=0h 30m

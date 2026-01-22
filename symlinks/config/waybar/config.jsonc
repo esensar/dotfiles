@@ -240,9 +240,8 @@
             "escape": true
         },
         "custom/current-task": {
-            "signal": 1,
-            "interval": 10,
-            "exec": "timelog waybar",
+            "restart-interval": 10,
+            "exec": "timelog waybar -w",
             "on-click": "timelog toggle && timelog notify",
             "exec-on-event": true,
             "return-type": "json"

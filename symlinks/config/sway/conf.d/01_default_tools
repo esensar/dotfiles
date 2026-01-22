@@ -12,7 +12,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
 
 # toggle task
-bindsym $mod+$alt+t exec timelog toggle && pkill --signal SIGRTMIN+1 waybar; exec sleep 0.5 && timelog notify
+bindsym $mod+$alt+t exec timelog toggle; exec sleep 0.5 && timelog notify
 
 # start menu (program launcher)
 bindsym $mod+space exec $menu

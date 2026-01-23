@@ -1,5 +1,5 @@
 # Define locker script
-bindsym $alt+L exec 'swaylock'
+bindsym $mod+$alt+L exec 'swaylock'
 
 # IDLE CONFIG
 exec swayidle -w

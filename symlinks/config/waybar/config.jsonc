@@ -243,6 +243,13 @@
             "restart-interval": 10,
             "exec": "timelog waybar -w",
             "on-click": "timelog toggle && timelog notify",
+            "menu": "on-click-right",
+            "menu-file": "~/.config/waybar/current_task_menu.xml",
+            "menu-actions": {
+                "toggle": "timelog toggle && timelog notify",
+                "today": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config today)\"",
+                "balance": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
+            },
             "exec-on-event": true,
             "return-type": "json"
         }
@@ -365,10 +372,16 @@
             "escape": true
         },
         "custom/current-task": {
-            "signal": 1,
-            "interval": 10,
-            "exec": "source ~/.profile && exec t waybar",
-            "on-click": "source ~/.profile && t toggle && exec t notify",
+            "restart-interval": 10,
+            "exec": "timelog waybar -w",
+            "on-click": "timelog toggle && timelog notify",
+            "menu": "on-click-right",
+            "menu-file": "~/.config/waybar/current_task_menu.xml",
+            "menu-actions": {
+                "toggle": "timelog toggle && timelog notify",
+                "today": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config today)\"",
+                "balance": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
+            },
             "exec-on-event": true,
             "return-type": "json"
         }

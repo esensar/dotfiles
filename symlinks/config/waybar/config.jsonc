@@ -242,11 +242,11 @@
         "custom/current-task": {
             "restart-interval": 10,
             "exec": "timelog waybar -w",
-            "on-click": "timelog toggle && timelog notify",
+            "on-click": "timelog toggle",
             "menu": "on-click-right",
             "menu-file": "~/.config/waybar/current_task_menu.xml",
             "menu-actions": {
-                "toggle": "timelog toggle && timelog notify",
+                "toggle": "timelog toggle",
                 "today": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config today)\"",
                 "balance": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
             },
@@ -374,11 +374,11 @@
         "custom/current-task": {
             "restart-interval": 10,
             "exec": "timelog waybar -w",
-            "on-click": "timelog toggle && timelog notify",
+            "on-click": "timelog toggle",
             "menu": "on-click-right",
             "menu-file": "~/.config/waybar/current_task_menu.xml",
             "menu-actions": {
-                "toggle": "timelog toggle && timelog notify",
+                "toggle": "timelog toggle",
                 "today": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config today)\"",
                 "balance": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
             },

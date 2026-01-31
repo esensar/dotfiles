@@ -1,0 +1,10 @@
+[Unit]
+Description=Timelog notifications service
+
+[Service]
+Type=notify-reload
+ExecStart=timelog notifyd
+NotifyAccess=all
+
+[Install]
+WantedBy=default.target

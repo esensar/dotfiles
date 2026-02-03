@@ -247,8 +247,8 @@
             "menu-file": "~/.config/waybar/current_task_menu.xml",
             "menu-actions": {
                 "toggle": "timelog toggle",
-                "today": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config today)\"",
-                "balance": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
+                "today": "notify-send -i com.ensarsarajcic.timelog 'Today' \"$(timelog -C ~/.config/timelog/simple.config today)\"",
+                "balance": "notify-send -i com.ensarsarajcic.timelog 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
             },
             "exec-on-event": true,
             "return-type": "json"
@@ -379,8 +379,8 @@
             "menu-file": "~/.config/waybar/current_task_menu.xml",
             "menu-actions": {
                 "toggle": "timelog toggle",
-                "today": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config today)\"",
-                "balance": "notify-send 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
+                "today": "notify-send -i com.ensarsarajcic.timelog 'Today' \"$(timelog -C ~/.config/timelog/simple.config today)\"",
+                "balance": "notify-send -i com.ensarsarajcic.timelog 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
             },
             "exec-on-event": true,
             "return-type": "json"

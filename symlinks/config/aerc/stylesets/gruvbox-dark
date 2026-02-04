@@ -38,6 +38,11 @@ statusline_default.bg=#282828
 statusline_error.bold=true
 statusline_success.bold=true
 
+msglist*.X-Sourcehut-Patchset-Update,APPLIED.fg = blue
+msglist*.X-Sourcehut-Patchset-Update,APPLIED.selected.reverse = true
+msglist*.X-Sourcehut-Patchset-Update,NEEDS_REVISION.fg = yellow
+msglist*.X-Sourcehut-Patchset-Update,REJECTED.fg = red
+
 [viewer]
 url.fg=#458588
 url.underline=true

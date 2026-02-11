@@ -20,12 +20,14 @@
         ],
         // If height property would be not present, it'd be calculated dynamically
         "height": 30,
+        "expand-left": true,
+        "expand-right": true,
         "modules-left": [
             "sway/workspaces",
-            "sway/mode"
+            "sway/mode",
+            "custom/current-task"
         ],
         "modules-center": [
-            "custom/current-task",
             "clock#date",
             "clock#time",
             "custom/notification"
@@ -123,7 +125,8 @@
                 "paused": "▶"
             },
             "album-len": 0,
-            "dynamic-len": 30
+            "dynamic-len": 30,
+            "expand": true
             // "ignored-players": ["firefox"]
         },
         "network": {
@@ -251,7 +254,8 @@
                 "balance": "notify-send -i com.ensarsarajcic.timelog 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
             },
             "exec-on-event": true,
-            "return-type": "json"
+            "return-type": "json",
+            "expand": true
         }
     },
     {
@@ -267,17 +271,20 @@
         ],
         // If height property would be not present, it'd be calculated dynamically
         "height": 30,
+        "expand-left": true,
+        "expand-right": true,
         "modules-left": [
             "sway/workspaces",
-            "sway/mode"
+            "sway/mode",
+            "custom/current-task"
         ],
         "modules-center": [
-            "custom/current-task",
             "clock#date",
             "clock#time",
             "custom/notification"
         ],
         "modules-right": [
+            "mpris",
             "network",
             "pulseaudio",
             "tray"
@@ -306,7 +313,8 @@
                 "paused": "▶"
             },
             "album-len": 0,
-            "dynamic-len": 30
+            "dynamic-len": 30,
+            "expand": true
         },
         "network": {
             "interval": 5,
@@ -383,7 +391,8 @@
                 "balance": "notify-send -i com.ensarsarajcic.timelog 'Today' \"$(timelog -C ~/.config/timelog/simple.config balance)\""
             },
             "exec-on-event": true,
-            "return-type": "json"
+            "return-type": "json",
+            "expand": true
         }
     }
 ]

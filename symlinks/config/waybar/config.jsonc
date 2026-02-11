@@ -127,7 +127,7 @@
             "album-len": 0,
             "dynamic-len": 30,
             "expand": true,
-            "align": 0.1
+            "align": 0
             // "ignored-players": ["firefox"]
         },
         "network": {
@@ -257,7 +257,7 @@
             "exec-on-event": true,
             "return-type": "json",
             "expand": true,
-            "align": 0.95
+            "align": 1
         }
     },
     {
@@ -317,7 +317,7 @@
             "album-len": 0,
             "dynamic-len": 30,
             "expand": true,
-            "align": 0.1
+            "align": 0
         },
         "network": {
             "interval": 5,
@@ -396,7 +396,7 @@
             "exec-on-event": true,
             "return-type": "json",
             "expand": true,
-            "align": 0.95
+            "align": 1
         }
     }
 ]

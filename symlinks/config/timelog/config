@@ -38,7 +38,7 @@ exclusive=true
 strict=true
 
 [timelog-waybar]
-text-format-active=${count}${extra}
+text-format-active=${account} (${task}) ${extra}($count)
 text-format-inactive=${extra}
 extra-active=󱎫
 extra-inactive=󱎬

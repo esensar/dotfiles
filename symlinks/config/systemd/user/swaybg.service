@@ -1,0 +1,8 @@
+[Unit]
+Description=Display random swaywm background image
+
+[Service]
+ExecStart=%h/bin/swaybg-random
+
+[Install]
+WantedBy=default.target

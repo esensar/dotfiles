@@ -1,1 +1,1 @@
-exec swaybg -i "$(shuf -n1 -e ~/media/pictures/Wallpapers/*.png)" -m fill
+exec systemctl restart --user swaybg.service

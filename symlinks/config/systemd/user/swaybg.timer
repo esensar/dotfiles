@@ -1,0 +1,10 @@
+[Unit]
+Description=Swaybg timer
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+Unit=swaybg.service
+
+[Install]
+WantedBy=timers.target

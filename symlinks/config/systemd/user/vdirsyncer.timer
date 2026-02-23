@@ -4,6 +4,7 @@ Description=Run vdirsyncer hourly
 [Timer]
 OnCalendar=hourly
 Persistent=true
+Unit=vdirsyncer.service
 
 [Install]
 WantedBy=timers.target

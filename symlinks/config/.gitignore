@@ -72,8 +72,8 @@
 !/btop/**
 !/mimeapps.list
 !/mimeapps.list**
-!/ra-multiplex/
-!/ra-multiplex/**
+!/lspmux/
+!/lspmux/**
 !/kanshi
 !/kanshi**
 !/OpenRGB

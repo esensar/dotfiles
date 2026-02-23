@@ -1,0 +1,9 @@
+[Unit]
+Description=LSP multiplex server
+
+[Service]
+Type=simple
+ExecStart=%h/.cargo/bin/lspmux server
+
+[Install]
+WantedBy=default.target

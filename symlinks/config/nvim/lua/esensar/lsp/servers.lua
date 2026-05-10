@@ -127,7 +127,7 @@ vim.g.rustaceanvim = vim.tbl_deep_extend("force", vim.g.rustaceanvim or {}, {
 		end,
 		logfile = vim.fn.tempname() .. "-rust-analyzer.log",
 		cmd = function()
-			return { "ra-multiplex", "client", "--", "--log-file", vim.g.rustaceanvim.server.logfile }
+			return { "lspmux", "client", "--", "--log-file", vim.g.rustaceanvim.server.logfile }
 		end,
 		default_settings = {
 			["rust-analyzer"] = {

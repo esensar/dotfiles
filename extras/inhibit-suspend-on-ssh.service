@@ -1,0 +1,17 @@
+[Unit]
+Description=Inhibit suspend when SSH connection is active
+After=network.target sshd.service
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/inhibit-suspend-on-ssh.sh
+Restart=on-failure
+RestartSec=30
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

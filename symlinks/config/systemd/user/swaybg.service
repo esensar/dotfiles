@@ -1,5 +1,8 @@
 [Unit]
 Description=Display random swaywm background image
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
 
 [Service]
 ExecStart=%h/bin/swaybg-random

@@ -69,3 +69,9 @@ bindgesture pinch:inward+up move up
 bindgesture pinch:inward+down move down
 bindgesture pinch:inward+left move left
 bindgesture pinch:inward+right move right
+
+# Disable keybinds mode - useful for VNC
+mode passthrough {
+	bindsym $mod+Pause mode default
+}
+bindsym $mod+Pause mode passthrough

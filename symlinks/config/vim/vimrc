@@ -4,7 +4,7 @@
 if has('win32') || has ('win64')
   let $VIMHOME = $HOME."/vimfiles"
 else
-  let $VIMHOME = $HOME."/.vim"
+  let $VIMHOME = $HOME."/.config/vim"
   let $NVIMHOME = $HOME."/.local/share/nvim"
 endif
 let $VIMPLUGINS = expand($VIMHOME."/plugins.vim")

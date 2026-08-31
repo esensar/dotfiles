@@ -36,6 +36,8 @@
 !/newsboat/**
 !/nvim/
 !/nvim/**
+!/vim/
+!/vim/**
 !/sway/
 !/sway/**
 !/swaylock/

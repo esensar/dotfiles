@@ -1,4 +1,4 @@
-set textwidth=72
-set spell
-set cc=+1
+setlocal textwidth=72
+setlocal spell
+setlocal cc=+1
 let b:undo_ftplugin .= '|setlocal textwidth< spell< cc<'

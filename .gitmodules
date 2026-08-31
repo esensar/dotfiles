@@ -1,0 +1,60 @@
+[submodule "symlinks/config/vim/pack/tpope/start/vim-endwise"]
+	path = symlinks/config/vim/pack/tpope/start/vim-endwise
+	url = git@github.com:tpope/vim-endwise.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-sensible"]
+	path = symlinks/config/vim/pack/tpope/start/vim-sensible
+	url = git@github.com:tpope/vim-sensible.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-surround"]
+	path = symlinks/config/vim/pack/tpope/start/vim-surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-vinegar"]
+	path = symlinks/config/vim/pack/tpope/start/vim-vinegar
+	url = git@github.com:tpope/vim-vinegar.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-speeddating"]
+	path = symlinks/config/vim/pack/tpope/start/vim-speeddating
+	url = git@github.com:tpope/vim-speeddating.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-dispatch"]
+	path = symlinks/config/vim/pack/tpope/start/vim-dispatch
+	url = git@github.com:tpope/vim-dispatch.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-projectionist"]
+	path = symlinks/config/vim/pack/tpope/start/vim-projectionist
+	url = git@github.com:tpope/vim-projectionist.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-unimpaired"]
+	path = symlinks/config/vim/pack/tpope/start/vim-unimpaired
+	url = git@github.com:tpope/vim-unimpaired.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-repeat"]
+	path = symlinks/config/vim/pack/tpope/start/vim-repeat
+	url = git@github.com:tpope/vim-repeat.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-commentary"]
+	path = symlinks/config/vim/pack/tpope/start/vim-commentary
+	url = git@github.com:tpope/vim-commentary.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-sleuth"]
+	path = symlinks/config/vim/pack/tpope/start/vim-sleuth
+	url = git@github.com:tpope/vim-sleuth.git
+[submodule "symlinks/config/vim/pack/languages/start/vim-polyglot"]
+	path = symlinks/config/vim/pack/languages/start/vim-polyglot
+	url = git@github.com:sheerun/vim-polyglot.git
+[submodule "symlinks/config/vim/pack/languages/start/vimwiki"]
+	path = symlinks/config/vim/pack/languages/start/vimwiki
+	url = git@github.com:vimwiki/vimwiki.git
+[submodule "symlinks/config/vim/pack/languages/start/vimwiki-reviews"]
+	path = symlinks/config/vim/pack/languages/start/vimwiki-reviews
+	url = git@github.com:esensar/vimwiki-reviews.git
+[submodule "symlinks/config/vim/pack/languages/start/vim-ledger"]
+	path = symlinks/config/vim/pack/languages/start/vim-ledger
+	url = git@github.com:ledger/vim-ledger.git
+[submodule "symlinks/config/vim/pack/utils/start/vim-grepper"]
+	path = symlinks/config/vim/pack/utils/start/vim-grepper
+	url = git@github.com:mhinz/vim-grepper.git
+[submodule "symlinks/config/vim/pack/utils/start/vim-colorschemes"]
+	path = symlinks/config/vim/pack/utils/start/vim-colorschemes
+	url = git@github.com:flazz/vim-colorschemes.git
+[submodule "symlinks/config/vim/pack/utils/start/targets.vim"]
+	path = symlinks/config/vim/pack/utils/start/targets.vim
+	url = git@github.com:wellle/targets.vim.git
+[submodule "symlinks/config/vim/pack/utils/start/ultisnips"]
+	path = symlinks/config/vim/pack/utils/start/ultisnips
+	url = git@github.com:SirVer/ultisnips.git
+[submodule "symlinks/config/vim/pack/utils/start/vim-snippets"]
+	path = symlinks/config/vim/pack/utils/start/vim-snippets
+	url = git@github.com:honza/vim-snippets.git

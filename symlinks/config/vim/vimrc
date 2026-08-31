@@ -7,13 +7,10 @@ else
   let $VIMHOME = $HOME."/.config/vim"
   let $NVIMHOME = $HOME."/.local/share/nvim"
 endif
-let $VIMPLUGINS = expand($VIMHOME."/plugins.vim")
 
-" -----------------------------------------------------------------------------
-"     - Load up plugins -
-" -----------------------------------------------------------------------------
-" Use local vimrc for overrides if available and desired
-source $VIMPLUGINS
+if &compatible
+  set nocompatible
+endif
 
 " -----------------------------------------------------------------------------
 "     - Indentation -
@@ -59,7 +56,8 @@ set history=50		" keep 50 lines of command line history
 set ruler		      " show the cursor position all the time
 set cursorline    " highlight the current line
 set laststatus=2  " Always display the status line
-set noswapfile
+set swapfile
+set directory=$VIMHOME/swap
 set showcmd		    " display incomplete commands
 set incsearch		  " do incremental searching
 set autoread      " Reload files changed outside vim
@@ -111,6 +109,8 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
+nnoremap D d$
+ 
 " Allow :W and :Wq to save too
 command! Wq :wq
 command! W :w

@@ -110,7 +110,7 @@ map Q gq
 inoremap <C-U> <C-G>u<C-U>
 
 nnoremap D d$
- 
+
 " Allow :W and :Wq to save too
 command! Wq :wq
 command! W :w

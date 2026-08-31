@@ -58,3 +58,54 @@
 [submodule "symlinks/config/vim/pack/utils/start/vim-snippets"]
 	path = symlinks/config/vim/pack/utils/start/vim-snippets
 	url = git@github.com:honza/vim-snippets.git
+[submodule "symlinks/config/vim/pack/utils/start/fzf"]
+	path = symlinks/config/vim/pack/utils/start/fzf
+	url = git@github.com:junegunn/fzf.git
+[submodule "symlinks/config/vim/pack/utils/start/fzf.vim"]
+	path = symlinks/config/vim/pack/utils/start/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-eunuch"]
+	path = symlinks/config/vim/pack/tpope/start/vim-eunuch
+	url = git@github.com:tpope/vim-eunuch.git
+[submodule "symlinks/config/vim/pack/utils/start/editorconfig-vim"]
+	path = symlinks/config/vim/pack/utils/start/editorconfig-vim
+	url = git@github.com:editorconfig/editorconfig-vim
+[submodule "symlinks/config/vim/pack/languages/start/vim-crates"]
+	path = symlinks/config/vim/pack/languages/start/vim-crates
+	url = git@github.com:mhinz/vim-crates
+[submodule "symlinks/config/vim/pack/utils/start/undotree"]
+	path = symlinks/config/vim/pack/utils/start/undotree
+	url = git@github.com:mbbill/undotree.git
+[submodule "symlinks/config/vim/pack/utils/start/vim-test"]
+	path = symlinks/config/vim/pack/utils/start/vim-test
+	url = git@github.com:vim-test/vim-test
+[submodule "symlinks/config/vim/pack/utils/start/vim-rest-console"]
+	path = symlinks/config/vim/pack/utils/start/vim-rest-console
+	url = git@github.com:diepm/vim-rest-console
+[submodule "symlinks/config/vim/pack/languages/start/timelog-vim"]
+	path = symlinks/config/vim/pack/languages/start/timelog-vim
+	url = git@git.sr.ht:~esensar/timelog-vim
+[submodule "symlinks/config/vim/pack/languages/start/vim-sexp"]
+	path = symlinks/config/vim/pack/languages/start/vim-sexp
+	url = git@github.com:guns/vim-sexp
+[submodule "symlinks/config/vim/pack/languages/start/vim-sexp-mappings-for-regular-people"]
+	path = symlinks/config/vim/pack/languages/start/vim-sexp-mappings-for-regular-people
+	url = git@github.com:tpope/vim-sexp-mappings-for-regular-people
+[submodule "symlinks/config/vim/pack/lsp/start/vim-lsp"]
+	path = symlinks/config/vim/pack/lsp/start/vim-lsp
+	url = git@github.com:prabirshrestha/vim-lsp
+[submodule "symlinks/config/vim/pack/lsp/start/vim-lsp-settings"]
+	path = symlinks/config/vim/pack/lsp/start/vim-lsp-settings
+	url = git@github.com:mattn/vim-lsp-settings
+[submodule "symlinks/config/vim/pack/lsp/start/vim-lsp-ultisnips"]
+	path = symlinks/config/vim/pack/lsp/start/vim-lsp-ultisnips
+	url = git@github.com:thomasfaingnaert/vim-lsp-ultisnips
+[submodule "symlinks/config/vim/pack/lsp/start/vim-lsp-snippets"]
+	path = symlinks/config/vim/pack/lsp/start/vim-lsp-snippets
+	url = git@github.com:thomasfaingnaert/vim-lsp-snippets
+[submodule "symlinks/config/vim/asyncomplete.vim"]
+	path = symlinks/config/vim/asyncomplete.vim
+	url = git@github.com:prabirshrestha/asyncomplete.vim
+[submodule "symlinks/config/vim/asyncomplete-lsp.vim"]
+	path = symlinks/config/vim/asyncomplete-lsp.vim
+	url = git@github.com:prabirshrestha/asyncomplete-lsp.vim

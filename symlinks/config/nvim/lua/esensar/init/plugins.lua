@@ -53,6 +53,7 @@ return require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-neotest/neotest-vim-test",
+			"vim-test/vim-test", -- Running tests from vim
 		},
 		keys = {
 			{ "<Leader>tn", mode = "n" },
@@ -147,6 +148,7 @@ return require("lazy").setup({
 	{
 		"Olical/conjure",
 		init = function()
+			vim.g["conjure#filteype#rust"] = false
 			vim.g["conjure#filetypes"] = {
 				"clojure",
 				"fennel",
@@ -185,7 +187,7 @@ return require("lazy").setup({
 		end,
 	}, -- Vimwiki - personal wiki in vim
 	"https://codeberg.org/vimwiki-reviews/vimwiki-reviews-lua", -- Vimwiki extension for periodic reviews
-	{ "ledger/vim-ledger", ft = "ledger" }, -- Support for ledger-cli format
+	{ "ledger/vim-ledger" }, -- Support for ledger-cli format
 	{ "tandrewnichols/vim-docile", ft = "help" }, -- Support for vim doc.txt format
 	{ "habamax/vim-godot", ft = "gdscript" }, -- Godot engine (and script) support
 	"guns/vim-sexp", -- Precision editing for S-expressions
@@ -196,8 +198,7 @@ return require("lazy").setup({
 	{ "https://git.sr.ht/~esensar/timelog-vim" }, -- Support for timelog format
 
 	-- Treesitter
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- Treesitter integration
-	"nvim-treesitter/playground", -- TSPlaygroundToggle - access treesitter data
+	{ "nvim-treesitter/nvim-treesitter", lazy = false, build = ":TSUpdate" }, -- Treesitter integration
 
 	-- LSP
 	"neovim/nvim-lspconfig", -- Easy LSP Config
@@ -216,21 +217,6 @@ return require("lazy").setup({
 		"smjonas/inc-rename.nvim",
 		config = function()
 			require("inc_rename").setup()
-		end,
-	},
-	{
-		"jmbuhr/otter.nvim", -- LSP in embedded code blocks
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			vim.api.nvim_create_autocmd({ "FileType" }, {
-				pattern = { "toml" },
-				group = vim.api.nvim_create_augroup("EmbedToml", {}),
-				callback = function()
-					require("otter").activate()
-				end,
-			})
 		end,
 	},
 

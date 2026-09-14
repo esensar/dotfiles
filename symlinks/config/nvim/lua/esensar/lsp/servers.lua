@@ -16,7 +16,6 @@ require("mason-lspconfig").setup()
 local common_config = require("esensar.lsp.server_config")
 
 -- Language specific LSP config overrides
-local zig_loc = vim.api.nvim_exec2("!mise where zig", { output = true }).output
 local configuration_overrides = {
 	gdscript = {
 		flags = {
@@ -50,12 +49,7 @@ local configuration_overrides = {
 			{ "mail" }
 		),
 	},
-	zls = {
-		settings = {
-			zig_exe_path = zig_loc .. "/zig",
-			zig_lib_path = zig_loc .. "/lib",
-		},
-	},
+	zls = {},
 }
 -- Enables outside rust diagnostics config
 vim.g.rust_diagnostics = "rust-analyzer"
@@ -101,14 +95,14 @@ for _, lsp in ipairs(servers) do
 end
 
 vim.lsp.config(
-	"ctags_lsp",
+	"hare_lsp",
 	vim.tbl_extend("force", common_config, {
-		cmd = { "ctags-lsp" },
+		cmd = { "hare-lsp", "-S" },
 		filetypes = { "hare" },
-		root_dir = vim.uv.cwd(),
+		root_markers = { ".git" },
 	})
 )
-vim.lsp.enable("ctags_lsp")
+vim.lsp.enable("hare_lsp")
 
 -- Flutter tools
 require("flutter-tools").setup({

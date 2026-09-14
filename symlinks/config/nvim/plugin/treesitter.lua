@@ -1,51 +1,14 @@
-require("nvim-treesitter.configs").setup({
-	ensure_installed = "all", -- "all" or a list of languages
-	highlight = {
-		enable = true, -- false will disable the whole extension
-	},
-	playground = {
-		enable = true,
-		disable = {},
-		updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-		persist_queries = false, -- Whether the query persists across vim sessions
-	},
-	textobjects = {
-		select = {
-			enable = true,
-			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-			keymaps = {
-				-- You can use the capture groups defined in textobjects.scm
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
-		},
-		move = {
-			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				["]m"] = "@function.outer",
-				["]]"] = "@class.outer",
-			},
-			goto_next_end = {
-				["]M"] = "@function.outer",
-				["]["] = "@class.outer",
-			},
-			goto_previous_start = {
-				["[m"] = "@function.outer",
-				["[["] = "@class.outer",
-			},
-			goto_previous_end = {
-				["[M"] = "@function.outer",
-				["[]"] = "@class.outer",
-			},
-		},
-	},
+require("nvim-treesitter").setup({
+	-- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+	install_dir = vim.fn.stdpath("data") .. "/site",
 })
-
-require("vim.treesitter.query").add_predicate("is-mise?", function(_, _, bufnr, _)
-	local filepath = vim.api.nvim_buf_get_name(tonumber(bufnr) or 0)
-	local filename = vim.fn.fnamemodify(filepath, ":t")
-	return string.match(filename, ".*mise.*%.toml$") ~= nil
-end, { force = true, all = false })
+require("nvim-treesitter").install({ "c", "cpp", "rust", "javascript", "zig" })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "c", "cpp", "rust", "javascript", "zig" },
+	callback = function()
+		-- syntax highlighting, provided by Neovim
+		vim.treesitter.start()
+		-- indentation, provided by nvim-treesitter
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
+})

@@ -116,7 +116,7 @@ command! Wq :wq
 command! W :w
 
 " Close extra windows
-noremap <Leader>c :ccl <bar> lcl<CR>
+noremap <Leader>c :ccl <bar> lcl <bar> pcl<CR>
 
 if &term =~ '256color'
   " disable Background Color Erase (BCE) so that color schemes

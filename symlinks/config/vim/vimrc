@@ -38,6 +38,7 @@ set relativenumber
 " set lines=50 columns=100
 colorscheme gruvbox
 set background=dark
+let g:gruvbox_italic=1
 set guifont=SauceCodePro\ Nerd\ Font:h12
 
 " -----------------------------------------------------------------------------
@@ -57,7 +58,6 @@ set ruler		      " show the cursor position all the time
 set cursorline    " highlight the current line
 set laststatus=2  " Always display the status line
 set swapfile
-set directory=$VIMHOME/swap
 set showcmd		    " display incomplete commands
 set incsearch		  " do incremental searching
 set autoread      " Reload files changed outside vim

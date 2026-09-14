@@ -104,8 +104,14 @@
 	path = symlinks/config/vim/pack/lsp/start/vim-lsp-snippets
 	url = git@github.com:thomasfaingnaert/vim-lsp-snippets
 [submodule "symlinks/config/vim/asyncomplete.vim"]
-	path = symlinks/config/vim/asyncomplete.vim
+	path = symlinks/config/vim/pack/lsp/start/asyncomplete.vim
 	url = git@github.com:prabirshrestha/asyncomplete.vim
 [submodule "symlinks/config/vim/asyncomplete-lsp.vim"]
-	path = symlinks/config/vim/asyncomplete-lsp.vim
+	path = symlinks/config/vim/pack/lsp/start/asyncomplete-lsp.vim
 	url = git@github.com:prabirshrestha/asyncomplete-lsp.vim
+[submodule "symlinks/config/vim/pack/utils/start/vim-gitgutter"]
+	path = symlinks/config/vim/pack/utils/start/vim-gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
+[submodule "symlinks/config/vim/pack/tpope/start/vim-fugitive"]
+	path = symlinks/config/vim/pack/tpope/start/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git

@@ -95,6 +95,10 @@ function s:GetFileType()
         return ""
     elseif &filetype ==# "json"
         return ""
+    elseif &filetype ==# "timelog"
+        return "%1*󰔠%*"
+    elseif &filetype ==# "timelogreport"
+        return "%1*󰔠%*"
     else
         return "%y"
 endfunction

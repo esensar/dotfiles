@@ -38,6 +38,8 @@
 !/nvim/**
 !/vim/
 !/vim/**
+!/emacs/
+!/emacs/**
 !/sway/
 !/sway/**
 !/swaylock/

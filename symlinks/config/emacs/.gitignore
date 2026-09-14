@@ -1,0 +1,8 @@
+elpa
+auto-save-list
+eln-cache
+transient
+.cache
+projects
+projectile-*
+.lsp-session-v1

@@ -12,3 +12,5 @@ if status is-interactive
 else
   mise activate fish --shims | source
 end
+
+fish_config theme choose old_default

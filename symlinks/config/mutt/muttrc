@@ -23,7 +23,7 @@ alternative_order text/plain text/enriched text/html
 auto_view text/html
 # Order to try and show multipart emails
 alternative_order text/plain text/enriched text/html
-set editor = "nvim"
+set editor = "vim"
 
 set text_flowed=yes
 

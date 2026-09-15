@@ -5,7 +5,6 @@ if has('win32') || has ('win64')
   let $VIMHOME = $HOME."/vimfiles"
 else
   let $VIMHOME = $HOME."/.config/vim"
-  let $NVIMHOME = $HOME."/.local/share/nvim"
 endif
 
 if &compatible

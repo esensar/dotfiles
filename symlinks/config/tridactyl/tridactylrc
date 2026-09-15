@@ -13,4 +13,4 @@ command githubexplorelocal js let url = document.location.href.replace(/https?:\
 
 source ~/.config/tridactyl/tridactylrc.local
 
-set editorcmd alacritty --command fish -c 'nvim %f'
+set editorcmd alacritty --command fish -c 'vim %f'

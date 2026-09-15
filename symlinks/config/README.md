@@ -2,8 +2,7 @@
 
 Contains configurations for many applications, most importantly:
  - `fish` - shell
- - `neovim` - editor
+ - `vim` - editor
  - `sway` - Wayland compositor
  - `newsboat` - my RSS reader
  - `alacritty` - my terminal emulator
- - `coc` - `coc.nvim` plugin settings for `vim`

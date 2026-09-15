@@ -3,23 +3,27 @@
 	email = dev@ensarsarajcic.com
 	signingKey = C6C86B34D20787BE
 [core]
-	editor = nvim
+	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	pager = less -+FX
 [web]
 	browser = xdg-open
 [diff]
-	tool = nvimdiff
+	tool = vimdiff
 [difftool]
 	prompt = false
 [difftool "nvimdiff"]
 	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[difftool "vimdiff"]
+	cmd = "vim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
-	tool = nvimdiff
+	tool = vimdiff
 [mergetool]
 	keepBackup = false
 [mergetool "nvimdiff"]
 	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+[mergetool "vimdiff"]
+	cmd = "vim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 	trustExitCode = false
 [filter "lfs"]
 	clean = git-lfs clean -- %f

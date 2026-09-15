@@ -38,7 +38,6 @@ set relativenumber
 colorscheme gruvbox
 set background=dark
 let g:gruvbox_italic=1
-set guifont=SauceCodePro\ Nerd\ Font:h12
 
 " -----------------------------------------------------------------------------
 "     - Miscellaneous -
@@ -122,3 +121,10 @@ if &term =~ '256color'
   " render properly when inside 256-color tmux and GNU screen.
   set t_ut=
 endif
+
+" -----------------------------------------------------------------------------
+"     - GUI options -
+" -----------------------------------------------------------------------------
+set guifont=SauceCodePro\ Nerd\ Font\ 12
+set guioptions-=T
+set guioptions-=m

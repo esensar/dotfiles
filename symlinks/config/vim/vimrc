@@ -121,3 +121,9 @@ endif
 set guifont=SauceCodePro\ Nerd\ Font\ 12
 set guioptions-=T
 set guioptions-=m
+
+let &t_Ce = "\e[4:0m" " cancel underline/curl
+let &t_Us = "\e[4:2m" " double underline
+let &t_Cs = "\e[4:3m" " undercurl
+let &t_ds = "\e[4:4m" " dotted underline
+let &t_Ds = "\e[4:5m" " dashed underline

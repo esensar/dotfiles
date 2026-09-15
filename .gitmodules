@@ -124,3 +124,6 @@
 [submodule "symlinks/config/vim/pack/utils/start/vim-wayland-clipboard"]
 	path = symlinks/config/vim/pack/utils/start/vim-wayland-clipboard
 	url = git@github.com:jasonccox/vim-wayland-clipboard.git
+[submodule "symlinks/config/vim/pack/lsp/start/vimspector"]
+	path = symlinks/config/vim/pack/lsp/start/vimspector
+	url = git@github.com:puremourning/vimspector.git

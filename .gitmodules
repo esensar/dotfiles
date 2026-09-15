@@ -127,3 +127,9 @@
 [submodule "symlinks/config/vim/pack/lsp/start/vimspector"]
 	path = symlinks/config/vim/pack/lsp/start/vimspector
 	url = git@github.com:puremourning/vimspector.git
+[submodule "symlinks/config/vim/pack/languages/start/zig.vim"]
+	path = symlinks/config/vim/pack/languages/start/zig.vim
+	url = git@codeberg.org:ziglang/zig.vim.git
+[submodule "symlinks/config/vim/pack/languages/start/rust.vim"]
+	path = symlinks/config/vim/pack/languages/start/rust.vim
+	url = git@github.com:rust-lang/rust.vim.git

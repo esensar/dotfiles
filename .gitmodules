@@ -121,3 +121,6 @@
 [submodule "symlinks/config/vim/pack/languages/start/vim-haredoc"]
 	path = symlinks/config/vim/pack/languages/start/vim-haredoc
 	url = https://git.sr.ht/~torresjrjr/vim-haredoc
+[submodule "symlinks/config/vim/pack/utils/start/vim-wayland-clipboard"]
+	path = symlinks/config/vim/pack/utils/start/vim-wayland-clipboard
+	url = git@github.com:jasonccox/vim-wayland-clipboard.git

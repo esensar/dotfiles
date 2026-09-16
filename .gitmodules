@@ -133,3 +133,6 @@
 [submodule "symlinks/config/vim/pack/languages/start/rust.vim"]
 	path = symlinks/config/vim/pack/languages/start/rust.vim
 	url = git@github.com:rust-lang/rust.vim.git
+[submodule "symlinks/config/vim/pack/lsp/start/asyncomplete-omni.vim"]
+	path = symlinks/config/vim/pack/lsp/start/asyncomplete-omni.vim
+	url = git@github.com:yami-beta/asyncomplete-omni.vim.git

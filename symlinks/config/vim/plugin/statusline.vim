@@ -117,6 +117,8 @@ function s:GetMode()
         return "%1*VB%*"
     elseif mode() == "c"
         return "%4*C%*"
+    elseif mode() == "t"
+        return "%2*T%*"
     else
         return "[mode: " . mode() . "]"
 endfunction

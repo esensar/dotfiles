@@ -1,7 +1,7 @@
 " -----------------------------------------------------------------------------
-"     - Hare file plugin -
+"     - cpp file plugin -
 " -----------------------------------------------------------------------------
 
-setlocal cc=+1 foldmethod=syntax foldminlines=4
+setlocal foldmethod=syntax foldminlines=4
 
-let b:undo_ftplugin .= "|setlocal cc< foldmethod< foldminlines<"
+let b:undo_ftplugin .= "|setlocal foldmethod< foldminlines<"

@@ -8,16 +8,6 @@ let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_highlighs_insert_mode_enabled = 0
 
-autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-            \ 'name': 'omni',
-            \ 'allowlist': ['*'],
-            \ 'blocklist': ['c', 'cpp', 'html'],
-            \ 'completor': function('asyncomplete#sources#omni#completor'),
-            \ 'config': {
-            \   'show_source_kind': 1,
-            \ },
-            \ }))
-
 if executable('lspmux')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'lspmux',

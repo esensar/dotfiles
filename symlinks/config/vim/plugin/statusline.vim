@@ -57,48 +57,55 @@ call s:UpdateColors()
 
 " Checks file type to add a pretty glyph if available
 function s:GetFileType()
-    if &filetype ==# "rust"
+    let l:filetype = getwinvar(g:statusline_winid, '&filetype')
+    if l:filetype ==# "rust"
         return "%2*%*"
-    elseif &filetype ==# "c"
+    elseif l:filetype ==# "c"
         return "%4*%*"
-    elseif &filetype ==# "cs"
+    elseif l:filetype ==# "cs"
         return "%4*%*"
-    elseif &filetype ==# "python"
+    elseif l:filetype ==# "python"
         return "%3*%*"
-    elseif &filetype ==# "javascript"
+    elseif l:filetype ==# "javascript"
         return ""
-    elseif &filetype ==# "typescript"
+    elseif l:filetype ==# "typescript"
         return "%4*%*"
-    elseif &filetype ==# "vim"
+    elseif l:filetype ==# "vim"
         return "%1*%*"
-    elseif &filetype ==# "clojure"
+    elseif l:filetype ==# "clojure"
         return ""
-    elseif &filetype ==# "html"
+    elseif l:filetype ==# "html"
         return ""
-    elseif &filetype ==# "haskell"
+    elseif l:filetype ==# "haskell"
         return ""
-    elseif &filetype ==# "markdown"
+    elseif l:filetype ==# "markdown"
         return ""
-    elseif &filetype ==# "org"
+    elseif l:filetype ==# "org"
         return ""
-    elseif &filetype ==# "scss"
+    elseif l:filetype ==# "scss"
         return ""
-    elseif &filetype ==# "scala"
+    elseif l:filetype ==# "scala"
         return ""
-    elseif &filetype ==# "elixir"
+    elseif l:filetype ==# "elixir"
         return "%5*%*"
-    elseif &filetype ==# "kotlin"
+    elseif l:filetype ==# "kotlin"
         return "%2*洞%*"
-    elseif &filetype ==# "yml"
+    elseif l:filetype ==# "yml"
         return ""
-    elseif &filetype ==# "toml"
+    elseif l:filetype ==# "toml"
         return ""
-    elseif &filetype ==# "json"
+    elseif l:filetype ==# "json"
         return ""
-    elseif &filetype ==# "timelog"
+    elseif l:filetype ==# "timelog"
         return "%1*󰔠%*"
-    elseif &filetype ==# "timelogreport"
+    elseif l:filetype ==# "timelogreport"
         return "%1*󰔠%*"
+    elseif l:filetype ==# "fugitive"
+        return "%4*%*"
+    elseif l:filetype ==# "help"
+        return "Docs"
+    elseif l:filetype ==# "man"
+        return "Docs"
     else
         return "%y"
 endfunction
@@ -134,21 +141,43 @@ function! s:PasteForStatusline()
 endfunction
 
 function! s:LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:counts = lsp#get_buffer_diagnostics_counts()
 
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
+    let l:total = l:counts['error'] + l:counts['warning'] + l:counts['information'] + l:counts['hint']
+    if l:total == 0 
+        return '%1* OK %*'
+    endif
+    let l:result = ''
+    if l:counts['hint'] != 0
+        let l:result .= printf(' %dH', l:counts['hint'])
+    endif
+    if l:counts['information'] != 0
+        let l:result .= printf(' %dI', l:counts['information'])
+    endif
+    if l:counts['warning'] != 0
+        let l:result .= printf(' %%3*%dW%%*', l:counts['warning'])
+    endif
+    if l:counts['error'] != 0
+        let l:result .= printf(' %%2*%dE%%*', l:counts['error'])
+    endif
+    return l:result
+endfunction
 
-    return l:counts.total == 0 ? '%1* OK %*' : printf(
-    \   '%%3*%dW%%* %%2*%dE%%*',
-    \   all_non_errors,
-    \   all_errors
-    \)
+function! s:LspStatus() abort
+    let l:progress = lsp#get_progress()
+
+    if empty(l:progress)
+        return ''
+    endif
+
+    let l:status = l:progress[0]
+    return printf(' %%2*%s %d%%%%*', l:status['message'], l:status['percentage'])
 endfunction
 
 function GetStatusLine()
+    let l:buftype = getwinvar(g:statusline_winid, '&buftype')
     let l:status_line_left = " " . s:GetMode() . " "
-    if exists('g:loaded_fugitive')
+    if exists('g:loaded_fugitive') && empty(l:buftype)
         let l:fugitive_head = FugitiveHead()
         if strlen(l:fugitive_head)
             let l:status_line_left .= "%4* " . l:fugitive_head . "%*"
@@ -158,18 +187,21 @@ function GetStatusLine()
     let l:status_line_left .= " %1*%M%*" " Modified
     let l:status_line_left .= " %2*%r%*" " Read only
     let l:status_line_left .= s:PasteForStatusline()
-    if exists('g:did_coc_loaded')
-        let l:coc_status = coc#status()
-        if strlen(l:coc_status)
-            let l:status_line_left .= "%2*" . l:coc_status . "%*"
-        endif
+    if exists('g:loaded_lsp') && empty(l:buftype)
+        let l:status_line_left .= s:LspStatus()
     endif
     let l:status_line_right = "%=   " " Align right statusline
-    if exists('g:loaded_ale')
-        let l:status_line_right .= s:LinterStatus() " ALE status
+    if exists('g:loaded_lsp') && empty(l:buftype)
+        let l:status_line_right .= s:LinterStatus() " LSP diagnostics
     endif
     let l:status_line_right .= " %2c:%3l/%3L (%3p%%) " " col, line, tot. lines
     let l:status_line_right .= s:GetFileType() . " " " File type
     return l:status_line_left . l:status_line_right
 endfunction
 set statusline=%!GetStatusLine()
+
+augroup statusline_updates
+  autocmd!
+  autocmd User lsp_diagnostics_updated redrawstatus
+  autocmd User lsp_progress_updated redrawstatus
+augroup END

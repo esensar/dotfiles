@@ -7,6 +7,7 @@ let personal_wiki.syntax = 'markdown'
 let personal_wiki.auto_diary_index = 1
 let personal_wiki.auto_generate_links = 1
 let personal_wiki.auto_toc = 1
+let personal_wiki.auto_tags = 1
 
 let g:vimwiki_list = [personal_wiki]
 

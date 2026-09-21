@@ -67,6 +67,8 @@ Session.vim
 .exrc
 .nvimrc
 .nvim.lua
+.vimspector.json
+.vim-lsp-settings/
 
 # Projectionist
 .projections.json

@@ -25,7 +25,7 @@ function! s:GetPrUrl(...)
 	let l:origin_url = substitute(l:origin_url, 'git@', 'https://', '')
 
 	" Remove prefix if it is available, for some of common git services
-	let common_services = ['github.com', 'bitbucket.org', 'gitlab.com']
+	let common_services = ['github.com', 'bitbucket.org', 'gitlab.com', 'codeberg.org']
 	for service in l:common_services
 		if (l:origin_url =~ l:service)
 			" Common mechanism for managing multiple SSH keys
@@ -62,12 +62,12 @@ endfunction
 " Creates new branch and checks out to it
 " Similar to `gcb` in fish config
 function! s:CreateBranch(branch)
-	execute 'Git checkout -b ' . a:branch
+	execute 'Git switch -c ' . a:branch
 endfunction
 
 " Switches to branch
-function! s:CheckoutBranch(branch)
-	execute 'Git checkout ' . a:branch
+function! s:SwitchBranch(branch)
+	execute 'Git switch ' . a:branch
 endfunction
 
 command! -nargs=0 Ggpush :call s:PushOrigin()
@@ -77,8 +77,8 @@ command! -nargs=? Gpr Gpropen <args>
 command! -nargs=? Gprprint :call s:PrintPrUrl(<f-args>)
 command! -nargs=? Gprcopy :call s:CopyPrUrl(<f-args>)
 command! -nargs=1 Gcbranch :call s:CreateBranch(<f-args>)
-command! -nargs=0 Gcmaster :call s:CheckoutBranch('main')
-command! -nargs=0 Gcm Gcmaster
-command! -nargs=0 Gcdev :call s:CheckoutBranch('develop')
-command! -nargs=1 Gcheckout :call s:CheckoutBranch(<f-args>)
+command! -nargs=0 Gswc :call s:CreateBranch('main')
+command! -nargs=0 Gswm :call s:SwitchBranch('main')
+command! -nargs=0 Gswdev :call s:SwitchBranch('develop')
+command! -nargs=1 Gswitch :call s:SwitchBranch(<f-args>)
 command! -nargs=1 Gc Gcheckout <args>

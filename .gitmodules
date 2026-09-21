@@ -130,3 +130,12 @@
 [submodule "symlinks/config/vim/pack/tpope/start/vim-scriptease"]
 	path = symlinks/config/vim/pack/tpope/start/vim-scriptease
 	url = git@github.com:tpope/vim-scriptease.git
+[submodule "symlinks/config/vim/pack/languages/start/vim-fireplace"]
+	path = symlinks/config/vim/pack/languages/start/vim-fireplace
+	url = git@github.com:tpope/vim-fireplace.git
+[submodule "symlinks/config/vim/pack/lsp/opt/asyncomplete.vim"]
+	path = symlinks/config/vim/pack/lsp/start/asyncomplete.vim
+	url = git@github.com:prabirshrestha/asyncomplete.vim.git
+[submodule "symlinks/config/vim/pack/lsp/opt/asyncomplete-lsp.vim"]
+	path = symlinks/config/vim/pack/lsp/start/asyncomplete-lsp.vim
+	url = git@github.com:prabirshrestha/asyncomplete-lsp.vim.git

@@ -2,35 +2,30 @@ if exists("g:loaded_lsp") || &cp | finish | endif
 
 let g:loaded_lsp = 1
 
+let g:lsp_auto_enable = 0
+let g:lsp_work_done_progress_enabled = 1
 let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_diagnostics_virtual_text_align = "after"
 let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_highlighs_insert_mode_enabled = 0
+let g:asyncomplete_enable_for_all = 0
 
 if executable('lspmux')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'lspmux',
-        \ 'cmd': {server_info->['lspmux']},
-        \ 'allowlist': ['rust'],
-        \ 'workspace_config': {'rust-analyzer': {
-        \ 'check': { 'command': 'clippy' },
-        \ 'checkonSave': v:true,
-        \ 'diagnostics': { 'enable': v:true },
-        \ 'procMacro': { 'enable': v:true },
-        \ 'hoverActions': { 'enable': v:false },
-        \ 'cargo': { 'features': 'all' }
-        \ }}})
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rust-analyzer',
-        \ 'cmd': {server_info->['rust-analyzer']},
-        \ 'blocklist': ['rust'],
-        \ })
+    call lsp_settings#set('rust-analyzer', 'cmd', 'lspmux')
+    call lsp_settings#set('rust-analyzer', 'workspace-config', 
+                \ {'rust-analyzer': {
+                \ 'check': { 'command': 'clippy' },
+                \ 'checkonSave': v:true,
+                \ 'diagnostics': { 'enable': v:true },
+                \ 'procMacro': { 'enable': v:true },
+                \ 'hoverActions': { 'enable': v:false },
+                \ 'cargo': { 'features': 'all' }
+                \ }})
 endif
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> <C-]> <plug>(lsp-definition)
     nmap <buffer> gs <plug>(lsp-document-symbol-search)
@@ -41,6 +36,11 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [w <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]w <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> <A-k> <plug>(lsp-signature-help)
+    nmap <buffer> k <plug>(lsp-signature-help)
+    " " no plug provided for insert mode, so copying the code
+    imap <buffer> <A-k> <c-o>:<c-u>call lsp#ui#vim#signature_help#get_signature_help_under_cursor()<cr>
+    " imap <buffer> k <c-o>:<c-u>call lsp#ui#vim#signature_help#get_signature_help_under_cursor()<cr>
     nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
     nnoremap <buffer>  :LspCodeAction<CR>
@@ -56,3 +56,28 @@ augroup lsp_install
     au!
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+
+command! AsyncompleteEnable call asyncomplete#enable_for_buffer()
+command! AsyncompleteDisable call asyncomplete#disable_for_buffer()
+
+function! s:asyncomplete_toggle()
+    if b:asyncomplete_enable == 1
+        call asyncomplete#disable_for_buffer()
+    else
+        call asyncomplete#enable_for_buffer()
+    endif
+endfunction
+
+function! s:lsp_toggle()
+    if b:asyncomplete_enable == 1
+        call asyncomplete#disable_for_buffer()
+    else
+        call asyncomplete#enable_for_buffer()
+    endif
+endfunction
+
+nnoremap [oac :call asyncomplete#enable_for_buffer()<CR>
+nnoremap ]oac :call asyncomplete#enable_for_buffer()<CR>
+nnoremap yoac :call <SID>asyncomplete_toggle()<CR>
+nnoremap [oal :call lsp#enable()<CR>
+nnoremap ]oal :LspStopServer <bar> lsp#disable()<CR>

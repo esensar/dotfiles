@@ -64,7 +64,7 @@ command! LspDisable call <SID>lsp_disable()
 
 
 nnoremap [oac :call asyncomplete#enable_for_buffer()<CR>
-nnoremap ]oac :call asyncomplete#enable_for_buffer()<CR>
+nnoremap ]oac :call asyncomplete#disable_for_buffer()<CR>
 nnoremap yoac :call <SID>asyncomplete_toggle()<CR>
 nnoremap [oal :call lsp#enable()<CR>
 nnoremap ]oal :call <SID>lsp_disable()<CR>

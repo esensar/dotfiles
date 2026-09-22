@@ -1,16 +1,3 @@
-if exists("g:loaded_lsp") || &cp | finish | endif
-
-let g:loaded_lsp = 1
-
-let g:lsp_auto_enable = 0
-let g:lsp_work_done_progress_enabled = 1
-let g:lsp_diagnostics_virtual_text_enabled = 0
-let g:lsp_diagnostics_virtual_text_align = "after"
-let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
-let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_diagnostics_highlighs_insert_mode_enabled = 0
-let g:asyncomplete_enable_for_all = 0
-
 if executable('lspmux')
     call lsp_settings#set('rust-analyzer', 'cmd', 'lspmux')
     call lsp_settings#set('rust-analyzer', 'workspace-config', 
@@ -57,27 +44,27 @@ augroup lsp_install
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 
+function! s:asyncomplete_toggle()
+    if get(b:, 'asyncomplete_enable', 0) == 1
+        call asyncomplete#disable_for_buffer()
+    else
+        call asyncomplete#enable_for_buffer()
+    endif
+endfunction
+
+function! s:lsp_disable()
+    :LspStopServer
+    call lsp#disable()
+endfunction
+
 command! AsyncompleteEnable call asyncomplete#enable_for_buffer()
 command! AsyncompleteDisable call asyncomplete#disable_for_buffer()
+command! LspEnable call lsp#enable()
+command! LspDisable call <SID>lsp_disable()
 
-function! s:asyncomplete_toggle()
-    if b:asyncomplete_enable == 1
-        call asyncomplete#disable_for_buffer()
-    else
-        call asyncomplete#enable_for_buffer()
-    endif
-endfunction
-
-function! s:lsp_toggle()
-    if b:asyncomplete_enable == 1
-        call asyncomplete#disable_for_buffer()
-    else
-        call asyncomplete#enable_for_buffer()
-    endif
-endfunction
 
 nnoremap [oac :call asyncomplete#enable_for_buffer()<CR>
 nnoremap ]oac :call asyncomplete#enable_for_buffer()<CR>
 nnoremap yoac :call <SID>asyncomplete_toggle()<CR>
 nnoremap [oal :call lsp#enable()<CR>
-nnoremap ]oal :LspStopServer <bar> lsp#disable()<CR>
+nnoremap ]oal :call <SID>lsp_disable()<CR>

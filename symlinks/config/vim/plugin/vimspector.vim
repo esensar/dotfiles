@@ -1,7 +1,6 @@
-if exists("g:loaded_vimspector") || &cp | finish | endif
-
-let g:loaded_vimspector = 1
-
+" -----------------------------------------------------------------------------
+"     - Vimspector plugin config -
+" -----------------------------------------------------------------------------
 nmap <leader>db <Plug>VimspectorToggleBreakpoint
 nmap <leader>dgb <Plug>VimspectorToggleConditionalBreakpoint
 nmap <leader>dfb <Plug>VimspectorAddFunctionBreakpoint

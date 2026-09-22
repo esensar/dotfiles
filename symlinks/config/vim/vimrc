@@ -38,6 +38,7 @@ set relativenumber
 colorscheme gruvbox
 set background=dark
 let g:gruvbox_italic=1
+set colorcolumn=+1
 
 " -----------------------------------------------------------------------------
 "     - Miscellaneous -

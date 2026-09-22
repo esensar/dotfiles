@@ -684,3 +684,12 @@ let g:projectionist_heuristics = {
 			\ 'deps.edn': s:clojure_config,
 			\ 'Source/main.lua|Source/pdxinfo': s:playdate_config,
 			\ }
+
+autocmd User ProjectionistActivate call s:activate()
+
+function! s:activate() abort
+	for [root, value] in projectionist#query('wrap')
+		let &l:textwidth = value
+		break
+	endfor
+endfunction

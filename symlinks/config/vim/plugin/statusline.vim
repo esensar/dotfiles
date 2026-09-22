@@ -171,7 +171,11 @@ function! s:LspStatus() abort
     endif
 
     let l:status = l:progress[0]
-    return printf(' %%2*%s %d%%%%*', l:status['message'], l:status['percentage'])
+    if has_key(l:status, 'percentage')
+        return printf(' %%2*[%s] %s - %s %d%%%%*', l:status['server'], l:status['title'], l:status['message'], l:status['percentage'])
+    else
+        return printf(' %%2*%s%%*', l:status['message'])
+    endif
 endfunction
 
 function GetStatusLine()
@@ -187,11 +191,11 @@ function GetStatusLine()
     let l:status_line_left .= " %1*%M%*" " Modified
     let l:status_line_left .= " %2*%r%*" " Read only
     let l:status_line_left .= s:PasteForStatusline()
-    if exists('g:loaded_lsp') && empty(l:buftype)
+    if exists('*lsp#get_progress') && empty(l:buftype)
         let l:status_line_left .= s:LspStatus()
     endif
     let l:status_line_right = "%=   " " Align right statusline
-    if exists('g:loaded_lsp') && empty(l:buftype)
+    if exists('*lsp#get_buffer_diagnostics_counts') && empty(l:buftype)
         let l:status_line_right .= s:LinterStatus() " LSP diagnostics
     endif
     let l:status_line_right .= " %2c:%3l/%3L (%3p%%) " " col, line, tot. lines
@@ -202,6 +206,6 @@ set statusline=%!GetStatusLine()
 
 augroup statusline_updates
   autocmd!
-  autocmd User lsp_diagnostics_updated redrawstatus
-  autocmd User lsp_progress_updated redrawstatus
+  autocmd User lsp_diagnostics_updated set statusline=%!GetStatusLine()
+  autocmd User lsp_progress_updated set statusline=%!GetStatusLine()
 augroup END

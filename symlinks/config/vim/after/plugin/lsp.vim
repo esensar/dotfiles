@@ -1,14 +1,14 @@
 if executable('lspmux')
     call lsp_settings#set('rust-analyzer', 'cmd', 'lspmux')
-    call lsp_settings#set('rust-analyzer', 'workspace-config', 
-                \ {'rust-analyzer': {
+    call lsp_settings#set('rust-analyzer', 'initialization_options', 
+                \ {
                 \ 'check': { 'command': 'clippy' },
-                \ 'checkonSave': v:true,
+                \ 'checkOnSave': v:true,
                 \ 'diagnostics': { 'enable': v:true },
                 \ 'procMacro': { 'enable': v:true },
                 \ 'hoverActions': { 'enable': v:false },
                 \ 'cargo': { 'features': 'all' }
-                \ }})
+                \ })
 endif
 
 function! s:on_lsp_buffer_enabled() abort
@@ -27,16 +27,11 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> k <plug>(lsp-signature-help)
     " " no plug provided for insert mode, so copying the code
     imap <buffer> <A-k> <c-o>:<c-u>call lsp#ui#vim#signature_help#get_signature_help_under_cursor()<cr>
-    " imap <buffer> k <c-o>:<c-u>call lsp#ui#vim#signature_help#get_signature_help_under_cursor()<cr>
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
     nnoremap <buffer>  :LspCodeAction<CR>
     nnoremap <buffer> <A-CR> :LspCodeAction<CR>
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-
-    " refer to doc to add more commands
 endfunction
 
 augroup lsp_install

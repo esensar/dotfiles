@@ -531,9 +531,13 @@ let s:rust_config = {
 			\ '*': {
 			\   'start': 'cargo run',
 			\   'dispatch': 'cargo test',
+			\   'make': 'cargo'
 			\ },
 			\ 'Cargo.toml': {
 			\   'type': 'crate',
+			\ },
+			\ 'examples/*.rs': {
+			\		'start': 'cargo run --example={} --all-features'
 			\ },
 			\ 'src/*.rs': {
 			\   'type': 'source',
@@ -550,6 +554,7 @@ let s:rust_config = {
 let s:rust_freestanding_config = {
 			\ '*': {
 			\   'start': 'set RUSTBIN (mktemp); rustc -o $RUSTBIN {} && $RUSTBIN',
+			\   'make': 'rustc'
 			\ },
 			\ }
 

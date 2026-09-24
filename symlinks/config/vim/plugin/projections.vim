@@ -697,4 +697,18 @@ function! s:activate() abort
 		let &l:textwidth = value
 		break
 	endfor
+	for [root, value] in projectionist#query('testrunner')
+		exec 'let g:test#' . &filetype . '#runner = "' . value . '"'
+		for [root, opts] in projectionist#query('testrunner-options')
+			let l:opts_name = '#options'
+			if value == 'cargotest'
+				let l:opts_name = '#test_options'
+			elseif value == 'gotest'
+				let l:opts_name = '#args'
+			endif
+			exec 'let g:test#' . &filetype . '#' . value . l:opts_name . ' = "' . opts . '"'
+			break
+		endfor
+		break
+	endfor
 endfunction

@@ -62,7 +62,7 @@ set incsearch		  " do incremental searching
 set autoread      " Reload files changed outside vim
 set hidden        " Allow leaving unsaved buffers
 
-set completeopt=menu,noinsert,noselect
+set completeopt=menu
 set wildmode=longest:full,full
 
 " Trigger autoread when changing buffers or coming back to vim in terminal.

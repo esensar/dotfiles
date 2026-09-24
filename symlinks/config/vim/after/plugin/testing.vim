@@ -4,6 +4,7 @@
 
 " make test commands execute using dispatch.vim
 let test#strategy = "dispatch"
+let test#rust#cargotest#test_options = "-- --nocapture"
 
 " Map test running commands
 nmap <silent> <Leader>tn :TestNearest<CR>

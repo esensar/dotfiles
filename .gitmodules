@@ -112,9 +112,6 @@
 [submodule "symlinks/config/vim/pack/languages/start/hare.vim"]
 	path = symlinks/config/vim/pack/languages/start/hare.vim
 	url = https://git.sr.ht/~sircmpwn/hare.vim
-[submodule "symlinks/config/vim/pack/languages/start/vim-haredoc"]
-	path = symlinks/config/vim/pack/languages/start/vim-haredoc
-	url = https://git.sr.ht/~torresjrjr/vim-haredoc
 [submodule "symlinks/config/vim/pack/utils/start/vim-wayland-clipboard"]
 	path = symlinks/config/vim/pack/utils/start/vim-wayland-clipboard
 	url = git@github.com:jasonccox/vim-wayland-clipboard.git
@@ -139,3 +136,6 @@
 [submodule "symlinks/config/vim/pack/lsp/opt/asyncomplete-lsp.vim"]
 	path = symlinks/config/vim/pack/lsp/start/asyncomplete-lsp.vim
 	url = git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
+[submodule "symlinks/config/vim/pack/utils/start/vim-keywordprg-commands"]
+	path = symlinks/config/vim/pack/utils/start/vim-keywordprg-commands
+	url = git@github.com:pappasam/vim-keywordprg-commands.git

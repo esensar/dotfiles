@@ -178,6 +178,29 @@ function! s:LspStatus() abort
     endif
 endfunction
 
+function! s:UltiSnipsStatus() abort
+    let l:can_expand = UltiSnips#CanExpandSnippet()
+    let l:can_jump_f = UltiSnips#CanJumpForwards()
+    let l:can_jump_b = UltiSnips#CanJumpBackwards()
+
+    if !l:can_expand && !l:can_jump_f && !l:can_jump_b
+        return ''
+    endif
+
+    let l:result = ' %4*[UltiSnips'
+
+    if l:can_expand
+        let l:result .= ' EXPAND'
+    endif
+    if l:can_jump_f
+        let l:result .= ' FWD'
+    endif
+    if l:can_jump_b
+        let l:result .= ' BCK'
+    endif
+    return l:result . ']%*'
+endfunction
+
 function GetStatusLine()
     let l:buftype = getwinvar(g:statusline_winid, '&buftype')
     let l:status_line_left = " " . s:GetMode() . " "
@@ -195,8 +218,8 @@ function GetStatusLine()
         let l:status_line_left .= s:LspStatus()
     endif
     let l:status_line_right = "%=   " " Align right statusline
-    if exists('*lsp#get_buffer_diagnostics_counts') && empty(l:buftype)
-        let l:status_line_right .= s:LinterStatus() " LSP diagnostics
+    if exists('*UltiSnips#CanJumpForwards') && empty(l:buftype)
+        let l:status_line_right .= s:UltiSnipsStatus()
     endif
     let l:status_line_right .= " %2c:%3l/%3L (%3p%%) " " col, line, tot. lines
     let l:status_line_right .= s:GetFileType() . " " " File type

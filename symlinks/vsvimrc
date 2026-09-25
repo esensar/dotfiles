@@ -1,5 +1,4 @@
-source ~/.vim/vimrc
-source ~/.vim/plugins.vim
+source ~/.config/vim/vimrc
 
 nnoremap <C-p> :vsc MonoDevelop.Ide.Commands.SearchCommands.GotoFile <CR>
 nnoremap gr :vsc MonoDevelop.Refactoring.RefactoryCommands.FindReferences <CR>

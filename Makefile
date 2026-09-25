@@ -147,7 +147,6 @@ link_screen: check_os
 .PHONY: link_vim
 link_vim: check_os
 	@echo "Linking vim files..."
-	$(call link,ideavimrc,.ideavimrc)
 	$(call link,vsvimrc,.vsvimrc)
 
 .PHONY: link_clojure

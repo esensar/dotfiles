@@ -1,10 +1,10 @@
-source ~/.vim/vimrc
-source ~/.vim/plugins.vim
+source ~/.config/vim/vimrc
 
 " IdeaVIM plugins
 set surround
 set commentary
 set NERDTree
+packadd matchit
 
 " IdeaVIM settings
 set ideajoin
@@ -55,7 +55,7 @@ command! TODO action ActivateTODOToolWindow
 command! Term action ActivateTerminalToolWindow
 command! Sync action Android.SyncProject
 command! Format action ReformatCode
-command! EditVimConfig e ~/.ideavimrc
+command! EditVimConfig e ~/.config/ideavim/ideavimrc
 command! ReloadVimConfig action IdeaVim.ReloadVimRc.reload
 command! Warnings action ActivateProblemsViewToolWindow
 command! Logs action ActivateLogcatToolWindow

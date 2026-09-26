@@ -4,8 +4,9 @@
 
 " Force ultisnips to use vim directory 
 let g:UltiSnipsSnippetDirectories=[$VIMHOME."/UltiSnips"]
-let g:UltiSnipsExpandTrigger='<C-J>'
+let g:UltiSnipsExpandOrJumpTrigger='<C-J>'
 let g:UltiSnipsListSnippets='<C-A-J>'
+let g:snips_author="Ensar Sarajčić"
 
 " Based on https://github.com/SirVer/ultisnips/issues/886#issuecomment-406624947
 function! UltiSnipsListSnippets(findstart, base) abort

@@ -1,5 +1,5 @@
 " Map FZF to CtrlP
-nnoremap <C-P> :Files<CR>
+nnoremap <C-P> :GFiles<CR>
 nnoremap  :Rg<CR>
 nnoremap <C-A-F> :Rg<CR>
 
@@ -18,3 +18,8 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+let s:fzf_pj_source = 'find "$HOME/src" -mindepth 3 -maxdepth 6 -type d -execdir test -d {}/.git ";" -print -prune | awk -F "$HOME/src" "{print $2}"'
+command! PJ call fzf#run(fzf#wrap({'source': s:fzf_pj_source, 'sink': 'tcd'}))
+command! GPJ call fzf#run(fzf#wrap({'source': s:fzf_pj_source, 'sink': 'cd'}))
+command! LPJ call fzf#run(fzf#wrap({'source': s:fzf_pj_source, 'sink': 'lcd'}))

@@ -203,6 +203,8 @@ endfunction
 
 function GetStatusLine()
     let l:buftype = getwinvar(g:statusline_winid, '&buftype')
+    let l:currentwin = winnr()->win_getid()
+    let l:status_line_in_focus = l:currentwin == g:statusline_winid
     let l:status_line_left = " " . s:GetMode() . " "
     if exists('g:loaded_fugitive') && empty(l:buftype)
         let l:fugitive_head = FugitiveHead()
@@ -213,12 +215,13 @@ function GetStatusLine()
     let l:status_line_left .= " %f" " Filename
     let l:status_line_left .= " %1*%M%*" " Modified
     let l:status_line_left .= " %2*%r%*" " Read only
+    let l:status_line_left .= " %3*%w%*" " preview
     let l:status_line_left .= s:PasteForStatusline()
     if exists('*lsp#get_progress') && empty(l:buftype)
         let l:status_line_left .= s:LspStatus()
     endif
     let l:status_line_right = "%=   " " Align right statusline
-    if exists('*UltiSnips#CanJumpForwards') && empty(l:buftype)
+    if exists('*UltiSnips#CanJumpForwards') && empty(l:buftype) && l:status_line_in_focus
         let l:status_line_right .= s:UltiSnipsStatus()
     endif
     let l:status_line_right .= " %2c:%3l/%3L (%3p%%) " " col, line, tot. lines

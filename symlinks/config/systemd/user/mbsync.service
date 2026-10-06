@@ -6,6 +6,7 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/mbsync -Va
+ExecStartPost=/usr/bin/notmuch new
 
 [Install]
 WantedBy=default.target

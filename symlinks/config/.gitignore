@@ -72,8 +72,8 @@
 !/mbsync/**
 !/clojure/
 !/clojure/**
-!/btop/
-!/btop/**
+!/htop/
+!/htop/**
 !/mimeapps.list
 !/mimeapps.list**
 !/lspmux/

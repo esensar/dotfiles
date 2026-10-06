@@ -1,5 +1,5 @@
 [Default Applications]
-x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/jetbrains=jetbrainsd.desktop
 x-scheme-handler/msteams=teams.desktop
 text/calendar=org.gnome.Calendar.desktop
 x-scheme-handler/terminal=alacritty.desktop

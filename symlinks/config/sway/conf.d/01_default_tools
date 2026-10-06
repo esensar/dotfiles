@@ -2,7 +2,7 @@
 set $term alacritty
 set $menu 'rofi -show-icons -run-shell-command "{terminal} -e /usr/bin/fish -c {cmd}" -show combi -modes combi -combi-modes "window,drun,run"'
 set $filemanager nautilus
-set $processviewer $term -e btop
+set $processviewer $term -e htop
 set $browser librewolf
 
 # start a terminal

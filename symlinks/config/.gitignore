@@ -88,8 +88,8 @@
 !/rofi**
 !/yubikey-touch-detector
 !/yubikey-touch-detector**
-!/notmuch
-!/notmuch**
+!/notmuch/
+!/notmuch/**
 !/ctags
 !/ctags**
 !/git
@@ -98,3 +98,5 @@
 !/timelog/**
 !/ideavim/
 !/ideavim/**
+!/weechat/
+!/weechat/**

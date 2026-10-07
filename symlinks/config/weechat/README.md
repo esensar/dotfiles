@@ -56,3 +56,10 @@ sourcehut.charset_message
 sourcehut.default_chantypes
 sourcehut.registered_mode
 ```
+
+Also optionally in `[look]` in `irc.conf`:
+```
+server_buffer = independent
+```
+
+Also check: https://benharri.org/weechat-setup/

@@ -1,11 +1,10 @@
 let g:lsp_auto_enable = 0
 let g:lsp_work_done_progress_enabled = 1
-let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_virtual_text_enabled = 1
 let g:lsp_diagnostics_virtual_text_align = "after"
 let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_highlighs_insert_mode_enabled = 0
-let g:lsp_hover_ui = 'preview'
 let g:lsp_document_code_action_signs_enabled = 0
 let g:lsp_diagnostics_float_insert_mode_enabled = 0
 let g:asyncomplete_enable_for_all = 0

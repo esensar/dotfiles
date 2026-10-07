@@ -1,5 +1,9 @@
-snippet blk
+snippet -blk
 //------------ $1 `!p snip.rv = (78 - 2 - 2 - 11 - len(t[1]))*'-'`
+endsnippet
+
+snippet =blk
+//============ $1 `!p snip.rv = (78 - 2 - 2 - 11 - len(t[1]))*'='`
 endsnippet
 
 snippet ok
@@ -13,3 +17,10 @@ endsnippet
 snippet some
 Some(${VISUAL:val})
 endsnippet
+
+snippet atest "Async unit test function"
+	#[tokio::test]
+	async fn ${1:function_name}_test() {
+		${0}
+	}
+

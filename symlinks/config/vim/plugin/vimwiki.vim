@@ -15,4 +15,4 @@ let g:vimwiki_list = [personal_wiki]
 let g:vimwiki_global_ext = 0
 
 " Prettier checkboxes
-let g:vimwiki_listsyms = '✗○◐●✓'
+let g:vimwiki_listsyms = ' ○◐●✓'

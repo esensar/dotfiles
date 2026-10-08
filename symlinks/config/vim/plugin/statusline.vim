@@ -224,6 +224,9 @@ function GetStatusLine()
     if exists('*UltiSnips#CanJumpForwards') && empty(l:buftype) && l:status_line_in_focus
         let l:status_line_right .= s:UltiSnipsStatus()
     endif
+    if exists('*lsp#get_buffer_diagnostics_counts') && empty(l:buftype)
+        let l:status_line_right .= s:LinterStatus() " LSP diagnostics
+    endif
     let l:status_line_right .= " %2c:%3l/%3L (%3p%%) " " col, line, tot. lines
     let l:status_line_right .= s:GetFileType() . " " " File type
     return l:status_line_left . l:status_line_right
@@ -232,6 +235,6 @@ set statusline=%!GetStatusLine()
 
 augroup statusline_updates
   autocmd!
-  autocmd User lsp_diagnostics_updated set statusline=%!GetStatusLine()
-  autocmd User lsp_progress_updated set statusline=%!GetStatusLine()
+  autocmd User lsp_diagnostics_updated redrawstatus
+  autocmd User lsp_progress_updated redrawstatus
 augroup END

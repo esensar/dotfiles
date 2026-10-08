@@ -83,7 +83,16 @@
         "clock#time": {
             "interval": 1,
             "format": "{:%H:%M}",
-            "tooltip": true
+            "timezone-tooltip-format": "{:%H:%M %Z}",
+            "timezones": [
+                "",
+                "America/Los_Angeles",
+                "America/New_York",
+                "Europe/London",
+                "UTC"
+            ],
+            "tooltip": true,
+            "tooltip-format": "{tz_list}"
         },
         "clock#date": {
             "interval": 10,

@@ -5,6 +5,7 @@ set -g ___fish_git_prompt_color_branch (set_color --bold "98971A")
 
 abbr -a gst "git status"
 abbr -a gsw "git switch"
+abbr -a gswc "git switch --track origin/HEAD -c"
 abbr -a gswm "git switch (__git.default_branch)"
 abbr -a gr "git restore"
 abbr -a grp "git restore --patch"

@@ -5,3 +5,4 @@ Wants=network-online.target
 
 [Service]
 ExecStart=/usr/bin/vdirsyncer sync
+ExecStartPost=/usr/bin/vdirsyncer metasync

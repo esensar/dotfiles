@@ -36,6 +36,8 @@
 	path = ./local/config
 [pull]
 	rebase = true
+[push]
+	default = current
 [init]
 	defaultBranch = main
 [sendemail]
@@ -51,3 +53,5 @@
 	signingKey = openpgp:C6C86B34D20787BE
 [rerere]
 	enabled = true
+[bash]
+	showInformativeStatus = true

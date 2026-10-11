@@ -206,12 +206,7 @@ function GetStatusLine()
     let l:currentwin = winnr()->win_getid()
     let l:status_line_in_focus = l:currentwin == g:statusline_winid
     let l:status_line_left = " " . s:GetMode() . " "
-    if exists('g:loaded_fugitive') && empty(l:buftype)
-        let l:fugitive_head = FugitiveHead()
-        if strlen(l:fugitive_head)
-            let l:status_line_left .= "%4* " . l:fugitive_head . "%*"
-        endif
-    endif
+    let l:status_line_left .= "%4*%{FugitiveStatusline()}%*"
     let l:status_line_left .= " %f" " Filename
     let l:status_line_left .= " %1*%M%*" " Modified
     let l:status_line_left .= " %2*%r%*" " Read only

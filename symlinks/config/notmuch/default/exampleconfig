@@ -46,6 +46,8 @@ other_email=other@mail.com;third@mail.com;
 #		in the mail store.
 #
 [new]
+tags=new
+ignore=.mbsyncstate;.uidvalidity;/.*[.]json$/
 # Search configuration
 #
 # The following option is supported here:
@@ -56,6 +58,7 @@ other_email=other@mail.com;third@mail.com;
 #		query will override that exclusion.
 #
 [search]
+exclude_tags=deleted;spam
 # Maildir compatibility configuration
 #
 # The following option is supported here:
@@ -78,3 +81,4 @@ other_email=other@mail.com;third@mail.com;
 #	commands will notice tag changes and update flags in filenames
 #
 [maildir]
+synchronize_flags=true

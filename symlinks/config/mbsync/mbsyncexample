@@ -16,36 +16,9 @@ Account personal
 MaildirStore personal-local
 Path ~/doc/mail/personal/
 Inbox ~/doc/mail/personal/INBOX
+SubFolders Verbatim
 
-Channel personal-inbox
+Channel personal
 Far :personal-remote:
 Near :personal-local:
-Patterns "INBOX"
-
-Channel personal-sent
-Far :personal-remote:Sent
-Near :personal-local:Sent
-
-Channel personal-trash
-Far :personal-remote:Trash
-Near :personal-local:Trash
-
-Channel personal-archive
-Far :personal-remote:Archive
-Near :personal-local:Archive
-
-Channel personal-drafts
-Far :personal-remote:Drafts
-Near :personal-local:Drafts
-
-Channel personal-spam
-Far :personal-remote:Spam
-Near :personal-local:Spam
-
-Group personal
-Channel personal-inbox
-Channel personal-sent
-Channel personal-trash
-Channel personal-archive
-Channel personal-drafts
-Channel personal-spam
+Patterns *

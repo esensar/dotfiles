@@ -1,0 +1,11 @@
+#!/bin/sh
+# Auto-tag freshly indexed mail, then clear the 'new' tag.
+
+# immediately archive all messages from "me"
+notmuch tag -new -- tag:new and from:/.*@ensarsarajcic.com/
+
+# folder-based: All Mail sync loses folders, so tag by headers
+notmuch tag +lists +muted -- tag:new and 'List-Id:/.+/'
+
+# finally, retag all "new" messages "inbox" and "unread"
+notmuch tag +inbox +unread -new -- tag:new

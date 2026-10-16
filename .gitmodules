@@ -139,3 +139,6 @@
 [submodule "symlinks/config/vim/pack/utils/start/vim-keywordprg-commands"]
 	path = symlinks/config/vim/pack/utils/start/vim-keywordprg-commands
 	url = git@github.com:pappasam/vim-keywordprg-commands.git
+[submodule "symlinks/config/vim/pack/utils/start/AnsiEsc.vim"]
+	path = symlinks/config/vim/pack/utils/start/AnsiEsc.vim
+	url = git@github.com:vim-scripts/AnsiEsc.vim.git

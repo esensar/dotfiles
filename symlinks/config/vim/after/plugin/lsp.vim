@@ -1,14 +1,5 @@
 if executable('lspmux')
     call lsp_settings#set('rust-analyzer', 'cmd', 'lspmux')
-    call lsp_settings#set('rust-analyzer', 'initialization_options', 
-                \ {
-                \ 'check': { 'command': 'clippy' },
-                \ 'checkOnSave': v:true,
-                \ 'diagnostics': { 'enable': v:true },
-                \ 'procMacro': { 'enable': v:true },
-                \ 'hoverActions': { 'enable': v:false },
-                \ 'cargo': { 'features': 'all' }
-                \ })
 endif
 
 function! s:on_lsp_buffer_enabled() abort

@@ -27,15 +27,11 @@ export DEFAULT_USER="ensar"
 
 export MY_CONFIG_CACHE_DIR=$HOME/.local/share/script_cache
 
-export EDITOR=nvim
-export VISUAL=nvim
-export SUDO_EDITOR=nvim
-export ELIXIR_EDITOR="nvim"
+export EDITOR=vim
+export VISUAL=vim
+export SUDO_EDITOR=vim
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 export ANDROID_HOME="$HOME/Android/Sdk"
-
-alias vim="nvim"
-alias vi="nvim"
 
 source "$HOME/.cargo/env"

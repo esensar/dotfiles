@@ -10,6 +10,18 @@ let g:lsp_diagnostics_float_insert_mode_enabled = 0
 let g:asyncomplete_enable_for_all = 0
 let g:asnycomplete_auto_completeopt = 0
 
+let g:lsp_settings = {
+			\ 'rust-analyzer': {
+				\ 'initialization_options': {
+					\ 'check': { 'command': 'clippy' },
+					\ 'checkOnSave': v:true,
+					\ 'diagnostics': { 'enable': v:true },
+					\ 'procMacro': { 'enable': v:true },
+					\ 'hoverActions': { 'enable': v:false },
+					\}
+				\}
+			\}
+
 function s:setup_quickpick_keymap() abort
 	imap <buffer> <C-y> <Plug>(lsp-quickpick-accept)
 	nmap <buffer> <C-y> <Plug>(lsp-quickpick-accept)

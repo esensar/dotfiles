@@ -1,144 +1,144 @@
 [submodule "symlinks/config/vim/pack/tpope/start/vim-endwise"]
 	path = symlinks/config/vim/pack/tpope/start/vim-endwise
-	url = git@github.com:tpope/vim-endwise.git
+	url = https://github.com/tpope/vim-endwise.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-sensible"]
 	path = symlinks/config/vim/pack/tpope/start/vim-sensible
-	url = git@github.com:tpope/vim-sensible.git
+	url = https://github.com/tpope/vim-sensible.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-surround"]
 	path = symlinks/config/vim/pack/tpope/start/vim-surround
-	url = git@github.com:tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-vinegar"]
 	path = symlinks/config/vim/pack/tpope/start/vim-vinegar
-	url = git@github.com:tpope/vim-vinegar.git
+	url = https://github.com/tpope/vim-vinegar.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-speeddating"]
 	path = symlinks/config/vim/pack/tpope/start/vim-speeddating
-	url = git@github.com:tpope/vim-speeddating.git
+	url = https://github.com/tpope/vim-speeddating.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-dispatch"]
 	path = symlinks/config/vim/pack/tpope/start/vim-dispatch
-	url = git@github.com:tpope/vim-dispatch.git
+	url = https://github.com/tpope/vim-dispatch.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-projectionist"]
 	path = symlinks/config/vim/pack/tpope/start/vim-projectionist
-	url = git@github.com:tpope/vim-projectionist.git
+	url = https://github.com/tpope/vim-projectionist.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-unimpaired"]
 	path = symlinks/config/vim/pack/tpope/start/vim-unimpaired
-	url = git@github.com:tpope/vim-unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-repeat"]
 	path = symlinks/config/vim/pack/tpope/start/vim-repeat
-	url = git@github.com:tpope/vim-repeat.git
+	url = https://github.com/tpope/vim-repeat.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-commentary"]
 	path = symlinks/config/vim/pack/tpope/start/vim-commentary
-	url = git@github.com:tpope/vim-commentary.git
+	url = https://github.com/tpope/vim-commentary.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-sleuth"]
 	path = symlinks/config/vim/pack/tpope/start/vim-sleuth
-	url = git@github.com:tpope/vim-sleuth.git
+	url = https://github.com/tpope/vim-sleuth.git
 [submodule "symlinks/config/vim/pack/languages/start/vim-polyglot"]
 	path = symlinks/config/vim/pack/languages/start/vim-polyglot
-	url = git@github.com:sheerun/vim-polyglot.git
+	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "symlinks/config/vim/pack/languages/start/vimwiki"]
 	path = symlinks/config/vim/pack/languages/start/vimwiki
-	url = git@github.com:vimwiki/vimwiki.git
+	url = https://github.com/vimwiki/vimwiki.git
 [submodule "symlinks/config/vim/pack/languages/start/vimwiki-reviews"]
 	path = symlinks/config/vim/pack/languages/start/vimwiki-reviews
-	url = git@github.com:esensar/vimwiki-reviews.git
+	url = https://codeberg.org/vimwiki-reviews/vimwiki-reviews.git
 [submodule "symlinks/config/vim/pack/languages/start/vim-ledger"]
 	path = symlinks/config/vim/pack/languages/start/vim-ledger
-	url = git@github.com:ledger/vim-ledger.git
+	url = https://github.com/ledger/vim-ledger.git
 [submodule "symlinks/config/vim/pack/utils/start/vim-grepper"]
 	path = symlinks/config/vim/pack/utils/start/vim-grepper
-	url = git@github.com:mhinz/vim-grepper.git
+	url = https://github.com/mhinz/vim-grepper.git
 [submodule "symlinks/config/vim/pack/utils/start/vim-colorschemes"]
 	path = symlinks/config/vim/pack/utils/start/vim-colorschemes
-	url = git@github.com:flazz/vim-colorschemes.git
+	url = https://github.com/flazz/vim-colorschemes.git
 [submodule "symlinks/config/vim/pack/utils/start/targets.vim"]
 	path = symlinks/config/vim/pack/utils/start/targets.vim
-	url = git@github.com:wellle/targets.vim.git
+	url = https://github.com/wellle/targets.vim.git
 [submodule "symlinks/config/vim/pack/utils/start/ultisnips"]
 	path = symlinks/config/vim/pack/utils/start/ultisnips
-	url = git@github.com:SirVer/ultisnips.git
+	url = https://github.com/SirVer/ultisnips.git
 [submodule "symlinks/config/vim/pack/utils/start/vim-snippets"]
 	path = symlinks/config/vim/pack/utils/start/vim-snippets
-	url = git@github.com:honza/vim-snippets.git
+	url = https://github.com/honza/vim-snippets.git
 [submodule "symlinks/config/vim/pack/utils/start/fzf"]
 	path = symlinks/config/vim/pack/utils/start/fzf
-	url = git@github.com:junegunn/fzf.git
+	url = https://github.com/junegunn/fzf.git
 [submodule "symlinks/config/vim/pack/utils/start/fzf.vim"]
 	path = symlinks/config/vim/pack/utils/start/fzf.vim
-	url = git@github.com:junegunn/fzf.vim.git
+	url = https://github.com/junegunn/fzf.vim.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-eunuch"]
 	path = symlinks/config/vim/pack/tpope/start/vim-eunuch
-	url = git@github.com:tpope/vim-eunuch.git
+	url = https://github.com/tpope/vim-eunuch.git
 [submodule "symlinks/config/vim/pack/utils/start/editorconfig-vim"]
 	path = symlinks/config/vim/pack/utils/start/editorconfig-vim
-	url = git@github.com:editorconfig/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim
 [submodule "symlinks/config/vim/pack/languages/start/vim-crates"]
 	path = symlinks/config/vim/pack/languages/start/vim-crates
-	url = git@github.com:mhinz/vim-crates
+	url = https://github.com/mhinz/vim-crates
 [submodule "symlinks/config/vim/pack/utils/start/undotree"]
 	path = symlinks/config/vim/pack/utils/start/undotree
-	url = git@github.com:mbbill/undotree.git
+	url = https://github.com/mbbill/undotree.git
 [submodule "symlinks/config/vim/pack/utils/start/vim-test"]
 	path = symlinks/config/vim/pack/utils/start/vim-test
-	url = git@github.com:vim-test/vim-test
+	url = https://github.com/vim-test/vim-test
 [submodule "symlinks/config/vim/pack/utils/start/vim-rest-console"]
 	path = symlinks/config/vim/pack/utils/start/vim-rest-console
-	url = git@github.com:diepm/vim-rest-console
+	url = https://github.com/diepm/vim-rest-console
 [submodule "symlinks/config/vim/pack/languages/start/timelog-vim"]
 	path = symlinks/config/vim/pack/languages/start/timelog-vim
-	url = git@git.sr.ht:~esensar/timelog-vim
+	url = https://git.sr.ht/~esensar/timelog-vim
 [submodule "symlinks/config/vim/pack/languages/start/vim-sexp"]
 	path = symlinks/config/vim/pack/languages/start/vim-sexp
-	url = git@github.com:guns/vim-sexp
+	url = https://github.com/guns/vim-sexp
 [submodule "symlinks/config/vim/pack/languages/start/vim-sexp-mappings-for-regular-people"]
 	path = symlinks/config/vim/pack/languages/start/vim-sexp-mappings-for-regular-people
-	url = git@github.com:tpope/vim-sexp-mappings-for-regular-people
+	url = https://github.com/tpope/vim-sexp-mappings-for-regular-people
 [submodule "symlinks/config/vim/pack/lsp/start/vim-lsp"]
 	path = symlinks/config/vim/pack/lsp/start/vim-lsp
-	url = git@github.com:prabirshrestha/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
 [submodule "symlinks/config/vim/pack/lsp/start/vim-lsp-settings"]
 	path = symlinks/config/vim/pack/lsp/start/vim-lsp-settings
-	url = git@github.com:mattn/vim-lsp-settings
+	url = https://github.com/mattn/vim-lsp-settings
 [submodule "symlinks/config/vim/pack/lsp/start/vim-lsp-ultisnips"]
 	path = symlinks/config/vim/pack/lsp/start/vim-lsp-ultisnips
-	url = git@github.com:thomasfaingnaert/vim-lsp-ultisnips
+	url = https://github.com/thomasfaingnaert/vim-lsp-ultisnips
 [submodule "symlinks/config/vim/pack/lsp/start/vim-lsp-snippets"]
 	path = symlinks/config/vim/pack/lsp/start/vim-lsp-snippets
-	url = git@github.com:thomasfaingnaert/vim-lsp-snippets
+	url = https://github.com/thomasfaingnaert/vim-lsp-snippets
 [submodule "symlinks/config/vim/pack/utils/start/vim-gitgutter"]
 	path = symlinks/config/vim/pack/utils/start/vim-gitgutter
-	url = git@github.com:airblade/vim-gitgutter.git
+	url = https://github.com/airblade/vim-gitgutter.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-fugitive"]
 	path = symlinks/config/vim/pack/tpope/start/vim-fugitive
-	url = git@github.com:tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "symlinks/config/vim/pack/languages/start/hare.vim"]
 	path = symlinks/config/vim/pack/languages/start/hare.vim
 	url = https://git.sr.ht/~sircmpwn/hare.vim
 [submodule "symlinks/config/vim/pack/utils/start/vim-wayland-clipboard"]
 	path = symlinks/config/vim/pack/utils/start/vim-wayland-clipboard
-	url = git@github.com:jasonccox/vim-wayland-clipboard.git
+	url = https://github.com/jasonccox/vim-wayland-clipboard.git
 [submodule "symlinks/config/vim/pack/lsp/start/vimspector"]
 	path = symlinks/config/vim/pack/lsp/start/vimspector
-	url = git@github.com:puremourning/vimspector.git
+	url = https://github.com/puremourning/vimspector.git
 [submodule "symlinks/config/vim/pack/languages/start/zig.vim"]
 	path = symlinks/config/vim/pack/languages/start/zig.vim
-	url = git@codeberg.org:ziglang/zig.vim.git
+	url = https://codeberg.org/ziglang/zig.vim.git
 [submodule "symlinks/config/vim/pack/languages/start/rust.vim"]
 	path = symlinks/config/vim/pack/languages/start/rust.vim
-	url = git@github.com:rust-lang/rust.vim.git
+	url = https://github.com/rust-lang/rust.vim.git
 [submodule "symlinks/config/vim/pack/tpope/start/vim-scriptease"]
 	path = symlinks/config/vim/pack/tpope/start/vim-scriptease
-	url = git@github.com:tpope/vim-scriptease.git
+	url = https://github.com/tpope/vim-scriptease.git
 [submodule "symlinks/config/vim/pack/languages/start/vim-fireplace"]
 	path = symlinks/config/vim/pack/languages/start/vim-fireplace
-	url = git@github.com:tpope/vim-fireplace.git
+	url = https://github.com/tpope/vim-fireplace.git
 [submodule "symlinks/config/vim/pack/lsp/opt/asyncomplete.vim"]
 	path = symlinks/config/vim/pack/lsp/start/asyncomplete.vim
-	url = git@github.com:prabirshrestha/asyncomplete.vim.git
+	url = https://github.com/prabirshrestha/asyncomplete.vim.git
 [submodule "symlinks/config/vim/pack/lsp/opt/asyncomplete-lsp.vim"]
 	path = symlinks/config/vim/pack/lsp/start/asyncomplete-lsp.vim
-	url = git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
 [submodule "symlinks/config/vim/pack/utils/start/vim-keywordprg-commands"]
 	path = symlinks/config/vim/pack/utils/start/vim-keywordprg-commands
-	url = git@github.com:pappasam/vim-keywordprg-commands.git
+	url = https://github.com/pappasam/vim-keywordprg-commands.git
 [submodule "symlinks/config/vim/pack/utils/start/AnsiEsc.vim"]
 	path = symlinks/config/vim/pack/utils/start/AnsiEsc.vim
-	url = git@github.com:vim-scripts/AnsiEsc.vim.git
+	url = https://github.com/vim-scripts/AnsiEsc.vim.git

@@ -1,0 +1,11 @@
+address "chat.sr.ht:6697"
+nickname "esensar"
+realname "Ensar Sarajčić"
+nickname "esensar"
+password-cmd rbw get chat.sr.ht esensar
+
+colors {
+	unread "#d79921"
+	status disabled
+	nicks extended
+}

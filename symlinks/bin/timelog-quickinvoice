@@ -1,0 +1,74 @@
+#!/bin/bash
+
+set -euo pipefail
+
+CONFIG=""
+QUIET=""
+POS=0
+ARGS=("$@")
+while [[ $POS -lt $# ]]; do
+  KEY=${ARGS[$POS]}
+
+  case $KEY in
+    -q)
+      QUIET="-q"
+      unset "ARGS[$POS]"
+      ;;
+    -v)
+      QUIET="-v"
+      unset "ARGS[$POS]"
+      ;;
+    -C)
+      CONFIG="-C ${ARGS[$((POS + 1))]}"
+      unset "ARGS[$POS]"
+      unset "ARGS[$((POS + 1))]"
+      ;;
+  esac
+  POS=$(( POS + 1 ))
+done
+
+set -- "${ARGS[@]}"
+
+EDIT=$EDITOR
+if [ -z "$EDIT" ]; then
+  EDIT=/bin/vi
+fi
+
+ACCOUNT=$1
+
+# Generate the report
+OUTPUT=$(timelog report new "$ACCOUNT")
+
+# Preview generated LaTeX source
+REPORT_FILE=$(echo "$OUTPUT" | grep "Output written to" | sed -s 's/Output written to //')
+set +e
+while true; do
+  $EDIT "$REPORT_FILE"
+
+  if [ $? -ne 0 ]; then
+    read -p "Editor exited with an error. Would you like to retry? [y/N]" yn
+    case $yn in
+        [Yy]* ) continue;;
+        [Nn]* ) exit;;
+        * ) exit;;
+    esac
+  fi
+  break;
+done
+set -e
+
+# Build the PDF
+REPORT_DIR=$(dirname "$REPORT_FILE")
+PREV_PWD="$PWD"
+cd $REPORT_DIR
+eval "$(direnv export bash)"
+pdflatex $(basename "$REPORT_FILE")
+
+REPORT_DIRNAME=$(basename "$REPORT_DIR")
+SUBJECT=$(echo "$REPORT_DIRNAME+invoice" | sed -s 's/-/+/')
+
+aerc "mailto:$(timelog $QUIET $CONFIG config -a $ACCOUNT timelog-quickinvoice email-to)?subject=$SUBJECT&template=monthly_invoice"
+
+git add .
+git commit -m "$(basename $REPORT_DIR)"
+git push

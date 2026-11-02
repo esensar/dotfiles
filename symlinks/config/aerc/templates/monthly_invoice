@@ -1,0 +1,9 @@
+
+Hi {{index (.To | firstnames) 0}},
+
+I have attached the invoice for the previous month. {{.SubjectBase | exec "sed -e 's/ invoice// ; s/ /-/'" | exec "read monthdir; printf '%s/invoices/Quad9/%s/invoice.pdf' $INVOICE_GENERATOR_HOME $monthdir" |.Attach}}
+
+Kind regards,
+-- 
+Ensar Sarajčić
+w: www.ensarsarajcic.com

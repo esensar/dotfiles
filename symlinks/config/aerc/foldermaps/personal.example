@@ -1,0 +1,4 @@
+Dev = tag:dev
+PR|Patch = tag:pr or tag:patch
+Issues = tag:issue
+CI = tag:ci

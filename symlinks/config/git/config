@@ -55,3 +55,7 @@
 	enabled = true
 [bash]
 	showInformativeStatus = true
+[rebase]
+	autosquash = true
+[credential]
+	helper = "rbw"
